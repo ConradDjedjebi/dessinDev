@@ -16,6 +16,11 @@ public class Ligne extends Forme {
 		this(position, Forme.LARGEUR_PAR_DEFAUT, Forme.HAUTEUR_PAR_DEFAUT);
 	}
 
+	public Ligne(Point position, Point p2) {
+		this(position);
+		this.setP2(p2);
+	}
+
 	public Ligne(int x, int y, int largeur, int hauteur) {
 		this(new Point(x,y), largeur, hauteur);
 	}
