@@ -10,10 +10,10 @@ import java.util.ListIterator;
 
 public class FormeComposee extends Forme {
 
-	ArrayList<Forme> formes;
+	private ArrayList<Forme> formes;
 
 	public FormeComposee(Forme[] lesFormes) {
-		this.formes = new ArrayList<Forme>();
+		this.formes = new ArrayList<>();
 		for (Forme forme : this.formes)
 			this.ajouterForme(forme);
 	}
@@ -35,10 +35,8 @@ public class FormeComposee extends Forme {
 	}
 
 	public void deplacerDe(int deltaX, int deltaY) {
-		ListIterator<Forme> listI = this.formes.listIterator();
 
-		while (listI.hasNext())
-			listI.next().deplacerDe(deltaX, deltaY);
+		for (Forme forme : this.formes) forme.deplacerDe(deltaX, deltaY);
 	}
 
 	public void deplacerVers(int newX, int newY) {
@@ -58,6 +56,10 @@ public class FormeComposee extends Forme {
 		return this.toString("Forme composée");
 	}
 
+	/**
+	 * Calcule l'aire
+	 * @return la somme des aires de l'ensemble des figures qui composent la forme composée
+     */
 	double aire() {
 		ListIterator<Forme> listI = this.formes.listIterator();
 		double returnedPerimetre = 0;
