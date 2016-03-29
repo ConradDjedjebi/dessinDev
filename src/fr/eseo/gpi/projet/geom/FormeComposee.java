@@ -62,22 +62,22 @@ public class FormeComposee extends Forme {
      */
 	double aire() {
 		ListIterator<Forme> listI = this.formes.listIterator();
-		double returnedPerimetre = 0;
+		double returnedPerimeter = 0;
 
 		while (listI.hasNext())
-			returnedPerimetre+=listI.next().aire();
+			returnedPerimeter+=listI.next().aire();
 
-		return returnedPerimetre;
+		return returnedPerimeter;
 	}
 
 	double perimetre() {
 		ListIterator<Forme> listI = this.formes.listIterator();
-		double returnedPerimetre = 0;
+		double returnedArea = 0;
 
 		while (listI.hasNext())
-			returnedPerimetre+=listI.next().perimetre();
+			returnedArea+=listI.next().perimetre();
 
-		return returnedPerimetre;
+		return returnedArea;
 	}
 
 }
