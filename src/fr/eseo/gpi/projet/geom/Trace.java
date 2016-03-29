@@ -8,13 +8,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 
+/**
+ * Définie la classe Tracé (qui devrait être un enfant de la classe FormeComposee btw)
+ */
 public class Trace extends Forme {
 
 	ArrayList<Ligne> lignes;
 
 
 	public Trace (Point p1, Point p2) {
-		this.lignes = new ArrayList<Ligne>();
+		this.lignes = new ArrayList<>();
 		this.lignes.add(new Ligne(p1, p2));
 	}
 
@@ -35,10 +38,8 @@ public class Trace extends Forme {
 	}
 
 	public void deplacerDe(int deltaX, int deltaY) {
-		ListIterator<Ligne> listI = this.lignes.listIterator();
 
-		while (listI.hasNext())
-			listI.next().deplacerDe(deltaX, deltaY);
+        for (Ligne ligne : this.lignes) ligne.deplacerDe(deltaX, deltaY);
 	}
 
 	public void deplacerVers(int newX, int newY) {

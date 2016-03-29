@@ -82,8 +82,8 @@ public class Complexe {
 	}
 
 	public void plus(Complexe b) {
-		this.reelle+=b.getReelle();
-		this.imaginaire+=b.getImaginaire();
+//		this.reelle+=b.getReelle();
+//		this.imaginaire+=b.getImaginaire();
 	}
 
 	public void fois(Complexe b) {

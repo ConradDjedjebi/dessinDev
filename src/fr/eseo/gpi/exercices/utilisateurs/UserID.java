@@ -6,9 +6,9 @@ package fr.eseo.gpi.exercices.utilisateurs;
 
 class UserID{
 	public static void main (String[]args){
-		Personne personne = new Personne();
-		personne.setNom(args[0]);
-		personne.setPrenom(args[1]);
+		Personne personne = new Personne(args[0], args[1]);
+//		personne.setNom(args[0]);
+//		personne.setPrenom(args[1]);
 		personne.setNationalite(args[2]);
 
 		if(args.length>3){
