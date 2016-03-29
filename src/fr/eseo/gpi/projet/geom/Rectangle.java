@@ -1,5 +1,5 @@
 /**
- * @author Antoine du HAMEL; Elphège DJEDJEBI
+ * @author Antoine du HAMEL
  * @project GPI
  */
 package fr.eseo.gpi.projet.geom;

@@ -4,26 +4,26 @@
  */
 package fr.eseo.gpi.projet.geom;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.ListIterator;
 
-public class Trace extends Forme {
+public class FormeComposee extends Forme {
 
-	ArrayList<Ligne> lignes;
+	ArrayList<Forme> formes;
 
-
-	public Trace (Point p1, Point p2) {
-		this.lignes = new ArrayList<Ligne>();
-		this.lignes.add(new Ligne(p1, p2));
+	public FormeComposee(Forme[] lesFormes) {
+		this.formes = new ArrayList<Forme>();
+		for (Forme forme : this.formes)
+			this.ajouterForme(forme);
 	}
 
-	public List<Ligne> getLignes() {
-		return this.lignes;
+	public List<Forme> getFormes() {
+		return this.formes;
 	}
 
-	public void addLineTo(Point p) {
-		this.lignes.add(new Ligne(this.lignes.get(lignes.size()).getP2(), p));
+	public void ajouterForme(Forme forme) {
+		this.formes.add(forme);
 	}
 
 	public void setPosition(Point p) {
@@ -35,7 +35,7 @@ public class Trace extends Forme {
 	}
 
 	public void deplacerDe(int deltaX, int deltaY) {
-		ListIterator<Ligne> listI = this.lignes.listIterator();
+		ListIterator<Forme> listI = this.formes.listIterator();
 
 		while (listI.hasNext())
 			listI.next().deplacerDe(deltaX, deltaY);
@@ -53,32 +53,23 @@ public class Trace extends Forme {
 		this.deplacerVers(this.getPosition().getX(), newY);
 	}
 
-
-
-	public void setLargeur(int largeur) {
-		//
-	}
-
-	public void setHauteur(int hauteur) {
-		//
-	}
-
-	public void setDimensions(int largeur, int hauteur) {
-		setLargeur(largeur);
-		setHauteur(hauteur);
-	}
-
-
 	public String toString() {
-		return this.toString("Tracé");
+		// TODO Auto-generated method stub
+		return this.toString("Forme composée");
 	}
 
-	//------------- OTHERS -------------//
+	double aire() {
+		ListIterator<Forme> listI = this.formes.listIterator();
+		double returnedPerimetre = 0;
 
-	public double aire() {return 0;}
+		while (listI.hasNext())
+			returnedPerimetre+=listI.next().aire();
 
-	public double perimetre() {
-		ListIterator<Ligne> listI = this.lignes.listIterator();
+		return returnedPerimetre;
+	}
+
+	double perimetre() {
+		ListIterator<Forme> listI = this.formes.listIterator();
 		double returnedPerimetre = 0;
 
 		while (listI.hasNext())
@@ -86,4 +77,5 @@ public class Trace extends Forme {
 
 		return returnedPerimetre;
 	}
+
 }
