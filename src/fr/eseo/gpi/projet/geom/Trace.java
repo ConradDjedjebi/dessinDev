@@ -1,3 +1,13 @@
+/**
+ * @author Antoine du HAMEL
+ * @project GPI
+ */
+package fr.eseo.gpi.projet.geom;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ListIterator;
+
 public class Trace extends Forme {
 
 	ArrayList<Ligne> lignes;
@@ -24,7 +34,7 @@ public class Trace extends Forme {
 		this.deplacerDe(deltaX, deltaY);
 	}
 
-	public void deplacerDe(deltaX, deltaY) {
+	public void deplacerDe(int deltaX, int deltaY) {
 		ListIterator<Ligne> listI = this.lignes.listIterator();
 
 		while (listI.hasNext())
