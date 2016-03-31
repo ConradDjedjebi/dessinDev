@@ -1,4 +1,7 @@
-TEST
+Projet GPI
 ===============
 
-Je teste **Git** :)
+Avancement
+-----------
+
+Validation du 3.2.4 en cours.
