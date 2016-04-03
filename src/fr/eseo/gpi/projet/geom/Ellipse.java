@@ -35,6 +35,8 @@ public class Ellipse extends Forme{
 	* Renvoie en String les informations sur Ellipse
 	* @return message (String)
 	**/
+
+
 	public String toString(){
 		return this.toString("Ellipse");
 	}

@@ -122,8 +122,19 @@ abstract class Forme {
 
 	abstract public String toString();
 
-	protected final String toString(String nom) {
+	/*protected final String toString(String nom) {
 		return "Forme > ["+nom+']'+
+				"\n\t Position : "+position.toString()+
+				"\n\t Largeur:"+getLargeur()+
+				"\n\t Hauteur:"+getHauteur()+
+				"\n\t Aire:"+this.aire()+
+				"\n\t Périmètre:"+this.perimetre()+
+				"\n===END OF DESCRIPTION===\n";
+	}*/
+
+
+	protected final String toString(String nom) {
+		return  "Forme > " +this.getClass().getName()+" "+
 				"\n\t Position : "+position.toString()+
 				"\n\t Largeur:"+getLargeur()+
 				"\n\t Hauteur:"+getHauteur()+
