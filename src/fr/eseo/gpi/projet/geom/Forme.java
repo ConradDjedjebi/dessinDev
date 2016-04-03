@@ -5,6 +5,7 @@
 package fr.eseo.gpi.projet.geom;
 import fr.eseo.gpi.projet.geom.Point;
 
+
 abstract class Forme {
 	static protected int LARGEUR_PAR_DEFAUT = 1;
 	static protected int HAUTEUR_PAR_DEFAUT = 1;
@@ -82,6 +83,9 @@ abstract class Forme {
 		return Math.max(position.getY()+this.getLargeur(), position.getY());
 	}
 
+
+
+
 	// ========================================
 	// =========	SETERS		===============
 
@@ -122,7 +126,7 @@ abstract class Forme {
 
 	abstract public String toString();
 
-	/*protected final String toString(String nom) {
+	protected final String toString(String nom) {
 		return "Forme > ["+nom+']'+
 				"\n\t Position : "+position.toString()+
 				"\n\t Largeur:"+getLargeur()+
@@ -130,18 +134,18 @@ abstract class Forme {
 				"\n\t Aire:"+this.aire()+
 				"\n\t Périmètre:"+this.perimetre()+
 				"\n===END OF DESCRIPTION===\n";
-	}*/
+	}
 
 
-	protected final String toString(String nom) {
-		return  "Forme > " +this.getClass().getName()+" "+
+	/*protected final String toString(String nom) {
+		return  "Forme > " + this.getClass().getName()+" "+
 				"\n\t Position : "+position.toString()+
 				"\n\t Largeur:"+getLargeur()+
 				"\n\t Hauteur:"+getHauteur()+
 				"\n\t Aire:"+this.aire()+
 				"\n\t Périmètre:"+this.perimetre()+
 				"\n===END OF DESCRIPTION===\n";
-	}
+	}*/
 
 	// ========================================
 	

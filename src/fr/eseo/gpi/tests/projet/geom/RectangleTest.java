@@ -18,7 +18,7 @@ class RectangleTest {
 		System.out.println(r3.toString());
 		System.out.println(r4.toString());
 
-		System.out.println("Air du r1 :"+r1.aire());
+		System.out.println("Aire du r1 :"+r1.aire());
 		System.out.println("Périmètre du r1 : "+r1.perimetre());
 
 	}

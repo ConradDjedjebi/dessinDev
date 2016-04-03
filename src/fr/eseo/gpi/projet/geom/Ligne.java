@@ -1,8 +1,9 @@
 /**
- * @author Antoine du HAMEL
+ * @author Antoine du HAMEL & Djedjebi Elphege
  * @project GPI
  */
 package fr.eseo.gpi.projet.geom;
+import java.lang.Math;
 
 public class Ligne extends Forme {
 
@@ -16,10 +17,14 @@ public class Ligne extends Forme {
 		this(position, Forme.LARGEUR_PAR_DEFAUT, Forme.HAUTEUR_PAR_DEFAUT);
 	}
 
+
+	//Le constructeur suivant risque de ne pas marcher. setP2 définit des valeurs pour "largeur" et "hauteur".
+	//Cependant, this(position) remplacera par la suite "largeur" et "heuteur" par des valeurs par défaut.
 	public Ligne(Point position, Point p2) {
 		this(position);
 		this.setP2(p2);
 	}
+
 
 	public Ligne(int x, int y, int largeur, int hauteur) {
 		this(new Point(x,y), largeur, hauteur);
@@ -53,18 +58,23 @@ public class Ligne extends Forme {
 	}
 
 	public void setP2(Point p2) {
-		this.setLargeur(this.getX()+p2.getX());
-		this.setHauteur(this.getY()+p2.getY());
+		this.setLargeur(p2.getX()-this.getX());
+		this.setHauteur(p2.getY()-this.getY());
 	}
 
 	//------------- OTHERS -------------//
 
-	public double perimetre() {return getLargeur();}
+	/*public double perimetre() {return getLargeur();}*/
+
+	public double perimetre() {
+		return Math.sqrt(this.getLargeur()*this.getLargeur() + this.getHauteur()*this.getHauteur());
+	}
+
 	public double aire() {return 0;}
 
 	//------------- AFFICHAGE -------------//
 	
 	public String toString() {
-		return "[Ligne] p1 : "+getP1().toString()+", p2 : "+getP2().toString()+", longueur : "+getLargeur();
+		return "[Ligne] p1 : "+getP1().toString()+", p2 : "+getP2().toString()+", longueur : "+perimetre();
 	}
 }
