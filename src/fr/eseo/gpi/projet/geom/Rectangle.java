@@ -35,7 +35,10 @@ public class Rectangle extends Forme{
 	* @return message (String)
 	**/
 	public String toString(){
-		return this.toString("Rectangle");
+		return this.toString("Rectangle")+
+				"\n\t Aire : "+this.aire()+
+				"\n\t Périmètre : "+this.perimetre()+
+				"\n===END OF DESCRIPTION===\n";
 	}
 
 

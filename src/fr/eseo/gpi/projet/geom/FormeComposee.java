@@ -12,10 +12,63 @@ public class FormeComposee extends Forme {
 
 	private ArrayList<Forme> formes;
 
+
+	// ------------- CONSTRUCTORS -------------- //
+
 	public FormeComposee(Forme[] lesFormes) {
 		this.formes = new ArrayList<>();
 		for (Forme forme : this.formes)
 			this.ajouterForme(forme);
+		this.setPosition(this.findPosition(formes));
+		this.setLargeur(this.findLargeur(formes));
+		this.setHauteur(this.findHauteur(formes));
+	}
+
+	// ------------- SETTER & GETTERS ------------- //
+
+
+	public int findLargeur(ArrayList<Forme> formes) {
+		int xMin = formes.get(0).getPosition().getX();
+		int xMax = formes.get(0).getPosition().getX();
+		for(int i=1; i<formes.size(); i++){
+			if(xMin>formes.get(i).getPosition().getX()){
+				xMin = formes.get(i).getPosition().getX();
+			}
+			if (xMax < formes.get(i).getPosition().getX()) {
+				xMax = formes.get(i).getPosition().getX();
+			}
+		}
+		return xMax-xMin;
+	}
+
+
+	public int findHauteur(ArrayList<Forme> formes) {
+		int yMin = formes.get(0).getPosition().getY();
+		int yMax = formes.get(0).getPosition().getY();
+		for(int i=1; i<formes.size(); i++){
+			if(yMin>formes.get(i).getPosition().getY()){
+				yMin = formes.get(i).getPosition().getY();
+			}
+			if (yMax < formes.get(i).getPosition().getY()) {
+				yMax = formes.get(i).getPosition().getY();
+			}
+		}
+		return yMax-yMin;
+	}
+
+
+	public Point findPosition(ArrayList<Forme> formes){
+		int xMin = formes.get(0).getPosition().getX();
+		int yMax = formes.get(0).getPosition().getY();
+		for(int i=1; i<formes.size(); i++){
+			if(xMin>formes.get(i).getPosition().getX()){
+				xMin = formes.get(i).getPosition().getX();
+			}
+			if (yMax < formes.get(i).getPosition().getY()) {
+				yMax = formes.get(i).getPosition().getY();
+			}
+		}
+		return new Point(xMin, yMax);
 	}
 
 	public List<Forme> getFormes() {
@@ -51,9 +104,13 @@ public class FormeComposee extends Forme {
 		this.deplacerVers(this.getPosition().getX(), newY);
 	}
 
+
+	// ------------- AFFICHAGE ------------- //
+
 	public String toString() {
 		// TODO Auto-generated method stub
-		return this.toString("Forme composée");
+		return this.toString("Forme composée")+
+				"\n===END OF DESCRIPTION===\n";
 	}
 
 	/**

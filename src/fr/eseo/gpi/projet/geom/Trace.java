@@ -97,13 +97,11 @@ public class Trace extends Forme {
 	public Point findPosition(ArrayList<Ligne> lignes){
 		int xMin = lignes.get(0).getMinX();
 		int yMax = lignes.get(0).getMaxY();
-		for(int i=1; i<lignes.size(); i++){
-			if(xMin>lignes.get(i).getMinX()){
+		for(int i=1; i<lignes.size(); i++) {
+			if (xMin > lignes.get(i).getMinX()) {
 				xMin = lignes.get(i).getMinX();
 			}
-		}
-		for(int i=1; i<lignes.size(); i++){
-			if(yMax<lignes.get(i).getMaxY()){
+			if (yMax < lignes.get(i).getMaxY()) {
 				yMax = lignes.get(i).getMaxY();
 			}
 		}
@@ -151,7 +149,10 @@ public class Trace extends Forme {
 	//------------- PRINTS -------------//
 
 	public String toString() {
-		return this.toString("Tracé");
+		return this.toString("Tracé")+
+			"\n\t longueur : "+this.perimetre()+
+			"\n\t nbLignes : "+this.lignes.size()+
+			"\n===END OF DESCRIPTION===\n";
 	}
 
 
