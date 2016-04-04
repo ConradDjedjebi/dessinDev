@@ -16,60 +16,27 @@ public class FormeComposee extends Forme {
 	// ------------- CONSTRUCTORS -------------- //
 
 	public FormeComposee(Forme[] lesFormes) {
+		super();
 		this.formes = new ArrayList<>();
 		for (Forme forme : this.formes)
 			this.ajouterForme(forme);
-		this.setPosition(this.findPosition(formes));
-		this.setLargeur(this.findLargeur(formes));
-		this.setHauteur(this.findHauteur(formes));
+
+        int xMin = Integer.MAX_VALUE;
+        int xMax = Integer.MIN_VALUE;
+        int yMin = Integer.MAX_VALUE;
+        int yMax = Integer.MIN_VALUE;
+        for(Forme forme : formes) {
+            xMin = Math.min(forme.getMinX(), xMin);
+            xMax = Math.max(forme.getMaxX(), xMax);
+            yMin = Math.min(forme.getMinY(), yMin);
+            yMax = Math.max(forme.getMaxY(), yMax);
+        }
+		this.largeur = xMax-xMin;
+		this.hauteur = yMax-yMin;
+		this.position = new Point(xMin, yMax);
 	}
 
 	// ------------- SETTER & GETTERS ------------- //
-
-
-	public int findLargeur(ArrayList<Forme> formes) {
-		int xMin = formes.get(0).getPosition().getX();
-		int xMax = formes.get(0).getPosition().getX();
-		for(int i=1; i<formes.size(); i++){
-			if(xMin>formes.get(i).getPosition().getX()){
-				xMin = formes.get(i).getPosition().getX();
-			}
-			if (xMax < formes.get(i).getPosition().getX()) {
-				xMax = formes.get(i).getPosition().getX();
-			}
-		}
-		return xMax-xMin;
-	}
-
-
-	public int findHauteur(ArrayList<Forme> formes) {
-		int yMin = formes.get(0).getPosition().getY();
-		int yMax = formes.get(0).getPosition().getY();
-		for(int i=1; i<formes.size(); i++){
-			if(yMin>formes.get(i).getPosition().getY()){
-				yMin = formes.get(i).getPosition().getY();
-			}
-			if (yMax < formes.get(i).getPosition().getY()) {
-				yMax = formes.get(i).getPosition().getY();
-			}
-		}
-		return yMax-yMin;
-	}
-
-
-	public Point findPosition(ArrayList<Forme> formes){
-		int xMin = formes.get(0).getPosition().getX();
-		int yMax = formes.get(0).getPosition().getY();
-		for(int i=1; i<formes.size(); i++){
-			if(xMin>formes.get(i).getPosition().getX()){
-				xMin = formes.get(i).getPosition().getX();
-			}
-			if (yMax < formes.get(i).getPosition().getY()) {
-				yMax = formes.get(i).getPosition().getY();
-			}
-		}
-		return new Point(xMin, yMax);
-	}
 
 	public List<Forme> getFormes() {
 		return this.formes;
@@ -81,10 +48,15 @@ public class FormeComposee extends Forme {
 
 	public void setPosition(Point p) {
 		Point p1 = this.getPosition();
-		int deltaX = p.getX()-p1.getX(),
-			deltaY = p.getY()-p1.getY();
+        try {
+            int deltaX = p.getX() - p1.getX(),
+                    deltaY = p.getY() - p1.getY();
 
-		this.deplacerDe(deltaX, deltaY);
+            this.deplacerDe(deltaX, deltaY);
+        }
+        catch (NullPointerException e) {
+            this.position = p;
+        }
 	}
 
 	public void deplacerDe(int deltaX, int deltaY) {
