@@ -28,16 +28,6 @@ public class Rectangle extends Forme {
         this(position, Forme.LARGEUR_PAR_DÉFAUT, Forme.HAUTEUR_PAR_DÉFAUT);
     }
 
-    //------------- AFFICHAGE -------------//
-
-    /**
-     * Renvoie en String les informations du rectangle
-     * @return message (String)
-     **/
-    public String toString(){
-        return this.toString("Rectangle");
-    }
-
 
     //----------- AUTRES METHODES -----------//
 

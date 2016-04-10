@@ -27,16 +27,7 @@ public class Carré extends Rectangle {
 	public Carré(int cote) {
 		this(new Point(), cote);
 	}
-	
-	//------------- AFFICHAGE -------------//
 
-	/**
-	* Renvoie en String les informations du rectangle
-	* @return message (String)
-	**/
-	public String toString(){
-		return this.toString("Carré");
-	}
 
 	//----------- REDIFINITION DES METHODES -----------//
 	

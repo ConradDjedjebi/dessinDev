@@ -39,16 +39,6 @@ public class Cercle extends Ellipse {
 		this.setLargeur(newLength);
 	}
 
-	//------------- AFFICHAGE -------------//
-
-	/**
-	* Renvoie en String les informations sur le cercle
-	* @return message (String)
-	**/
-	public String toString(){
-		return this.toString("Cercle");
-	}
-
 
 	//----------- AUTRES METHODES -----------//
 

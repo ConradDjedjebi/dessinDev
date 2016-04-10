@@ -28,16 +28,6 @@ public class Ellipse extends Forme {
         this(center, Forme.LARGEUR_PAR_DÉFAUT, Forme.HAUTEUR_PAR_DÉFAUT);
     }
 
-    //------------- AFFICHAGE -------------//
-
-    /**
-     * Renvoie en String les informations sur Ellipse
-     * @return message (String)
-     **/
-    public String toString(){
-        return this.toString("Ellipse");
-    }
-
 
     //----------- AUTRES METHODES -----------//
 

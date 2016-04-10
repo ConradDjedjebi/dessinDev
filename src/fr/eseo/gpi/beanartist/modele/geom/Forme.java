@@ -18,7 +18,7 @@ public abstract class Forme {
     private Point position;
 
 
-    // =========	CONTRUCTORS ===============
+    // =========    CONTRUCTORS ===============
 
 
     public Forme() {
@@ -46,7 +46,7 @@ public abstract class Forme {
 
 
     // ========================================
-    // =========	GETERS		===============
+    // =========    GETERS      ===============
 
     public Point getPosition() {
         return position;
@@ -69,7 +69,7 @@ public abstract class Forme {
     }
 
 
-    // =========	GEOM		===============
+    // =========    GEOM        ===============
 
     public int getMinX() {
         return Math.min(position.getX()+this.getLargeur(), position.getX());
@@ -88,7 +88,7 @@ public abstract class Forme {
     }
 
     // ========================================
-    // =========	SETERS		===============
+    // =========    SETERS      ===============
 
     public void setPosition(Point newPos) {
         position = newPos;
@@ -112,7 +112,7 @@ public abstract class Forme {
 
 
     // ========================================
-    // =========	OTHERS		===============
+    // =========    OTHERS      ===============
 
     public void déplacerVers(int x, int y) {
         this.position.déplacerVers(x,y);
@@ -131,32 +131,14 @@ public abstract class Forme {
     // ========================================
 
     public String toString() {
-        return this.toString("Unknown");
-    }
-    // On aurait préférer une méthode abstraite
-    // abstract protected String toString();
+        DecimalFormat decimalFormat = new DecimalFormat("0", DecimalFormatSymbols.getInstance(Locale.FRANCE));
+        decimalFormat.setMaximumFractionDigits(this instanceof Rectangle ? 0 : 2);
 
-    protected final String toString(String nom) {
-        DecimalFormat decimalFormat1 = new DecimalFormat("0", DecimalFormatSymbols.getInstance(Locale.FRANCE));
-        DecimalFormat decimalFormat2 = new DecimalFormat("0", DecimalFormatSymbols.getInstance(Locale.FRANCE));
-        //DecimalFormat decimalFormat1;
-        //DecimalFormat decimalFormat2;
-        //decimalFormat1 = new DecimalFormat("#0");
-        //decimalFormat2 = new DecimalFormat("#0");
-        if(nom == "Rectangle" || nom == "carré"){
-            decimalFormat1.setMaximumFractionDigits(0);
-            decimalFormat2.setMaximumFractionDigits(0);
-        }
-        else {
-            decimalFormat1.setMaximumFractionDigits(2);
-            decimalFormat2.setMaximumFractionDigits(2);
-        }
-        //x=formatter.format(x);
-        return "["+nom+']'+
+        return "["+this.getClass().getSimpleName()+']'+
                 " pos : "+position.toString()+
                 " dim : "+getLargeur()+" x "+getHauteur()+
-                " périmètre : "+decimalFormat1.format(this.périmètre())+
-                " aire : "+decimalFormat2.format(this.aire());
+                " périmètre : "+decimalFormat.format(this.périmètre())+
+                " aire : "+decimalFormat.format(this.aire());
     }
 
     // ========================================
