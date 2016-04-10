@@ -6,6 +6,10 @@ package fr.eseo.gpi.beanartist.modele.geom;
  * @project gpi_binome
  */
 public class Point {
+
+    static final int X_PAR_DEFAUT = 0;
+    static final int Y_PAR_DEFAUT = 0;
+
     int x, y;
 
 
@@ -23,8 +27,8 @@ public class Point {
      * Constructeur de la classe Point (coordonnées par défaut)
      **/
     public Point (){
-        this.x=0;
-        this.y=0;
+        this.x=X_PAR_DEFAUT;
+        this.y=Y_PAR_DEFAUT;
     }
 
 

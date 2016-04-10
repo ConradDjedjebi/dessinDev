@@ -1,5 +1,5 @@
 package fr.eseo.gpi.beanartist.modele.geom;
-
+import java.text.NumberFormat;
 /**
  * @author duhamean
  * @date 31/03/16
@@ -55,10 +55,20 @@ public class Ellipse extends Forme {
      * @return perimeter
      * @todo L'approximation n'est pas la bonne !
      **/
-    public double périmètre(){
-        return Math.PI/2*(
-                        3*(this.largeur+this.hauteur) -
-                        Math.sqrt((3*this.largeur+this.hauteur)*(3*this.hauteur+this.largeur)));
+    /*public double périmètre(){
+        //return Math.PI/2*(
+                //    3*(this.largeur+this.hauteur) -
+                   // Math.sqrt((3*this.largeur+this.hauteur)*(3*this.hauteur+this.largeur)));
+        double a = this.hauteur/2;
+        double b = this.largeur/2;
+        double h = ((a-b)*(a-b))/((a+b)*(a+b));
+        return Math.PI*(a+b)*(1+(3*h/(10+ Math.sqrt(4-3*h))));
+    }*/
+
+
+    public double périmètre (){
+        double h = (Math.pow(((getHauteur()/2d)-(getLargeur()/2d)),2)) / (Math.pow(((getHauteur()/2d)+(getLargeur()/2d)),2));
+        return Math.PI *((getHauteur()+getLargeur())/2d) * (1+((3*h)/(10 + Math.sqrt(4-3*h))));
     }
 
     @Override
@@ -68,4 +78,15 @@ public class Ellipse extends Forme {
 
         return xSurA*xSurA + ySurB*ySurB < 1;
     }
+
+
+    /*public boolean contient(Point point) {
+        x = point.getX();
+        y = point.getY();
+        double xSurA = x/this.getLargeur();
+        double ySurB = y/this.getHauteur();
+
+        return xSurA*xSurA + ySurB*ySurB < 1;
+    }*/
+
 }

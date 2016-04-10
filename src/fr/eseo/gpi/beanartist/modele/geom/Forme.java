@@ -1,6 +1,7 @@
 package fr.eseo.gpi.beanartist.modele.geom;
 
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 
@@ -136,14 +137,26 @@ public abstract class Forme {
     // abstract protected String toString();
 
     protected final String toString(String nom) {
-        DecimalFormat decimalFormat = new DecimalFormat("0", DecimalFormatSymbols.getInstance(Locale.FRANCE));
-        decimalFormat.setMaximumFractionDigits(2);
-
+        DecimalFormat decimalFormat1 = new DecimalFormat("0", DecimalFormatSymbols.getInstance(Locale.FRANCE));
+        DecimalFormat decimalFormat2 = new DecimalFormat("0", DecimalFormatSymbols.getInstance(Locale.FRANCE));
+        //DecimalFormat decimalFormat1;
+        //DecimalFormat decimalFormat2;
+        //decimalFormat1 = new DecimalFormat("#0");
+        //decimalFormat2 = new DecimalFormat("#0");
+        if(nom == "Rectangle" || nom == "carré"){
+            decimalFormat1.setMaximumFractionDigits(0);
+            decimalFormat2.setMaximumFractionDigits(0);
+        }
+        else {
+            decimalFormat1.setMaximumFractionDigits(2);
+            decimalFormat2.setMaximumFractionDigits(2);
+        }
+        //x=formatter.format(x);
         return "["+nom+']'+
                 " pos : "+position.toString()+
                 " dim : "+getLargeur()+" x "+getHauteur()+
-                " périmètre : "+decimalFormat.format(this.périmètre())+
-                " aire : "+decimalFormat.format(this.aire());
+                " périmètre : "+decimalFormat1.format(this.périmètre())+
+                " aire : "+decimalFormat2.format(this.aire());
     }
 
     // ========================================

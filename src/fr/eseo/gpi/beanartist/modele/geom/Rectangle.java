@@ -63,4 +63,10 @@ public class Rectangle extends Forme {
     public boolean contient(int x, int y) {
         return this.getMinX()>x && this.getMinX()<x && this.getMinY()>y && this.getMinY()<y;
     }
+
+   /* public boolean contient(Point point) {
+        x = point.getX();
+        y = point.getY();
+        return this.getMinX()>x && this.getMinX()<x && this.getMinY()>y && this.getMinY()<y;
+    }*/
 }

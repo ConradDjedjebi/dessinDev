@@ -17,7 +17,7 @@ public class EllipseTest {
 	public static void main(String[] args) {
 		Point point = new Point(2,3);
 
-		Ellipse ellipse1 = new Ellipse (point,4,2);
+		Ellipse ellipse1 = new Ellipse (point,75,21);
 		Ellipse ellipse2 = new Ellipse (point,2,7);
 
 		System.out.println(ellipse1.toString());
