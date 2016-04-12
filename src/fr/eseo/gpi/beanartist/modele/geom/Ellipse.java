@@ -83,13 +83,7 @@ public class Ellipse extends Forme {
 
 
     public boolean contient(Point point) {
-
-        double xNew = point.getX() - xCenter;
-        double yNew = point.getY() - yCenter;
-        double xSurA = xNew/this.getLargeur();
-        double ySurB = yNew/this.getHauteur();
-
-        return Math.pow(xSurA, 2) + Math.pow(ySurB, 2) < 1;
+        return this.contient(point.getX(), point.getY());
     }
 
 }

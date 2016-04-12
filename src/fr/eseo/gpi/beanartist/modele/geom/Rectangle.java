@@ -55,9 +55,7 @@ public class Rectangle extends Forme {
     }
 
     public boolean contient(Point point) {
-        int x = point.getX();
-        int y = point.getY();
-        return this.getMinX()<x && this.getMaxX()>x && this.getMinY()<y && this.getMaxY()>y;
+        return this.contient(point.getX(), point.getY());
     }
 }
 
