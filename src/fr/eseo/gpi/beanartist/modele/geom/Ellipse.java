@@ -6,14 +6,18 @@ import java.text.NumberFormat;
  * @project gpi_binome
  */
 public class Ellipse extends Forme {
+
+
+
+
     //------------- CONSTRUCTEUR -------------//
 
     public Ellipse() {
         this(new Point());
     }
 
-    public Ellipse(Point center, int largeur, int hauteur) {
-        super(center, largeur, hauteur);
+    public Ellipse(Point position, int largeur, int hauteur) {
+        super(position, largeur, hauteur);
     }
 
     public Ellipse(int x, int y, int largeur, int hauteur) {
@@ -24,9 +28,15 @@ public class Ellipse extends Forme {
         this(new Point(), largeur, hauteur);
     }
 
-    public Ellipse(Point center) {
-        this(center, Forme.LARGEUR_PAR_DÉFAUT, Forme.HAUTEUR_PAR_DÉFAUT);
+    public Ellipse(Point position) {
+        this(position, Forme.LARGEUR_PAR_DÉFAUT, Forme.HAUTEUR_PAR_DÉFAUT);
     }
+
+
+    //------------- VARIABLES D'INSTANCE -------//
+
+    double xCenter = getPosition().getX() + getLargeur()/2;
+    double yCenter = getPosition().getY() - getHauteur()/2;
 
 
     //----------- AUTRES METHODES -----------//
@@ -63,20 +73,23 @@ public class Ellipse extends Forme {
 
     @Override
     public boolean contient(int x, int y) {
-        double xSurA = x/this.getLargeur();
-        double ySurB = y/this.getHauteur();
+        double xNew = x - xCenter;
+        double yNew = y - yCenter;
+        double xSurA = xNew/this.getLargeur();
+        double ySurB = yNew/this.getHauteur();
 
-        return xSurA*xSurA + ySurB*ySurB < 1;
+        return Math.pow(xSurA, 2) + Math.pow(ySurB, 2) < 1;
     }
 
 
-    /*public boolean contient(Point point) {
-        x = point.getX();
-        y = point.getY();
-        double xSurA = x/this.getLargeur();
-        double ySurB = y/this.getHauteur();
+    public boolean contient(Point point) {
 
-        return xSurA*xSurA + ySurB*ySurB < 1;
-    }*/
+        double xNew = point.getX() - xCenter;
+        double yNew = point.getY() - yCenter;
+        double xSurA = xNew/this.getLargeur();
+        double ySurB = yNew/this.getHauteur();
+
+        return Math.pow(xSurA, 2) + Math.pow(ySurB, 2) < 1;
+    }
 
 }

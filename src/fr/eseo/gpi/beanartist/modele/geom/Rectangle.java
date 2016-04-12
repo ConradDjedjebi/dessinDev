@@ -51,12 +51,13 @@ public class Rectangle extends Forme {
 
     @Override
     public boolean contient(int x, int y) {
-        return this.getMinX()>x && this.getMinX()<x && this.getMinY()>y && this.getMinY()<y;
+        return this.getMinX()<x && this.getMaxX()>x && this.getMinY()<y && this.getMaxY()>y;
     }
 
-   /* public boolean contient(Point point) {
-        x = point.getX();
-        y = point.getY();
-        return this.getMinX()>x && this.getMinX()<x && this.getMinY()>y && this.getMinY()<y;
-    }*/
+    public boolean contient(Point point) {
+        int x = point.getX();
+        int y = point.getY();
+        return this.getMinX()<x && this.getMaxX()>x && this.getMinY()<y && this.getMaxY()>y;
+    }
 }
+

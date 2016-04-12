@@ -147,9 +147,8 @@ public abstract class Forme {
     public abstract double périmètre();
 
     public abstract boolean contient(int x, int y);
-    
-    public boolean contient(Point pnt) {
-        return this.contient(pnt.getX(), pnt.getY());
-    }
+    /*public abstract boolean contient(Point testPosition);*/
+
+    public abstract boolean contient(Point testPosition);
 
 }
