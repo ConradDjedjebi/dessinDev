@@ -17,8 +17,6 @@ public class TraceTest {
         Point point4 = new Point (7,12);
         Point point5 = new Point (10,3);
 
-        Ligne ligne = new Ligne(point1, point2);
-
         Point [] lesPoints = new Point[5];
         lesPoints[0] = point1;
         lesPoints[1] = point2;
@@ -26,9 +24,9 @@ public class TraceTest {
         lesPoints[3] = point4;
         lesPoints[4] = point5;
 
-        Trace trace = new Trace();
+        Trace trace = new Trace(point1, point2);
 
-        for(int i=0; i<lesPoints.length; i++){
+        for(int i=2; i<lesPoints.length; i++){
             trace.addLineTo(lesPoints[i]);
         }
 

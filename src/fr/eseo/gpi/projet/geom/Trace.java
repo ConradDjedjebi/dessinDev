@@ -18,33 +18,25 @@ public class Trace extends Forme {
 
 	//---------- CONSTRUCTORS ----------//
 
+
 	public Trace (Point p1, Point p2) {
-		this(new Ligne(p1, p2));
-	}
-
-	public Trace () {
-		this(new Ligne());
-	}
-
-	public Trace (Ligne ligne) {
+		super(new Ligne(p1, p2).getMinX(), new Ligne(p1, p2).getMaxY());
 		this.lignes = new ArrayList<Ligne>();
-		this.lignes.add(ligne);
-		this.setPosition(new Point(ligne.getMinX(), ligne.getMaxY()));
-		this.setLargeur(findLargeur(lignes));
-		this.setHauteur(findHauteur(lignes));
+		int xMin = Math.min(p1.getX(), p2.getX());
+		int xMax = Math.max(p1.getX(), p2.getX());
+		int yMin = Math.min(p1.getY(), p2.getY());
+		int yMax = Math.max(p1.getY(), p2.getY());
+		setLargeur(xMax-xMin);
+		setHauteur(yMax-yMin);
+		//setPosition(new Point(xMin, yMax));
 	}
+
 
 	//------------ SETTERS -------------//
 
 
-	public ArrayList<Ligne> getLignes() {
-		return this.lignes;
-	}
-
-	//The method addLineTo may not work if the list is empty
-
 	public void addLineTo(Point p) {
-		this.lignes.add(new Ligne(this.lignes.get(lignes.size()).getP2(), p));
+		this.lignes.add(new Ligne(this.lignes.get(lignes.size() - 1).getP2(), p));
 		this.setPosition(findPosition(lignes));
 	}
 
@@ -56,9 +48,22 @@ public class Trace extends Forme {
 		this.deplacerVers(this.getPosition().getX(), newY);
 	}
 
+	public void setPosition(Point p) {
+		Point p1 = this.getPosition();
+		int deltaX = p.getX()-p1.getX(),
+				deltaY = p.getY()-p1.getY();
 
-	//The method findLargeur calculates the width of the outline   #Elphege
-	//If the outline's width have not been modified, we just can call "getLargeur"    #Elphege
+		this.deplacerDe(deltaX, deltaY);
+		super.setPosition(p);
+	}
+
+	public void setDimensions(int largeur, int hauteur) {
+		setLargeur(largeur);
+		setHauteur(hauteur);
+	}
+
+
+	// --------- GETTERS ----------- //
 
 	public int findLargeur(ArrayList<Ligne> lignes) {
 		int xMin = lignes.get(0).getMinX();
@@ -108,29 +113,9 @@ public class Trace extends Forme {
 		return new Point(xMin, yMax);
 	}
 
-
-	public void setPosition(Point p) {
-		Point p1 = this.getPosition();
-		int deltaX = p.getX()-p1.getX(),
-				deltaY = p.getY()-p1.getY();
-
-		this.deplacerDe(deltaX, deltaY);
-		this.position = p;
+	public ArrayList<Ligne> getLignes() {
+		return lignes;
 	}
-
-	public void setDimensions(int largeur, int hauteur) {
-		setLargeur(largeur);
-		setHauteur(hauteur);
-	}
-
-	//A chaque instant, il est nécessaire de connaitre le x min et y max de l'ensemble des points du tracés
-	//Lla position du trace correspont au point d'abscisse (xMin, yMax)
-	//Les méthodes à construire se serviront des méthodes précédentes :
-	// Il faut le yMax des yMax Math.max(yMax1, yMax2..), xMin des xMin Math.min(xMin1, xMin2..)
-
-
-
-
 
 	//----------- METHODS -----------//
 
