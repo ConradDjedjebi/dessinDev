@@ -17,13 +17,10 @@ public class Ligne extends Forme {
         this(position, Forme.LARGEUR_PAR_DÉFAUT, Forme.HAUTEUR_PAR_DÉFAUT);
     }
 
-
-    //Le constructeur suivant risque de ne pas marcher. setP2 définit des valeurs pour "largeur" et "hauteur".
-    //Cependant, this(position) remplacera par la suite "largeur" et "heuteur" par des valeurs par défaut.
-    /*public Ligne(Point position, Point p2) {
+    public Ligne(Point position, Point p2) {
         this(position);
         this.setP2(p2);
-    }*/
+    }
 
 
     public Ligne(int x, int y, int largeur, int hauteur) {
@@ -51,22 +48,6 @@ public class Ligne extends Forme {
         );
     }
 
-    public int getMinX(){
-        return this.getMinX();
-    }
-
-    public int getMinY(){
-        return this.getMinY();
-    }
-
-    public int getMaxX(){
-        return this.getMaxX();
-    }
-
-    public int getMaxY(){
-        return this.getMaxX();
-    }
-
     //------------- SETTERS -------------//
 
     public void setP1(Point p1) {
@@ -80,11 +61,7 @@ public class Ligne extends Forme {
 
     //------------- OTHERS -------------//
 
-	/*public double perimetre() {return getLargeur();}*/
-
-    public double périmètre() {
-        return Math.sqrt(this.getLargeur()*this.getLargeur() + this.getHauteur()*this.getHauteur());
-    }
+	public double perimetre() {return getLargeur();}
 
     public double aire() {return 0;}
 
