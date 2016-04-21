@@ -66,11 +66,19 @@ public class Tracé extends Forme {
 
 
     public void setLargeur(int newLargeur){
-        //
+        int DeltaX = newLargeur - this.getLargeur();
+        for(int i=0; i< lignes.size(); i++){
+            int xP2 = lignes.get(i).getP2().getX() + DeltaX;
+            lignes.get(i).getP2().setX(xP2);
+        }
     }
 
     public void setHauteur(int newHauteur){
-        //
+        int DeltaY = newHauteur - this.getHauteur();
+        for(int i=0; i< lignes.size(); i++){
+            int yP2 = lignes.get(i).getP2().getY() + DeltaY;
+            lignes.get(i).getP2().setY(yP2);
+        }
     }
 
     // --------- GETTERS ----------- //
