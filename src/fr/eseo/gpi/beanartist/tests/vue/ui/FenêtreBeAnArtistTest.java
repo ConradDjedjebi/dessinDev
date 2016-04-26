@@ -1,5 +1,7 @@
-package fr.eseo.gpi.beanartist.vue.ui;
+package fr.eseo.gpi.beanartist.tests.vue.ui;
 
+
+import fr.eseo.gpi.beanartist.vue.ui.FenêtreBeAnArtist;
 
 /**
  * @author duhamean
@@ -19,6 +21,6 @@ public class FenêtreBeAnArtistTest {
     }
 
     public static void main(String[] args) {
-        javax.swing.SwingUtilities.invokeLater(() -> new FenêtreBeAnArtistTest());
+        javax.swing.SwingUtilities.invokeLater(FenêtreBeAnArtistTest::new);
     }
 }

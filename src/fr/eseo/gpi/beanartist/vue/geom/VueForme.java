@@ -2,18 +2,19 @@ package fr.eseo.gpi.beanartist.vue.geom;
 
 import fr.eseo.gpi.beanartist.modele.geom.Forme;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Graphics2D;
 
 /**
  * @author duhamean
  * @date 26/04/16
  * @project gpi_binome
  */
-public class VueForme {
+abstract public class VueForme {
     private static final Color COULEUR_LIGNE_PAR_DÉFAULT = Color.BLACK;
 
     private Color couleurLigne;
-    private Forme forme;
+    protected Forme forme;
     private boolean rempli;
 
     public VueForme(Forme forme, boolean rempli) {

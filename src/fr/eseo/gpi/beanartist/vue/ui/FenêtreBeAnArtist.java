@@ -1,6 +1,5 @@
 package fr.eseo.gpi.beanartist.vue.ui;
 
-import javax.swing.*;
 import java.awt.Color;
 
 /**
@@ -9,7 +8,7 @@ import java.awt.Color;
  * @project gpi_binome
  */
 public class FenêtreBeAnArtist extends javax.swing.JFrame {
-    private final static String TITRE_PAR_DÉFAUT = "Fenêtre Be an artist";
+    public final static String TITRE_PAR_DÉFAUT = "Fenêtre Be an artist";
 
     private Color couleurLigne;
     private PanneauDessin panneauDessin;
@@ -19,22 +18,22 @@ public class FenêtreBeAnArtist extends javax.swing.JFrame {
     }
 
     public FenêtreBeAnArtist(String titre){
-        this(titre, PanneauDessin.LARGEUR_PAR_DÉFAUT, PanneauDessin.HAUTEUR_PAR_DÉFAUT, PanneauDessin.COULEUR_FOND_PAR_DÉFAUT);
+        this(titre, PanneauDessin.LARGEUR_PAR_DÉFAUT, PanneauDessin.HAUTEUR_PAR_DÉFAUT);
     }
 
     public FenêtreBeAnArtist(int largeur, int hauteur){
-        this(largeur, hauteur, PanneauDessin.COULEUR_FOND_PAR_DÉFAUT);
+        this(TITRE_PAR_DÉFAUT, largeur, hauteur);
     }
 
-    public FenêtreBeAnArtist(int largeur, int hauteur, Color couleurFond){
-        this(TITRE_PAR_DÉFAUT, largeur, hauteur, couleurFond);
+    public FenêtreBeAnArtist(String titre, int largeur, int hauteur){
+        this(titre, largeur, hauteur, PanneauDessin.COULEUR_FOND_PAR_DÉFAUT);
     }
 
     public FenêtreBeAnArtist(String titre, int largeur, int hauteur, Color fond){
         super(titre);
         this.couleurLigne = PanneauDessin.COULEUR_LIGNE_PAR_DÉFAUT;
         this.associerPanneauDessin(largeur, hauteur, fond);
-        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
         this.setSize(largeur, hauteur);
         this.setLocationRelativeTo(null);
         this.setVisible(true);

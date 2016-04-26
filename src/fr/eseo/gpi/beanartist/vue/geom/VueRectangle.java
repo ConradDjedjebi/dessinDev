@@ -2,7 +2,7 @@ package fr.eseo.gpi.beanartist.vue.geom;
 
 import fr.eseo.gpi.beanartist.modele.geom.Rectangle;
 
-import java.awt.*;
+import java.awt.Color;
 
 /**
  * @author duhamean
@@ -10,11 +10,11 @@ import java.awt.*;
  * @project gpi_binome
  */
 public class VueRectangle extends VueForme {
-    public VueForme(Rectangle rectangle, boolean rempli) {
+    public VueRectangle(Rectangle rectangle, boolean rempli) {
     	super(rectangle, rempli);
     }
 
-    public VueForme(Rectangle rectangle, Color couleurLigne, boolean rempli) {
+    public VueRectangle(Rectangle rectangle, Color couleurLigne, boolean rempli) {
     	super(rectangle, couleurLigne, rempli);
     }
 }
