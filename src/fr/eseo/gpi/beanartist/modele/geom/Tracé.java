@@ -32,10 +32,10 @@ public class Tracé extends Forme {
     //------------ SETTERS -------------//
 
 
-    public void ajouterLigneVers(Point p) {
+    public void ajouterLigneVers(Point point) {
         Ligne  ligne = new Ligne();
         ligne.setP1(this.lignes.get(lignes.size() - 1).getP2());
-        ligne.setP2(p);
+        ligne.setP2(point);
         this.lignes.add(ligne);
         this.setPosition(findPosition());
     }
@@ -49,13 +49,13 @@ public class Tracé extends Forme {
         this.déplacerVers(this.getPosition().getX(), newY);
     }
 
-    public void setPosition(Point p) {
+    public void setPosition(Point point) {
         Point p1 = this.getPosition();
-        int deltaX = p.getX() - p1.getX(),
-                deltaY = p.getY() - p1.getY();
+        int deltaX = point.getX() - p1.getX(),
+                deltaY = point.getY() - p1.getY();
 
         this.déplacerDe(deltaX, deltaY);
-        super.setPosition(p);
+        super.setPosition(point);
     }
 
     public void setDimensions(int newLargeur, int newHauteur) {
@@ -65,17 +65,17 @@ public class Tracé extends Forme {
 
 
     public void setLargeur(int newLargeur){
-        int DeltaX = newLargeur - this.getLargeur();
+        int deltaX = newLargeur - this.getLargeur();
         for(int i=0; i< lignes.size(); i++){
-            int xP2 = lignes.get(i).getP2().getX() + DeltaX;
+            int xP2 = lignes.get(i).getP2().getX() + deltaX;
             lignes.get(i).getP2().setX(xP2);
         }
     }
 
     public void setHauteur(int newHauteur){
-        int DeltaY = newHauteur - this.getHauteur();
+        int deltaY = newHauteur - this.getHauteur();
         for(int i=0; i< lignes.size(); i++){
-            int yP2 = lignes.get(i).getP2().getY() + DeltaY;
+            int yP2 = lignes.get(i).getP2().getY() + deltaY;
             lignes.get(i).getP2().setY(yP2);
         }
     }
@@ -83,8 +83,8 @@ public class Tracé extends Forme {
     // --------- GETTERS ----------- //
 
     public int findLargeur() {
-        int xMin = Integer.MIN_VALUE;
-        int xMax = Integer.MAX_VALUE;
+        int xMin = Integer.MAX_VALUE;
+        int xMax = Integer.MIN_VALUE;
 
         for (Ligne ligne :
                 lignes) {
@@ -100,8 +100,8 @@ public class Tracé extends Forme {
 
 
     public int findHauteur() {
-        int yMin = Integer.MIN_VALUE;
-        int yMax = Integer.MAX_VALUE;
+        int yMin = Integer.MAX_VALUE;
+        int yMax = Integer.MIN_VALUE;
 
         for (Ligne ligne :
                 lignes) {
@@ -117,8 +117,8 @@ public class Tracé extends Forme {
 
 
     public Point findPosition() {
-        int xMin = Integer.MIN_VALUE;
-        int yMax = Integer.MAX_VALUE;
+        int xMin = Integer.MAX_VALUE;
+        int yMax = Integer.MIN_VALUE;
 
         for (Ligne ligne :
                 lignes) {
