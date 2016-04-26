@@ -1,6 +1,5 @@
 package fr.eseo.gpi.beanartist.vue.ui;
 
-import javax.swing.*;
 import java.awt.*;
 
 /**
@@ -8,7 +7,7 @@ import java.awt.*;
  * @date 26/04/2016
  * @project gpi_binome
  */
-public class PanneauDessin extends JPanel {
+public class PanneauDessin extends javax.swing.JPanel {
     final static int LARGEUR_PAR_DÉFAUT = 1;
     final static int HAUTEUR_PAR_DÉFAUT = 1;
     final static Color COULEUR_FOND_PAR_DÉFAUT = Color.BLUE;
@@ -18,12 +17,14 @@ public class PanneauDessin extends JPanel {
 
     public PanneauDessin (int largeur, int hauteur) {
         this(largeur, hauteur, COULEUR_FOND_PAR_DÉFAUT);
-        }
-
-    public PanneauDessin (int largeur, int hauteur, Color couleurFond) {
-        // methode
     }
 
-    void setFenêtre (FenêtreBeAnArtist fen) {}
+    public PanneauDessin (int largeur, int hauteur, Color couleurFond) {
+        this.setPreferredSize(new Dimension(largeur, hauteur));
+        this.setBackground(couleurFond);
+    }
 
+    public void setFenêtre(FenêtreBeAnArtist newFenêtre) {
+        this.fenêtre = newFenêtre;
+    }
 }

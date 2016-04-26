@@ -1,6 +1,5 @@
 package fr.eseo.gpi.beanartist.vue.ui;
 
-import javax.swing.JFrame;
 import java.awt.Color;
 
 /**
@@ -8,14 +7,10 @@ import java.awt.Color;
  * @date 26/04/2016
  * @project gpi_binome
  */
-public class FenêtreBeAnArtist extends JFrame {
+public class FenêtreBeAnArtist extends javax.swing.JFrame {
     private final static String TITRE_PAR_DÉFAUT = "Fenêtre Be an artist";
 
-    private int largeur;
-    private int hauteur;
-    private Color couleurFond;
     private Color couleurLigne;
-    private String titre;
     private PanneauDessin panneauDessin;
 
     public FenêtreBeAnArtist(){
@@ -35,12 +30,9 @@ public class FenêtreBeAnArtist extends JFrame {
     }
 
     public FenêtreBeAnArtist(String titre, int largeur, int hauteur, Color fond){
-        this.titre = titre;
-        this.largeur = largeur;
-        this.hauteur = hauteur;
-        this.couleurFond = fond;
+        this.setTitle(titre);
         this.couleurLigne = PanneauDessin.COULEUR_LIGNE_PAR_DÉFAUT;
-        this.panneauDessin = new PanneauDessin(largeur, hauteur);
+        this.associerPanneauDessin(largeur, hauteur, fond);
     }
 
     public void setPanneauDessin(PanneauDessin newPanneauDessin) {
@@ -49,5 +41,14 @@ public class FenêtreBeAnArtist extends JFrame {
 
     public PanneauDessin getPanneauDessin() {
         return this.panneauDessin;
+    }
+
+    private void associerPanneauDessin (PanneauDessin panneau) {
+        panneau.setFenêtre(this);
+        this.setPanneauDessin(panneau);
+    }
+
+    private void associerPanneauDessin (int largeur, int hauteur, Color fond) {
+        this.associerPanneauDessin(new PanneauDessin(largeur, hauteur, fond));
     }
 }
