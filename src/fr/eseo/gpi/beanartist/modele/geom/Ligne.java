@@ -66,15 +66,15 @@ public class Ligne extends Forme {
     }
 
     public int getMaxX() {
-        return Math.max(position.getX()+this.getLargeur(), position.getX());
+        return Math.max(getP1().getX(), getP2().getX());
     }
 
     public int getMinY() {
-        return Math.min(position.getY()+this.getHauteur(), position.getY());
+        return Math.min(getP1().getY(), getP2().getY());
     }
 
     public int getMaxY() {
-        return Math.max(position.getY()+this.getHauteur(), position.getY());
+        return Math.max(getP1().getY(), getP2().getY());
     }
 
 
