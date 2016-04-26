@@ -2,7 +2,7 @@ package fr.eseo.gpi.beanartist.vue.geom;
 
 import fr.eseo.gpi.beanartist.modele.geom.Rectangle;
 
-import java.awt.Color;
+import java.awt.*;
 
 /**
  * @author duhamean
@@ -16,5 +16,10 @@ public class VueRectangle extends VueForme {
 
     public VueRectangle(Rectangle rectangle, Color couleurLigne, boolean rempli) {
     	super(rectangle, couleurLigne, rempli);
+    }
+
+    @Override
+    public void affiche(Graphics2D g2D) {
+        g2D.drawRect(forme.getX(), forme.getY(), forme.getLargeur(), forme.getHauteur());
     }
 }

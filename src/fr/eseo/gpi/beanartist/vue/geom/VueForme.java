@@ -47,5 +47,5 @@ abstract public class VueForme {
         this.rempli = newRempli;
     }
 
-    public void affiche(Graphics2D g2D) {}
+    public abstract void affiche(Graphics2D g2D);
 }
