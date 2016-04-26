@@ -2,7 +2,8 @@ package fr.eseo.gpi.beanartist.vue.geom;
 
 import fr.eseo.gpi.beanartist.modele.geom.Rectangle;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Graphics2D;
 
 /**
  * @author duhamean

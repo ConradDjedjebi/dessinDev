@@ -14,7 +14,7 @@ Validation jusqu'au 3.2.9
 
 ### La vue
 
-Validation jusqu'au 3.3.5
+Validation jusqu'au 3.3.6
 
 ### Le contrôleur
 
