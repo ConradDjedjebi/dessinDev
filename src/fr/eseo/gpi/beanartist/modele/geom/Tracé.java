@@ -11,8 +11,7 @@ import java.util.Locale;
  * Created by Elphege on 13/04/2016.
  */
 public class Tracé extends Forme {
-    private ArrayList<Ligne> lignes;
-    private List<Ligne> lignes1;
+    private List<Ligne> lignes;
 
     //---------- CONSTRUCTORS ----------//
 
@@ -38,7 +37,7 @@ public class Tracé extends Forme {
         ligne.setP1(this.lignes.get(lignes.size() - 1).getP2());
         ligne.setP2(p);
         this.lignes.add(ligne);
-        this.setPosition(findPosition(lignes));
+        this.setPosition(findPosition());
     }
 
 
@@ -83,15 +82,14 @@ public class Tracé extends Forme {
 
     // --------- GETTERS ----------- //
 
-    public int findLargeur(ArrayList<Ligne> lignes) {
+    public int findLargeur() {
         int xMin = lignes.get(0).getMinX();
         int xMax = lignes.get(0).getMaxY();
         for (int i = 1; i < lignes.size(); i++) {
             if (xMin > lignes.get(i).getMinX()) {
                 xMin = lignes.get(i).getMinX();
             }
-        }
-        for (int i = 1; i < lignes.size(); i++) {
+
             if (xMax < lignes.get(i).getMaxX()) {
                 xMax = lignes.get(i).getMaxX();
             }
@@ -100,15 +98,14 @@ public class Tracé extends Forme {
     }
 
 
-    public int findHauteur(ArrayList<Ligne> lignes) {
+    public int findHauteur() {
         int yMin = lignes.get(0).getMinY();
         int yMax = lignes.get(0).getMaxY();
         for (int i = 1; i < lignes.size(); i++) {
             if (yMin > lignes.get(i).getMinY()) {
                 yMin = lignes.get(i).getMinY();
             }
-        }
-        for (int i = 1; i < lignes.size(); i++) {
+
             if (yMax < lignes.get(i).getMaxY()) {
                 yMax = lignes.get(i).getMaxY();
             }
@@ -117,7 +114,7 @@ public class Tracé extends Forme {
     }
 
 
-    public Point findPosition(ArrayList<Ligne> lignes) {
+    public Point findPosition() {
         int xMin = lignes.get(0).getMinX();
         int yMax = lignes.get(0).getMaxY();
         for (int i = 1; i < lignes.size(); i++) {
@@ -182,12 +179,11 @@ public class Tracé extends Forme {
     }
 
     public boolean contient(int x, int y) {
-        boolean l = false;
         int i = 0;
-        while(l==false && i <lignes.size()){
-            l= lignes.get(i).contient(x,y);
+        while(i <lignes.size() && !lignes.get(i).contient(x,y)){
+            i++;
         }
-        return l;
+        return i<lignes.size();
     }
 
     public boolean contient(Point testPosition) {

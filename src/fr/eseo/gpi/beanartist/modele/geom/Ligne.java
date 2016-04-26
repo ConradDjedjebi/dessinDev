@@ -59,9 +59,28 @@ public class Ligne extends Forme {
         this.setHauteur(p2.getY()-this.getY());
     }
 
+    // =========    GEOM        ===============
+
+    public int getMinX() {
+        return Math.min(getP1().getX(), getP2().getX());
+    }
+
+    public int getMaxX() {
+        return Math.max(position.getX()+this.getLargeur(), position.getX());
+    }
+
+    public int getMinY() {
+        return Math.min(position.getY()+this.getHauteur(), position.getY());
+    }
+
+    public int getMaxY() {
+        return Math.max(position.getY()+this.getHauteur(), position.getY());
+    }
+
+
     //------------- OTHERS -------------//
 
-	public double perimetre() {return getLargeur();}
+	public double périmètre() {return getLargeur();}
 
     public double aire() {return 0;}
 
