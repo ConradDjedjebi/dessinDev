@@ -1,5 +1,6 @@
 package fr.eseo.gpi.beanartist.vue.ui;
 
+import javax.swing.*;
 import java.awt.Color;
 
 /**
@@ -14,7 +15,7 @@ public class FenêtreBeAnArtist extends javax.swing.JFrame {
     private PanneauDessin panneauDessin;
 
     public FenêtreBeAnArtist(){
-        this(TITRE_PAR_DÉFAUT, PanneauDessin.LARGEUR_PAR_DÉFAUT, PanneauDessin.HAUTEUR_PAR_DÉFAUT, PanneauDessin.COULEUR_FOND_PAR_DÉFAUT);
+        this(TITRE_PAR_DÉFAUT);
     }
 
     public FenêtreBeAnArtist(String titre){
@@ -30,13 +31,21 @@ public class FenêtreBeAnArtist extends javax.swing.JFrame {
     }
 
     public FenêtreBeAnArtist(String titre, int largeur, int hauteur, Color fond){
-        this.setTitle(titre);
+        super(titre);
         this.couleurLigne = PanneauDessin.COULEUR_LIGNE_PAR_DÉFAUT;
         this.associerPanneauDessin(largeur, hauteur, fond);
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        this.setSize(largeur, hauteur);
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
     }
 
     public void setPanneauDessin(PanneauDessin newPanneauDessin) {
+        if(panneauDessin!=null)
+            this.remove(panneauDessin);
+
         this.panneauDessin = newPanneauDessin;
+        this.add(newPanneauDessin);
     }
 
     public PanneauDessin getPanneauDessin() {
@@ -50,5 +59,9 @@ public class FenêtreBeAnArtist extends javax.swing.JFrame {
 
     private void associerPanneauDessin (int largeur, int hauteur, Color fond) {
         this.associerPanneauDessin(new PanneauDessin(largeur, hauteur, fond));
+    }
+
+    private void associerPanneauDessin (int largeur, int hauteur) {
+        this.associerPanneauDessin(largeur, hauteur, PanneauDessin.COULEUR_FOND_PAR_DÉFAUT);
     }
 }
