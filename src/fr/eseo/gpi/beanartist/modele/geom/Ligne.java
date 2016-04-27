@@ -3,6 +3,8 @@ package fr.eseo.gpi.beanartist.modele.geom;
 /**
  * Created by Elphege on 12/04/2016.
  */
+import java.lang.Math;
+
 public class Ligne extends Forme {
 
     public final static double EPSILON = 0.00001;
@@ -27,6 +29,7 @@ public class Ligne extends Forme {
         this(new Point(x,y), largeur, hauteur);
     }
 
+
     public Ligne(int largeur, int hauteur) {
         this(new Point(), largeur, hauteur);
     }
@@ -34,6 +37,10 @@ public class Ligne extends Forme {
     public Ligne(Point position, int largeur, int hauteur) {
         super(position, largeur, hauteur);
     }
+
+
+
+
 
     //------------- GETTERS -------------//
 
@@ -51,7 +58,11 @@ public class Ligne extends Forme {
     //------------- SETTERS -------------//
 
     public void setP1(Point p1) {
+        int deltaX = getX() - p1.getX();
+        int deltaY = getY() - p1.getY();
         this.setPosition(p1);
+        this.setLargeur(getLargeur() + deltaX);
+        this.setHauteur(getHauteur() + deltaY);
     }
 
     public void setP2(Point p2) {
@@ -80,15 +91,15 @@ public class Ligne extends Forme {
 
     //------------- OTHERS -------------//
 
-	public double périmètre() {return getLargeur();}
+	public double périmètre() {return Math.sqrt(Math.pow(getLargeur(),2) + Math.pow(getHauteur(),2));}
 
     public double aire() {return 0;}
 
 
     public boolean contient(int x, int y){
-        return Math.sqrt(Math.pow(x - this.getP1().getX(), 2) + Math.pow(y - this.getP2().getY(), 2))
+        return Math.sqrt(Math.pow(x - this.getP1().getX(), 2) + Math.pow(y - this.getP1().getY(), 2))
                 + Math.sqrt(Math.pow(x - this.getP2().getX(), 2) + Math.pow(y - this.getP2().getY(), 2))
-                - Math.sqrt(Math.pow(x - this.getP2().getX(), 2) + Math.pow(y - this.getP2().getY(), 2))
+                - Math.sqrt(Math.pow(this.getP1().getX() - this.getP2().getX(), 2) + Math.pow(this.getP1().getY()- this.getP2().getY(), 2))
                 < EPSILON;
     }
 
