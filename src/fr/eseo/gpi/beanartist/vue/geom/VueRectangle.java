@@ -32,6 +32,11 @@ public class VueRectangle extends VueForme {
 
     @Override
     public void affiche(Graphics2D g2D) {
-        g2D.drawRect(forme.getX(), forme.getY(), forme.getLargeur(), forme.getHauteur());
+        g2D.setColor(this.getCouleurLigne());
+
+        if (estRempli())
+            g2D.fillRect(forme.getX(), forme.getY(), forme.getLargeur(), forme.getHauteur());
+        else
+            g2D.drawRect(forme.getX(), forme.getY(), forme.getLargeur(), forme.getHauteur());
     }
 }

@@ -1,9 +1,12 @@
 package fr.eseo.gpi.beanartist.tests.vue.ui;
 
+import fr.eseo.gpi.beanartist.modele.geom.Carré;
 import fr.eseo.gpi.beanartist.modele.geom.Rectangle;
 import fr.eseo.gpi.beanartist.vue.geom.VueRectangle;
 import fr.eseo.gpi.beanartist.vue.ui.FenêtreBeAnArtist;
 import fr.eseo.gpi.beanartist.vue.ui.PanneauDessin;
+
+import java.awt.*;
 
 /**
  * @author duhamean
@@ -17,13 +20,24 @@ public class PanneauDessinTest {
 
     public static void testFenêtre() {
         FenêtreBeAnArtist fenêtreBeAnArtist = new FenêtreBeAnArtist("Test PanneauDessin");
-        PanneauDessin p = fenêtreBeAnArtist.getPanneauDessin();
+        PanneauDessin panneauDessin = fenêtreBeAnArtist.getPanneauDessin();
 
-        Rectangle r = new Rectangle(30,40);
-        VueRectangle vueR = new VueRectangle(r, true);
+        Rectangle [] rectangles = {
+                new Rectangle(30,40),
+                new Rectangle(),
+                new Rectangle(300,300,50,50),
+                new Carré(25)
+        };
 
-        p.ajouterVueForme(vueR);
-        p.paintComponent();
+
+        for (Rectangle rectangle :
+                rectangles) {
+            panneauDessin.ajouterVueForme(new VueRectangle(rectangle, Color.WHITE, true));
+        }
+
+        rectangles[0].déplacerVers(100,100);
+
+        System.out.println("-- End of TEST");
     }
 
     public void setFenêtre() {
