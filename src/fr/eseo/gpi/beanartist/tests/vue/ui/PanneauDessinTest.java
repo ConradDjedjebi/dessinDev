@@ -1,12 +1,14 @@
 package fr.eseo.gpi.beanartist.tests.vue.ui;
 
 import fr.eseo.gpi.beanartist.modele.geom.Carré;
+import fr.eseo.gpi.beanartist.modele.geom.Ligne;
 import fr.eseo.gpi.beanartist.modele.geom.Rectangle;
+import fr.eseo.gpi.beanartist.vue.geom.VueLigne;
 import fr.eseo.gpi.beanartist.vue.geom.VueRectangle;
 import fr.eseo.gpi.beanartist.vue.ui.FenêtreBeAnArtist;
 import fr.eseo.gpi.beanartist.vue.ui.PanneauDessin;
 
-import java.awt.*;
+import java.awt.Color;
 
 /**
  * @author duhamean
@@ -15,10 +17,10 @@ import java.awt.*;
  */
 public class PanneauDessinTest {
 	public static void main(String[] args) {
-        javax.swing.SwingUtilities.invokeLater(PanneauDessinTest::testFenêtre);
+        javax.swing.SwingUtilities.invokeLater(PanneauDessinTest::new);
 	}
 
-    public static void testFenêtre() {
+    public PanneauDessinTest() {
         FenêtreBeAnArtist fenêtreBeAnArtist = new FenêtreBeAnArtist("Test PanneauDessin");
         PanneauDessin panneauDessin = fenêtreBeAnArtist.getPanneauDessin();
 
@@ -35,23 +37,11 @@ public class PanneauDessinTest {
             panneauDessin.ajouterVueForme(new VueRectangle(rectangle, Color.WHITE, true));
         }
 
+        panneauDessin.ajouterVueForme(new VueLigne(new Ligne(68,255), Color.GREEN));
+
         rectangles[0].déplacerVers(100,100);
 
         System.out.println("-- End of TEST");
-    }
-
-    public void setFenêtre() {
-
-    }
-
-
-    public void getVueFormes() {
-
-    }
-
-    
-    public void ajouterVueForme() {
-
     }
 
 }
