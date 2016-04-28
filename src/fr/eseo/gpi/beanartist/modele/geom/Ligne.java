@@ -1,7 +1,9 @@
 package fr.eseo.gpi.beanartist.modele.geom;
 
 /**
- * Created by Elphege on 12/04/2016.
+ * @author Elphege
+ * @date 12/04/2016
+ * @project gpi_binome
  */
 import java.lang.Math;
 
