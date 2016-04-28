@@ -1,5 +1,6 @@
 package fr.eseo.gpi.beanartist.vue.ui;
 
+import fr.eseo.gpi.beanartist.controleur.outils.Outil;
 import fr.eseo.gpi.beanartist.vue.geom.VueForme;
 
 import java.awt.Color;
@@ -22,6 +23,9 @@ public class PanneauDessin extends javax.swing.JPanel {
 
     private FenêtreBeAnArtist fenêtre;
     private List<VueForme> vueFormes;
+    private Outil outilCourant;
+    private Color couleurLigne;
+    private boolean modeRemplissage;
 
     public PanneauDessin (int largeur, int hauteur) {
         this(largeur, hauteur, COULEUR_FOND_PAR_DÉFAUT);
@@ -58,4 +62,27 @@ public class PanneauDessin extends javax.swing.JPanel {
         g2D.dispose();
     }
 
+    public Outil getOutilCourant() {
+        return outilCourant;
+    }
+
+    public void setOutilCourant(Outil newOutilCourant) {
+        this.outilCourant = newOutilCourant;
+    }
+
+    public boolean estModeRemplissage() {
+        return modeRemplissage;
+    }
+
+    public void setModeRemplissage(boolean newModeRemplissage) {
+        this.modeRemplissage = newModeRemplissage;
+    }
+
+    public Color getCouleurLigne() {
+        return couleurLigne;
+    }
+
+    public void setCouleurLigne(Color newCouleurLigne) {
+        this.couleurLigne = newCouleurLigne;
+    }
 }

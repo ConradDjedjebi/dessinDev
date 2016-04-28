@@ -1,0 +1,85 @@
+package fr.eseo.gpi.beanartist.controleur.outils;
+
+import fr.eseo.gpi.beanartist.modele.geom.Point;
+import fr.eseo.gpi.beanartist.vue.ui.PanneauDessin;
+
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+
+/**
+ * @author duhamean
+ * @date 28/04/16
+ * @project gpi_binome
+ */
+public class Outil implements MouseMotionListener, MouseListener {
+
+    private PanneauDessin panneauDessin;
+    private Point début, fin;
+
+    public Outil (PanneauDessin panneauDessin) {
+
+    }
+
+    public void associer(PanneauDessin newPanneauDessin) {}
+    public void libérer() {} // LET IT GO
+
+    public PanneauDessin getPanneauDessin() {
+        return panneauDessin;
+    }
+
+    public void setPanneauDessin(PanneauDessin newPanneauDessin) {
+        this.panneauDessin = newPanneauDessin;
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+
+    }
+
+    public Point getDébut() {
+        return début;
+    }
+
+    public void setDébut(Point newDébut) {
+        this.début = newDébut;
+    }
+
+    public Point getFin() {
+        return fin;
+    }
+
+    public void setFin(Point newFin) {
+        this.fin = newFin;
+    }
+}
