@@ -43,13 +43,18 @@ public class PanneauDessin extends javax.swing.JPanel {
 
     public void ajouterVueForme(VueForme vueForme) {
         vueFormes.add(vueForme);
+        this.paintComponent();
     }
 
     @Override
     public void paintComponent (Graphics g) {
         super.paintComponent(g);
 
-        Graphics2D g2D = (Graphics2D)g;
+        Graphics2D g2D = (Graphics2D)g.create();
+        for (VueForme vueForme: vueFormes
+             ) {
+            vueForme.affiche(g2D);
+        }
         g2D.dispose();
     }
 
