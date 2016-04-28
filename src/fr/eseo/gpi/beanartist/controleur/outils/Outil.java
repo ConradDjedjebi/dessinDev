@@ -12,7 +12,7 @@ import java.awt.event.MouseMotionListener;
  * @date 28/04/16
  * @project gpi_binome
  */
-public class Outil implements MouseMotionListener, MouseListener {
+public abstract class Outil implements MouseMotionListener, MouseListener {
 
     private PanneauDessin panneauDessin;
     private Point début, fin;
@@ -21,8 +21,18 @@ public class Outil implements MouseMotionListener, MouseListener {
 
     }
 
-    public void associer(PanneauDessin newPanneauDessin) {}
-    public void libérer() {} // LET IT GO
+    public void associer(PanneauDessin newPanneauDessin) {
+        libérer();
+        setPanneauDessin(newPanneauDessin);
+        newPanneauDessin.setOutilCourant(this);
+    }
+    private void libérer() // LET IT GO
+    {
+        try {
+            getPanneauDessin().setOutilCourant(null);
+            setPanneauDessin(null);
+        } catch (NullPointerException e) {}
+    }
 
     public PanneauDessin getPanneauDessin() {
         return panneauDessin;
@@ -39,12 +49,12 @@ public class Outil implements MouseMotionListener, MouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-
+        setDébut (new Point(e.getX(), e.getY()));
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-
+        setFin (new Point(e.getX(), e.getY()));
     }
 
     @Override
