@@ -25,7 +25,7 @@ public class PanneauDessinTest {
         PanneauDessin panneauDessin = fenêtreBeAnArtist.getPanneauDessin();
 
         Rectangle [] rectangles = {
-                new Rectangle(30,40),
+                new Rectangle(100,40),
                 new Rectangle(),
                 new Rectangle(300,300,50,50),
                 new Carré(25)
@@ -37,9 +37,23 @@ public class PanneauDessinTest {
             panneauDessin.ajouterVueForme(new VueRectangle(rectangle, Color.WHITE, true));
         }
 
+        // La croix et la banière
         panneauDessin.ajouterVueForme(new VueLigne(new Ligne(68,255), Color.GREEN));
+        panneauDessin.ajouterVueForme(new VueLigne(new Ligne(0, 255, 68, -255), Color.GREEN));
+
+        panneauDessin.ajouterVueForme(new VueLigne(new Ligne(100, 100, 0, 150), Color.BLACK));
+
+
+        // Les cercles et ellipses
+        panneauDessin.ajouterVueForme(new VueEllipse(new Ellipse(100, 100, 0, 150), Color.YELLOW));
+        panneauDessin.ajouterVueForme(new VueEllipse(new Ellipse(), Color.YELLOW));
+        panneauDessin.ajouterVueForme(new VueCercle(new Cercle(25), Color.BLUE));
+
+        // Test des tracés
+        panneauDessin.ajouterVueForme(new VueTracé(new Tracé(), Color.BLUE));
 
         rectangles[0].déplacerVers(100,100);
+        rectangles[1].déplacerVers(200,100);
 
         System.out.println("-- End of TEST");
     }
