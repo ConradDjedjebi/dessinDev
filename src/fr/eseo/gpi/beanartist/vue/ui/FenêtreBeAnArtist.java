@@ -3,7 +3,7 @@ package fr.eseo.gpi.beanartist.vue.ui;
 import java.awt.Color;
 
 /**
- * @author Elphege
+ * @author duhamean
  * @date 26/04/2016
  * @project gpi_binome
  */

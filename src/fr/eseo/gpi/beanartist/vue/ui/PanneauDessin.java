@@ -4,18 +4,20 @@ import fr.eseo.gpi.beanartist.vue.geom.VueForme;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Elphege
+ * @author Antoine du HAMEL
  * @date 26/04/2016
  * @project gpi_binome
  */
 public class PanneauDessin extends javax.swing.JPanel {
     public final static int LARGEUR_PAR_DÉFAUT = 400;
     public final static int HAUTEUR_PAR_DÉFAUT = 400;
-    public final static Color COULEUR_FOND_PAR_DÉFAUT = Color.BLUE;
+    public final static Color COULEUR_FOND_PAR_DÉFAUT = Color.GRAY;
     public final static Color COULEUR_LIGNE_PAR_DÉFAUT = Color.BLACK;
 
     private FenêtreBeAnArtist fenêtre;
@@ -41,6 +43,14 @@ public class PanneauDessin extends javax.swing.JPanel {
 
     public void ajouterVueForme(VueForme vueForme) {
         vueFormes.add(vueForme);
+    }
+
+    @Override
+    public void paintComponent (Graphics g) {
+        super.paintComponent(g);
+
+        Graphics2D g2D = (Graphics2D)g;
+        g2D.dispose();
     }
 
 }
