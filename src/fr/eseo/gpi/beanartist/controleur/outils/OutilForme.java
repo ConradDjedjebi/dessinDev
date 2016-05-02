@@ -12,7 +12,6 @@ import java.awt.event.MouseEvent;
  * @project gpi_binome
  */
 public abstract class OutilForme extends Outil {
-    Forme forme;
 
     public OutilForme(PanneauDessin panneauDessin) {
         super(panneauDessin);
@@ -20,15 +19,13 @@ public abstract class OutilForme extends Outil {
 
     @Override
     public void mouseClicked (MouseEvent e){
-
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        super(e);
+        super.mouseReleased(e);
+        this.getPanneauDessin().ajouterVueForme(this.créerVueForme());
     }
 
-    public void créerVueForme() {
-        new VueForme(forme);
-    }
+    protected abstract VueForme créerVueForme();
 }

@@ -51,10 +51,10 @@ public class PanneauDessin extends javax.swing.JPanel {
     }
 
     @Override
-    public void paintComponent (Graphics g) {
-        super.paintComponent(g);
+    public void paintComponent (Graphics graphics) {
+        super.paintComponent(graphics);
 
-        Graphics2D g2D = (Graphics2D)g.create();
+        Graphics2D g2D = (Graphics2D)graphics.create();
         for (VueForme vueForme: vueFormes
              ) {
             vueForme.affiche(g2D);
