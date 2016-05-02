@@ -18,17 +18,21 @@ public abstract class Outil implements MouseMotionListener, MouseListener {
     private Point début, fin;
 
     public Outil (PanneauDessin panneauDessin) {
-
+        this.associer(panneauDessin);
     }
 
     public void associer(PanneauDessin newPanneauDessin) {
         libérer();
         setPanneauDessin(newPanneauDessin);
         newPanneauDessin.setOutilCourant(this);
+        newPanneauDessin.addMouseListener(this);
+        newPanneauDessin.addMouseMotionListener(this);
     }
     private void libérer() // LET IT GO
     {
         try {
+            getPanneauDessin().removeMouseListener(this);
+            getPanneauDessin().removeMouseMotionListener(this);
             getPanneauDessin().setOutilCourant(null);
             setPanneauDessin(null);
         } catch (NullPointerException e) {}

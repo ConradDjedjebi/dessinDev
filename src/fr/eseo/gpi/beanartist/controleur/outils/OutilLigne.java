@@ -19,6 +19,6 @@ public class OutilLigne extends OutilForme {
 
     @Override
     protected VueForme créerVueForme() {
-        return new VueLigne(forme);
+        return new VueLigne(new Ligne(this.getDébut(), this.getFin()), this.getPanneauDessin().getCouleurLigne());
     }
 }

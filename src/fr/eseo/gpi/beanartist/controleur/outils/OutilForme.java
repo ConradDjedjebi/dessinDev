@@ -12,7 +12,6 @@ import java.awt.event.MouseEvent;
  * @project gpi_binome
  */
 public abstract class OutilForme extends Outil {
-    Forme forme;
 
     public OutilForme(PanneauDessin panneauDessin) {
         super(panneauDessin);
