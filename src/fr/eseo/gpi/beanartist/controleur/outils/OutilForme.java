@@ -19,12 +19,12 @@ public abstract class OutilForme extends Outil {
 
     @Override
     public void mouseClicked (MouseEvent e){
-
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
         super.mouseReleased(e);
+        this.getPanneauDessin().ajouterVueForme(this.créerVueForme());
     }
 
     protected abstract VueForme créerVueForme();
