@@ -72,13 +72,12 @@ public class Ellipse extends Forme {
     }
 
     @Override
-    public boolean contient(int x, int y) {
-        double xNew = x - xCenter;
-        double yNew = y - yCenter;
-        double xSurA = xNew/this.getLargeur();
-        double ySurB = yNew/this.getHauteur();
-
-        return Math.pow(xSurA, 2) + Math.pow(ySurB, 2) < 1;
+    public boolean contient(int x, int y){
+        double xMilieu = this.getX() + this.getLargeur()/2.0;
+        double yMilieu = this.getY() + this.getHauteur()/2.0;
+        double disque = Math.pow(x - xMilieu, 2)/Math.pow(this.getLargeur()/2.0, 2)
+                +Math.pow(y - yMilieu, 2)/Math.pow(this.getHauteur()/2.0, 2);
+        return disque <= 1;
     }
 
 

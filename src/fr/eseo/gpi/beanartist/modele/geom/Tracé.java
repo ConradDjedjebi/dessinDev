@@ -29,6 +29,7 @@ public class Tracé extends Forme {
     }
 
 
+
     //------------ SETTERS -------------//
 
 
@@ -66,7 +67,7 @@ public class Tracé extends Forme {
 
     public void setHauteur(int newHauteur){
         int minY = getMinY();
-        int minYSecure = minY;
+        int minYSecure = getMinY();;
         int minYGhost = getLignes().get(0).getP1().getY();
         double facteur = (double) newHauteur/ getHauteur();
         for(int i = 0; i< getLignes().size(); i++){
@@ -78,8 +79,8 @@ public class Tracé extends Forme {
                 lignes.get(i + 1).setPosition(currentLine.getP2());
             }
         }
-        déplacerVers(0, minY - minYGhost);
-        minY = minYGhost;
+        déplacerVers(0, getMinY() - minYGhost);
+        minY = minYSecure;
         int maxY = minY + newHauteur;
         super.setPosition(new Point(getMinX(), maxY));
         super.setHauteur(hauteur);
@@ -240,7 +241,7 @@ public class Tracé extends Forme {
         return 0;
     }
 
-    public double périmètre() {
+    /*public double périmètre() {
         ListIterator<Ligne> listI = this.lignes.listIterator();
         double returnedPerimetre = 0;
 
@@ -248,7 +249,17 @@ public class Tracé extends Forme {
             returnedPerimetre += listI.next().périmètre();
 
         return returnedPerimetre;
+    }*/
+
+
+    public double périmètre() {
+        double périmètre = 0;
+        for (Ligne ligne : lignes){
+            périmètre += ligne.périmètre();
+        }
+        return périmètre;
     }
+
 
     public boolean contient(int x, int y) {
         for (Ligne ligne : lignes) {

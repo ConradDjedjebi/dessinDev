@@ -1,7 +1,29 @@
 package fr.eseo.gpi.beanartist.vue.geom;
 
+import fr.eseo.gpi.beanartist.modele.geom.Cercle;
+
+import java.awt.Color;
+
 /**
  * Created by Elphege on 01/05/2016.
  */
-public class VueCercle {
+public class VueCercle extends VueEllipse {
+    /**
+     * Créé une vue d'un Cercle
+     * @param cercle L'objet Cercle à afficher
+     * @param rempli Indique si le cercle doit être rempli
+     */
+    public VueCercle(Cercle cercle, boolean rempli) {
+        super(cercle, rempli);
+    }
+
+    /**
+     * Créé une vue d'un Cercle
+     * @param cercle L'objet Cercle à afficher
+     * @param couleurLigne La couleur de la ligne
+     * @param rempli Indique si le cercle doit être rempli
+     */
+    public VueCercle(Cercle cercle, Color couleurLigne, boolean rempli) {
+        super(cercle, couleurLigne, rempli);
+    }
 }
