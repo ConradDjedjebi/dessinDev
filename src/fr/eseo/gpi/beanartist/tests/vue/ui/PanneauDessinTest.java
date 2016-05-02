@@ -45,12 +45,12 @@ public class PanneauDessinTest {
 
 
         // Les cercles et ellipses
-        panneauDessin.ajouterVueForme(new VueEllipse(new Ellipse(100, 100, 0, 150), Color.YELLOW));
-        panneauDessin.ajouterVueForme(new VueEllipse(new Ellipse(), Color.YELLOW));
-        panneauDessin.ajouterVueForme(new VueCercle(new Cercle(25), Color.BLUE));
+        // panneauDessin.ajouterVueForme(new VueEllipse(new Ellipse(100, 100, 0, 150), Color.YELLOW));
+        // panneauDessin.ajouterVueForme(new VueEllipse(new Ellipse(), Color.YELLOW));
+        // panneauDessin.ajouterVueForme(new VueCercle(new Cercle(25), Color.BLUE));
 
-        // Test des tracés
-        panneauDessin.ajouterVueForme(new VueTracé(new Tracé(), Color.BLUE));
+        // // Test des tracés
+        // panneauDessin.ajouterVueForme(new VueTracé(new Tracé(), Color.BLUE));
 
         rectangles[0].déplacerVers(100,100);
         rectangles[1].déplacerVers(200,100);

@@ -25,10 +25,8 @@ public abstract class OutilForme extends Outil {
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        super(e);
+        super.mouseReleased(e);
     }
 
-    public void créerVueForme() {
-        new VueForme(forme);
-    }
+    protected abstract VueForme créerVueForme();
 }
