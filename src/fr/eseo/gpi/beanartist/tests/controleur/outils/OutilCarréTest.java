@@ -3,10 +3,12 @@ package fr.eseo.gpi.beanartist.tests.controleur.outils;
 import fr.eseo.gpi.beanartist.controleur.outils.OutilCarré;
 import fr.eseo.gpi.beanartist.vue.ui.FenêtreBeAnArtist;
 
-import java.awt.*;
+import java.awt.Color;
 
 /**
- * Created by Elphege on 03/05/2016.
+ * @author Elphege
+ * @date 03/05/2016
+ * @project gpi_binome
  */
 public class OutilCarréTest {
     private OutilCarré outilCarré;
