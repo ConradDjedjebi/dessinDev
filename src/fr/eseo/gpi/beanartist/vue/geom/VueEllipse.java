@@ -6,7 +6,9 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 
 /**
- * Created by Elphege on 01/05/2016.
+ * @author Elphege
+ * @date 01/05/2016
+ * @project gpi_binome
  */
 public class VueEllipse extends VueForme {
 
