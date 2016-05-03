@@ -18,4 +18,4 @@ Validée
 
 ### Le contrôleur
 
-Validation jusqu'au 3.4.4
+Validation jusqu'au 3.4.5

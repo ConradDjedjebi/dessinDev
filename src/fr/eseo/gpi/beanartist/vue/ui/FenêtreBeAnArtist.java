@@ -12,6 +12,7 @@ public class FenêtreBeAnArtist extends javax.swing.JFrame {
 
     private Color couleurLigne;
     private PanneauDessin panneauDessin;
+    private PanneauBarreOutil panneauBarreOutil;
 
     public FenêtreBeAnArtist(){
         this(TITRE_PAR_DÉFAUT);
@@ -62,5 +63,18 @@ public class FenêtreBeAnArtist extends javax.swing.JFrame {
 
     private void associerPanneauDessin (int largeur, int hauteur) {
         this.associerPanneauDessin(largeur, hauteur, PanneauDessin.COULEUR_FOND_PAR_DÉFAUT);
+    }
+
+
+    private void associerBarreOutil() {
+        this.setPanneauBarreOutil(new PanneauBarreOutil(this));
+    }
+
+    public PanneauBarreOutil getPanneauBarreOutil() {
+        return panneauBarreOutil;
+    }
+
+    public void setPanneauBarreOutil(PanneauBarreOutil panneauBarreOutil) {
+        this.panneauBarreOutil = panneauBarreOutil;
     }
 }

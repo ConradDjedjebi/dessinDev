@@ -1,5 +1,6 @@
-package fr.eseo.gpi.beanartist.tests.controleur.actions;
+package fr.eseo.gpi.beanartist.controleur.actions;
 
+import fr.eseo.gpi.beanartist.vue.geom.VueForme;
 import fr.eseo.gpi.beanartist.vue.ui.FenêtreBeAnArtist;
 
 import javax.swing.AbstractAction;
@@ -11,14 +12,17 @@ import java.awt.event.ActionEvent;
  * @project gpi_binome
  */
 public class ActionEffacer extends AbstractAction {
-    private static final String NOM_ACTION = "";
+    public static final String NOM_ACTION = "Effacer tout";
+    private FenêtreBeAnArtist fenetre;
 
     public ActionEffacer (FenêtreBeAnArtist fenetre) {
-
+        super(NOM_ACTION);
+        this.fenetre = fenetre;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        fenetre.getPanneauDessin().getVueFormes().clear();
+        fenetre.getPanneauDessin().repaint();
     }
 }
