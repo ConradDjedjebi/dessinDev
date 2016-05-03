@@ -34,17 +34,17 @@ public class TracéTest {
         };
 
         // Création d'un Tracé
+        Tracé tracé = new Tracé(lesPoints[0], lesPoints[1]);
 
-        //Tracé tracé = new Tracé(lesLignes[2]);
-
-        //List<Ligne> lignes = tracé.getLignes();
 
         //Ajout des lignes dans le tracé
-        //tracé.ajouterLigneVers(lesLignes[0].getP2());
+        tracé.ajouterLigneVers(lesPoints[2]);
+        tracé.ajouterLigneVers(lesPoints[3]);
+        tracé.ajouterLigneVers(lesPoints[4]);
+        tracé.ajouterLigneVers(lesPoints[5]);
 
         //Affichage du tracé
-
-        //System.out.println(tracé.toString());
+        System.out.println(tracé.toString());
 
     }
 }
