@@ -93,6 +93,11 @@ public class Ligne extends Forme {
 
     //------------- OTHERS -------------//
 
+    public void déplacerDe(int deltaX, int deltaY) {
+        this.getP1().déplacerDe(deltaX, deltaY);
+        this.getP2().déplacerDe(deltaX, deltaY);
+    }
+
 	public double périmètre() {return Math.sqrt(Math.pow(getLargeur(),2) + Math.pow(getHauteur(),2));}
 
     public double aire() {return 0;}
