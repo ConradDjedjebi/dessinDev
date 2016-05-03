@@ -12,9 +12,9 @@ import java.awt.Dimension;
  * @project gpi_binome
  */
 public class PanneauBarreOutil extends javax.swing.JPanel {
-    private static final int LARGEUR_PAR_DÉFAUT = 25;
-    private static final int HAUTEUR_PAR_DÉFAUT = 100;
-    private static final Color COULEUR_FOND = Color.GRAY;
+    protected static final int LARGEUR_PAR_DÉFAUT = 225;
+    protected static final int HAUTEUR_PAR_DÉFAUT = PanneauDessin.HAUTEUR_PAR_DÉFAUT;
+    protected static final Color COULEUR_FOND = Color.GRAY;
 
     private FenêtreBeAnArtist fenêtre;
 

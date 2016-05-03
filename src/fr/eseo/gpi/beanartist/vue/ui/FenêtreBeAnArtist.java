@@ -1,5 +1,6 @@
 package fr.eseo.gpi.beanartist.vue.ui;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 
 /**
@@ -19,7 +20,7 @@ public class FenêtreBeAnArtist extends javax.swing.JFrame {
     }
 
     public FenêtreBeAnArtist(String titre){
-        this(titre, PanneauDessin.LARGEUR_PAR_DÉFAUT, PanneauDessin.HAUTEUR_PAR_DÉFAUT);
+        this(titre, PanneauDessin.LARGEUR_PAR_DÉFAUT+PanneauBarreOutil.LARGEUR_PAR_DÉFAUT, PanneauDessin.HAUTEUR_PAR_DÉFAUT);
     }
 
     public FenêtreBeAnArtist(int largeur, int hauteur){
@@ -34,6 +35,7 @@ public class FenêtreBeAnArtist extends javax.swing.JFrame {
         super(titre);
         this.couleurLigne = PanneauDessin.COULEUR_LIGNE_PAR_DÉFAUT;
         this.associerPanneauDessin(largeur, hauteur, fond);
+        this.associerBarreOutil();
         this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
         this.setSize(largeur, hauteur);
         this.setLocationRelativeTo(null);
@@ -45,7 +47,7 @@ public class FenêtreBeAnArtist extends javax.swing.JFrame {
             this.remove(panneauDessin);
 
         this.panneauDessin = newPanneauDessin;
-        this.add(newPanneauDessin);
+        this.add(newPanneauDessin, BorderLayout.WEST);
     }
 
     public PanneauDessin getPanneauDessin() {
@@ -74,7 +76,11 @@ public class FenêtreBeAnArtist extends javax.swing.JFrame {
         return panneauBarreOutil;
     }
 
-    public void setPanneauBarreOutil(PanneauBarreOutil panneauBarreOutil) {
-        this.panneauBarreOutil = panneauBarreOutil;
+    public void setPanneauBarreOutil(PanneauBarreOutil newPanneauBarreOutil1) {
+        if(panneauBarreOutil!=null)
+            this.remove(panneauBarreOutil);
+
+        this.panneauBarreOutil = newPanneauBarreOutil1;
+        this.add(newPanneauBarreOutil1, BorderLayout.EAST);
     }
 }
