@@ -1,10 +1,17 @@
 package fr.eseo.gpi.beanartist.tests.vue.ui;
 
 import fr.eseo.gpi.beanartist.modele.geom.Carré;
+import fr.eseo.gpi.beanartist.modele.geom.Cercle;
+import fr.eseo.gpi.beanartist.modele.geom.Ellipse;
 import fr.eseo.gpi.beanartist.modele.geom.Ligne;
+import fr.eseo.gpi.beanartist.modele.geom.Point;
 import fr.eseo.gpi.beanartist.modele.geom.Rectangle;
+import fr.eseo.gpi.beanartist.modele.geom.Tracé;
+import fr.eseo.gpi.beanartist.vue.geom.VueCercle;
+import fr.eseo.gpi.beanartist.vue.geom.VueEllipse;
 import fr.eseo.gpi.beanartist.vue.geom.VueLigne;
 import fr.eseo.gpi.beanartist.vue.geom.VueRectangle;
+import fr.eseo.gpi.beanartist.vue.geom.VueTracé;
 import fr.eseo.gpi.beanartist.vue.ui.FenêtreBeAnArtist;
 import fr.eseo.gpi.beanartist.vue.ui.PanneauDessin;
 
@@ -45,12 +52,12 @@ public class PanneauDessinTest {
 
 
         // Les cercles et ellipses
-        // panneauDessin.ajouterVueForme(new VueEllipse(new Ellipse(100, 100, 0, 150), Color.YELLOW));
-        // panneauDessin.ajouterVueForme(new VueEllipse(new Ellipse(), Color.YELLOW));
-        // panneauDessin.ajouterVueForme(new VueCercle(new Cercle(25), Color.BLUE));
+        panneauDessin.ajouterVueForme(new VueEllipse(new Ellipse(100, 100, 0, 150), Color.YELLOW, false));
+        panneauDessin.ajouterVueForme(new VueEllipse(new Ellipse(), Color.YELLOW, true));
+        panneauDessin.ajouterVueForme(new VueCercle(new Cercle(25), Color.BLUE, true));
 
-        // // Test des tracés
-        // panneauDessin.ajouterVueForme(new VueTracé(new Tracé(), Color.BLUE));
+        // Test des tracés
+        panneauDessin.ajouterVueForme(new VueTracé(new Tracé(new Point(), new Point(50, 100)), Color.BLUE));
 
         rectangles[0].déplacerVers(100,100);
         rectangles[1].déplacerVers(200,100);

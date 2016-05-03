@@ -5,7 +5,7 @@ package fr.eseo.gpi.beanartist.modele.geom;
  * @date 12/04/2016
  * @project gpi_binome
  */
-import java.lang.Math;
+//import java.lang.Math;
 
 public class Ligne extends Forme {
 

@@ -8,7 +8,9 @@ import java.util.ListIterator;
 import java.util.Locale;
 
 /**
- * Created by Elphege on 13/04/2016.
+ * @author Elphege
+ * @date 13/04/2016
+ * @project gpi_binome
  */
 public class Tracé extends Forme {
     private List<Ligne> lignes;
@@ -67,7 +69,7 @@ public class Tracé extends Forme {
 
     public void setHauteur(int newHauteur){
         int minY = getMinY();
-        int minYSecure = getMinY();;
+        int minYSecure = getMinY();
         int minYGhost = getLignes().get(0).getP1().getY();
         double facteur = (double) newHauteur/ getHauteur();
         for(int i = 0; i< getLignes().size(); i++){
