@@ -19,16 +19,21 @@ public class Tracé extends Forme {
 
 
     public Tracé(Point p1, Point p2) {
-        super();
-        this.lignes = new ArrayList<Ligne>();
-        int xMin = Math.min(p1.getX(), p2.getX());
+        super(new Point(Math.min(p1.getX(), p2.getX()), Math.max(p1.getY(), p2.getY())), Math.max(p1.getX(), p2.getX())
+                - Math.min(p1.getX(), p2.getX()), Math.max(p1.getY(), p2.getY()) - Math.min(p1.getY(), p2.getY()) );
+        lignes = new ArrayList<Ligne>();
+        lignes.add(new Ligne(p1, p2));
+        /*int xMin = Math.min(p1.getX(), p2.getX());
         int xMax = Math.max(p1.getX(), p2.getX());
         int yMin = Math.min(p1.getY(), p2.getY());
         int yMax = Math.max(p1.getY(), p2.getY());
         setLargeur(xMax - xMin);
         setHauteur(yMax - yMin);
-        setPosition(new Point(xMin, yMax));
+        setPosition(new Point(xMin, yMax));*/
     }
+
+
+
 
 
 
@@ -40,7 +45,9 @@ public class Tracé extends Forme {
         ligne.setP1(this.lignes.get(lignes.size() - 1).getP2());
         ligne.setP2(point);
         this.lignes.add(ligne);
-        this.setPosition(findPosition());
+        super.setPosition(findPosition());
+        super.setHauteur(findHauteur());
+        super.setLargeur(findLargeur());
     }
 
 
@@ -54,8 +61,8 @@ public class Tracé extends Forme {
 
     public void setPosition(Point point) {
         Point p1 = this.getPosition();
-        int deltaX = point.getX() - p1.getX(),
-                deltaY = point.getY() - p1.getY();
+        int deltaX = point.getX() - p1.getX();
+        int deltaY = point.getY() - p1.getY();
 
         this.déplacerDe(deltaX, deltaY);
         super.setPosition(point);
@@ -68,45 +75,40 @@ public class Tracé extends Forme {
 
 
     public void setHauteur(int newHauteur){
-        int minY = getMinY();
-        int minYSecure = getMinY();
-        int minYGhost = getLignes().get(0).getP1().getY();
+        int minYSauvegarde = getMinY();
+        int minYTemporaire = getLignes().get(0).getP1().getY();
         double facteur = (double) newHauteur/ getHauteur();
         for(int i = 0; i< getLignes().size(); i++){
             Ligne currentLine = getLignes().get(i);
             int newHauteurLigne = (int) Math.round(currentLine.getHauteur() * facteur);
             currentLine.setHauteur(newHauteurLigne);
-            minYGhost = Math.min(currentLine.getP2().getY(), minYGhost);
+            minYTemporaire = Math.min(currentLine.getP2().getY(), minYTemporaire);
             if(i + 1 < lignes.size()) {
                 lignes.get(i + 1).setPosition(currentLine.getP2());
             }
         }
-        déplacerVers(0, getMinY() - minYGhost);
-        minY = minYSecure;
-        int maxY = minY + newHauteur;
+        déplacerDe(0, getMinY() - minYTemporaire);
+        int maxY = minYSauvegarde + newHauteur;
         super.setPosition(new Point(getMinX(), maxY));
-        super.setHauteur(hauteur);
+        super.setHauteur(newHauteur);
     }
 
     public void setLargeur(int newLargeur){
-        int maxX = getMaxX();
-        int maxXSecure = maxX;
-        int maxXGhost = getLignes().get(0).getP1().getX();
+        int minXSauvegarde = getMinX();
+        int minXTemporaire = getLignes().get(0).getP1().getX();
         double facteur = (double) newLargeur/ getLargeur();
         for(int i = 0; i< getLignes().size(); i++){
             Ligne currentLine = getLignes().get(i);
             int newLargeurLigne = (int) Math.round(currentLine.getLargeur() * facteur);
-            currentLine.setLargeur(newLargeurLigne);
-            maxXGhost = Math.max(currentLine.getP2().getX(), maxXGhost);
+            currentLine.setHauteur(newLargeurLigne);
+            minXTemporaire = Math.min(currentLine.getP2().getX(), minXTemporaire);
             if(i + 1 < lignes.size()) {
                 lignes.get(i + 1).setPosition(currentLine.getP2());
             }
         }
-        déplacerVers(0, maxX - maxXGhost);
-        maxX = maxXGhost;
-        int minX = maxX + newLargeur;
-        super.setPosition(new Point(minX, getMaxY()));
-        super.setHauteur(hauteur);
+        déplacerDe(getMinX() - minXTemporaire, 0);
+        super.setPosition(new Point(minXSauvegarde, getMaxY()));
+        super.setHauteur(newLargeur);
     }
 
     // --------- GETTERS ----------- //
@@ -209,6 +211,7 @@ public class Tracé extends Forme {
 
     //----------- METHODS -----------//
 
+    //Lors de la création d'un tracé, il n'y a pas de ligne. Or cette méthode est appelée
 
     public void déplacerDe(int deltaX, int deltaY) {
 
@@ -264,13 +267,13 @@ public class Tracé extends Forme {
 
 
     public boolean contient(int x, int y) {
+        boolean bool = false;
         for (Ligne ligne : lignes) {
             if (ligne.contient(x, y)) {
-                return true;
+                bool = true;
             }
         }
-
-        return false;
+        return bool;
     }
 
     public boolean contient(Point testPosition) {

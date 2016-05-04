@@ -9,7 +9,7 @@ package fr.eseo.gpi.beanartist.modele.geom;
 
 public class Ligne extends Forme {
 
-    public final static double EPSILON = 0.00001;
+    public final static double EPSILON = 0.1;
 
     //------------- CONSTRUCTEUR -------------//
 
@@ -59,17 +59,33 @@ public class Ligne extends Forme {
 
     //------------- SETTERS -------------//
 
+    public void setPosition(Point newPosition) {
+        int deltaX = newPosition.getX() - getX();
+        int deltaY = newPosition.getY() - getY();
+        super.setPosition(newPosition);
+        déplacerDe(deltaX, deltaY);
+    }
+
     public void setP1(Point p1) {
-        int deltaX = getX() - p1.getX();
-        int deltaY = getY() - p1.getY();
-        this.setPosition(p1);
-        this.setLargeur(getLargeur() + deltaX);
-        this.setHauteur(getHauteur() + deltaY);
+        super.setLargeur(getP2().getX() - p1.getX());
+        super.setHauteur(getP2().getY() - p1.getY());
+        super.setPosition(p1);
     }
 
     public void setP2(Point p2) {
-        this.setLargeur(p2.getX()-this.getX());
-        this.setHauteur(p2.getY()-this.getY());
+        super.setLargeur(p2.getX()-this.getX());
+        super.setHauteur(p2.getY()-this.getY());
+    }
+
+
+    public void setHauteur(int newHauteur){
+        setP2(new Point(getP1().getX() + getLargeur(), getP1().getY() + newHauteur));
+        super.setHauteur(newHauteur);
+    }
+
+    public void setLargeur(int newLargeur){
+        setP2(new Point(getP1().getX() + newLargeur, getP1().getY() + getHauteur()));
+        super.setLargeur(newLargeur);
     }
 
     // =========    GEOM        ===============

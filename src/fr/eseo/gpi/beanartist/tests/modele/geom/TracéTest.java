@@ -34,17 +34,42 @@ public class TracéTest {
         };
 
         // Création d'un Tracé
-        Tracé tracé = new Tracé(lesPoints[0], lesPoints[1]);
 
+        Tracé tracé = new Tracé(lesPoints[0], lesPoints[1]);
+        System.out.println(tracé.toString() + "\n");
 
         //Ajout des lignes dans le tracé
+
         tracé.ajouterLigneVers(lesPoints[2]);
+        System.out.println(tracé.toString() + "\n");
+
         tracé.ajouterLigneVers(lesPoints[3]);
+        System.out.println(tracé.toString() + "\n");
+
         tracé.ajouterLigneVers(lesPoints[4]);
-        tracé.ajouterLigneVers(lesPoints[5]);
+        System.out.println(tracé.toString() + "\n");
+
+        tracé.setHauteur(32);
+        System.out.println(tracé.toString() + "\n");
+
+        /*tracé.ajouterLigneVers(lesPoints[3]);
+        tracé.ajouterLigneVers(lesPoints[4]);*/
+
+        //tracé.ajouterLigneVers(lesPoints[5]);
 
         //Affichage du tracé
-        System.out.println(tracé.toString());
+        //System.out.println(tracé.toString());
 
+        //Testons la méthode contient
+
+        /*boolean bool = tracé.contient(lesPoints[0]);
+        for(int i = 0; i<7; i++){
+            if(tracé.contient(lesPoints[i])){
+                System.out.println("Le point : " + lesPoints[i].toString() + " appartient au tracé");
+            }
+            else{
+                System.out.println("Le point : " + lesPoints[i].toString()+ " n'appartient pas au tracé");
+            }
+        }*/
     }
 }

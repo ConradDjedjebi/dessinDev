@@ -25,9 +25,9 @@ public abstract class Forme {
     }
 
     public Forme(Point position, int largeur, int hauteur) {
-        this.setPosition(position);
-        this.setLargeur(largeur);
-        this.setHauteur(hauteur);
+        this.position = position;
+        this.largeur = largeur;
+        this.hauteur = hauteur;
 
     }
 
