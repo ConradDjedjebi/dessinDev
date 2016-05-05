@@ -23,18 +23,7 @@ public class Tracé extends Forme {
                 - Math.min(p1.getX(), p2.getX()), Math.max(p1.getY(), p2.getY()) - Math.min(p1.getY(), p2.getY()) );
         lignes = new ArrayList<Ligne>();
         lignes.add(new Ligne(p1, p2));
-        /*int xMin = Math.min(p1.getX(), p2.getX());
-        int xMax = Math.max(p1.getX(), p2.getX());
-        int yMin = Math.min(p1.getY(), p2.getY());
-        int yMax = Math.max(p1.getY(), p2.getY());
-        setLargeur(xMax - xMin);
-        setHauteur(yMax - yMin);
-        setPosition(new Point(xMin, yMax));*/
     }
-
-
-
-
 
 
 
@@ -74,23 +63,36 @@ public class Tracé extends Forme {
     }
 
 
-    /*public void setHauteur(int newHauteur){
-        int minYSauvegarde = getMinY();
-        int minYTemporaire = getLignes().get(0).getP1().getY();
-        double facteur = (double) newHauteur/ getHauteur();
-        for(int i = 0; i< getLignes().size(); i++){
-            Ligne currentLine = getLignes().get(i);
-            int newHauteurLigne = (int) Math.round(currentLine.getHauteur() * facteur);
-            currentLine.setHauteur(newHauteurLigne);
-            minYTemporaire = Math.min(currentLine.getP2().getY(), minYTemporaire);
-            if(i + 1 < lignes.size()) {
-                lignes.get(i + 1).setPosition(currentLine.getP2());
-            }
+
+    public void setHauteur(int newHauteur){
+        int newY1;
+        int min = getMinY();
+        int minY = min;
+        double coeff = (double) newHauteur / getHauteur();
+        for (Ligne ligne : lignes){
+            newY1 = minY + (int) Math.round((ligne.getP1().getY() - minY) * coeff);
+            ligne.getP1().setY(newY1);
+            ligne.setHauteur((int) Math.round(ligne.getHauteur()*coeff));
         }
-        déplacerDe(0, getMinY() - minYTemporaire);
-        setPosition(new Point(getMinX(), minYSauvegarde));
         super.setHauteur(newHauteur);
-    }*/
+    }
+
+    public void setLargeur(int newLargeur){
+        int newX1;
+        int minX = getMinX();
+        double coeff = (double) newLargeur / getLargeur();
+        for (Ligne ligne : lignes){
+            newX1 = minX + (int) Math.round((ligne.getP1().getX() - minX) * coeff);
+            ligne.getP1().setX(newX1);
+            ligne.setLargeur((int) Math.round(ligne.getLargeur()*coeff));
+        }
+        super.setLargeur(newLargeur);
+    }
+
+
+
+
+    // --------- GETTERS ----------- //
 
     public int getMinY() {
         int yMin = Integer.MAX_VALUE;
@@ -132,54 +134,6 @@ public class Tracé extends Forme {
         return xMax;
     }
 
-    private int minY = this.getPosition().getY();
-    private int maxX;
-    private int maxY;
-    private int minX = this.getPosition().getX();
-
-    public void setHauteur(int newHauteur){
-        int minYBackup = minY;
-        int tempMinY = getLignes().get(0).getP1().getY();
-        double coeff = (double) newHauteur / getHauteur();
-        for (int i = 0; i < getLignes().size(); i++){
-            Ligne ligneCourante = getLignes().get(i);
-            int newHauteurBis = (int) Math.round(ligneCourante.getHauteur() * coeff);
-            ligneCourante.setHauteur((newHauteurBis));
-            tempMinY = Math.min(ligneCourante.getP2().getY(), tempMinY);
-            if (i + 1 < getLignes().size()) {
-                getLignes().get(i+1).setPosition(ligneCourante.getP2());
-            }
-        }
-        déplacerDe(0, minY - tempMinY);
-        minY = minYBackup;
-        maxY = minY + newHauteur;
-        super.setPosition(new Point(minX, minY));
-        super.setHauteur(newHauteur);
-    }
-
-    public void setLargeur(int newLargeur){
-        int minXBackup = minX;
-        int tempMinX = getLignes().get(0).getP1().getX();
-        double coeff = (double) newLargeur / getLargeur();
-        for (int i = 0; i < getLignes().size(); i++){
-            Ligne ligneCourante = getLignes().get(i);
-            int newLargeurBis = (int) Math.round(ligneCourante.getLargeur() * coeff);
-            ligneCourante.setLargeur((newLargeurBis));
-            tempMinX = Math.min(ligneCourante.getP2().getX(), tempMinX);
-            if (i + 1 < getLignes().size()) {
-                getLignes().get(i+1).setPosition(ligneCourante.getP2());
-            }
-        }
-        déplacerDe(0, minX - tempMinX);
-        minX = minXBackup;
-        maxX = minX + newLargeur;
-        super.setPosition(new Point(minX, minY));
-        super.setLargeur(newLargeur);
-    }
-
-
-
-    // --------- GETTERS ----------- //
 
     public int findLargeur() {
         int xMin = Integer.MAX_VALUE;
