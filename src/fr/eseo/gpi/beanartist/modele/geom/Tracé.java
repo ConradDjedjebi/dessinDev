@@ -41,14 +41,12 @@ public class Tracé extends Forme {
 
 
     public void ajouterLigneVers(Point point) {
-        Ligne  ligne = new Ligne();
-        ligne.setP1(this.lignes.get(lignes.size() - 1).getP2());
-        ligne.setP2(point);
-        this.lignes.add(ligne);
-        super.setPosition(findPosition());
+        this.lignes.add(new Ligne(this.lignes.get(lignes.size() - 1).getP2(), point));
         super.setHauteur(findHauteur());
         super.setLargeur(findLargeur());
+        super.setPosition(findPosition());
     }
+
 
 
     public void setX(int newX) {
@@ -160,12 +158,12 @@ public class Tracé extends Forme {
                 yMax = ligne.getMaxY();
             }
         }
-        return new Point(xMin, yMax);
+        return new Point(xMin, yMax-getHauteur());
     }
 
 
     public int getMinY() {
-        int yMin = Integer.MIN_VALUE;
+        int yMin = Integer.MAX_VALUE;
         for (Ligne ligne : lignes) {
             if (ligne.getMinY() < yMin) {
                 yMin = ligne.getMinY();
@@ -175,9 +173,9 @@ public class Tracé extends Forme {
     }
 
     public int getMaxY() {
-        int yMax = Integer.MAX_VALUE;
+        int yMax = Integer.MIN_VALUE;
         for (Ligne ligne : lignes) {
-            if (ligne.getMaxY() < yMax) {
+            if (ligne.getMaxY() > yMax) {
                 yMax = ligne.getMaxY();
             }
         }
@@ -185,7 +183,7 @@ public class Tracé extends Forme {
     }
 
     public int getMinX() {
-        int xMin = Integer.MIN_VALUE;
+        int xMin = Integer.MAX_VALUE;
         for (Ligne ligne : lignes) {
             if (ligne.getMinX() < xMin) {
                 xMin = ligne.getMinX();
@@ -195,9 +193,9 @@ public class Tracé extends Forme {
     }
 
     public int getMaxX() {
-        int xMax = Integer.MAX_VALUE;
+        int xMax = Integer.MIN_VALUE;
         for (Ligne ligne : lignes) {
-            if (ligne.getMaxX() < xMax) {
+            if (ligne.getMaxX() > xMax) {
                 xMax = ligne.getMaxX();
             }
         }

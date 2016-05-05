@@ -15,12 +15,12 @@ public class TracéTest {
 
         //Une liste de points
         Point[] lesPoints = {
-                new Point(1, 1),
-                new Point(2, 3),
-                new Point(5, 5),
+                new Point(1, -100),
+                new Point(-222, 50),
+                new Point(50, 300),
                 new Point(-1, 10),
-                new Point(8, 17),
-                new Point(0, -8),
+                new Point(8, 107),
+                new Point(70, -8),
         };
 
         //Création des LIGNES
@@ -43,14 +43,14 @@ public class TracéTest {
         tracé.ajouterLigneVers(lesPoints[2]);
         System.out.println(tracé.toString() + "\n");
 
-        tracé.ajouterLigneVers(lesPoints[3]);
+        /*tracé.ajouterLigneVers(lesPoints[3]);
         System.out.println(tracé.toString() + "\n");
 
         tracé.ajouterLigneVers(lesPoints[4]);
-        System.out.println(tracé.toString() + "\n");
+        System.out.println(tracé.toString() + "\n");*/
 
-        tracé.setHauteur(32);
-        System.out.println(tracé.toString() + "\n");
+        //tracé.setHauteur(32);
+        //System.out.println(tracé.toString() + "\n");
 
         /*tracé.ajouterLigneVers(lesPoints[3]);
         tracé.ajouterLigneVers(lesPoints[4]);*/
