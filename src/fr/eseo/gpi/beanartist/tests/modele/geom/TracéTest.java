@@ -15,9 +15,9 @@ public class TracéTest {
 
         //Une liste de points
         Point[] lesPoints = {
-                new Point(1, -100),
-                new Point(-222, 50),
-                new Point(50, 300),
+                new Point(219, -100),
+                new Point(222, 50),
+                new Point(500, 400),
                 new Point(-1, 10),
                 new Point(8, 107),
                 new Point(70, -8),
@@ -41,6 +41,13 @@ public class TracéTest {
         //Ajout des lignes dans le tracé
 
         tracé.ajouterLigneVers(lesPoints[2]);
+        System.out.println(tracé.toString() + "\n");
+
+
+
+
+        //Testons la méthode setHauteur
+        tracé.setLargeur(100);
         System.out.println(tracé.toString() + "\n");
 
         /*tracé.ajouterLigneVers(lesPoints[3]);
@@ -71,5 +78,9 @@ public class TracéTest {
                 System.out.println("Le point : " + lesPoints[i].toString()+ " n'appartient pas au tracé");
             }
         }*/
+
+
+
+
     }
 }
