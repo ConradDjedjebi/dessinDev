@@ -10,7 +10,7 @@ Validée
 
 ### Le modèle
 
-Validation jusqu'au 3.2.9
+Validé
 
 ### La vue
 
@@ -18,4 +18,4 @@ Validée
 
 ### Le contrôleur
 
-Validation jusqu'au 3.4.8
+Validation jusqu'au 3.4.10
