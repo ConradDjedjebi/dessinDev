@@ -20,6 +20,7 @@ public class VueEllipse extends VueForme {
     public VueEllipse(Ellipse ellipse, boolean rempli) {
         super(ellipse, rempli);
     }
+    //Attention : super(ellipse, rempli) crée une Forme remplie et non une Ellipse remplie
 
     /**
      * Créé une vue d'une ellipse
@@ -34,7 +35,7 @@ public class VueEllipse extends VueForme {
     @Override
     public void affiche(Graphics2D g2D) {
         g2D.setColor(this.getCouleurLigne());
-
+        //Vérifier si pour la méthode fillOval(), x et y sont les cooedonnées du point supérieur gauche ou du centre
         if (estRempli())
             g2D.fillOval(forme.getX(), forme.getY(), forme.getLargeur(), forme.getHauteur());
         else

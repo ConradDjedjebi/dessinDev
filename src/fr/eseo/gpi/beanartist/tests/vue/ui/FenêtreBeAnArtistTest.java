@@ -1,7 +1,14 @@
 package fr.eseo.gpi.beanartist.tests.vue.ui;
 
 
+import fr.eseo.gpi.beanartist.modele.geom.*;
+import fr.eseo.gpi.beanartist.modele.geom.Rectangle;
+import fr.eseo.gpi.beanartist.vue.geom.*;
 import fr.eseo.gpi.beanartist.vue.ui.FenêtreBeAnArtist;
+import fr.eseo.gpi.beanartist.vue.ui.PanneauDessin;
+
+import java.awt.*;
+import java.awt.Point;
 
 /**
  * @author duhamean
@@ -16,6 +23,40 @@ public class FenêtreBeAnArtistTest {
 
     public static void testDefaultConstructor() {
         FenêtreBeAnArtist fen = new FenêtreBeAnArtist();
+        PanneauDessin panneauDessin = fen.getPanneauDessin();
+
+        /*Rectangle[] rectangles = {
+                new Rectangle(100,40),
+                new Rectangle(),
+                new Rectangle(300,300,50,50),
+                new Carré(25)
+        };
+
+
+        for (Rectangle rectangle :
+                rectangles) {
+            panneauDessin.ajouterVueForme(new VueRectangle(rectangle, Color.WHITE, true));
+        }
+
+        // La croix et la banière
+        panneauDessin.ajouterVueForme(new VueLigne(new Ligne(68,255), Color.GREEN));
+        panneauDessin.ajouterVueForme(new VueLigne(new Ligne(0, 255, 68, -255), Color.GREEN));
+
+        panneauDessin.ajouterVueForme(new VueLigne(new Ligne(100, 100, 0, 150), Color.BLACK));
+
+
+        // Les cercles et ellipses
+        panneauDessin.ajouterVueForme(new VueEllipse(new Ellipse(100, 100, 0, 150), Color.YELLOW, false));
+        panneauDessin.ajouterVueForme(new VueEllipse(new Ellipse(), Color.YELLOW, true));
+        panneauDessin.ajouterVueForme(new VueCercle(new Cercle(25), Color.BLUE, true));
+
+        // Test des tracés
+        panneauDessin.ajouterVueForme(new VueTracé(new Tracé(new fr.eseo.gpi.beanartist.modele.geom.Point(), new fr.eseo.gpi.beanartist.modele.geom.Point(50, 100)), Color.BLUE));
+
+        rectangles[0].déplacerVers(100,100);
+        rectangles[1].déplacerVers(200,100);
+
+        fen.setPanneauDessin(panneauDessin);*/
 
         System.out.println("End of test");
     }

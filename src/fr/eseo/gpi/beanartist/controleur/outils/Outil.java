@@ -7,6 +7,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
+import java.util.List;
+import java.util.ArrayList;
+
 /**
  * @author duhamean
  * @date 28/04/16
@@ -16,6 +19,7 @@ public abstract class Outil implements MouseMotionListener, MouseListener {
 
     private PanneauDessin panneauDessin;
     private Point début, fin;
+    private List<Point> lesPoints = new ArrayList<Point>();
 
     public Outil (PanneauDessin panneauDessin) {
         this.associer(panneauDessin);
@@ -73,7 +77,7 @@ public abstract class Outil implements MouseMotionListener, MouseListener {
 
     @Override
     public void mouseDragged(MouseEvent e) {
-
+        lesPoints.add(new Point(e.getX(), e.getY()));
     }
 
     @Override
@@ -96,4 +100,9 @@ public abstract class Outil implements MouseMotionListener, MouseListener {
     public void setFin(Point newFin) {
         this.fin = newFin;
     }
+
+    public List<Point> getLesPoints() {
+        return lesPoints;
+    }
+
 }

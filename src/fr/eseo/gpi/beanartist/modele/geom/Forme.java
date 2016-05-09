@@ -146,7 +146,6 @@ public abstract class Forme {
     public abstract double périmètre();
 
     public abstract boolean contient(int x, int y);
-    /*public abstract boolean contient(Point testPosition);*/
 
     public abstract boolean contient(Point testPosition);
 

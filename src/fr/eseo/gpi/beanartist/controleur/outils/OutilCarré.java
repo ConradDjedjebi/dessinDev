@@ -19,7 +19,7 @@ public class OutilCarré extends OutilForme{
     protected VueForme créerVueForme() {
         int largeurRectangle = this.getFin().getX() - this.getDébut().getX();
         int hauteurRectangle = this.getDébut().getY() - this.getFin().getY();
-        int coté = Math.max(largeurRectangle, hauteurRectangle);
+        int coté = Math.max(Math.abs(largeurRectangle), Math.abs(hauteurRectangle));
         return new VueCarré(new Carré(this.getDébut(), coté), this.getPanneauDessin().getCouleurLigne(), true);
     }
 }

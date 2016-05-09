@@ -66,8 +66,7 @@ public class Tracé extends Forme {
 
     public void setHauteur(int newHauteur){
         int newY1;
-        int min = getMinY();
-        int minY = min;
+        int minY = getMinY();
         double coeff = (double) newHauteur / getHauteur();
         for (Ligne ligne : lignes){
             newY1 = minY + (int) Math.round((ligne.getP1().getY() - minY) * coeff);
