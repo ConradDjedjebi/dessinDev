@@ -31,8 +31,8 @@ public class ActionForme extends AbstractAction  {
     public static final int CERCLE =    1<<3;
     public static final int LIGNE =     1<<4;
     public static final int TRACÉ =     1<<5;
-    private final int forme;
 
+    private final int forme;
     private FenêtreBeAnArtist fenetre;
 
     public ActionForme (FenêtreBeAnArtist fenetre) {
