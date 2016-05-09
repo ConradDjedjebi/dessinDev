@@ -19,6 +19,6 @@ public class OutilRectangle extends OutilForme {
     protected VueForme créerVueForme() {
         int largeurRectangle = this.getFin().getX() - this.getDébut().getX();
         int hauteurRectangle = this.getDébut().getY() - this.getFin().getY();
-        return new VueRectangle(new Rectangle(this.getDébut(), largeurRectangle, hauteurRectangle), this.getPanneauDessin().getCouleurLigne(), true);
+        return new VueRectangle(new Rectangle(this.getDébut(), largeurRectangle, hauteurRectangle), this.getPanneauDessin().getCouleurLigne(), false);
     }
 }
