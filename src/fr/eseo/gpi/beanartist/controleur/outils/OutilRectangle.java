@@ -1,5 +1,6 @@
 package fr.eseo.gpi.beanartist.controleur.outils;
 
+import fr.eseo.gpi.beanartist.modele.geom.Forme;
 import fr.eseo.gpi.beanartist.modele.geom.Rectangle;
 import fr.eseo.gpi.beanartist.vue.geom.VueRectangle;
 import fr.eseo.gpi.beanartist.vue.geom.VueForme;
@@ -19,6 +20,12 @@ public class OutilRectangle extends OutilForme {
     protected VueForme créerVueForme() {
         int largeurRectangle = this.getFin().getX() - this.getDébut().getX();
         int hauteurRectangle = this.getDébut().getY() - this.getFin().getY();
-        return new VueRectangle(new Rectangle(this.getDébut(), largeurRectangle, hauteurRectangle), this.getPanneauDessin().getCouleurLigne(), true);
+        rectangle = new Rectangle(this.getDébut(), largeurRectangle, hauteurRectangle);
+        return new VueRectangle(rectangle, this.getPanneauDessin().getCouleurLigne(), true);
+    }
+
+    @Override
+    public Forme getForme(){
+        return rectangle;
     }
 }

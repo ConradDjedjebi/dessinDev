@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public abstract class Outil implements MouseMotionListener, MouseListener {
 
     private PanneauDessin panneauDessin;
-    private Point début, fin;
+    private Point début, fin, unPoint;
     private List<Point> lesPoints = new ArrayList<Point>();
 
     public Outil (PanneauDessin panneauDessin) {
@@ -51,9 +51,7 @@ public abstract class Outil implements MouseMotionListener, MouseListener {
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) {
-
-    }
+    public void mouseClicked(MouseEvent e) {setUnPoint (new Point(e.getX(), e.getY()));}
 
     @Override
     public void mousePressed(MouseEvent e) {
@@ -99,6 +97,14 @@ public abstract class Outil implements MouseMotionListener, MouseListener {
 
     public void setFin(Point newFin) {
         this.fin = newFin;
+    }
+
+    public Point getUnPoint() {
+        return unPoint;
+    }
+
+    public void setUnPoint(Point newPoint) {
+        this.unPoint = newPoint;
     }
 
     public List<Point> getLesPoints() {

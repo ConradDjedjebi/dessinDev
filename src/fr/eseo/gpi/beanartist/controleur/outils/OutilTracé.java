@@ -1,5 +1,6 @@
 package fr.eseo.gpi.beanartist.controleur.outils;
 
+import fr.eseo.gpi.beanartist.modele.geom.Forme;
 import fr.eseo.gpi.beanartist.modele.geom.Tracé;
 import fr.eseo.gpi.beanartist.modele.geom.Point;
 import fr.eseo.gpi.beanartist.vue.geom.VueForme;
@@ -42,6 +43,11 @@ public class OutilTracé extends OutilForme {
         }
         tracé.ajouterLigneVers(getFin());
         return new VueTracé(tracé, this.getPanneauDessin().getCouleurLigne());
+    }
+
+    @Override
+    public Forme getForme(){
+        return tracé;
     }
 
     /*protected VueForme créerVueFormeParDéfaut(){

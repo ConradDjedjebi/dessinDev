@@ -1,5 +1,6 @@
 package fr.eseo.gpi.beanartist.controleur.actions;
 
+import fr.eseo.gpi.beanartist.controleur.outils.OutilRectangle;
 import fr.eseo.gpi.beanartist.controleur.outils.OutilSélection;
 import fr.eseo.gpi.beanartist.vue.ui.FenêtreBeAnArtist;
 
@@ -22,6 +23,7 @@ public class ActionSélectionner extends AbstractAction {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        new OutilSélection(this.fenetre.getPanneauDessin());
     }
 
 }

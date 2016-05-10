@@ -1,6 +1,7 @@
 package fr.eseo.gpi.beanartist.controleur.outils;
 
 import fr.eseo.gpi.beanartist.modele.geom.Carré;
+import fr.eseo.gpi.beanartist.modele.geom.Forme;
 import fr.eseo.gpi.beanartist.vue.geom.VueForme;
 import fr.eseo.gpi.beanartist.vue.geom.VueCarré;
 import fr.eseo.gpi.beanartist.vue.ui.PanneauDessin;
@@ -20,6 +21,12 @@ public class OutilCarré extends OutilForme{
         int largeurRectangle = this.getFin().getX() - this.getDébut().getX();
         int hauteurRectangle = this.getDébut().getY() - this.getFin().getY();
         int coté = Math.max(Math.abs(largeurRectangle), Math.abs(hauteurRectangle));
-        return new VueCarré(new Carré(this.getDébut(), coté), this.getPanneauDessin().getCouleurLigne(), true);
+        carré = new Carré(this.getDébut(), coté);
+        return new VueCarré(carré, this.getPanneauDessin().getCouleurLigne(), true);
+    }
+
+    @Override
+    public Forme getForme(){
+        return carré;
     }
 }

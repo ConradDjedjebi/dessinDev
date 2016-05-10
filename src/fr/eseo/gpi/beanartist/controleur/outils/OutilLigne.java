@@ -1,5 +1,6 @@
 package fr.eseo.gpi.beanartist.controleur.outils;
 
+import fr.eseo.gpi.beanartist.modele.geom.Forme;
 import fr.eseo.gpi.beanartist.modele.geom.Ligne;
 import fr.eseo.gpi.beanartist.vue.geom.VueForme;
 import fr.eseo.gpi.beanartist.vue.geom.VueLigne;
@@ -11,7 +12,7 @@ import fr.eseo.gpi.beanartist.vue.ui.PanneauDessin;
  * @project gpi_binome
  */
 public class OutilLigne extends OutilForme {
-    Ligne forme;
+    Ligne ligne;
 
     public OutilLigne(PanneauDessin panneauDessin) {
         super(panneauDessin);
@@ -19,6 +20,13 @@ public class OutilLigne extends OutilForme {
 
     @Override
     protected VueForme créerVueForme() {
-        return new VueLigne(new Ligne(this.getDébut(), this.getFin()), this.getPanneauDessin().getCouleurLigne());
+        ligne = new Ligne(this.getDébut(), this.getFin());
+        return new VueLigne(ligne, this.getPanneauDessin().getCouleurLigne());
     }
+
+    @Override
+    public Forme getForme(){
+        return ligne;
+    }
+
 }

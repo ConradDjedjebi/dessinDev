@@ -1,6 +1,7 @@
 package fr.eseo.gpi.beanartist.controleur.outils;
 
 import fr.eseo.gpi.beanartist.vue.geom.VueForme;
+import fr.eseo.gpi.beanartist.modele.geom.Forme;
 import fr.eseo.gpi.beanartist.vue.ui.PanneauDessin;
 
 import java.awt.event.MouseEvent;
@@ -30,4 +31,5 @@ public abstract class OutilForme extends Outil {
 
     protected abstract VueForme créerVueForme();
     //protected abstract VueForme créerVueFormeParDéfaut();
+    protected abstract Forme getForme();
 }

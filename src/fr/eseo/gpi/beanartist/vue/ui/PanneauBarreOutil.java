@@ -2,6 +2,7 @@ package fr.eseo.gpi.beanartist.vue.ui;
 
 import fr.eseo.gpi.beanartist.controleur.actions.ActionEffacer;
 import fr.eseo.gpi.beanartist.controleur.actions.ActionForme;
+import fr.eseo.gpi.beanartist.controleur.actions.ActionSélectionner;
 
 import javax.swing.JButton;
 import java.awt.Color;
@@ -34,7 +35,7 @@ public class PanneauBarreOutil extends javax.swing.JPanel {
                 new JButton(new ActionForme(this.getFenêtre(), ActionForme.ELLIPSE)),
                 new JButton(new ActionForme(this.getFenêtre(), ActionForme.CERCLE)),
                 new JButton(new ActionForme(this.getFenêtre(), ActionForme.LIGNE)),
-                new JButton(new ActionForme(this.getFenêtre(), ActionForme.TRACÉ))
+                new JButton(new ActionSélectionner(this.getFenêtre()))
         };
 
         this.add(clearAll);
