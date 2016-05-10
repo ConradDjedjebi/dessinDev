@@ -7,9 +7,6 @@ import java.text.NumberFormat;
  */
 public class Ellipse extends Forme {
 
-
-
-
     //------------- CONSTRUCTEUR -------------//
 
     public Ellipse() {
@@ -32,13 +29,6 @@ public class Ellipse extends Forme {
         this(position, Forme.LARGEUR_PAR_DÉFAUT, Forme.HAUTEUR_PAR_DÉFAUT);
     }
 
-
-    //------------- VARIABLES D'INSTANCE -------//
-
-    double xCenter = getPosition().getX() + getLargeur()/2;
-    double yCenter = getPosition().getY() - getHauteur()/2;
-
-
     //----------- AUTRES METHODES -----------//
 
 
@@ -53,19 +43,7 @@ public class Ellipse extends Forme {
     /**
      * Renvoie le périmètre de l'ellipse (approximation de Ramanujan)
      * @return perimeter
-     * @todo L'approximation n'est pas la bonne !
      **/
-    /*public double périmètre(){
-        //return Math.PI/2*(
-                //    3*(this.largeur+this.hauteur) -
-                   // Math.sqrt((3*this.largeur+this.hauteur)*(3*this.hauteur+this.largeur)));
-        double a = this.hauteur/2;
-        double b = this.largeur/2;
-        double h = ((a-b)*(a-b))/((a+b)*(a+b));
-        return Math.PI*(a+b)*(1+(3*h/(10+ Math.sqrt(4-3*h))));
-    }*/
-
-
     public double périmètre (){
         double h = (Math.pow(((getHauteur()/2d)-(getLargeur()/2d)),2)) / (Math.pow(((getHauteur()/2d)+(getLargeur()/2d)),2));
         return Math.PI *((getHauteur()+getLargeur())/2d) * (1+((3*h)/(10 + Math.sqrt(4-3*h))));

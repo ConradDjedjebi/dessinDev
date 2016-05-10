@@ -17,10 +17,8 @@ public class OutilCercle extends OutilForme{
 
     @Override
     protected VueForme créerVueForme() {
-        int largeurCercle = this.getFin().getX() - this.getDébut().getX();
-        int hauteurCercle = this.getDébut().getY() - this.getFin().getY();
-        int diamètre = Math.max(Math.abs(largeurCercle), Math.abs(hauteurCercle));
-        return new VueCercle(new Cercle(this.getDébut(), diamètre), this.getPanneauDessin().getCouleurLigne(), true);
+        int coté = this.getFin().getY() - this.getDébut().getY();
+        return new VueCercle(new Cercle(this.getDébut(), coté), this.getPanneauDessin().getCouleurLigne(), true);
     }
 
 }

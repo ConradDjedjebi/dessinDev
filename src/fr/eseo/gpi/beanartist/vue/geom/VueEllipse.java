@@ -37,8 +37,8 @@ public class VueEllipse extends VueForme {
         g2D.setColor(this.getCouleurLigne());
         //Vérifier si pour la méthode fillOval(), x et y sont les cooedonnées du point supérieur gauche ou du centre
         if (estRempli())
-            g2D.fillOval(forme.getX(), forme.getY(), forme.getLargeur(), forme.getHauteur());
+            g2D.fillOval(forme.getMinX(), forme.getMinY(), forme.getLargeur(), forme.getHauteur());
         else
-            g2D.drawOval(forme.getX(), forme.getY(), forme.getLargeur(), forme.getHauteur());
+            g2D.drawOval(forme.getMinX(), forme.getMinY(), forme.getLargeur(), forme.getHauteur());
     }
 }

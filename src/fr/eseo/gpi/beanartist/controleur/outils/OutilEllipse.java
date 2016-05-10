@@ -19,7 +19,7 @@ public class OutilEllipse extends OutilForme {
     @Override
     protected VueForme créerVueForme() {
         int largeurEllipse = this.getFin().getX() - this.getDébut().getX();
-        int hauteurEllipse = this.getDébut().getY() - this.getFin().getY();
+        int hauteurEllipse = this.getFin().getY() - this.getDébut().getY();
         return new VueEllipse(
                 new Ellipse(this.getDébut(), largeurEllipse, hauteurEllipse),
                 this.getPanneauDessin().getCouleurLigne(), true);
