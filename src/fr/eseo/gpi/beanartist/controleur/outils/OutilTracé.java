@@ -7,15 +7,13 @@ import fr.eseo.gpi.beanartist.vue.geom.VueTracé;
 import fr.eseo.gpi.beanartist.vue.ui.PanneauDessin;
 
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 
 /**
  * @author Elphege & Antoine
  * @date 03/05/2016
  * @project gpi_binome
  */
-public class OutilTracé extends Outil {
-    private Tracé tracé;
+public class OutilTracé extends OutilForme {
 
     public OutilTracé(PanneauDessin panneauDessin) {
         super(panneauDessin);
@@ -29,7 +27,7 @@ public class OutilTracé extends Outil {
     @Override
     public void mousePressed(MouseEvent e) {
         super.mousePressed(e);
-        tracé = new Tracé(this.getDébut());
+        forme = new Tracé(this.getDébut());
         this.getPanneauDessin().ajouterVueForme(this.créerVueForme());
     }
 
@@ -39,12 +37,16 @@ public class OutilTracé extends Outil {
     }
 
     @Override
+    protected void updateForme() {
+        ((Tracé)forme).ajouterLigneVers(new Point(getFin().getX(), getFin().getY()));
+    }
+
+    @Override
     public void mouseDragged(MouseEvent e) {
-        tracé.ajouterLigneVers(new Point(e.getX(), e.getY()));
-        this.getPanneauDessin().repaint();
+        super.mouseDragged(e);
     }
 
     protected VueForme créerVueForme() {
-        return new VueTracé(tracé, this.getPanneauDessin().getCouleurLigne());
+        return new VueTracé((Tracé)forme, this.getPanneauDessin().getCouleurLigne());
     }
 }

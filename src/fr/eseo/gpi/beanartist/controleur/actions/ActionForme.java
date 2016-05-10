@@ -33,7 +33,7 @@ public class ActionForme extends AbstractAction  {
     public static final int TRACÉ =     1<<5;
 
     private final int forme;
-    String ActionCommand;
+    String actionCommand;
     private FenêtreBeAnArtist fenetre;
 
     public ActionForme (FenêtreBeAnArtist fenetre) {
@@ -44,39 +44,39 @@ public class ActionForme extends AbstractAction  {
         switch (typeAction)
         {
             case RECTANGLE:
-                ActionCommand = NOM_ACTION_RECTANGLE;
+                actionCommand = NOM_ACTION_RECTANGLE;
                 break;
 
             case CARRÉ:
-                ActionCommand = NOM_ACTION_CARRÉ;
+                actionCommand = NOM_ACTION_CARRÉ;
                 break;
 
             case ELLIPSE:
-                ActionCommand = NOM_ACTION_ELLIPSE;
+                actionCommand = NOM_ACTION_ELLIPSE;
                 break;
 
             case CERCLE:
-                ActionCommand = NOM_ACTION_CERCLE;
+                actionCommand = NOM_ACTION_CERCLE;
                 break;
 
             case LIGNE:
-                ActionCommand = NOM_ACTION_LIGNE;
+                actionCommand = NOM_ACTION_LIGNE;
                 break;
 
             case TRACÉ:
-                ActionCommand = NOM_ACTION_TRACÉ;
+                actionCommand = NOM_ACTION_TRACÉ;
                 break;
 
             default:
                 throw new InvalidParameterException();
         }
-        putValue(javax.swing.Action.NAME, ActionCommand);
+        putValue(javax.swing.Action.NAME, actionCommand);
         this.fenetre = fenetre;
         this.forme = typeAction;
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent actionEvent) {
 
         switch (this.forme)
         {
