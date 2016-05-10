@@ -60,30 +60,30 @@ public abstract class Forme {
     }
 
     public int getLargeur() {
-        return largeur;
+        return getMaxX()-getMinX();
     }
 
     public int getHauteur() {
-        return hauteur;
+        return getMaxY()-getMinY();
     }
 
 
     // =========    GEOM        ===============
 
     public int getMinX() {
-        return Math.min(position.getX()+this.getLargeur(), position.getX());
+        return Math.min(position.getX()+this.largeur, position.getX());
     }
 
     public int getMaxX() {
-        return Math.max(position.getX()+this.getLargeur(), position.getX());
+        return Math.max(position.getX()+this.largeur, position.getX());
     }
 
     public int getMinY() {
-        return Math.min(position.getY()+this.getHauteur(), position.getY());
+        return Math.min(position.getY()+this.hauteur, position.getY());
     }
 
     public int getMaxY() {
-        return Math.max(position.getY()+this.getHauteur(), position.getY());
+        return Math.max(position.getY()+this.hauteur, position.getY());
     }
 
     // ========================================

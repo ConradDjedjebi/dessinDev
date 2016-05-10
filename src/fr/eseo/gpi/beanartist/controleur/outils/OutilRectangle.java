@@ -7,7 +7,9 @@ import fr.eseo.gpi.beanartist.vue.geom.VueForme;
 import fr.eseo.gpi.beanartist.vue.ui.PanneauDessin;
 
 /**
- * Created by Elphege on 03/05/2016.
+ * @author Elphege
+ * @date 03/05/2016
+ * @project gpi_binome
  */
 public class OutilRectangle extends OutilForme {
     public OutilRectangle(PanneauDessin panneauDessin) {
@@ -17,9 +19,13 @@ public class OutilRectangle extends OutilForme {
     @Override
     protected VueForme créerVueForme() {
         int largeurRectangle = this.getFin().getX() - this.getDébut().getX();
-        int hauteurRectangle = this.getDébut().getY() - this.getFin().getY();
+        int hauteurRectangle = this.getFin().getY() - this.getDébut().getY();
+
+        System.out.println(getDébut());
+        System.out.println(getFin());
+
         return new VueRectangle(
-                new Rectangle(this.getDébut(), largeurRectangle, hauteurRectangle),
+                new Rectangle(getDébut(), largeurRectangle, hauteurRectangle),
                 this.getPanneauDessin().getCouleurLigne(), true);
     }
 }
