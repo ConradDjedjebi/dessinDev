@@ -56,8 +56,7 @@ public class PanneauDessin extends javax.swing.JPanel {
         super.paintComponent(graphics);
 
         Graphics2D g2D = (Graphics2D)graphics.create();
-        for (VueForme vueForme: vueFormes
-             ) {
+        for (VueForme vueForme: vueFormes) {
             vueForme.affiche(g2D);
         }
         g2D.dispose();

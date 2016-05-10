@@ -12,8 +12,6 @@ import java.awt.Graphics2D;
 
 public class VueTracé extends VueForme {
 
-    protected Tracé tracé;
-
     /**
      * Créé une vue d'un Tracé
      * @param tracé L'objet Tracé à afficher
@@ -35,9 +33,14 @@ public class VueTracé extends VueForme {
 
     @Override
     public void affiche(Graphics2D g2D) {
+        Tracé tracé = (Tracé)this.forme;
         g2D.setColor(this.getCouleurLigne());
-        for (Ligne ligne : tracé.getLignes()) {
-            g2D.drawLine(ligne.getP1().getX(), ligne.getP1().getY(), ligne.getP2().getX(), ligne.getP2().getY());
+        try {
+            for (Ligne ligne : tracé.getLignes()) {
+                g2D.drawLine(ligne.getP1().getX(), ligne.getP1().getY(), ligne.getP2().getX(), ligne.getP2().getY());
+            }
+        } catch (NullPointerException e) {
+            // Si il n'y a aucune ligne, on affiche rien
         }
     }
 

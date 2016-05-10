@@ -14,6 +14,7 @@ import java.util.Locale;
  */
 public class Tracé extends Forme {
     private List<Ligne> lignes;
+    private boolean falseOrigin = false;
 
     //---------- CONSTRUCTORS ----------//
 
@@ -25,6 +26,11 @@ public class Tracé extends Forme {
         lignes.add(new Ligne(p1, p2));
     }
 
+    public Tracé(Point p1) {
+        this(new Point(), p1);
+        this.falseOrigin = true;
+    }
+
 
 
 
@@ -32,7 +38,14 @@ public class Tracé extends Forme {
 
 
     public void ajouterLigneVers(Point point) {
-        this.lignes.add(new Ligne(this.lignes.get(lignes.size() - 1).getP2(), point));
+        if(this.falseOrigin)
+        {
+            this.lignes.get(0).setP1(this.lignes.get(0).getP2());
+            this.lignes.get(0).setP2(point);
+            this.falseOrigin = false;
+        }
+        else
+            this.lignes.add(new Ligne(this.lignes.get(lignes.size() - 1).getP2(), point));
         super.setHauteur(findHauteur());
         super.setLargeur(findLargeur());
         super.setPosition(findPosition());

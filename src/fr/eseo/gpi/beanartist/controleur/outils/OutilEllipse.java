@@ -10,7 +10,6 @@ import fr.eseo.gpi.beanartist.vue.ui.PanneauDessin;
  * Created by Elphege on 03/05/2016.
  */
 public class OutilEllipse extends OutilForme {
-    Ellipse ellipse;
 
     public OutilEllipse(PanneauDessin panneauDessin) {
         super(panneauDessin);
@@ -21,13 +20,9 @@ public class OutilEllipse extends OutilForme {
     protected VueForme créerVueForme() {
         int largeurEllipse = this.getFin().getX() - this.getDébut().getX();
         int hauteurEllipse = this.getDébut().getY() - this.getFin().getY();
-        ellipse = new Ellipse(this.getDébut(), largeurEllipse, hauteurEllipse);
-        return new VueEllipse(ellipse, this.getPanneauDessin().getCouleurLigne(), true);
-    }
-
-    @Override
-    public Forme getForme(){
-        return ellipse;
+        return new VueEllipse(
+                new Ellipse(this.getDébut(), largeurEllipse, hauteurEllipse),
+                this.getPanneauDessin().getCouleurLigne(), true);
     }
 
 }

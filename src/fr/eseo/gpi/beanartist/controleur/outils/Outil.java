@@ -19,7 +19,6 @@ public abstract class Outil implements MouseMotionListener, MouseListener {
 
     private PanneauDessin panneauDessin;
     private Point début, fin, unPoint;
-    private List<Point> lesPoints = new ArrayList<Point>();
 
     public Outil (PanneauDessin panneauDessin) {
         this.associer(panneauDessin);
@@ -75,7 +74,7 @@ public abstract class Outil implements MouseMotionListener, MouseListener {
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        lesPoints.add(new Point(e.getX(), e.getY()));
+
     }
 
     @Override
@@ -105,10 +104,6 @@ public abstract class Outil implements MouseMotionListener, MouseListener {
 
     public void setUnPoint(Point newPoint) {
         this.unPoint = newPoint;
-    }
-
-    public List<Point> getLesPoints() {
-        return lesPoints;
     }
 
 }

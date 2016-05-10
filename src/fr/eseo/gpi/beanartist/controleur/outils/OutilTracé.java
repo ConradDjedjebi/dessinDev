@@ -1,6 +1,5 @@
 package fr.eseo.gpi.beanartist.controleur.outils;
 
-import fr.eseo.gpi.beanartist.modele.geom.Forme;
 import fr.eseo.gpi.beanartist.modele.geom.Tracé;
 import fr.eseo.gpi.beanartist.modele.geom.Point;
 import fr.eseo.gpi.beanartist.vue.geom.VueForme;
@@ -8,12 +7,15 @@ import fr.eseo.gpi.beanartist.vue.geom.VueTracé;
 import fr.eseo.gpi.beanartist.vue.ui.PanneauDessin;
 
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 /**
- * Created by Elphege on 03/05/2016.
+ * @author Elphege & Antoine
+ * @date 03/05/2016
+ * @project gpi_binome
  */
 public class OutilTracé extends OutilForme {
-    Tracé tracé;
+    private Tracé tracé;
 
     public OutilTracé(PanneauDessin panneauDessin) {
         super(panneauDessin);
@@ -21,34 +23,33 @@ public class OutilTracé extends OutilForme {
 
 
     @Override
-    public void mouseClicked(MouseEvent e) {super.mouseClicked(e);
+    public void mouseClicked(MouseEvent e) {
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
         super.mousePressed(e);
+        tracé = new Tracé(this.getDébut());
+        this.getPanneauDessin().ajouterVueForme(this.créerVueForme());
     }
 
     @Override
-    public void mouseReleased(MouseEvent e) {super.mouseReleased(e);}
+    public void mouseReleased(MouseEvent e) {
+
+    }
 
     @Override
-    public void mouseDragged(MouseEvent e) {super.mouseDragged(e);}
+    public void mouseDragged(MouseEvent e) {
+        tracé.ajouterLigneVers(new Point(e.getX(), e.getY()));
+        this.getPanneauDessin().repaint();
+    }
 
     @Override
     protected VueForme créerVueForme() {
-        Tracé tracé = new Tracé(this.getDébut(), this.getLesPoints().get(0));
-        for(Point point : getLesPoints()){
-            tracé.ajouterLigneVers(point);
-        }
-        tracé.ajouterLigneVers(getFin());
+//        this.lesPoints.forEach(tracé::ajouterLigneVers);
         return new VueTracé(tracé, this.getPanneauDessin().getCouleurLigne());
     }
 
-    @Override
-    public Forme getForme(){
-        return tracé;
-    }
 
     /*protected VueForme créerVueFormeParDéfaut(){
         return new VueTracé(new Tracé(new Point(), new Point()), this.getPanneauDessin().getCouleurLigne());

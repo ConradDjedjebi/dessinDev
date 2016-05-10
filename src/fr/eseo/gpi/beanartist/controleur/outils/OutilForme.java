@@ -31,5 +31,4 @@ public abstract class OutilForme extends Outil {
 
     protected abstract VueForme créerVueForme();
     //protected abstract VueForme créerVueFormeParDéfaut();
-    protected abstract Forme getForme();
 }

@@ -12,7 +12,6 @@ import fr.eseo.gpi.beanartist.vue.ui.PanneauDessin;
  * @project gpi_binome
  */
 public class OutilLigne extends OutilForme {
-    Ligne ligne;
 
     public OutilLigne(PanneauDessin panneauDessin) {
         super(panneauDessin);
@@ -20,13 +19,7 @@ public class OutilLigne extends OutilForme {
 
     @Override
     protected VueForme créerVueForme() {
-        ligne = new Ligne(this.getDébut(), this.getFin());
-        return new VueLigne(ligne, this.getPanneauDessin().getCouleurLigne());
-    }
-
-    @Override
-    public Forme getForme(){
-        return ligne;
+        return new VueLigne(new Ligne(this.getDébut(), this.getFin()), this.getPanneauDessin().getCouleurLigne());
     }
 
 }
