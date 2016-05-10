@@ -1,6 +1,5 @@
 package fr.eseo.gpi.beanartist.controleur.outils;
 
-import fr.eseo.gpi.beanartist.modele.geom.Forme;
 import fr.eseo.gpi.beanartist.modele.geom.Ligne;
 import fr.eseo.gpi.beanartist.vue.geom.VueForme;
 import fr.eseo.gpi.beanartist.vue.geom.VueLigne;
@@ -18,8 +17,13 @@ public class OutilLigne extends OutilForme {
     }
 
     @Override
+    protected void updateForme() {
+         new Ligne(this.getDébut(), this.getFin());
+    }
+
+    @Override
     protected VueForme créerVueForme() {
-        return new VueLigne(new Ligne(this.getDébut(), this.getFin()), this.getPanneauDessin().getCouleurLigne());
+        return new VueLigne((Ligne)forme, this.getPanneauDessin().getCouleurLigne());
     }
 
 }

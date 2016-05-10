@@ -52,8 +52,8 @@ public class Ligne extends Forme {
 
     public Point getP2() {
         return new Point(
-                this.getX()+this.getLargeur(),
-                this.getY()+this.getHauteur()
+                this.getX()+largeur,
+                this.getY()+hauteur
         );
     }
 

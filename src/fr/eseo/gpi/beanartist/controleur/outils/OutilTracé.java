@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * @date 03/05/2016
  * @project gpi_binome
  */
-public class OutilTracé extends OutilForme {
+public class OutilTracé extends Outil {
     private Tracé tracé;
 
     public OutilTracé(PanneauDessin panneauDessin) {
@@ -44,14 +44,7 @@ public class OutilTracé extends OutilForme {
         this.getPanneauDessin().repaint();
     }
 
-    @Override
     protected VueForme créerVueForme() {
-//        this.lesPoints.forEach(tracé::ajouterLigneVers);
         return new VueTracé(tracé, this.getPanneauDessin().getCouleurLigne());
     }
-
-
-    /*protected VueForme créerVueFormeParDéfaut(){
-        return new VueTracé(new Tracé(new Point(), new Point()), this.getPanneauDessin().getCouleurLigne());
-    }*/
 }

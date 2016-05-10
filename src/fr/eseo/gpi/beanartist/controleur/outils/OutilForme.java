@@ -13,22 +13,32 @@ import java.awt.event.MouseEvent;
  */
 public abstract class OutilForme extends Outil {
 
+    Forme forme;
+
     public OutilForme(PanneauDessin panneauDessin) {
         super(panneauDessin);
     }
 
     @Override
-    public void mouseClicked (MouseEvent e){
-        //super.mouseClicked(e);
-        //this.getPanneauDessin().ajouterVueForme(this.créerVueFormeParDéfaut());
+    public void mousePressed (MouseEvent e){
+        super.mousePressed(e);
+        this.getPanneauDessin().ajouterVueForme(this.créerVueForme());
+    }
+
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        super.mouseDragged(e);
+        updateForme();
+        this.getPanneauDessin().repaint();
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
         super.mouseReleased(e);
-        this.getPanneauDessin().ajouterVueForme(this.créerVueForme());
     }
 
+    protected abstract void updateForme();
     protected abstract VueForme créerVueForme();
     //protected abstract VueForme créerVueFormeParDéfaut();
 }

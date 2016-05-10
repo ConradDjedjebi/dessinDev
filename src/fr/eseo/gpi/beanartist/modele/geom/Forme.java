@@ -101,6 +101,11 @@ public abstract class Forme {
         position.setY(newPos);
     }
 
+    public void setP2(int p2X, int p2Y) {
+        setLargeur(p2X-getX());
+        setHauteur(p2Y-getY());
+    }
+
     public void setLargeur(int newLength) {
         largeur = newLength;
     }

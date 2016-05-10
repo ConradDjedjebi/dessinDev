@@ -43,7 +43,7 @@ public abstract class Outil implements MouseMotionListener, MouseListener {
     }
 
     public void setPanneauDessin(PanneauDessin newPanneauDessin) {
-        this.panneauDessin = newPanneauDessin;
+        panneauDessin = newPanneauDessin;
     }
 
     @Override
@@ -54,6 +54,7 @@ public abstract class Outil implements MouseMotionListener, MouseListener {
     @Override
     public void mousePressed(MouseEvent e) {
         setDébut (new Point(e.getX(), e.getY()));
+        setFin (new Point());
     }
 
     @Override
@@ -73,7 +74,7 @@ public abstract class Outil implements MouseMotionListener, MouseListener {
 
     @Override
     public void mouseDragged(MouseEvent e) {
-
+        setFin (new Point(e.getX(), e.getY()));
     }
 
     @Override

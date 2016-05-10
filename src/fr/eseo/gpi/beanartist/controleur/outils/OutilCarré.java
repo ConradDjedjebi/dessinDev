@@ -1,7 +1,6 @@
 package fr.eseo.gpi.beanartist.controleur.outils;
 
 import fr.eseo.gpi.beanartist.modele.geom.Carré;
-import fr.eseo.gpi.beanartist.modele.geom.Forme;
 import fr.eseo.gpi.beanartist.vue.geom.VueForme;
 import fr.eseo.gpi.beanartist.vue.geom.VueCarré;
 import fr.eseo.gpi.beanartist.vue.ui.PanneauDessin;
@@ -17,8 +16,12 @@ public class OutilCarré extends OutilForme{
     }
 
     @Override
-    protected VueForme créerVueForme() {
+    protected void updateForme() {
         int coté = this.getFin().getY() - this.getDébut().getY();
-        return new VueCarré(new Carré(this.getDébut(), coté), this.getPanneauDessin().getCouleurLigne(), true);
+         new Carré(this.getDébut(), coté);
+    }
+    @Override
+    protected VueForme créerVueForme() {
+        return new VueCarré((Carré)forme, this.getPanneauDessin().getCouleurLigne(), true);
     }
 }

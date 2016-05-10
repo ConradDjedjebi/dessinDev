@@ -1,13 +1,14 @@
 package fr.eseo.gpi.beanartist.controleur.outils;
 
 import fr.eseo.gpi.beanartist.modele.geom.Ellipse;
-import fr.eseo.gpi.beanartist.modele.geom.Forme;
 import fr.eseo.gpi.beanartist.vue.geom.VueForme;
 import fr.eseo.gpi.beanartist.vue.geom.VueEllipse;
 import fr.eseo.gpi.beanartist.vue.ui.PanneauDessin;
 
 /**
- * Created by Elphege on 03/05/2016.
+ * @author Elphege
+ * @date 03/05/2016
+ * @project gpi_binome
  */
 public class OutilEllipse extends OutilForme {
 
@@ -17,11 +18,15 @@ public class OutilEllipse extends OutilForme {
 
 
     @Override
-    protected VueForme créerVueForme() {
+    protected void updateForme() {
         int largeurEllipse = this.getFin().getX() - this.getDébut().getX();
         int hauteurEllipse = this.getFin().getY() - this.getDébut().getY();
+         new Ellipse(this.getDébut(), largeurEllipse, hauteurEllipse);
+    }
+    @Override
+    protected VueForme créerVueForme() {
         return new VueEllipse(
-                new Ellipse(this.getDébut(), largeurEllipse, hauteurEllipse),
+                (Ellipse)forme,
                 this.getPanneauDessin().getCouleurLigne(), true);
     }
 
