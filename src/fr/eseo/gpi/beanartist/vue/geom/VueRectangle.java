@@ -28,7 +28,6 @@ public class VueRectangle extends VueForme {
      */
     public VueRectangle(Rectangle rectangle, Color couleurLigne, boolean rempli) {
     	super(rectangle, couleurLigne, rempli);
-        System.out.println(rectangle);
     }
 
     @Override
@@ -38,6 +37,6 @@ public class VueRectangle extends VueForme {
         if (estRempli())
                 g2D.fillRect(forme.getMinX(), forme.getMinY(), forme.getLargeur(), forme.getHauteur());
         else
-            g2D.drawRect(forme.getX(), forme.getY(), forme.getLargeur(), forme.getHauteur());
+            g2D.drawRect(forme.getMinX(), forme.getMinY(), forme.getLargeur(), forme.getHauteur());
     }
 }

@@ -7,7 +7,9 @@ import fr.eseo.gpi.beanartist.vue.geom.VueCarré;
 import fr.eseo.gpi.beanartist.vue.ui.PanneauDessin;
 
 /**
- * Created by Elphege on 03/05/2016.
+ * @author Elphege
+ * @date 03/05/2016
+ * @project gpi_binome
  */
 public class OutilCarré extends OutilForme{
     public OutilCarré(PanneauDessin panneauDessin) {
@@ -16,9 +18,7 @@ public class OutilCarré extends OutilForme{
 
     @Override
     protected VueForme créerVueForme() {
-        int largeurRectangle = this.getFin().getX() - this.getDébut().getX();
-        int hauteurRectangle = this.getDébut().getY() - this.getFin().getY();
-        int coté = Math.max(Math.abs(largeurRectangle), Math.abs(hauteurRectangle));
+        int coté = this.getFin().getY() - this.getDébut().getY();
         return new VueCarré(new Carré(this.getDébut(), coté), this.getPanneauDessin().getCouleurLigne(), true);
     }
 }
