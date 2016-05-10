@@ -35,6 +35,7 @@ public class PanneauBarreOutil extends javax.swing.JPanel {
                 new JButton(new ActionForme(this.getFenêtre(), ActionForme.ELLIPSE)),
                 new JButton(new ActionForme(this.getFenêtre(), ActionForme.CERCLE)),
                 new JButton(new ActionForme(this.getFenêtre(), ActionForme.LIGNE)),
+                new JButton(new ActionForme(this.getFenêtre(), ActionForme.TRACÉ)),
                 new JButton(new ActionSélectionner(this.getFenêtre()))
         };
 

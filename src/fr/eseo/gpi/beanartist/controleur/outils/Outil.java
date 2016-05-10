@@ -7,9 +7,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
-import java.util.List;
-import java.util.ArrayList;
-
 /**
  * @author duhamean
  * @date 28/04/16
@@ -17,7 +14,7 @@ import java.util.ArrayList;
  */
 public abstract class Outil implements MouseMotionListener, MouseListener {
 
-    private PanneauDessin panneauDessin;
+    private static PanneauDessin panneauDessin;
     private Point début, fin, unPoint;
 
     public Outil (PanneauDessin panneauDessin) {
@@ -34,8 +31,8 @@ public abstract class Outil implements MouseMotionListener, MouseListener {
     private void libérer() // LET IT GO
     {
         try {
-            getPanneauDessin().removeMouseListener(this);
-            getPanneauDessin().removeMouseMotionListener(this);
+            getPanneauDessin().removeMouseListener(getPanneauDessin().getOutilCourant());
+            getPanneauDessin().removeMouseMotionListener(getPanneauDessin().getOutilCourant());
             getPanneauDessin().setOutilCourant(null);
             setPanneauDessin(null);
         } catch (NullPointerException e) {}
@@ -50,7 +47,9 @@ public abstract class Outil implements MouseMotionListener, MouseListener {
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) {setUnPoint (new Point(e.getX(), e.getY()));}
+    public void mouseClicked(MouseEvent e) {
+        setUnPoint (new Point(e.getX(), e.getY()));
+    }
 
     @Override
     public void mousePressed(MouseEvent e) {
