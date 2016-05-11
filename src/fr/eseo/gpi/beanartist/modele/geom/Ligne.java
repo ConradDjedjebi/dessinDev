@@ -57,6 +57,14 @@ public class Ligne extends Forme {
         );
     }
 
+    public int getLargeur() {
+        return this.largeur;
+    }
+
+    public int getHauteur() {
+        return this.hauteur;
+    }
+
     //------------- SETTERS -------------//
 
     public void setPosition(Point newPosition) {
@@ -73,8 +81,8 @@ public class Ligne extends Forme {
     }
 
     public void setP2(Point p2) {
-        super.setLargeur(p2.getX()-this.getX());
-        super.setHauteur(p2.getY()-this.getY());
+        super.setLargeur(this.getX()-p2.getX());
+        super.setHauteur(this.getY()-p2.getY());
     }
 
 

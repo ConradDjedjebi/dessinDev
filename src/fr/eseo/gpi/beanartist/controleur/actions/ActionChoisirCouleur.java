@@ -2,7 +2,7 @@ package fr.eseo.gpi.beanartist.controleur.actions;
 
 import fr.eseo.gpi.beanartist.vue.ui.FenêtreBeAnArtist;
 
-import javax.swing.*;
+import javax.swing.AbstractAction;
 import java.awt.event.ActionEvent;
 
 /**

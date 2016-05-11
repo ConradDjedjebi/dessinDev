@@ -14,11 +14,12 @@ import java.awt.event.MouseMotionListener;
  */
 public abstract class Outil implements MouseMotionListener, MouseListener {
 
-    private static PanneauDessin panneauDessin;
-    private Point début, fin, unPoint;
+    private static PanneauDessin dessin;
+    private PanneauDessin panneauDessin;
+    private Point début, fin;
 
-    public Outil (PanneauDessin panneauDessin) {
-        this.associer(panneauDessin);
+    public Outil (PanneauDessin dessin) {
+        this.associer(dessin);
     }
 
     public void associer(PanneauDessin newPanneauDessin) {
@@ -39,16 +40,16 @@ public abstract class Outil implements MouseMotionListener, MouseListener {
     }
 
     public PanneauDessin getPanneauDessin() {
-        return panneauDessin;
+        return dessin;
     }
 
     public void setPanneauDessin(PanneauDessin newPanneauDessin) {
-        panneauDessin = newPanneauDessin;
+        dessin = newPanneauDessin;
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        setUnPoint (new Point(e.getX(), e.getY()));
+        setDébut (new Point(e.getX(), e.getY()));
     }
 
     @Override
@@ -98,12 +99,5 @@ public abstract class Outil implements MouseMotionListener, MouseListener {
         this.fin = newFin;
     }
 
-    public Point getUnPoint() {
-        return unPoint;
-    }
-
-    public void setUnPoint(Point newPoint) {
-        this.unPoint = newPoint;
-    }
 
 }

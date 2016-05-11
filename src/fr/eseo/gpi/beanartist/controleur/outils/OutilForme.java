@@ -21,6 +21,11 @@ public abstract class OutilForme extends Outil {
     }
 
     @Override
+    public void mouseClicked(MouseEvent e) {
+        super.mouseClicked(e);
+    }
+
+    @Override
     public void mousePressed (MouseEvent e){
         super.mousePressed(e);
         this.getPanneauDessin().ajouterVueForme(this.créerVueForme());
