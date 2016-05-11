@@ -10,7 +10,7 @@ Validée
 
 ### Le modèle
 
-Validation jusqu'au 3.2.9
+Validé
 
 ### La vue
 

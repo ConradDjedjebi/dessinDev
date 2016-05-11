@@ -4,7 +4,6 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Locale;
 
 /**
@@ -22,7 +21,7 @@ public class Tracé extends Forme {
     public Tracé(Point p1, Point p2) {
         super(new Point(Math.min(p1.getX(), p2.getX()), Math.min(p1.getY(), p2.getY())), Math.max(p1.getX(), p2.getX())
                 - Math.min(p1.getX(), p2.getX()), Math.max(p1.getY(), p2.getY()) - Math.min(p1.getY(), p2.getY()) );
-        lignes = new ArrayList<Ligne>();
+        lignes = new ArrayList<>();
         lignes.add(new Ligne(p1, p2));
     }
 
