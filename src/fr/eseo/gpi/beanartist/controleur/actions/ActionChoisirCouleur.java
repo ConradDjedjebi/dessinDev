@@ -6,7 +6,9 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 
 /**
- * Created by Elphege on 10/05/2016.
+ * @author Elphege
+ * @date 10/05/2016
+ * @project gpi_binome
  */
 public class ActionChoisirCouleur extends AbstractAction {
     public static final String NOM_ACTION = "Couleur";

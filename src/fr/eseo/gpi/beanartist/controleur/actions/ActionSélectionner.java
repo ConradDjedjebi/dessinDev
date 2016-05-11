@@ -10,7 +10,9 @@ import java.awt.event.ActionEvent;
 
 
 /**
- * Created by Elphege on 09/05/2016.
+ * @author Elphege
+ * @date 09/05/2016
+ * @project gpi_binome
  */
 public class ActionSélectionner extends AbstractAction {
     public static final String NOM_ACTION = "Sélectionner";

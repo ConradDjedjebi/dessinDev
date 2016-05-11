@@ -22,6 +22,7 @@ public class OutilTracé extends OutilForme {
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        super.mouseClicked(e);
     }
 
     @Override

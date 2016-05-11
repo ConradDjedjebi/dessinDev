@@ -27,7 +27,7 @@ public class Tracé extends Forme {
     }
 
     public Tracé(Point p1) {
-        this(new Point(), p1);
+        this(p1, p1);
         this.falseOrigin = true;
     }
 
