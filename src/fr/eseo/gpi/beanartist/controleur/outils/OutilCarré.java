@@ -31,6 +31,6 @@ public class OutilCarré extends OutilForme{
     }
     @Override
     protected VueForme créerVueForme() {
-        return new VueCarré((Carré)forme, this.getPanneauDessin().getCouleurLigne(), true);
+        return new VueCarré((Carré)forme, this.getPanneauDessin().getCouleurLigne(), rempli);
     }
 }

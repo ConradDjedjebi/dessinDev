@@ -35,7 +35,7 @@ public class OutilCercle extends OutilForme{
     protected VueForme créerVueForme() {
         return new VueCercle(
                 (Cercle) forme,
-                this.getPanneauDessin().getCouleurLigne(), true);
+                this.getPanneauDessin().getCouleurLigne(), rempli);
     }
 
 }

@@ -13,7 +13,8 @@ import java.awt.event.MouseEvent;
  */
 public abstract class OutilForme extends Outil {
 
-    Forme forme;
+    protected Forme forme;
+    public static boolean rempli = false;
 
     public OutilForme(PanneauDessin panneauDessin) {
         super(panneauDessin);
