@@ -5,6 +5,8 @@ import fr.eseo.gpi.beanartist.vue.geom.VueForme;
 import fr.eseo.gpi.beanartist.vue.geom.VueLigne;
 import fr.eseo.gpi.beanartist.vue.ui.PanneauDessin;
 
+import java.awt.event.MouseEvent;
+
 /**
  * @author duhamean
  * @date 02/05/16
@@ -16,9 +18,17 @@ public class OutilLigne extends OutilForme {
         super(panneauDessin);
     }
 
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        forme = new Ligne();
+        super.mousePressed(e);
+        forme.setPosition(getDébut());
+    }
+
     @Override
     protected void updateForme() {
-         new Ligne(this.getDébut(), this.getFin());
+        forme.setP2(getFin().getX(), getFin().getY());
     }
 
     @Override

@@ -5,6 +5,8 @@ import fr.eseo.gpi.beanartist.vue.geom.VueForme;
 import fr.eseo.gpi.beanartist.vue.geom.VueEllipse;
 import fr.eseo.gpi.beanartist.vue.ui.PanneauDessin;
 
+import java.awt.event.MouseEvent;
+
 /**
  * @author Elphege
  * @date 03/05/2016
@@ -18,10 +20,18 @@ public class OutilEllipse extends OutilForme {
 
 
     @Override
+    public void mousePressed(MouseEvent e) {
+        forme = new Ellipse();
+        super.mousePressed(e);
+        forme.setPosition(getDébut());
+    }
+
+    @Override
     protected void updateForme() {
         int largeurEllipse = this.getFin().getX() - this.getDébut().getX();
         int hauteurEllipse = this.getFin().getY() - this.getDébut().getY();
-         new Ellipse(this.getDébut(), largeurEllipse, hauteurEllipse);
+        forme.setLargeur(largeurEllipse);
+        forme.setHauteur(hauteurEllipse);
     }
     @Override
     protected VueForme créerVueForme() {

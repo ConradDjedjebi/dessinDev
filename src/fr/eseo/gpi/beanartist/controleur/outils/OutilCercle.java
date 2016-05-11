@@ -5,6 +5,8 @@ import fr.eseo.gpi.beanartist.vue.geom.VueCercle;
 import fr.eseo.gpi.beanartist.vue.geom.VueForme;
 import fr.eseo.gpi.beanartist.vue.ui.PanneauDessin;
 
+import java.awt.event.MouseEvent;
+
 /**
  * @author Elphege
  * @date 03/05/2016
@@ -16,11 +18,19 @@ public class OutilCercle extends OutilForme{
         super(panneauDessin);
     }
 
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        forme = new Cercle();
+        super.mousePressed(e);
+        forme.setPosition(getDébut());
+    }
+
     @Override
     protected void updateForme() {
-        int coté = this.getFin().getY() - this.getDébut().getY();
-         new Cercle(this.getDébut(), coté);
+        this.forme.setHauteur(this.getFin().getY() - this.getDébut().getY());
     }
+
     @Override
     protected VueForme créerVueForme() {
         return new VueCercle(

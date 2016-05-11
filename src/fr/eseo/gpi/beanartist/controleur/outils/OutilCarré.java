@@ -5,6 +5,8 @@ import fr.eseo.gpi.beanartist.vue.geom.VueForme;
 import fr.eseo.gpi.beanartist.vue.geom.VueCarré;
 import fr.eseo.gpi.beanartist.vue.ui.PanneauDessin;
 
+import java.awt.event.MouseEvent;
+
 /**
  * @author Elphege
  * @date 03/05/2016
@@ -15,10 +17,17 @@ public class OutilCarré extends OutilForme{
         super(panneauDessin);
     }
 
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        forme = new Carré();
+        super.mousePressed(e);
+        forme.setPosition(getDébut());
+    }
+
     @Override
     protected void updateForme() {
-        int coté = this.getFin().getY() - this.getDébut().getY();
-         new Carré(this.getDébut(), coté);
+        this.forme.setHauteur(this.getFin().getY() - this.getDébut().getY());
     }
     @Override
     protected VueForme créerVueForme() {
