@@ -23,12 +23,13 @@ public class OutilLigne extends OutilForme {
     public void mousePressed(MouseEvent e) {
         forme = new Ligne();
         super.mousePressed(e);
-        forme.setPosition(getDébut());
+        ((Ligne)forme).setP1(getDébut());
+        ((Ligne)forme).setP2(getDébut());
     }
 
     @Override
     protected void updateForme() {
-        forme.setP2(getFin().getX(), getFin().getY());
+        ((Ligne)forme).setP2(getFin());
     }
 
     @Override
