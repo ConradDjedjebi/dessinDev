@@ -37,7 +37,7 @@ public class OutilSélection extends Outil {
             return null;
 
         formeSélectionnée = vueFormes.get(count).getForme();
-
+        this.getPanneauDessin().setVueFormeSélectionnée(vueFormes.get(count));
         //On affiche la dite forme et on réinitialise le compteur
         return vueFormes.get(count);
     }

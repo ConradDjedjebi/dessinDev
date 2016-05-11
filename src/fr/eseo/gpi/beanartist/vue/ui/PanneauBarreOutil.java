@@ -1,13 +1,12 @@
 package fr.eseo.gpi.beanartist.vue.ui;
 
-import fr.eseo.gpi.beanartist.controleur.actions.ActionEffacer;
-import fr.eseo.gpi.beanartist.controleur.actions.ActionForme;
-import fr.eseo.gpi.beanartist.controleur.actions.ActionSélectionner;
+import fr.eseo.gpi.beanartist.controleur.actions.*;
 
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.Dimension;
-
+import javax.swing.ButtonGroup;
+import javax.swing.JRadioButton;
 /**
  * @author duhamean
  * @date 03/05/16
@@ -28,7 +27,17 @@ public class PanneauBarreOutil extends javax.swing.JPanel {
     }
 
     private void initComponents() {
+        ButtonGroup bouttonGroupe = new ButtonGroup();
+
+        JRadioButton rempli, contour;
+        rempli = new JRadioButton(new ActionModeRemplissage(this.getFenêtre().getPanneauDessin(), ActionModeRemplissage.NOM_ACTION_REMPLI));
+        contour = new JRadioButton(new ActionModeRemplissage(this.getFenêtre().getPanneauDessin(), ActionModeRemplissage.NOM_ACTION_CONTOUR));
+        bouttonGroupe.add(rempli);
+        bouttonGroupe.add(contour);
+
+
         JButton clearAll = new JButton(new ActionEffacer(this.getFenêtre()));
+        JButton choixCouleur = new JButton(new ActionChoisirCouleur(this.getFenêtre().getPanneauDessin()));
         JButton [] createFormes = {
                 new JButton(new ActionForme(this.getFenêtre(), ActionForme.RECTANGLE)),
                 new JButton(new ActionForme(this.getFenêtre(), ActionForme.CARRÉ)),
@@ -40,6 +49,9 @@ public class PanneauBarreOutil extends javax.swing.JPanel {
         };
 
         this.add(clearAll);
+        this.add(choixCouleur);
+        this.add(rempli);
+        this.add(contour);
         for (JButton jB :
                 createFormes) {
             this.add(jB);

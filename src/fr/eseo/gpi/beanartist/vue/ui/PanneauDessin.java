@@ -2,6 +2,7 @@ package fr.eseo.gpi.beanartist.vue.ui;
 
 import fr.eseo.gpi.beanartist.controleur.outils.Outil;
 import fr.eseo.gpi.beanartist.vue.geom.VueForme;
+import fr.eseo.gpi.beanartist.modele.geom.Forme;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -25,6 +26,7 @@ public class PanneauDessin extends javax.swing.JPanel {
     private List<VueForme> vueFormes;
     private Outil outilCourant;
     private Color couleurLigne;
+    private VueForme vueFormeSélectionnée;
     private boolean modeRemplissage;
 
     public PanneauDessin (int largeur, int hauteur) {
@@ -84,5 +86,12 @@ public class PanneauDessin extends javax.swing.JPanel {
 
     public void setCouleurLigne(Color newCouleurLigne) {
         this.couleurLigne = newCouleurLigne;
+    }
+
+    public void setVueFormeSélectionnée(VueForme vueFormeChoisie){
+        this.vueFormeSélectionnée = vueFormeChoisie;
+    }
+    public VueForme getVueFormeSélectionnée(){
+        return this.vueFormeSélectionnée;
     }
 }

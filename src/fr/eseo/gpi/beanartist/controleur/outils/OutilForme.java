@@ -14,7 +14,7 @@ import java.awt.event.MouseEvent;
 public abstract class OutilForme extends Outil {
 
     protected Forme forme;
-    public static boolean rempli = false;
+    public boolean rempli = this.getPanneauDessin().estModeRemplissage();
 
     public OutilForme(PanneauDessin panneauDessin) {
         super(panneauDessin);

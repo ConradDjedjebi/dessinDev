@@ -14,6 +14,7 @@ abstract public class VueForme {
     private static final Color COULEUR_LIGNE_PAR_DÉFAULT = Color.BLACK;
 
     private Color couleurLigne;
+    private Color couleurRemplissage;
     protected Forme forme;
     private boolean rempli;
 
@@ -48,4 +49,8 @@ abstract public class VueForme {
     }
 
     public abstract void affiche(Graphics2D g2D);
+
+    public void setCouleurRemplissage(Color couleurFond){this.couleurRemplissage = couleurFond;}
+
+    public Color getCouleurRemplissage(){return this.couleurRemplissage;}
 }
