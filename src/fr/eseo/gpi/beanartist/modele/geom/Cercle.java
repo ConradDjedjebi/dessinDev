@@ -29,12 +29,15 @@ public class Cercle extends Ellipse {
 	}
 
 	//----------- REDIFINITION DES METHODES -----------//
-	
+
 	public void setLargeur(int newLength) {
-		super.setLargeur(newLength);
+		this.setLargeur(newLength, false);
+	}
+	public void setLargeur(int newLength, boolean otherSide) {
+		super.setLargeur(otherSide ? -newLength : newLength);
 		super.setHauteur(newLength);
 	}
-	
+
 	public void setHauteur(int newLength) {
 		this.setLargeur(newLength);
 	}
