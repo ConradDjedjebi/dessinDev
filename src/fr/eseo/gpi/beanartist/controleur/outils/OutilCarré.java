@@ -27,7 +27,10 @@ public class OutilCarré extends OutilForme{
 
     @Override
     protected void updateForme() {
-        this.forme.setHauteur(this.getFin().getY() - this.getDébut().getY());
+        ((Carré)this.forme).setLargeur(this.getFin().getY() - this.getDébut().getY(),
+                getDébut().getX()<getFin().getX() && getDébut().getY()>getFin().getY() ||
+                getDébut().getX()>getFin().getX() && getDébut().getY()<getFin().getY()
+        );
     }
     @Override
     protected VueForme créerVueForme() {

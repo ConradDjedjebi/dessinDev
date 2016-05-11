@@ -32,7 +32,10 @@ public class Carré extends Rectangle {
 	//----------- REDIFINITION DES METHODES -----------//
 	
 	public void setLargeur(int newLength) {
-		super.setLargeur(newLength);
+		this.setLargeur(newLength, false);
+	}
+	public void setLargeur(int newLength, boolean otherSide) {
+		super.setLargeur(otherSide ? -newLength : newLength);
 		super.setHauteur(newLength);
 	}
 	
