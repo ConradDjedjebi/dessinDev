@@ -15,6 +15,7 @@ public abstract class Forme {
     protected int largeur, hauteur;
 
     private Point position;
+    private boolean modeRemplissage;
 
 
     // =========    CONTRUCTORS ===============
@@ -22,6 +23,10 @@ public abstract class Forme {
 
     public Forme() {
         this(new Point());
+    }
+
+    public Forme(boolean modeRemplissage) {
+        this.modeRemplissage = modeRemplissage;
     }
 
     public Forme(Point position, int largeur, int hauteur) {
@@ -154,4 +159,11 @@ public abstract class Forme {
 
     public abstract boolean contient(Point testPosition);
 
+    public boolean estModeRemplissage() {
+        return modeRemplissage;
+    }
+
+    public void setModeRemplissage(boolean modeRemplissage) {
+        this.modeRemplissage = modeRemplissage;
+    }
 }

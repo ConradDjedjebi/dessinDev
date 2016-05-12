@@ -26,7 +26,7 @@ public class OutilSélection extends Outil {
         System.out.println(afficherFormeSélectionnée());
     }
 
-    protected VueForme getSélection(){
+    public VueForme getVueForme(){
         List<VueForme> vueFormes = this.getPanneauDessin().getVueFormes();
         int count = vueFormes.size();
 
@@ -42,9 +42,13 @@ public class OutilSélection extends Outil {
         return vueFormes.get(count);
     }
 
+    public Forme getForme() {
+        return getVueForme().getForme();
+    }
+
     protected String afficherFormeSélectionnée() {
         try {
-            return this.getSélection().getForme().toString();
+            return this.getForme().toString();
         } catch(NullPointerException e) {
             return "Aucune forme trouvée";
         }

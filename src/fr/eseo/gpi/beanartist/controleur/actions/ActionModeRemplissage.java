@@ -1,6 +1,7 @@
 package fr.eseo.gpi.beanartist.controleur.actions;
 
 import fr.eseo.gpi.beanartist.controleur.outils.OutilForme;
+import fr.eseo.gpi.beanartist.controleur.outils.OutilSélection;
 import fr.eseo.gpi.beanartist.vue.ui.PanneauDessin;
 
 import javax.swing.AbstractAction;
@@ -28,8 +29,16 @@ public class ActionModeRemplissage extends AbstractAction {
     public ActionModeRemplissage () {}
 
     public ActionModeRemplissage (PanneauDessin panneauDessin) {
+        this(panneauDessin, OutilForme.DEFAULT_REMPLISSAGE_MODE);
+    }
+
+    public ActionModeRemplissage (PanneauDessin panneauDessin, OutilSélection outilSélection) {
+        this(panneauDessin, false);
+    }
+
+    public ActionModeRemplissage (PanneauDessin panneauDessin, boolean actionC) {
         super();
-        this.actionCommand = OutilForme.DEFAULT_REMPLISSAGE_MODE;
+        this.actionCommand = actionC;
         this.panneau = panneauDessin;
     }
 
