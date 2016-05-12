@@ -1,5 +1,6 @@
 package fr.eseo.gpi.beanartist.controleur.outils;
 
+import fr.eseo.gpi.beanartist.controleur.actions.ActionChoisirCouleur;
 import fr.eseo.gpi.beanartist.controleur.actions.ActionEffacer;
 import fr.eseo.gpi.beanartist.controleur.actions.ActionModeRemplissage;
 import fr.eseo.gpi.beanartist.vue.ui.PanneauDessin;
@@ -18,6 +19,7 @@ public class OutilSélection extends Outil {
 
     private ActionModeRemplissage actionModeRemplissage;
     private ActionEffacer actionEffacer;
+    private ActionChoisirCouleur actionChoisirCouleur;
 
     public OutilSélection (PanneauDessin panneauDessin){
         super(panneauDessin);
@@ -40,6 +42,10 @@ public class OutilSélection extends Outil {
         }
         try {
             actionEffacer.getJButton().setEnabled(!this.isEmptySelection());
+        } catch (NullPointerException exception) {
+        }
+        try {
+            actionChoisirCouleur.getJButton().setEnabled(!this.isEmptySelection());
         } catch (NullPointerException exception) {
         }
     }
@@ -86,7 +92,11 @@ public class OutilSélection extends Outil {
         this.actionModeRemplissage = modeRemplissage;
     }
 
-    public void setActionEffacer(ActionEffacer actionEffacer) {
-        this.actionEffacer = actionEffacer;
+    public void setActionEffacer(ActionEffacer effacer) {
+        this.actionEffacer = effacer;
+    }
+
+    public void setActionChoisirCouleur(ActionChoisirCouleur choisirCouleur) {
+        this.actionChoisirCouleur = choisirCouleur;
     }
 }
