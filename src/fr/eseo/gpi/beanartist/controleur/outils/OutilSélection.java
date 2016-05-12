@@ -14,7 +14,6 @@ import java.awt.event.MouseEvent;
  */
 public class OutilSélection extends Outil {
 
-    private int size = this.getPanneauDessin().getVueFormes().size();
     private Forme formeSélectionnée;
 
     public OutilSélection (PanneauDessin panneauDessin){
@@ -29,16 +28,17 @@ public class OutilSélection extends Outil {
 
     protected VueForme getSélection(){
         List<VueForme> vueFormes = this.getPanneauDessin().getVueFormes();
-        int count = size;
+        int count = vueFormes.size();
 
-        while (count > 0 && !vueFormes.get(--count).getForme().contient(getDébut())) {}
-
-        if(count==0)
+        try {
+            while (!vueFormes.get(--count).getForme().contient(getDébut())) {}
+        } catch (IndexOutOfBoundsException e) {
             return null;
+        }
 
         formeSélectionnée = vueFormes.get(count).getForme();
         this.getPanneauDessin().setVueFormeSélectionnée(vueFormes.get(count));
-        //On affiche la dite forme et on réinitialise le compteur
+
         return vueFormes.get(count);
     }
 

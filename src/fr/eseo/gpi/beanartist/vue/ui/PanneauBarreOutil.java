@@ -5,11 +5,11 @@ import fr.eseo.gpi.beanartist.controleur.actions.ActionEffacer;
 import fr.eseo.gpi.beanartist.controleur.actions.ActionForme;
 import fr.eseo.gpi.beanartist.controleur.actions.ActionModeRemplissage;
 import fr.eseo.gpi.beanartist.controleur.actions.ActionSélectionner;
+import fr.eseo.gpi.beanartist.controleur.bouttons.RemplissageButton;
 import fr.eseo.gpi.beanartist.controleur.outils.OutilForme;
 
 import javax.swing.JButton;
-import java.awt.Color;
-import java.awt.Dimension;
+import java.awt.*;
 import javax.swing.ButtonGroup;
 import javax.swing.JRadioButton;
 
@@ -33,12 +33,11 @@ public class PanneauBarreOutil extends javax.swing.JPanel {
     }
 
     private void initComponents() {
+        this.setLayout(new GridLayout(0,1));
 
         JButton clearAll = new JButton(new ActionEffacer(this.getFenêtre()));
+        clearAll.setBackground(Color.RED);
         JButton choixCouleur = new JButton(new ActionChoisirCouleur(this.getFenêtre().getPanneauDessin()));
-
-        ButtonGroup bouttonGroupe = new ButtonGroup();
-        boolean [] remplissageModes = {ActionModeRemplissage.REMPLIE, ActionModeRemplissage.CONTOURS};
 
         int [] createFormes = {
                 ActionForme.RECTANGLE,
@@ -52,14 +51,11 @@ public class PanneauBarreOutil extends javax.swing.JPanel {
 
         this.add(clearAll);
         this.add(choixCouleur);
-        for (boolean remplissageMode : remplissageModes) {
-            JRadioButton jRadioButton = new JRadioButton(new ActionModeRemplissage(fenêtre.getPanneauDessin(), remplissageMode));
-            jRadioButton.setSelected(remplissageMode==OutilForme.DEFAULT_REMPLISSAGE_MODE);
-            bouttonGroupe.add(jRadioButton);
-            this.add(jRadioButton);
-        }
+        new RemplissageButton(this,getFenêtre());
         for (int forme : createFormes) {
-            this.add(new JButton(new ActionForme(this.getFenêtre(), forme)));
+            JButton jB = new JButton(new ActionForme(this.getFenêtre(), forme));
+            jB.setBackground(Color.CYAN);
+            this.add(jB);
         }
         this.add(outilSelection);
     }

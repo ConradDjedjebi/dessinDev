@@ -32,12 +32,11 @@ public class FenêtreBeAnArtist extends javax.swing.JFrame {
     }
 
     public FenêtreBeAnArtist(String titre, int largeur, int hauteur, Color fond){
-        //Ici la largeur est entièrement utilisée pour le panneau dessin. Or c'est censé etre partagé avec la barre d'outil
         super(titre);
         this.couleurLigne = PanneauDessin.COULEUR_LIGNE_PAR_DÉFAUT;
         this.associerPanneauDessin(largeur-PanneauBarreOutil.LARGEUR_PAR_DÉFAUT, hauteur, fond);
         this.associerBarreOutil();
-        this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(largeur, hauteur);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
