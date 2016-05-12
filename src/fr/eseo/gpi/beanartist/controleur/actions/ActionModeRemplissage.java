@@ -54,6 +54,7 @@ public class ActionModeRemplissage extends AbstractAction {
         } else {
             try {
                 outilSélection.getVueForme().setRempli(actionCommand);
+                panneau.repaint();
             } catch (NullPointerException e) {}
         }
     }

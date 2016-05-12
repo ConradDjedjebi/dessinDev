@@ -32,11 +32,11 @@ public class OutilSélection extends Outil {
         this.getPanneauDessin().repaint();
 
         try {
+            actionModeRemplissage.getJButton().setEnabled(!this.emptySelection());
             actionModeRemplissage.setRemplissageState(
                     this.getVueForme().estRempli());
             actionModeRemplissage.updateButton();
         } catch (NullPointerException exception) {
-            System.out.print(actionModeRemplissage.toString());
         }
     }
 
@@ -66,6 +66,10 @@ public class OutilSélection extends Outil {
         } catch(NullPointerException e) {
             return "Aucune forme sélectionnée";
         }
+    }
+
+    public boolean emptySelection() {
+        return getVueForme()==null;
     }
 
     public void setActionModeRemplissage(ActionModeRemplissage modeRemplissage) {
