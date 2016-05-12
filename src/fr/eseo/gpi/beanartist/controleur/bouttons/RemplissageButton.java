@@ -22,7 +22,6 @@ public class RemplissageButton extends JButton {
 
     public RemplissageButton(PanneauBarreOutil panneauBarreOutil, FenêtreBeAnArtist fenêtreBeAnArtist, OutilSélection outilSélection) {
         this(panneauBarreOutil, fenêtreBeAnArtist);
-        this.setEnabled(false);
         ((ActionModeRemplissage)this.getAction()).setOutilSélection(outilSélection);
     }
 }

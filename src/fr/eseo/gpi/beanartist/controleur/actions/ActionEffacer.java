@@ -3,7 +3,7 @@ package fr.eseo.gpi.beanartist.controleur.actions;
 import fr.eseo.gpi.beanartist.controleur.outils.OutilSélection;
 import fr.eseo.gpi.beanartist.vue.ui.FenêtreBeAnArtist;
 
-import javax.swing.AbstractAction;
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 
 /**
@@ -16,6 +16,8 @@ public class ActionEffacer extends AbstractAction {
     private FenêtreBeAnArtist fenetre;
     private OutilSélection outilSélection;
 
+    private JButton jButton;
+
     public ActionEffacer (FenêtreBeAnArtist fenetre) {
         super(NOM_ACTION);
         this.fenetre = fenetre;
@@ -25,6 +27,7 @@ public class ActionEffacer extends AbstractAction {
         super("Effacer la sélection");
         this.fenetre = fenetre;
         this.outilSélection = outilSélection;
+        outilSélection.setActionEffacer(this);
     }
 
     @Override
@@ -34,9 +37,17 @@ public class ActionEffacer extends AbstractAction {
                 fenetre.getPanneauDessin().getVueFormes().clear();
             else
                 fenetre.getPanneauDessin().getVueFormes().remove(outilSélection.getVueForme());
+                outilSélection.emptySelection();
         } catch (NullPointerException exception) {
             // Aucune forme selectionnée
         }
         fenetre.getPanneauDessin().repaint();
+    }
+
+    public void setJButton(JButton button) {
+        this.jButton = button;
+    }
+    public JButton getJButton() {
+        return this.jButton;
     }
 }

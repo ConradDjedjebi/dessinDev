@@ -4,7 +4,7 @@ import fr.eseo.gpi.beanartist.controleur.outils.Outil;
 import fr.eseo.gpi.beanartist.controleur.outils.OutilForme;
 import fr.eseo.gpi.beanartist.vue.geom.VueForme;
 
-import javax.swing.*;
+import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;

@@ -49,13 +49,11 @@ public class ActionModeRemplissage extends AbstractAction {
     public void actionPerformed(ActionEvent actionEvent) {
         actionCommand = !actionCommand;
         updateButton();
-        if(outilSélection==null) {
+        try {
+            panneau.getVueFormeSélectionnée().setRempli(actionCommand);
+            panneau.repaint();
+        } catch (NullPointerException e) {
             panneau.setModeRemplissage(actionCommand);
-        } else {
-            try {
-                outilSélection.getVueForme().setRempli(actionCommand);
-                panneau.repaint();
-            } catch (NullPointerException e) {}
         }
     }
 
@@ -68,10 +66,11 @@ public class ActionModeRemplissage extends AbstractAction {
         return jButton;
     }
 
-    public void setJButton(JButton jButton) {
-        this.jButton = jButton;
-            updateButton();
-        }
+    public void setJButton(JButton button) {
+        this.jButton = button;
+        updateButton();
+    }
+
     public void setRemplissageState(boolean remplissageState) {
         this.actionCommand = remplissageState;
     }

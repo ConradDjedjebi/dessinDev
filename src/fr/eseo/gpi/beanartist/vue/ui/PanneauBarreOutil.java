@@ -60,7 +60,9 @@ public class PanneauBarreOutil extends javax.swing.JPanel {
     }
 
     private void initComponentsSélection () {
-        JButton clear = new JButton(new ActionEffacer(this.getFenêtre(), outilSélection));
+        ActionEffacer actionEffacer = new ActionEffacer(this.getFenêtre(), outilSélection);
+        JButton clear = new JButton(actionEffacer);
+        actionEffacer.setJButton(clear);
         clear.setBackground(Color.RED);
         JButton choixCouleur = new JButton(new ActionChoisirCouleur(this.getFenêtre().getPanneauDessin()));
 
@@ -85,6 +87,7 @@ public class PanneauBarreOutil extends javax.swing.JPanel {
             unsetOutilSélection();
 
         updatePanneauOutil(outilSélection);
+        outilSélection.emptySelection();
     }
     public void unsetOutilSélection() {
         if(outilSélection!=null)

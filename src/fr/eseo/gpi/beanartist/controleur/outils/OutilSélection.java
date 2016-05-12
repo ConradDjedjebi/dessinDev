@@ -1,11 +1,11 @@
 package fr.eseo.gpi.beanartist.controleur.outils;
 
+import fr.eseo.gpi.beanartist.controleur.actions.ActionEffacer;
 import fr.eseo.gpi.beanartist.controleur.actions.ActionModeRemplissage;
 import fr.eseo.gpi.beanartist.vue.ui.PanneauDessin;
 import fr.eseo.gpi.beanartist.vue.geom.VueForme;
 import fr.eseo.gpi.beanartist.modele.geom.Forme;
 
-import javax.swing.*;
 import java.util.List;
 import java.awt.event.MouseEvent;
 
@@ -16,8 +16,8 @@ import java.awt.event.MouseEvent;
  */
 public class OutilSélection extends Outil {
 
-    private Forme formeSélectionnée;
     private ActionModeRemplissage actionModeRemplissage;
+    private ActionEffacer actionEffacer;
 
     public OutilSélection (PanneauDessin panneauDessin){
         super(panneauDessin);
@@ -32,10 +32,14 @@ public class OutilSélection extends Outil {
         this.getPanneauDessin().repaint();
 
         try {
-            actionModeRemplissage.getJButton().setEnabled(!this.emptySelection());
+            actionModeRemplissage.getJButton().setEnabled(!this.isEmptySelection());
             actionModeRemplissage.setRemplissageState(
                     this.getVueForme().estRempli());
             actionModeRemplissage.updateButton();
+        } catch (NullPointerException exception) {
+        }
+        try {
+            actionEffacer.getJButton().setEnabled(!this.isEmptySelection());
         } catch (NullPointerException exception) {
         }
     }
@@ -50,7 +54,6 @@ public class OutilSélection extends Outil {
             return null;
         }
 
-        formeSélectionnée = vueFormes.get(count).getForme();
         this.getPanneauDessin().setVueFormeSélectionnée(vueFormes.get(count));
 
         return vueFormes.get(count);
@@ -68,12 +71,22 @@ public class OutilSélection extends Outil {
         }
     }
 
-    public boolean emptySelection() {
+    public void emptySelection() {
+        setDébut(null);
+        this.getPanneauDessin().getLabel().setText(afficherFormeSélectionnée());
+        actionModeRemplissage.getJButton().setEnabled(false);
+        actionEffacer.getJButton().setEnabled(false);
+    }
+
+    public boolean isEmptySelection() {
         return getVueForme()==null;
     }
 
     public void setActionModeRemplissage(ActionModeRemplissage modeRemplissage) {
         this.actionModeRemplissage = modeRemplissage;
-        modeRemplissage.getJButton().setEnabled(false);
+    }
+
+    public void setActionEffacer(ActionEffacer actionEffacer) {
+        this.actionEffacer = actionEffacer;
     }
 }
