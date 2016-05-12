@@ -4,6 +4,7 @@ import fr.eseo.gpi.beanartist.controleur.outils.Outil;
 import fr.eseo.gpi.beanartist.controleur.outils.OutilForme;
 import fr.eseo.gpi.beanartist.vue.geom.VueForme;
 
+import javax.swing.*;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -28,6 +29,7 @@ public class PanneauDessin extends javax.swing.JPanel {
     private Color couleurLigne;
     private VueForme vueFormeSélectionnée;
     private boolean modeRemplissage = OutilForme.DEFAULT_REMPLISSAGE_MODE;
+    private JLabel label;
 
     public PanneauDessin (int largeur, int hauteur) {
         this(largeur, hauteur, COULEUR_FOND_PAR_DÉFAUT);
@@ -37,6 +39,8 @@ public class PanneauDessin extends javax.swing.JPanel {
         vueFormes = new ArrayList<>();
         this.setPreferredSize(new Dimension(largeur, hauteur));
         this.setBackground(couleurFond);
+        label = new JLabel("");
+        this.add(label);
     }
 
     public void setFenêtre(FenêtreBeAnArtist newFenêtre) {
@@ -92,5 +96,9 @@ public class PanneauDessin extends javax.swing.JPanel {
 
     public void setModeRemplissage(boolean modeRemplissage) {
         this.modeRemplissage = modeRemplissage;
+    }
+
+    public JLabel getLabel() {
+        return label;
     }
 }

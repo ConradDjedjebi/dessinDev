@@ -4,6 +4,7 @@ import fr.eseo.gpi.beanartist.vue.ui.PanneauDessin;
 import fr.eseo.gpi.beanartist.vue.geom.VueForme;
 import fr.eseo.gpi.beanartist.modele.geom.Forme;
 
+import javax.swing.*;
 import java.util.List;
 import java.awt.event.MouseEvent;
 
@@ -24,6 +25,9 @@ public class OutilSélection extends Outil {
     public void mouseClicked (MouseEvent e){
         super.mouseClicked(e);
         System.out.println(afficherFormeSélectionnée());
+        this.getPanneauDessin().getLabel().setText(afficherFormeSélectionnée());
+        this.getPanneauDessin().revalidate();
+        this.getPanneauDessin().repaint();
     }
 
     public VueForme getVueForme(){
@@ -50,7 +54,7 @@ public class OutilSélection extends Outil {
         try {
             return this.getForme().toString();
         } catch(NullPointerException e) {
-            return "Aucune forme trouvée";
+            return "Aucune forme sélectionnée";
         }
     }
 

@@ -34,7 +34,7 @@ public class OutilTracé extends OutilForme {
 
     @Override
     public void mouseReleased(MouseEvent e) {
-
+        super.mouseReleased(e);
     }
 
     @Override
