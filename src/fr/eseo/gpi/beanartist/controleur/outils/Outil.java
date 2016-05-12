@@ -29,6 +29,11 @@ public abstract class Outil implements MouseMotionListener, MouseListener {
         newPanneauDessin.addMouseListener(this);
         newPanneauDessin.addMouseMotionListener(this);
     }
+
+    public void libérer(boolean falseValue) {
+        this.libérer();
+    }
+
     private void libérer() // LET IT GO
     {
         try {

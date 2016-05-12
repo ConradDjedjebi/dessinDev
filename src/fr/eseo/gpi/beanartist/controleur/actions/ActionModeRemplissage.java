@@ -17,14 +17,16 @@ import java.awt.event.ActionEvent;
  */
 public class ActionModeRemplissage extends AbstractAction {
 
-    private PanneauDessin panneau;
     public static final String NOM_ACTION_REMPLI   = "Forme remplie";
     public static final String NOM_ACTION_CONTOURS = "Contours uniquement";
-
     public static final boolean REMPLIE = true;
+
     public static final boolean CONTOURS = false;
     private boolean actionCommand;
     private JButton jButton;
+
+    private OutilSélection outilSélection;
+    private PanneauDessin panneau;
 
     public ActionModeRemplissage () {}
 
@@ -34,6 +36,7 @@ public class ActionModeRemplissage extends AbstractAction {
 
     public ActionModeRemplissage (PanneauDessin panneauDessin, OutilSélection outilSélection) {
         this(panneauDessin, false);
+        this.outilSélection = outilSélection;
     }
 
     public ActionModeRemplissage (PanneauDessin panneauDessin, boolean actionC) {
@@ -45,8 +48,14 @@ public class ActionModeRemplissage extends AbstractAction {
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
         actionCommand = !actionCommand;
-        panneau.setModeRemplissage(actionCommand);
         updateButton();
+        if(outilSélection==null) {
+            panneau.setModeRemplissage(actionCommand);
+        } else {
+            try {
+                outilSélection.getVueForme().setRempli(actionCommand);
+            } catch (NullPointerException e) {}
+        }
     }
 
     private void updateButton() {

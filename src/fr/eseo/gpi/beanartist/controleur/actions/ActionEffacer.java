@@ -22,17 +22,21 @@ public class ActionEffacer extends AbstractAction {
     }
 
     public ActionEffacer (FenêtreBeAnArtist fenetre, OutilSélection outilSélection) {
-        super(NOM_ACTION);
+        super("Effacer la sélection");
         this.fenetre = fenetre;
         this.outilSélection = outilSélection;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(outilSélection==null)
-            fenetre.getPanneauDessin().getVueFormes().clear();
-        else
-            fenetre.getPanneauDessin().getVueFormes().remove(outilSélection.getVueForme());
+        try {
+            if (outilSélection == null)
+                fenetre.getPanneauDessin().getVueFormes().clear();
+            else
+                fenetre.getPanneauDessin().getVueFormes().remove(outilSélection.getVueForme());
+        } catch (NullPointerException exception) {
+            // Aucune forme selectionnée
+        }
         fenetre.getPanneauDessin().repaint();
     }
 }

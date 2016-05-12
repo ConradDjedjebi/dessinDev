@@ -3,16 +3,14 @@ package fr.eseo.gpi.beanartist.vue.ui;
 import fr.eseo.gpi.beanartist.controleur.actions.ActionChoisirCouleur;
 import fr.eseo.gpi.beanartist.controleur.actions.ActionEffacer;
 import fr.eseo.gpi.beanartist.controleur.actions.ActionForme;
-import fr.eseo.gpi.beanartist.controleur.actions.ActionModeRemplissage;
 import fr.eseo.gpi.beanartist.controleur.actions.ActionSélectionner;
 import fr.eseo.gpi.beanartist.controleur.bouttons.RemplissageButton;
-import fr.eseo.gpi.beanartist.controleur.outils.OutilForme;
 import fr.eseo.gpi.beanartist.controleur.outils.OutilSélection;
 
 import javax.swing.JButton;
-import java.awt.*;
-import javax.swing.ButtonGroup;
-import javax.swing.JRadioButton;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridLayout;
 
 /**
  * @author duhamean
@@ -86,18 +84,21 @@ public class PanneauBarreOutil extends javax.swing.JPanel {
         if(this.outilSélection!=null)
             unsetOutilSélection();
 
-        this.outilSélection = outilSélection;
-        this.removeAll();
-        initComponentsSélection();
-        this.revalidate();
-        this.repaint();
+        updatePanneauOutil(outilSélection);
     }
     public void unsetOutilSélection() {
-        this.outilSélection = null;
+        if(outilSélection!=null)
+            this.outilSélection.libérer(true);
+
+        updatePanneauOutil(null);
+    }
+
+    private void updatePanneauOutil(OutilSélection setter) {
         this.removeAll();
-        initComponents();
+        this.getFenêtre().getPanneauDessin().getLabel().setText("");
+        if(setter!=null) initComponentsSélection();
+        else initComponents();
         this.revalidate();
         this.repaint();
-        this.getFenêtre().getPanneauDessin().setOutilCourant(null);
     }
 }
