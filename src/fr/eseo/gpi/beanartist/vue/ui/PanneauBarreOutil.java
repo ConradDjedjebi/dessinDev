@@ -53,7 +53,7 @@ public class PanneauBarreOutil extends javax.swing.JPanel {
         this.add(clearAll);
         this.add(choixCouleur);
         for (boolean remplissageMode : remplissageModes) {
-            JRadioButton jRadioButton = new JRadioButton(new ActionModeRemplissage(remplissageMode));
+            JRadioButton jRadioButton = new JRadioButton(new ActionModeRemplissage(fenêtre.getPanneauDessin(), remplissageMode));
             jRadioButton.setSelected(remplissageMode==OutilForme.DEFAULT_REMPLISSAGE_MODE);
             bouttonGroupe.add(jRadioButton);
             this.add(jRadioButton);

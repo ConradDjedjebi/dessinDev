@@ -37,7 +37,7 @@ public class OutilEllipse extends OutilForme {
     protected VueForme créerVueForme() {
         return new VueEllipse(
                 (Ellipse)forme,
-                this.getPanneauDessin().getCouleurLigne(), remplissage);
+                this.getPanneauDessin().getCouleurLigne(),  this.getPanneauDessin().estModeRemplissage());
     }
 
 }

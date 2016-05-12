@@ -15,19 +15,23 @@ import java.awt.event.ActionEvent;
 public class ActionModeRemplissage extends AbstractAction {
 
     private PanneauDessin panneau;
-    public static final String [] NOM_ACTION = {"Remplie", "Contours"};
+    public static final String NOM_ACTION_REMPLI   = "Remplie";
+    public static final String NOM_ACTION_CONTOURS = "Contours";
 
     public static final boolean REMPLIE = true;
     public static final boolean CONTOURS = false;
     private boolean actionCommand;
 
-    public ActionModeRemplissage (boolean actionCommand) {
-        super(NOM_ACTION[actionCommand ? 0:1]);
+    public ActionModeRemplissage (PanneauDessin panneauDessin) {}
+
+    public ActionModeRemplissage (PanneauDessin panneauDessin, boolean actionCommand) {
+        super(actionCommand ? NOM_ACTION_REMPLI : NOM_ACTION_CONTOURS);
         this.actionCommand = actionCommand;
+        this.panneau = panneauDessin;
     }
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-        OutilForme.setRemplissage(actionCommand);
+        panneau.setModeRemplissage(actionCommand);
     }
 }

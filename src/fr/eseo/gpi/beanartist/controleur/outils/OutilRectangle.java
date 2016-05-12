@@ -37,6 +37,6 @@ public class OutilRectangle extends OutilForme {
     protected VueForme créerVueForme() {
         return new VueRectangle(
                 (Rectangle)forme,
-                this.getPanneauDessin().getCouleurLigne(), remplissage);
+                this.getPanneauDessin().getCouleurLigne(),  this.getPanneauDessin().estModeRemplissage());
     }
 }
