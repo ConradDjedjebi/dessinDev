@@ -36,6 +36,7 @@ public abstract class OutilForme extends Outil {
     @Override
     public void mouseDragged(MouseEvent e) {
         super.mouseDragged(e);
+        getPanneauDessin().getLabel().setText(forme.toString());
         updateForme();
         this.getPanneauDessin().repaint();
     }
