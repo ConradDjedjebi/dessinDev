@@ -1,5 +1,6 @@
 package fr.eseo.gpi.beanartist.controleur.outils;
 
+import fr.eseo.gpi.beanartist.controleur.actions.ActionModeRemplissage;
 import fr.eseo.gpi.beanartist.vue.ui.PanneauDessin;
 import fr.eseo.gpi.beanartist.vue.geom.VueForme;
 import fr.eseo.gpi.beanartist.modele.geom.Forme;
@@ -16,6 +17,7 @@ import java.awt.event.MouseEvent;
 public class OutilSélection extends Outil {
 
     private Forme formeSélectionnée;
+    private ActionModeRemplissage actionModeRemplissage;
 
     public OutilSélection (PanneauDessin panneauDessin){
         super(panneauDessin);
@@ -28,6 +30,14 @@ public class OutilSélection extends Outil {
         this.getPanneauDessin().getLabel().setText(afficherFormeSélectionnée());
         this.getPanneauDessin().revalidate();
         this.getPanneauDessin().repaint();
+
+        try {
+            actionModeRemplissage.setRemplissageState(
+                    this.getVueForme().estRempli());
+            actionModeRemplissage.updateButton();
+        } catch (NullPointerException exception) {
+            System.out.print(actionModeRemplissage.toString());
+        }
     }
 
     public VueForme getVueForme(){
@@ -58,4 +68,8 @@ public class OutilSélection extends Outil {
         }
     }
 
+    public void setActionModeRemplissage(ActionModeRemplissage modeRemplissage) {
+        this.actionModeRemplissage = modeRemplissage;
+        modeRemplissage.getJButton().setEnabled(false);
+    }
 }

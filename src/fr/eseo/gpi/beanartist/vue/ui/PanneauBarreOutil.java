@@ -64,12 +64,12 @@ public class PanneauBarreOutil extends javax.swing.JPanel {
         clear.setBackground(Color.RED);
         JButton choixCouleur = new JButton(new ActionChoisirCouleur(this.getFenêtre().getPanneauDessin()));
 
-        JButton outilSelection = new JButton(new ActionSélectionner(this.getFenêtre(), false));
+        JButton quitSelection = new JButton(new ActionSélectionner(this.getFenêtre(), false));
 
         this.add(clear);
         this.add(choixCouleur);
-        new RemplissageButton(this,getFenêtre());
-        this.add(outilSelection);
+        new RemplissageButton(this,getFenêtre(), outilSélection);
+        this.add(quitSelection);
     }
 
     public FenêtreBeAnArtist getFenêtre() {
@@ -93,10 +93,11 @@ public class PanneauBarreOutil extends javax.swing.JPanel {
         updatePanneauOutil(null);
     }
 
-    private void updatePanneauOutil(OutilSélection setter) {
+    private void updatePanneauOutil(OutilSélection newOutilSélection) {
         this.removeAll();
         this.getFenêtre().getPanneauDessin().getLabel().setText("");
-        if(setter!=null) initComponentsSélection();
+        this.outilSélection = newOutilSélection;
+        if(newOutilSélection!=null) initComponentsSélection();
         else initComponents();
         this.revalidate();
         this.repaint();

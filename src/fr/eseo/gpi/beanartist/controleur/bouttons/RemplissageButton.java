@@ -1,10 +1,11 @@
 package fr.eseo.gpi.beanartist.controleur.bouttons;
 
 import fr.eseo.gpi.beanartist.controleur.actions.ActionModeRemplissage;
+import fr.eseo.gpi.beanartist.controleur.outils.OutilSélection;
 import fr.eseo.gpi.beanartist.vue.ui.FenêtreBeAnArtist;
 import fr.eseo.gpi.beanartist.vue.ui.PanneauBarreOutil;
 
-import javax.swing.*;
+import javax.swing.JButton;
 
 /**
  * @author duhamean
@@ -17,5 +18,11 @@ public class RemplissageButton extends JButton {
         this.setAction(new ActionModeRemplissage(fenêtreBeAnArtist.getPanneauDessin()));
         ((ActionModeRemplissage)super.getAction()).setJButton(this);
         panneauBarreOutil.add(this);
+    }
+
+    public RemplissageButton(PanneauBarreOutil panneauBarreOutil, FenêtreBeAnArtist fenêtreBeAnArtist, OutilSélection outilSélection) {
+        this(panneauBarreOutil, fenêtreBeAnArtist);
+        this.setEnabled(false);
+        ((ActionModeRemplissage)this.getAction()).setOutilSélection(outilSélection);
     }
 }

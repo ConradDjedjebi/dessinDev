@@ -34,9 +34,9 @@ public class ActionModeRemplissage extends AbstractAction {
         this(panneauDessin, OutilForme.DEFAULT_REMPLISSAGE_MODE);
     }
 
-    public ActionModeRemplissage (PanneauDessin panneauDessin, OutilSélection outilSélection) {
-        this(panneauDessin, false);
+    public void setOutilSélection (OutilSélection outilSélection) {
         this.outilSélection = outilSélection;
+        outilSélection.setActionModeRemplissage(this);
     }
 
     public ActionModeRemplissage (PanneauDessin panneauDessin, boolean actionC) {
@@ -58,7 +58,7 @@ public class ActionModeRemplissage extends AbstractAction {
         }
     }
 
-    private void updateButton() {
+    public void updateButton() {
         getJButton().setText(actionCommand ? NOM_ACTION_REMPLI : NOM_ACTION_CONTOURS);
         getJButton().setBackground(actionCommand ? Color.GREEN : Color.LIGHT_GRAY);
     }
@@ -69,6 +69,9 @@ public class ActionModeRemplissage extends AbstractAction {
 
     public void setJButton(JButton jButton) {
         this.jButton = jButton;
-        updateButton();
+            updateButton();
+        }
+    public void setRemplissageState(boolean remplissageState) {
+        this.actionCommand = remplissageState;
     }
 }
