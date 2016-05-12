@@ -252,9 +252,9 @@ public class Tracé extends Forme {
 
     @Override
     public boolean contient(int x, int y) {
-        int i=0;
+        int count=0;
         try {
-            while(!lignes.get(i++).contient(x,y)) {}
+            while(!lignes.get(count++).contient(x,y)) {}
             return true;
         } catch (IndexOutOfBoundsException e) {
             return false;

@@ -7,6 +7,7 @@ import fr.eseo.gpi.beanartist.vue.ui.PanneauDessin;
 import fr.eseo.gpi.beanartist.vue.geom.VueForme;
 import fr.eseo.gpi.beanartist.modele.geom.Forme;
 
+import java.util.IllegalFormatCodePointException;
 import java.util.List;
 import java.awt.event.MouseEvent;
 
@@ -16,6 +17,8 @@ import java.awt.event.MouseEvent;
  * @project gpi_binome
  */
 public class OutilSélection extends Outil {
+
+    private VueForme vueFormeSélectionnée;
 
     private ActionModeRemplissage actionModeRemplissage;
     private ActionEffacer actionEffacer;
@@ -27,6 +30,7 @@ public class OutilSélection extends Outil {
 
     @Override
     public void mouseClicked (MouseEvent e){
+        emptySelection();
         super.mouseClicked(e);
         System.out.println(afficherFormeSélectionnée());
         this.getPanneauDessin().getLabel().setText(afficherFormeSélectionnée());
@@ -51,6 +55,9 @@ public class OutilSélection extends Outil {
     }
 
     public VueForme getVueForme(){
+        if(vueFormeSélectionnée!=null)
+            return vueFormeSélectionnée;
+
         List<VueForme> vueFormes = this.getPanneauDessin().getVueFormes();
         int count = vueFormes.size();
 
@@ -62,7 +69,7 @@ public class OutilSélection extends Outil {
 
         this.getPanneauDessin().setVueFormeSélectionnée(vueFormes.get(count));
 
-        return vueFormes.get(count);
+        return vueFormeSélectionnée = vueFormes.get(count);
     }
 
     public Forme getForme() {
@@ -79,6 +86,7 @@ public class OutilSélection extends Outil {
 
     public void emptySelection() {
         setDébut(null);
+        this.vueFormeSélectionnée = null;
         this.getPanneauDessin().getLabel().setText(afficherFormeSélectionnée());
         actionModeRemplissage.getJButton().setEnabled(false);
         actionEffacer.getJButton().setEnabled(false);

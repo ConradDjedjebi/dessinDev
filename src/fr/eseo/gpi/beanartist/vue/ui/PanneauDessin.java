@@ -5,10 +5,7 @@ import fr.eseo.gpi.beanartist.controleur.outils.OutilForme;
 import fr.eseo.gpi.beanartist.vue.geom.VueForme;
 
 import javax.swing.JLabel;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
