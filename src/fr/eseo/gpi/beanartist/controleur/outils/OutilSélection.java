@@ -24,7 +24,7 @@ public class OutilSélection extends Outil {
     @Override
     public void mouseClicked (MouseEvent e){
         super.mouseClicked(e);
-        this.afficherFormeSélectionnée();
+        System.out.println(afficherFormeSélectionnée());
     }
 
     protected VueForme getSélection(){
@@ -43,7 +43,11 @@ public class OutilSélection extends Outil {
     }
 
     protected String afficherFormeSélectionnée() {
-        return this.getSélection().getForme().toString();
+        try {
+            return this.getSélection().getForme().toString();
+        } catch(NullPointerException e) {
+            return "Aucune forme trouvée";
+        }
     }
 
 }

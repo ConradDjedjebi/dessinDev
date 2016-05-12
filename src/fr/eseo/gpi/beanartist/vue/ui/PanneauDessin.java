@@ -17,9 +17,9 @@ import java.util.List;
  * @project gpi_binome
  */
 public class PanneauDessin extends javax.swing.JPanel {
-    public final static int LARGEUR_PAR_DÉFAUT = 400;
-    public final static int HAUTEUR_PAR_DÉFAUT = 400;
-    public final static Color COULEUR_FOND_PAR_DÉFAUT = Color.GRAY;
+    public final static int LARGEUR_PAR_DÉFAUT = 1000;
+    public final static int HAUTEUR_PAR_DÉFAUT = 800;
+    public final static Color COULEUR_FOND_PAR_DÉFAUT = Color.WHITE;
     public final static Color COULEUR_LIGNE_PAR_DÉFAUT = Color.BLACK;
 
     private FenêtreBeAnArtist fenêtre;
@@ -50,7 +50,6 @@ public class PanneauDessin extends javax.swing.JPanel {
     public void ajouterVueForme(VueForme vueForme) {
         vueFormes.add(vueForme);
         this.repaint();
-        //Nécessaire de faire un repaint après ajout d'une forme?
     }
 
     @Override

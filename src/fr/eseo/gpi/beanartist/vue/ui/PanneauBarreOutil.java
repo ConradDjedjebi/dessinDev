@@ -40,13 +40,13 @@ public class PanneauBarreOutil extends javax.swing.JPanel {
         ButtonGroup bouttonGroupe = new ButtonGroup();
         boolean [] remplissageModes = {ActionModeRemplissage.REMPLIE, ActionModeRemplissage.CONTOURS};
 
-        ActionForme [] createFormes = {
-                new ActionForme(this.getFenêtre(), ActionForme.RECTANGLE),
-                new ActionForme(this.getFenêtre(), ActionForme.CARRÉ),
-                new ActionForme(this.getFenêtre(), ActionForme.ELLIPSE),
-                new ActionForme(this.getFenêtre(), ActionForme.CERCLE),
-                new ActionForme(this.getFenêtre(), ActionForme.LIGNE),
-                new ActionForme(this.getFenêtre(), ActionForme.TRACÉ),
+        int [] createFormes = {
+                ActionForme.RECTANGLE,
+                ActionForme.CARRÉ,
+                ActionForme.ELLIPSE,
+                ActionForme.CERCLE,
+                ActionForme.LIGNE,
+                ActionForme.TRACÉ,
         };
         JButton outilSelection = new JButton(new ActionSélectionner(this.getFenêtre()));
 
@@ -58,8 +58,8 @@ public class PanneauBarreOutil extends javax.swing.JPanel {
             bouttonGroupe.add(jRadioButton);
             this.add(jRadioButton);
         }
-        for (ActionForme actionForme : createFormes) {
-            this.add(new JButton(actionForme));
+        for (int forme : createFormes) {
+            this.add(new JButton(new ActionForme(this.getFenêtre(), forme)));
         }
         this.add(outilSelection);
     }

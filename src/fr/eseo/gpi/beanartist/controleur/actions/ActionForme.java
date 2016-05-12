@@ -33,14 +33,14 @@ public class ActionForme extends AbstractAction  {
     public static final int TRACÉ =     1<<5;
 
     private final int forme;
-    String actionCommand;
     private FenêtreBeAnArtist fenetre;
-
     public ActionForme (FenêtreBeAnArtist fenetre) {
         this(fenetre, RECTANGLE);
     }
 
+
     public ActionForme (FenêtreBeAnArtist fenetre, int typeAction) {
+        String actionCommand;
         switch (typeAction)
         {
             case RECTANGLE:

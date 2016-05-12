@@ -241,16 +241,6 @@ public class Tracé extends Forme {
         return 0;
     }
 
-    /*public double périmètre() {
-        ListIterator<Ligne> listI = this.lignes.listIterator();
-        double returnedPerimetre = 0;
-
-        while (listI.hasNext())
-            returnedPerimetre += listI.next().périmètre();
-
-        return returnedPerimetre;
-    }*/
-
 
     public double périmètre() {
         double périmètre = 0;
@@ -260,15 +250,15 @@ public class Tracé extends Forme {
         return périmètre;
     }
 
-
+    @Override
     public boolean contient(int x, int y) {
-        boolean bool = false;
-        for (Ligne ligne : lignes) {
-            if (ligne.contient(x, y)) {
-                bool = true;
-            }
+        int i=0;
+        try {
+            while(!lignes.get(i++).contient(x,y)) {}
+            return true;
+        } catch (IndexOutOfBoundsException e) {
+            return false;
         }
-        return bool;
     }
 
     public boolean contient(Point testPosition) {
