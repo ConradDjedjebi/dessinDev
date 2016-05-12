@@ -2,15 +2,22 @@ package fr.eseo.gpi.beanartist.controleur.outils;
 
 import fr.eseo.gpi.beanartist.controleur.actions.ActionChoisirCouleur;
 
-import java.awt.*;
-import javax.swing.*;
-import javax.swing.event.*;
+import javax.swing.BorderFactory;
+import javax.swing.JColorChooser;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 
 
 /**
- * Created by Elphege on 10/05/2016.
+ * @author Elphege
+ * @date 10/05/2016
+ * @project gpi_binome
  */
 
 //Retaper tout ca à la main

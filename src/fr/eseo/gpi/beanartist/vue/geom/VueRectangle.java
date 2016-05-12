@@ -14,7 +14,7 @@ public class VueRectangle extends VueForme {
     /**
      * Créé une vue d'un Rectangle
      * @param rectangle L'objet Rectangle à afficher
-     * @param rempli Indique si le rectangle doit être rempli
+     * @param rempli Indique si le rectangle doit être remplissage
      */
     public VueRectangle(Rectangle rectangle, boolean rempli) {
     	super(rectangle, rempli);
@@ -24,7 +24,7 @@ public class VueRectangle extends VueForme {
      * Créé une vue d'un Rectangle
      * @param rectangle L'objet Rectangle à afficher
      * @param couleurLigne La couleur de la ligne
-     * @param rempli Indique si le rectangle doit être rempli
+     * @param rempli Indique si le rectangle doit être remplissage
      */
     public VueRectangle(Rectangle rectangle, Color couleurLigne, boolean rempli) {
     	super(rectangle, couleurLigne, rempli);

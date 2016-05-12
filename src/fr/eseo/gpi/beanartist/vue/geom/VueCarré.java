@@ -13,7 +13,7 @@ public class VueCarré extends VueRectangle {
 	/**
      * Créé une vue d'un Carré
      * @param carre L'objet Carré à afficher
-     * @param rempli Indique si le carre doit être rempli
+     * @param rempli Indique si le carre doit être remplissage
      */
     public VueCarré(Carré carre, boolean rempli) {
     	super(carre, rempli);
@@ -23,7 +23,7 @@ public class VueCarré extends VueRectangle {
      * Créé une vue d'un Carré
      * @param carre L'objet Carré à afficher
      * @param couleurLigne La couleur de la ligne
-     * @param rempli Indique si le carre doit être rempli
+     * @param rempli Indique si le carre doit être remplissage
      */
     public VueCarré(Carré carre, Color couleurLigne, boolean rempli) {
     	super(carre, couleurLigne, rempli);

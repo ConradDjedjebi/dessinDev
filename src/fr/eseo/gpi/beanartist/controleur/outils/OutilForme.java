@@ -13,8 +13,10 @@ import java.awt.event.MouseEvent;
  */
 public abstract class OutilForme extends Outil {
 
+    public static boolean DEFAULT_REMPLISSAGE_MODE = false;
+
     protected Forme forme;
-    public boolean rempli = this.getPanneauDessin().estModeRemplissage();
+    protected static boolean remplissage = DEFAULT_REMPLISSAGE_MODE;
 
     public OutilForme(PanneauDessin panneauDessin) {
         super(panneauDessin);
@@ -42,6 +44,10 @@ public abstract class OutilForme extends Outil {
     @Override
     public void mouseReleased(MouseEvent e) {
         super.mouseReleased(e);
+    }
+
+    public static void setRemplissage(boolean rempli) {
+        remplissage = rempli;
     }
 
     protected abstract void updateForme();

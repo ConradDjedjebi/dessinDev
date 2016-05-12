@@ -15,18 +15,18 @@ public class VueEllipse extends VueForme {
     /**
      * Créé une vue d'une ellipse
      * @param ellipse L'objet Ellipse à afficher
-     * @param rempli Indique si l'ellipse doit être rempli
+     * @param rempli Indique si l'ellipse doit être remplissage
      */
     public VueEllipse(Ellipse ellipse, boolean rempli) {
         super(ellipse, rempli);
     }
-    //Attention : super(ellipse, rempli) crée une Forme remplie et non une Ellipse remplie
+    //Attention : super(ellipse, remplissage) crée une Forme remplie et non une Ellipse remplie
 
     /**
      * Créé une vue d'une ellipse
      * @param ellipse L'objet Ellipse à afficher
      * @param couleurLigne La couleur de la ligne
-     * @param rempli Indique si le rectangle doit être rempli
+     * @param rempli Indique si le rectangle doit être remplissage
      */
     public VueEllipse(Ellipse ellipse, Color couleurLigne, boolean rempli) {
         super(ellipse, couleurLigne, rempli);

@@ -1,15 +1,18 @@
 package fr.eseo.gpi.beanartist.controleur.actions;
 
 import fr.eseo.gpi.beanartist.controleur.outils.OutilCouleur;
-import fr.eseo.gpi.beanartist.vue.ui.FenêtreBeAnArtist;
 import fr.eseo.gpi.beanartist.vue.ui.PanneauDessin;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.AbstractAction;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 
 /**
- * Created by Elphege on 10/05/2016.
+ * @author Elphege
+ * @date 10/05/2016
+ * @project gpi_binome
  */
 public class ActionChoisirCouleur extends AbstractAction {
     public static final String CHOISIR_COULEUR = "Couleur";
