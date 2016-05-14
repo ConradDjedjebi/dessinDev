@@ -23,16 +23,15 @@ public class OutilDéplacer extends Outil {
     }
 
     @Override
-    public void mousePressed (MouseEvent e){
-        super.mousePressed(e);
+    public void associer(PanneauDessin newPanneauDessin) {
+        super.associer(newPanneauDessin, false);
     }
 
     @Override
-    public void mouseDragged(MouseEvent e) {
-        try {
-            super.mouseDragged(e);
-            outilSélection.getForme().déplacerDe(getFin().getX()-getDébut().getX(), getFin().getY() - getDébut().getX());
-            this.getPanneauDessin().repaint();
-        } catch (NullPointerException excpetion) {}
+    public void mousePressed (MouseEvent e){
+        super.mousePressed(e);
+        setFin(getDébut());
     }
+
+
 }

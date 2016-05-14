@@ -1,10 +1,10 @@
 package fr.eseo.gpi.beanartist.controleur.actions;
 
 import fr.eseo.gpi.beanartist.controleur.outils.OutilDéplacer;
-import fr.eseo.gpi.beanartist.controleur.outils.OutilSélection;
 import fr.eseo.gpi.beanartist.vue.ui.FenêtreBeAnArtist;
-import fr.eseo.gpi.beanartist.vue.ui.PanneauDessin;
 
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 
 /**
@@ -27,6 +27,7 @@ public class ActionDéplacer extends AbstractSelectionAction {
     @Override
     public void actionPerformed(ActionEvent e) {
         new OutilDéplacer(fenetre.getPanneauDessin(), getOutilSélection());
+        getJButton().setBackground(Color.DARK_GRAY);
     }
 
 }

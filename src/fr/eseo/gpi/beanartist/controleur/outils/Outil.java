@@ -24,6 +24,10 @@ public abstract class Outil implements MouseMotionListener, MouseListener {
 
     public void associer(PanneauDessin newPanneauDessin) {
         libérer();
+        associer(newPanneauDessin, false);
+    }
+
+    protected void associer(PanneauDessin newPanneauDessin, boolean protectedMethod) {
         setPanneauDessin(newPanneauDessin);
         newPanneauDessin.setOutilCourant(this);
         newPanneauDessin.addMouseListener(this);

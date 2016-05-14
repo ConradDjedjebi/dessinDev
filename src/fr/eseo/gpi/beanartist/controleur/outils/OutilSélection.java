@@ -54,6 +54,23 @@ public class OutilSélection extends Outil {
         }
     }
 
+    @Override
+    public void mousePressed (MouseEvent e){
+//        this.mouseClicked(e);
+        super.mousePressed(e);
+        setFin(getDébut());
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        try {
+            setDébut(getFin());
+            super.mouseDragged(e);
+            this.getForme().déplacerDe(getFin().getX()-getDébut().getX(), getFin().getY() - getDébut().getY());
+            this.getPanneauDessin().repaint();
+        } catch (NullPointerException excpetion) {}
+    }
+
     public VueForme getVueForme(){
         if(vueFormeSélectionnée!=null)
             return vueFormeSélectionnée;
