@@ -58,6 +58,12 @@ public class ActionModeRemplissage extends AbstractSelectionAction {
         }
     }
 
+    @Override
+    public void setJButton(JButton button) {
+        super.setJButton(button);
+        updateButton();
+    }
+
     public void updateButton() {
         getJButton().setText(actionCommand ? NOM_ACTION_REMPLI : NOM_ACTION_CONTOURS);
         getJButton().setBackground(actionCommand ? Color.GREEN : Color.LIGHT_GRAY);

@@ -47,6 +47,7 @@ public class PanneauBarreOutil extends javax.swing.JPanel {
         JButton outilSelection = new JButton(new ActionSélectionner(this.getFenêtre()));
 
         this.add(clearAll);
+        this.add(outilSelection);
         this.add(choixCouleur);
         new RemplissageButton(this,getFenêtre());
         for (int forme : createFormes) {
@@ -54,7 +55,6 @@ public class PanneauBarreOutil extends javax.swing.JPanel {
             jB.setBackground(Color.CYAN);
             this.add(jB);
         }
-        this.add(outilSelection);
     }
 
     private void initComponentsSélection () {
