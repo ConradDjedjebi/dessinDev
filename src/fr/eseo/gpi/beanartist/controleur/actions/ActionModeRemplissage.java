@@ -1,10 +1,8 @@
 package fr.eseo.gpi.beanartist.controleur.actions;
 
 import fr.eseo.gpi.beanartist.controleur.outils.OutilForme;
-import fr.eseo.gpi.beanartist.controleur.outils.OutilSélection;
 import fr.eseo.gpi.beanartist.vue.ui.PanneauDessin;
 
-import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.ActionEvent;

@@ -6,7 +6,6 @@ import fr.eseo.gpi.beanartist.vue.geom.VueForme;
 import fr.eseo.gpi.beanartist.vue.ui.FenêtreBeAnArtist;
 import fr.eseo.gpi.beanartist.vue.ui.PanneauDessin;
 
-import java.awt.*;
 import java.awt.event.ActionEvent;
 
 

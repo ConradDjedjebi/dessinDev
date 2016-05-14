@@ -1,6 +1,10 @@
 package fr.eseo.gpi.beanartist.vue.ui;
 
-import fr.eseo.gpi.beanartist.controleur.actions.*;
+import fr.eseo.gpi.beanartist.controleur.actions.ActionChoisirCouleur;
+import fr.eseo.gpi.beanartist.controleur.actions.ActionCopieForme;
+import fr.eseo.gpi.beanartist.controleur.actions.ActionEffacer;
+import fr.eseo.gpi.beanartist.controleur.actions.ActionForme;
+import fr.eseo.gpi.beanartist.controleur.actions.ActionSélectionner;
 import fr.eseo.gpi.beanartist.controleur.bouttons.RedimensionnageButton;
 import fr.eseo.gpi.beanartist.controleur.bouttons.RemplissageButton;
 import fr.eseo.gpi.beanartist.controleur.outils.OutilSélection;
