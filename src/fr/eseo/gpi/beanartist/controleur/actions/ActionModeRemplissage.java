@@ -15,17 +15,15 @@ import java.awt.event.ActionEvent;
  * @date 11/05/2016
  * @project gpi_binome
  */
-public class ActionModeRemplissage extends AbstractAction {
+public class ActionModeRemplissage extends AbstractSelectionAction {
 
     public static final String NOM_ACTION_REMPLI   = "Forme remplie";
     public static final String NOM_ACTION_CONTOURS = "Contours uniquement";
+
     public static final boolean REMPLIE = true;
-
     public static final boolean CONTOURS = false;
-    private boolean actionCommand;
-    private JButton jButton;
 
-    private OutilSélection outilSélection;
+    private boolean actionCommand;
     private PanneauDessin panneau;
 
     public ActionModeRemplissage () {}
@@ -35,7 +33,7 @@ public class ActionModeRemplissage extends AbstractAction {
     }
 
     public void setOutilSélection (OutilSélection outilSélection) {
-        this.outilSélection = outilSélection;
+        super.setOutilSélection(outilSélection);
         outilSélection.setActionModeRemplissage(this);
     }
 
@@ -60,15 +58,6 @@ public class ActionModeRemplissage extends AbstractAction {
     public void updateButton() {
         getJButton().setText(actionCommand ? NOM_ACTION_REMPLI : NOM_ACTION_CONTOURS);
         getJButton().setBackground(actionCommand ? Color.GREEN : Color.LIGHT_GRAY);
-    }
-
-    public JButton getJButton() {
-        return jButton;
-    }
-
-    public void setJButton(JButton button) {
-        this.jButton = button;
-        updateButton();
     }
 
     public void setRemplissageState(boolean remplissageState) {

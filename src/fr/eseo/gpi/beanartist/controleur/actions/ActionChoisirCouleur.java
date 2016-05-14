@@ -1,10 +1,11 @@
 package fr.eseo.gpi.beanartist.controleur.actions;
 
 import fr.eseo.gpi.beanartist.controleur.outils.OutilCouleur;
-import fr.eseo.gpi.beanartist.controleur.outils.OutilSélection;
+import fr.eseo.gpi.beanartist.vue.ui.FenêtreBeAnArtist;
 import fr.eseo.gpi.beanartist.vue.ui.PanneauDessin;
 
-import javax.swing.*;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 
@@ -13,19 +14,16 @@ import java.awt.event.ActionEvent;
  * @date 10/05/2016
  * @project gpi_binome
  */
-public class ActionChoisirCouleur extends AbstractAction {
+public class ActionChoisirCouleur extends AbstractSelectionAction {
     public static final String CHOISIR_COULEUR = "Couleur";
     private PanneauDessin panneau;
     private  JComponent panneauCouleur;
     protected Color couleurChoisie;
 
-    private OutilSélection outilSélection;
-    private JButton jButton;
 
-
-    public ActionChoisirCouleur (PanneauDessin panneauDessin) {
-        super(CHOISIR_COULEUR);
-        this.panneau = panneauDessin;
+    public ActionChoisirCouleur (FenêtreBeAnArtist fenêtreBeAnArtist) {
+        super(CHOISIR_COULEUR, fenêtreBeAnArtist);
+        this.panneau = fenêtreBeAnArtist.getPanneauDessin();
     }
 
     @Override
@@ -51,22 +49,5 @@ public class ActionChoisirCouleur extends AbstractAction {
         this.couleurChoisie = couleur;
     }
 
-
-    public JButton getJButton() {
-        return jButton;
-    }
-
-    public void setJButton(JButton button) {
-        this.jButton = button;
-    }
-
-    public void setOutilSélection(OutilSélection sélection) {
-        this.outilSélection = sélection;
-    }
-
-    /*public void fermer() {
-        fenetre.getPanneauDessin().setOutilCourant(null);
-        fenetre.getPanneauDessin().repaint();
-    }*/
 }
 
