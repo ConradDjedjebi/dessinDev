@@ -26,13 +26,7 @@ public class OutilEllipse extends OutilForme {
         forme.setPosition(getDébut());
     }
 
-    @Override
-    protected void updateForme() {
-        int largeurEllipse = this.getFin().getX() - this.getDébut().getX();
-        int hauteurEllipse = this.getFin().getY() - this.getDébut().getY();
-        forme.setLargeur(largeurEllipse);
-        forme.setHauteur(hauteurEllipse);
-    }
+
     @Override
     protected VueForme créerVueForme() {
         return new VueEllipse(

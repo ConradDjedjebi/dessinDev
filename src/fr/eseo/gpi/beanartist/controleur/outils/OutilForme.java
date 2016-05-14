@@ -46,7 +46,11 @@ public abstract class OutilForme extends Outil {
         super.mouseReleased(e);
     }
 
-    protected abstract void updateForme();
+    protected void updateForme() {
+        forme.setLargeur(getDeltaX());
+        forme.setHauteur(getDeltaY());
+    }
+
     protected abstract VueForme créerVueForme();
     //protected abstract VueForme créerVueFormeParDéfaut();
 }

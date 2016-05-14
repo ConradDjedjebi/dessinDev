@@ -25,14 +25,6 @@ public class OutilRectangle extends OutilForme {
         forme.setPosition(getDébut());
     }
 
-    protected void updateForme() {
-        int largeurRectangle = this.getFin().getX() - this.getDébut().getX();
-        int hauteurRectangle = this.getFin().getY() - this.getDébut().getY();
-
-        forme.setLargeur(largeurRectangle);
-        forme.setHauteur(hauteurRectangle);
-    }
-
     @Override
     protected VueForme créerVueForme() {
         return new VueRectangle(

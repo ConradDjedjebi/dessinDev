@@ -109,4 +109,12 @@ public abstract class Outil implements MouseMotionListener, MouseListener {
     }
 
 
+
+    protected int getDeltaX() {
+        return this.getFin().getX() - this.getDébut().getX();
+    }
+    protected int getDeltaY() {
+        return this.getFin().getY() - this.getDébut().getY();
+    }
+
 }

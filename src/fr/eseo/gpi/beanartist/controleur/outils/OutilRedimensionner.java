@@ -41,8 +41,8 @@ public class OutilRedimensionner extends Outil {
             Forme forme = outilSélection.getForme();
             setDébut(getFin());
             super.mouseDragged(e);
-            forme.setLargeur(forme.getLargeur() + getFin().getX()-getDébut().getX());
-            forme.setHauteur(forme.getHauteur() + getFin().getY()-getDébut().getY());
+            forme.setLargeur(forme.getLargeur() + getDeltaX());
+            forme.setHauteur(forme.getHauteur() + getDeltaY());
             outilSélection.afficherFormeSélectionnée();
             this.getPanneauDessin().repaint();
         } catch (NullPointerException excpetion) {}
