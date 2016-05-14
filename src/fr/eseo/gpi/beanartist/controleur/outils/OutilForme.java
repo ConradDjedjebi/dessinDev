@@ -19,6 +19,7 @@ public abstract class OutilForme extends Outil {
 
     public OutilForme(PanneauDessin panneauDessin) {
         super(panneauDessin);
+        panneauDessin.clearLabel();
     }
 
     @Override
@@ -54,5 +55,4 @@ public abstract class OutilForme extends Outil {
     }
 
     protected abstract VueForme créerVueForme();
-    //protected abstract VueForme créerVueFormeParDéfaut();
 }

@@ -107,7 +107,7 @@ public class PanneauBarreOutil extends javax.swing.JPanel {
 
     private void updatePanneauOutil(OutilSélection newOutilSélection) {
         this.removeAll();
-        this.getFenêtre().getPanneauDessin().getLabel().setText("");
+        this.getFenêtre().getPanneauDessin().clearLabel();
         this.outilSélection = newOutilSélection;
         if(newOutilSélection!=null) initComponentsSélection();
         else initComponents();

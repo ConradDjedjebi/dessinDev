@@ -14,6 +14,7 @@ import java.awt.event.ActionEvent;
  */
 public class ActionSélectionner extends AbstractAction {
     public static final String NOM_ACTION = "Sélectionner";
+    public static final String NOM_ACTION_EXIT = "Quitter la sélection";
     private FenêtreBeAnArtist fenetre;
     private boolean newSelection = true;
 
@@ -22,7 +23,7 @@ public class ActionSélectionner extends AbstractAction {
         this.fenetre = fenetre;
     }
     public ActionSélectionner (FenêtreBeAnArtist fenetre, boolean newSelection) {
-        super("Quitter la sélection");
+        super(NOM_ACTION_EXIT);
         this.fenetre = fenetre;
         this.newSelection = newSelection;
     }

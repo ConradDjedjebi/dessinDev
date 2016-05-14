@@ -22,18 +22,21 @@ public abstract class Outil implements MouseMotionListener, MouseListener {
         this.associer(dessin);
     }
 
+    // ======== ASSOCIATION DU PANNEAU DESSIN =============
+
     public void associer(PanneauDessin newPanneauDessin) {
         libérer();
-        associer(newPanneauDessin, false);
-    }
 
-    protected void associer(PanneauDessin newPanneauDessin, boolean protectedMethod) {
         setPanneauDessin(newPanneauDessin);
         newPanneauDessin.setOutilCourant(this);
         newPanneauDessin.addMouseListener(this);
         newPanneauDessin.addMouseMotionListener(this);
     }
 
+    /**
+     * Public access to the libérer method -- which have to be private, thanks to the Assignment Center
+     * @param falseValue Useless value to overload the private method
+     */
     public void libérer(boolean falseValue) {
         this.libérer();
     }
@@ -55,6 +58,9 @@ public abstract class Outil implements MouseMotionListener, MouseListener {
     public void setPanneauDessin(PanneauDessin newPanneauDessin) {
         dessin = newPanneauDessin;
     }
+
+
+    // ================== MOUSE EVENTS =====================
 
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -89,26 +95,24 @@ public abstract class Outil implements MouseMotionListener, MouseListener {
 
     @Override
     public void mouseMoved(MouseEvent e) {
-
     }
+
+
+    // ============== ACCESSEURS ==============
 
     public Point getDébut() {
         return début;
+    }
+    public Point getFin() {
+        return fin;
     }
 
     public void setDébut(Point newDébut) {
         this.début = newDébut;
     }
-
-    public Point getFin() {
-        return fin;
-    }
-
     public void setFin(Point newFin) {
         this.fin = newFin;
     }
-
-
 
     protected int getDeltaX() {
         return this.getFin().getX() - this.getDébut().getX();

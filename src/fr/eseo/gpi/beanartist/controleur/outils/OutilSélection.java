@@ -16,6 +16,8 @@ import java.awt.event.MouseEvent;
  */
 public class OutilSélection extends Outil {
 
+    public static final String NO_SELECTION_TEXT = "Aucune forme sélectionnée";
+
     private VueForme vueFormeSélectionnée;
     private ArrayList<AbstractSelectionAction> actions;
 
@@ -51,9 +53,7 @@ public class OutilSélection extends Outil {
             this.getForme().déplacerDe(getFin().getX()-getDébut().getX(), getFin().getY() - getDébut().getY());
             this.afficherFormeSélectionnée();
             this.getPanneauDessin().repaint();
-        } catch (NullPointerException excpetion) {
-
-        } catch (Error error) {
+        } catch (NullPointerException | Error excpetion) {
 
         }
     }
@@ -93,7 +93,7 @@ public class OutilSélection extends Outil {
         try {
             returnVal = this.getForme().toString();
         } catch(NullPointerException e) {
-            returnVal = "Aucune forme sélectionnée";
+            returnVal = NO_SELECTION_TEXT;
         }
         this.getPanneauDessin().getLabel().setText(returnVal);
         return returnVal;

@@ -82,6 +82,7 @@ public class PanneauDessin extends javax.swing.JPanel {
     public void setVueFormeSélectionnée(VueForme vueFormeChoisie){
         this.vueFormeSélectionnée = vueFormeChoisie;
     }
+
     public VueForme getVueFormeSélectionnée(){
         return this.vueFormeSélectionnée;
     }
@@ -96,5 +97,9 @@ public class PanneauDessin extends javax.swing.JPanel {
 
     public JLabel getLabel() {
         return label;
+    }
+
+    public void clearLabel() {
+        label.setText(new String());
     }
 }
