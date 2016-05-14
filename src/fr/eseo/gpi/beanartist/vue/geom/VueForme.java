@@ -10,7 +10,7 @@ import java.awt.Graphics2D;
  * @date 26/04/16
  * @project gpi_binome
  */
-abstract public class VueForme {
+abstract public class VueForme implements Cloneable {
     private static final Color COULEUR_LIGNE_PAR_DÉFAULT = Color.BLACK;
 
     private Color couleurLigne;
@@ -50,7 +50,22 @@ abstract public class VueForme {
 
     public abstract void affiche(Graphics2D g2D);
 
-    public void setCouleurRemplissage(Color couleurFond){this.couleurRemplissage = couleurFond;}
+    public void setCouleurRemplissage(Color couleurFond) {
+        this.couleurRemplissage = couleurFond;
+    }
 
-    public Color getCouleurRemplissage(){return this.couleurRemplissage;}
+    public Color getCouleurRemplissage(){
+        return this.couleurRemplissage;
+    }
+
+    public VueForme clone () {
+        try {
+            VueForme vueForme = (VueForme) super.clone();
+            vueForme.forme =  vueForme.getForme().clone();
+            return vueForme;
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

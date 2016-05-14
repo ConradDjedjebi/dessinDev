@@ -1,9 +1,6 @@
 package fr.eseo.gpi.beanartist.vue.ui;
 
-import fr.eseo.gpi.beanartist.controleur.actions.ActionChoisirCouleur;
-import fr.eseo.gpi.beanartist.controleur.actions.ActionEffacer;
-import fr.eseo.gpi.beanartist.controleur.actions.ActionForme;
-import fr.eseo.gpi.beanartist.controleur.actions.ActionSélectionner;
+import fr.eseo.gpi.beanartist.controleur.actions.*;
 import fr.eseo.gpi.beanartist.controleur.bouttons.RedimensionnageButton;
 import fr.eseo.gpi.beanartist.controleur.bouttons.RemplissageButton;
 import fr.eseo.gpi.beanartist.controleur.outils.OutilSélection;
@@ -66,6 +63,10 @@ public class PanneauBarreOutil extends javax.swing.JPanel {
         actionEffacer.setJButton(clear);
         clear.setBackground(Color.RED);
 
+        ActionCopieForme actionCopie = new ActionCopieForme(getFenêtre(), outilSélection);
+        JButton copy = new JButton(actionCopie);
+        actionCopie.setJButton(copy);
+
         ActionChoisirCouleur choisirCouleur = new ActionChoisirCouleur(this.getFenêtre());
         JButton choixCouleur = new JButton(choisirCouleur);
         choisirCouleur.setOutilSélection(outilSélection);
@@ -74,6 +75,7 @@ public class PanneauBarreOutil extends javax.swing.JPanel {
         JButton quitSelection = new JButton(new ActionSélectionner(this.getFenêtre(), false));
 
         this.add(clear);
+        this.add(copy);
         this.add(choixCouleur);
         new RemplissageButton(this,getFenêtre(), outilSélection);
         new RedimensionnageButton(this, getFenêtre(), outilSélection);

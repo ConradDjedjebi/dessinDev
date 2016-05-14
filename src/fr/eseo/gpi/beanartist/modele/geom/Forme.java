@@ -9,7 +9,7 @@ import java.util.Locale;
  * @date 31/03/16
  * @project gpi_binome
  */
-public abstract class Forme {
+public abstract class Forme implements Cloneable {
     public static final int LARGEUR_PAR_DÉFAUT = 70;
     public static final int HAUTEUR_PAR_DÉFAUT = 50;
     protected int largeur, hauteur;
@@ -165,6 +165,17 @@ public abstract class Forme {
 
     public void setModeRemplissage(boolean modeRemplissage) {
         this.modeRemplissage = modeRemplissage;
+    }
+
+    public Forme clone () {
+        try {
+            Forme forme = (Forme) super.clone();
+            forme.setPosition(new Point(forme.getX(), forme.getY()));
+            return forme;
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public void setDefaults() {
