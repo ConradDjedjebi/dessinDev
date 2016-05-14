@@ -33,7 +33,6 @@ public class OutilSélection extends Outil {
         emptySelection();
         super.mouseClicked(e);
         System.out.println(afficherFormeSélectionnée());
-        this.getPanneauDessin().getLabel().setText(afficherFormeSélectionnée());
         this.getPanneauDessin().revalidate();
         this.getPanneauDessin().repaint();
 
@@ -67,6 +66,7 @@ public class OutilSélection extends Outil {
             setDébut(getFin());
             super.mouseDragged(e);
             this.getForme().déplacerDe(getFin().getX()-getDébut().getX(), getFin().getY() - getDébut().getY());
+            this.afficherFormeSélectionnée();
             this.getPanneauDessin().repaint();
         } catch (NullPointerException excpetion) {}
     }
@@ -95,6 +95,7 @@ public class OutilSélection extends Outil {
 
     protected String afficherFormeSélectionnée() {
         try {
+            this.getPanneauDessin().getLabel().setText(this.getForme().toString());
             return this.getForme().toString();
         } catch(NullPointerException e) {
             return "Aucune forme sélectionnée";
@@ -104,7 +105,7 @@ public class OutilSélection extends Outil {
     public void emptySelection() {
         setDébut(null);
         this.vueFormeSélectionnée = null;
-        this.getPanneauDessin().getLabel().setText(afficherFormeSélectionnée());
+        afficherFormeSélectionnée();
         actionModeRemplissage.getJButton().setEnabled(false);
         actionEffacer.getJButton().setEnabled(false);
     }
