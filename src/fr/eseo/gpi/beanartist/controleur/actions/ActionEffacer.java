@@ -13,18 +13,29 @@ import java.awt.event.ActionEvent;
  */
 public class ActionEffacer extends AbstractAction {
     public static final String NOM_ACTION = "Effacer tout";
+    public static final String NOM_ACTION_SINGLE = "Effacer la sélection";
     private FenêtreBeAnArtist fenetre;
     private OutilSélection outilSélection;
 
     private JButton jButton;
 
+    /**
+     * Constructeur de l'outil de remise à "blanc"
+     * @param fenetre La fenêtre associée
+     */
     public ActionEffacer (FenêtreBeAnArtist fenetre) {
         super(NOM_ACTION);
         this.fenetre = fenetre;
     }
 
+
+    /**
+     * Constructeur de l'outil de suppression de forme sélectionnée actuelement
+     * @param fenetre La fenêtre associée
+     * @param outilSélection L'outil sélection pour récupérer la forme sélectionnée
+     */
     public ActionEffacer (FenêtreBeAnArtist fenetre, OutilSélection outilSélection) {
-        super("Effacer la sélection");
+        super(NOM_ACTION_SINGLE);
         this.fenetre = fenetre;
         this.outilSélection = outilSélection;
         outilSélection.setActionEffacer(this);
