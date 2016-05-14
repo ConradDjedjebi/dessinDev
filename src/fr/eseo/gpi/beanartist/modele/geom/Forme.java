@@ -10,8 +10,8 @@ import java.util.Locale;
  * @project gpi_binome
  */
 public abstract class Forme {
-    public static final int LARGEUR_PAR_DÉFAUT = 1;
-    public static final int HAUTEUR_PAR_DÉFAUT = 1;
+    public static final int LARGEUR_PAR_DÉFAUT = 70;
+    public static final int HAUTEUR_PAR_DÉFAUT = 50;
     protected int largeur, hauteur;
 
     private Point position;
@@ -165,5 +165,10 @@ public abstract class Forme {
 
     public void setModeRemplissage(boolean modeRemplissage) {
         this.modeRemplissage = modeRemplissage;
+    }
+
+    public void setDefaults() {
+        this.setHauteur(HAUTEUR_PAR_DÉFAUT);
+        this.setLargeur(LARGEUR_PAR_DÉFAUT);
     }
 }

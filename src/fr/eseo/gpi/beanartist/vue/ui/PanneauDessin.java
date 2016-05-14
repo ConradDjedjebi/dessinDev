@@ -50,7 +50,6 @@ public class PanneauDessin extends javax.swing.JPanel {
 
     public void ajouterVueForme(VueForme vueForme) {
         vueFormes.add(vueForme);
-        this.repaint();
     }
 
     @Override

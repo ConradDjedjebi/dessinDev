@@ -24,6 +24,7 @@ public abstract class OutilForme extends Outil {
     @Override
     public void mouseClicked(MouseEvent e) {
         super.mouseClicked(e);
+        forme.setDefaults();
     }
 
     @Override
@@ -44,6 +45,7 @@ public abstract class OutilForme extends Outil {
     @Override
     public void mouseReleased(MouseEvent e) {
         super.mouseReleased(e);
+        this.getPanneauDessin().repaint();
     }
 
     protected void updateForme() {
