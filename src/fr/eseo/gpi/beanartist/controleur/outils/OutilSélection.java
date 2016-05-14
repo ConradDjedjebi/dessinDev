@@ -28,7 +28,6 @@ public class OutilSélection extends Outil {
     public void mouseClicked (MouseEvent e){
         emptySelection();
         super.mouseClicked(e);
-        System.out.println(afficherFormeSélectionnée());
         this.updateButtons();
         this.getPanneauDessin().revalidate();
         this.getPanneauDessin().repaint();
@@ -74,14 +73,15 @@ public class OutilSélection extends Outil {
             return null;
         }
 
+        this.selectVueForme(vueFormes.get(count));
+
         return vueFormes.get(count);
     }
 
     public void selectVueForme (VueForme vueForme) {
-        this.vueFormeSélectionnée = vueForme;
+        vueFormeSélectionnée = vueForme;
         getPanneauDessin().setVueFormeSélectionnée(vueForme);
-        this.selectVueForme(vueForme);
-
+        System.out.println(afficherFormeSélectionnée());
     }
 
     public Forme getForme() {

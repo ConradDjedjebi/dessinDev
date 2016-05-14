@@ -214,7 +214,12 @@ public class Tracé extends Forme {
     public void déplacerDe(int deltaX, int deltaY) {
 
         for (Ligne ligne : lignes) ligne.déplacerDe(deltaX, deltaY);
-        super.setPosition(lignes.get(0).getP1());
+
+        try {
+            super.setPosition(lignes.get(0).getP1());
+        } catch (IndexOutOfBoundsException exception) {
+            super.setPosition(new Point());
+        }
     }
 
     public void déplacerVers(int newX, int newY) {
@@ -266,11 +271,10 @@ public class Tracé extends Forme {
     }
 
     @Override
-    public Forme clone() {
+    public Tracé clone() {
         Tracé clone = (Tracé) super.clone();
 
-        clone.lignes.clear();
-        clone.lignes.addAll(this.lignes.stream().map(Ligne::clone).collect(Collectors.toList()));
+        clone.lignes = new ArrayList<>(this.lignes.stream().map(Ligne::clone).collect(Collectors.toList()));
 
         return clone;
     }
