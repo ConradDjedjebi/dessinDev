@@ -5,6 +5,7 @@ import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.stream.Collectors;
 
 /**
  * @author Elphege
@@ -262,6 +263,16 @@ public class Tracé extends Forme {
         } catch (IndexOutOfBoundsException e) {
             return false;
         }
+    }
+
+    @Override
+    public Forme clone() {
+        Tracé clone = (Tracé) super.clone();
+
+        clone.lignes.clear();
+        clone.lignes.addAll(this.lignes.stream().map(Ligne::clone).collect(Collectors.toList()));
+
+        return clone;
     }
 
     public boolean contient(Point testPosition) {

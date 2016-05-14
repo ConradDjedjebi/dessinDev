@@ -170,7 +170,7 @@ public abstract class Forme implements Cloneable {
     public Forme clone () {
         try {
             Forme forme = (Forme) super.clone();
-            forme.setPosition(new Point(forme.getX(), forme.getY()));
+            forme.setPosition(forme.getPosition().clone());
             return forme;
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();

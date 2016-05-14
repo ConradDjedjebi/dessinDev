@@ -32,7 +32,8 @@ public class ActionCopieForme extends AbstractSelectionAction {
             PanneauDessin panneau = fenetre.getPanneauDessin();
             VueForme vueForme = panneau.getVueFormeSélectionnée().clone();
 
-            vueForme.getForme().déplacerDe(Forme.HAUTEUR_PAR_DÉFAUT, Forme.LARGEUR_PAR_DÉFAUT);
+            panneau.getVueFormeSélectionnée().getForme().déplacerDe(Forme.HAUTEUR_PAR_DÉFAUT, Forme.LARGEUR_PAR_DÉFAUT);
+
             panneau.ajouterVueForme(vueForme);
             panneau.repaint();
         } catch (NullPointerException e) {

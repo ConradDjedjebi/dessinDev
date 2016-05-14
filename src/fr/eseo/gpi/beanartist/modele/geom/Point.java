@@ -5,7 +5,7 @@ package fr.eseo.gpi.beanartist.modele.geom;
  * @date 31/03/16
  * @project gpi_binome
  */
-public class Point {
+public class Point implements Cloneable {
 
     static final int X_PAR_DEFAUT = 0;
     static final int Y_PAR_DEFAUT = 0;
@@ -79,6 +79,19 @@ public class Point {
     public void déplacerDe(int deltaX, int deltaY){
         this.x+=deltaX;
         this.y+=deltaY;
+    }
+
+    /**
+     * Clone le point
+     * @return Un point aux mêmes propriétés que l'objet courrant
+     */
+    public Point clone () {
+        try {
+            return (Point) super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
 

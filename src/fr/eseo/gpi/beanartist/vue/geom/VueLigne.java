@@ -12,15 +12,12 @@ import java.awt.Graphics2D;
  */
 public class VueLigne extends VueForme {
 
-    protected Ligne forme;
-
 	/**
      * Créé une vue d'un Ligne
      * @param ligne L'objet Ligne à afficher
      */
     public VueLigne(Ligne ligne) {
     	super(ligne, false);
-        this.forme = ligne;
     }
 
     /**
@@ -30,13 +27,14 @@ public class VueLigne extends VueForme {
      */
     public VueLigne(Ligne ligne, Color couleurLigne) {
         super(ligne, couleurLigne, false);
-        this.forme = ligne;
     }
 
     @Override
     public void affiche(Graphics2D g2D) {
+        Ligne ligne = (Ligne) this.forme;
+
         g2D.setColor(this.getCouleurLigne());
 
-        g2D.drawLine(this.forme.getP1().getX(), this.forme.getP1().getY(), this.forme.getP2().getX(), this.forme.getP2().getY());
+        g2D.drawLine(ligne.getP1().getX(), ligne.getP1().getY(), ligne.getP2().getX(), ligne.getP2().getY());
     }
 }
