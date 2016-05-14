@@ -32,9 +32,12 @@ public class ActionModeRemplissage extends AbstractSelectionAction {
         this(panneauDessin, OutilForme.DEFAULT_REMPLISSAGE_MODE);
     }
 
-    public void setOutilSélection (OutilSélection outilSélection) {
-        super.setOutilSélection(outilSélection);
-        outilSélection.setActionModeRemplissage(this);
+    @Override
+    public void updateButton(boolean emptySelection) {
+       super.updateButton(emptySelection);
+        if(!emptySelection)
+            this.setRemplissageState(this.getOutilSélection().getVueForme().estRempli());
+        this.updateButton();
     }
 
     public ActionModeRemplissage (PanneauDessin panneauDessin, boolean actionC) {

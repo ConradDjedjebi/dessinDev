@@ -1,5 +1,7 @@
 package fr.eseo.gpi.beanartist.controleur.outils;
 
+import fr.eseo.gpi.beanartist.controleur.actions.AbstractSelectionAction;
+import fr.eseo.gpi.beanartist.controleur.actions.ActionRedimensionner;
 import fr.eseo.gpi.beanartist.modele.geom.Forme;
 import fr.eseo.gpi.beanartist.vue.ui.PanneauDessin;
 

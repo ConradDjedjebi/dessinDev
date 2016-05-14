@@ -26,18 +26,26 @@ public class ActionRedimensionner extends AbstractSelectionAction {
     }
 
     @Override
+    public void updateButton(boolean emptySelection) {
+        super.updateButton(emptySelection);
+        updateButton();
+    }
+
+    @Override
     public void actionPerformed(ActionEvent e) {
         actionCommand = !actionCommand;
+        if (actionCommand) {
+            new OutilRedimensionner(fenetre.getPanneauDessin(), getOutilSélection());
+            getOutilSélection().getActions().stream().filter(action -> !(action instanceof ActionRedimensionner)).forEach(action -> action.updateButton(true));
+        }
+        else {
+            getOutilSélection().getActions().stream().forEach(action -> action.updateButton(false));
+            getOutilSélection().associer(fenetre.getPanneauDessin());
+        }
         updateButton();
-        new OutilRedimensionner(fenetre.getPanneauDessin(), getOutilSélection());
     }
 
     public void updateButton() {
         getJButton().setBackground(actionCommand ? Color.GREEN : Color.LIGHT_GRAY);
     }
-
-    public void setState(boolean state) {
-        this.actionCommand = state;
-    }
-
 }

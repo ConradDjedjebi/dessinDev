@@ -11,7 +11,7 @@ import javax.swing.JButton;
  * @date 14/05/2016
  * @project gpi_binome
  */
-abstract class AbstractSelectionAction extends AbstractAction {
+public abstract class AbstractSelectionAction extends AbstractAction {
 
     private OutilSélection outilSélection;
     private JButton jButton;
@@ -40,5 +40,10 @@ abstract class AbstractSelectionAction extends AbstractAction {
 
     public void setOutilSélection(OutilSélection outilSélection) {
         this.outilSélection = outilSélection;
+        outilSélection.addAction(this);
+    }
+
+    public void updateButton(boolean emptySelection) {
+        getJButton().setEnabled(!emptySelection);
     }
 }

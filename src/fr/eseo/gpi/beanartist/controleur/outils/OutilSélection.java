@@ -1,13 +1,11 @@
 package fr.eseo.gpi.beanartist.controleur.outils;
 
-import fr.eseo.gpi.beanartist.controleur.actions.ActionChoisirCouleur;
-import fr.eseo.gpi.beanartist.controleur.actions.ActionEffacer;
-import fr.eseo.gpi.beanartist.controleur.actions.ActionModeRemplissage;
+import fr.eseo.gpi.beanartist.controleur.actions.AbstractSelectionAction;
 import fr.eseo.gpi.beanartist.vue.ui.PanneauDessin;
 import fr.eseo.gpi.beanartist.vue.geom.VueForme;
 import fr.eseo.gpi.beanartist.modele.geom.Forme;
 
-import java.util.IllegalFormatCodePointException;
+import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.MouseEvent;
 
@@ -19,13 +17,11 @@ import java.awt.event.MouseEvent;
 public class OutilSélection extends Outil {
 
     private VueForme vueFormeSélectionnée;
-
-    private ActionModeRemplissage actionModeRemplissage;
-    private ActionEffacer actionEffacer;
-    private ActionChoisirCouleur actionChoisirCouleur;
+    private ArrayList<AbstractSelectionAction> actions;
 
     public OutilSélection (PanneauDessin panneauDessin){
         super(panneauDessin);
+        actions = new ArrayList<>();
     }
 
     @Override
@@ -33,29 +29,13 @@ public class OutilSélection extends Outil {
         emptySelection();
         super.mouseClicked(e);
         System.out.println(afficherFormeSélectionnée());
+        this.updateButtons();
         this.getPanneauDessin().revalidate();
         this.getPanneauDessin().repaint();
-
-        try {
-            actionModeRemplissage.getJButton().setEnabled(!this.isEmptySelection());
-            actionModeRemplissage.setRemplissageState(
-                    this.getVueForme().estRempli());
-            actionModeRemplissage.updateButton();
-        } catch (NullPointerException exception) {
-        }
-        try {
-            actionEffacer.getJButton().setEnabled(!this.isEmptySelection());
-        } catch (NullPointerException exception) {
-        }
-        try {
-            actionChoisirCouleur.getJButton().setEnabled(!this.isEmptySelection());
-        } catch (NullPointerException exception) {
-        }
     }
 
     @Override
     public void mousePressed (MouseEvent e){
-//        this.mouseClicked(e);
         super.mousePressed(e);
         setFin(getDébut());
     }
@@ -74,6 +54,8 @@ public class OutilSélection extends Outil {
     public VueForme getVueForme(){
         if(vueFormeSélectionnée!=null)
             return vueFormeSélectionnée;
+        else if (getDébut()==null)
+            return null;
 
         List<VueForme> vueFormes = this.getPanneauDessin().getVueFormes();
         int count = vueFormes.size();
@@ -106,23 +88,24 @@ public class OutilSélection extends Outil {
         setDébut(null);
         this.vueFormeSélectionnée = null;
         afficherFormeSélectionnée();
-        actionModeRemplissage.getJButton().setEnabled(false);
-        actionEffacer.getJButton().setEnabled(false);
+        updateButtons();
     }
 
     public boolean isEmptySelection() {
         return getVueForme()==null;
     }
 
-    public void setActionModeRemplissage(ActionModeRemplissage modeRemplissage) {
-        this.actionModeRemplissage = modeRemplissage;
+    public void addAction(AbstractSelectionAction action) {
+        this.actions.add(action);
     }
 
-    public void setActionEffacer(ActionEffacer effacer) {
-        this.actionEffacer = effacer;
+    public void updateButtons() {
+        for (AbstractSelectionAction action : actions) {
+            action.updateButton(this.isEmptySelection());
+        }
     }
 
-    public void setActionChoisirCouleur(ActionChoisirCouleur choisirCouleur) {
-        this.actionChoisirCouleur = choisirCouleur;
+    public ArrayList<AbstractSelectionAction> getActions() {
+        return actions;
     }
 }

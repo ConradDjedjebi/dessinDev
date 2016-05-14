@@ -31,7 +31,6 @@ public class ActionEffacer extends AbstractSelectionAction {
     public ActionEffacer (FenêtreBeAnArtist fenetre, OutilSélection outilSélection) {
         super(NOM_ACTION_SINGLE, fenetre);
         setOutilSélection(outilSélection);
-        outilSélection.setActionEffacer(this);
     }
 
     @Override
