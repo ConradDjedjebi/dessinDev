@@ -74,9 +74,14 @@ public class OutilSélection extends Outil {
             return null;
         }
 
-        this.getPanneauDessin().setVueFormeSélectionnée(vueFormes.get(count));
+        return vueFormes.get(count);
+    }
 
-        return vueFormeSélectionnée = vueFormes.get(count);
+    public void selectVueForme (VueForme vueForme) {
+        this.vueFormeSélectionnée = vueForme;
+        getPanneauDessin().setVueFormeSélectionnée(vueForme);
+        this.selectVueForme(vueForme);
+
     }
 
     public Forme getForme() {
@@ -117,5 +122,11 @@ public class OutilSélection extends Outil {
 
     public ArrayList<AbstractSelectionAction> getActions() {
         return actions;
+    }
+
+    public void selectLastItem() {
+        final List<VueForme> vueFormeList = getPanneauDessin().getVueFormes();
+
+        selectVueForme(vueFormeList.get(vueFormeList.size()-1));
     }
 }

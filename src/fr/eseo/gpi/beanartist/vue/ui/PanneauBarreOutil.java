@@ -95,7 +95,7 @@ public class PanneauBarreOutil extends javax.swing.JPanel {
             unsetOutilSélection();
 
         updatePanneauOutil(outilSélection);
-        outilSélection.emptySelection();
+        outilSélection.selectLastItem();
     }
     public void unsetOutilSélection() {
         if(outilSélection!=null)
