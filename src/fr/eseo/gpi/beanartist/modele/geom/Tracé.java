@@ -213,6 +213,7 @@ public class Tracé extends Forme {
     public void déplacerDe(int deltaX, int deltaY) {
 
         for (Ligne ligne : lignes) ligne.déplacerDe(deltaX, deltaY);
+        super.setPosition(lignes.get(0).getP1());
     }
 
     public void déplacerVers(int newX, int newY) {

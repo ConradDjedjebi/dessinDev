@@ -21,11 +21,6 @@ public class OutilTracé extends OutilForme {
 
 
     @Override
-    public void mouseClicked(MouseEvent e) {
-        super.mouseClicked(e);
-    }
-
-    @Override
     public void mousePressed(MouseEvent e) {
         forme = new Tracé();
         super.mousePressed(e);
@@ -33,21 +28,37 @@ public class OutilTracé extends OutilForme {
     }
 
     @Override
-    public void mouseReleased(MouseEvent e) {
-        super.mouseReleased(e);
-    }
-
-    @Override
     protected void updateForme() {
         ((Tracé)forme).ajouterLigneVers(new Point(getFin().getX(), getFin().getY()));
     }
 
+    protected VueForme créerVueForme() {
+        return new VueTracé((Tracé)forme, this.getPanneauDessin().getCouleurLigne());
+    }
+
+
     @Override
+    /**
+     * Inutile ! Merci l'Assignment Center
+     */
+    public void mouseReleased(MouseEvent e) {
+        super.mouseReleased(e);
+    }
+
+
+    @Override
+    /**
+     * Inutile ! Merci l'Assignment Center
+     */
     public void mouseDragged(MouseEvent e) {
         super.mouseDragged(e);
     }
 
-    protected VueForme créerVueForme() {
-        return new VueTracé((Tracé)forme, this.getPanneauDessin().getCouleurLigne());
+    @Override
+    /**
+     * Inutile ! Merci l'Assignment Center
+     */
+    public void mouseClicked(MouseEvent e) {
+        super.mouseClicked(e);
     }
 }
