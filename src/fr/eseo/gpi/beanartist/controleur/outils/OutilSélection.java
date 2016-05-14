@@ -36,19 +36,27 @@ public class OutilSélection extends Outil {
 
     @Override
     public void mousePressed (MouseEvent e){
-        super.mousePressed(e);
-        setFin(getDébut());
+        if(!isEmptySelection()) {
+            super.mousePressed(e);
+            setFin(getDébut());
+        }
     }
 
     @Override
     public void mouseDragged(MouseEvent e) {
         try {
+            if(isEmptySelection())
+                throw new Error("No selection");
             setDébut(getFin());
             super.mouseDragged(e);
             this.getForme().déplacerDe(getFin().getX()-getDébut().getX(), getFin().getY() - getDébut().getY());
             this.afficherFormeSélectionnée();
             this.getPanneauDessin().repaint();
-        } catch (NullPointerException excpetion) {}
+        } catch (NullPointerException excpetion) {
+
+        } catch (Error error) {
+
+        }
     }
 
     public VueForme getVueForme(){
@@ -76,12 +84,14 @@ public class OutilSélection extends Outil {
     }
 
     protected String afficherFormeSélectionnée() {
+        String returnVal;
         try {
-            this.getPanneauDessin().getLabel().setText(this.getForme().toString());
-            return this.getForme().toString();
+            returnVal = this.getForme().toString();
         } catch(NullPointerException e) {
-            return "Aucune forme sélectionnée";
+            returnVal = "Aucune forme sélectionnée";
         }
+        this.getPanneauDessin().getLabel().setText(returnVal);
+        return returnVal;
     }
 
     public void emptySelection() {
@@ -91,7 +101,7 @@ public class OutilSélection extends Outil {
         updateButtons();
     }
 
-    public boolean isEmptySelection() {
+    private boolean isEmptySelection() {
         return getVueForme()==null;
     }
 
@@ -99,7 +109,7 @@ public class OutilSélection extends Outil {
         this.actions.add(action);
     }
 
-    public void updateButtons() {
+    private void updateButtons() {
         for (AbstractSelectionAction action : actions) {
             action.updateButton(this.isEmptySelection());
         }

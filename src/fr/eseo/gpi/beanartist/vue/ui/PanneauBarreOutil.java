@@ -75,8 +75,8 @@ public class PanneauBarreOutil extends javax.swing.JPanel {
 
         this.add(clear);
         this.add(choixCouleur);
-        new RedimensionnageButton(this, getFenêtre(), outilSélection);
         new RemplissageButton(this,getFenêtre(), outilSélection);
+        new RedimensionnageButton(this, getFenêtre(), outilSélection);
         this.add(quitSelection);
     }
 
@@ -99,6 +99,7 @@ public class PanneauBarreOutil extends javax.swing.JPanel {
         if(outilSélection!=null)
             this.outilSélection.libérer(true);
 
+        this.fenêtre.getPanneauDessin().setVueFormeSélectionnée(null);
         updatePanneauOutil(null);
     }
 
