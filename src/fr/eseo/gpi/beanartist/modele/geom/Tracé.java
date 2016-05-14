@@ -30,7 +30,9 @@ public class Tracé extends Forme {
         this.falseOrigin = true;
     }
 
-
+    public Tracé() {
+        this (new Point());
+    }
 
 
     //------------ SETTERS -------------//

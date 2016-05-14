@@ -27,9 +27,9 @@ public class OutilTracé extends OutilForme {
 
     @Override
     public void mousePressed(MouseEvent e) {
+        forme = new Tracé();
         super.mousePressed(e);
-        forme = new Tracé(this.getDébut());
-        this.getPanneauDessin().ajouterVueForme(this.créerVueForme());
+        forme.setPosition(this.getDébut());
     }
 
     @Override
