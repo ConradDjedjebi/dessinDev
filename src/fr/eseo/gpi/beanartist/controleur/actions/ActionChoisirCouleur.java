@@ -31,14 +31,11 @@ public class ActionChoisirCouleur extends AbstractSelectionAction {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        VueForme formeSélectionnée =  panneau.getVueFormeSélectionnée();
-        Color ancienneCouleur = formeSélectionnée.getCouleurLigne();
-        couleurLigneChoisie = JColorChooser.showDialog(null, "Choisir couleur", ancienneCouleur);
-        if(couleurLigneChoisie==null){
-            couleurLigneChoisie = ancienneCouleur;
+        couleurLigneChoisie = JColorChooser.showDialog(null, "Choisir couleur", Color.WHITE);
+        if(couleurLigneChoisie !=null){
+            panneau.getVueFormeSélectionnée().setCouleurLigne(couleurLigneChoisie);
+            panneau.repaint();
         }
-        formeSélectionnée.setCouleurLigne(couleurLigneChoisie);
-        panneau.repaint();
     }
 }
 
