@@ -105,4 +105,8 @@ public class PanneauDessin extends javax.swing.JPanel {
     public void clearLabel() {
         label.setText(new String());
     }
+
+    public FenêtreBeAnArtist getFenêtre() {
+        return this.fenêtre;
+    }
 }

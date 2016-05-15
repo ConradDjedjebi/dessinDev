@@ -1,11 +1,10 @@
 package fr.eseo.gpi.beanartist.controleur.actions;
 
-import fr.eseo.gpi.beanartist.controleur.outils.OutilCouleur;
+import fr.eseo.gpi.beanartist.vue.geom.VueForme;
 import fr.eseo.gpi.beanartist.vue.ui.FenêtreBeAnArtist;
 import fr.eseo.gpi.beanartist.vue.ui.PanneauDessin;
 
-import javax.swing.JComponent;
-import javax.swing.JFrame;
+import javax.swing.*;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 
@@ -17,8 +16,8 @@ import java.awt.event.ActionEvent;
 public class ActionChoisirCouleur extends AbstractSelectionAction {
     public static final String CHOISIR_COULEUR = "Couleur";
     private PanneauDessin panneau;
-    private  JComponent panneauCouleur;
-    protected Color couleurChoisie;
+
+    public Color couleurLigneChoisie;
 
 
     public ActionChoisirCouleur (FenêtreBeAnArtist fenêtreBeAnArtist) {
@@ -26,28 +25,20 @@ public class ActionChoisirCouleur extends AbstractSelectionAction {
         this.panneau = fenêtreBeAnArtist.getPanneauDessin();
     }
 
+    public ActionChoisirCouleur(PanneauDessin panneau){
+        this(panneau.getFenêtre());
+    };
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        //Create and set up the window.
-        JFrame frame = new JFrame("Panneau Couleurs");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        //Create and set up the content pane.
-        panneauCouleur = new OutilCouleur(this);
-        panneauCouleur.setOpaque(true); //content panes must be opaque
-        frame.setContentPane(panneauCouleur);
-
-        //Display the window.
-        frame.pack();
-        frame.setVisible(true);
-        panneau.getVueFormeSélectionnée().setCouleurLigne(couleurChoisie);
-        panneau.getVueFormeSélectionnée().setCouleurRemplissage(couleurChoisie);
+        VueForme formeSélectionnée =  panneau.getVueFormeSélectionnée();
+        Color ancienneCouleur = formeSélectionnée.getCouleurLigne();
+        couleurLigneChoisie = JColorChooser.showDialog(null, "Choisir couleur", ancienneCouleur);
+        if(couleurLigneChoisie==null){
+            couleurLigneChoisie = ancienneCouleur;
+        }
+        formeSélectionnée.setCouleurLigne(couleurLigneChoisie);
         panneau.repaint();
     }
-
-    public void setCouleurChoisie(Color couleur){
-        this.couleurChoisie = couleur;
-    }
-
 }
 

@@ -35,7 +35,7 @@ public class PanneauBarreOutil extends javax.swing.JPanel {
         initComponents();
     }
 
-    protected void initComponents() {
+    private void initComponents() {
         JButton clearAll = new JButton(new ActionEffacer(this.getFenêtre()));
         clearAll.setBackground(Color.RED);
         JButton choixCouleur = new JButton(new ActionChoisirCouleur(this.getFenêtre()));
@@ -86,6 +86,7 @@ public class PanneauBarreOutil extends javax.swing.JPanel {
         this.add(quitSelection);
     }
 
+
     public FenêtreBeAnArtist getFenêtre() {
         return fenêtre;
     }
@@ -114,6 +115,7 @@ public class PanneauBarreOutil extends javax.swing.JPanel {
         this.getFenêtre().getPanneauDessin().clearLabel();
         this.outilSélection = newOutilSélection;
         if(newOutilSélection!=null) initComponentsSélection();
+
         else initComponents();
         this.revalidate();
         this.repaint();

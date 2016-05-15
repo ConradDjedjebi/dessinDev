@@ -36,12 +36,10 @@ public class OutilRedimensionner extends Outil {
     public void mouseDragged(MouseEvent e) {
         try {
             Forme forme = outilSélection.getForme();
-            if(forme instanceof Tracé)
-                throw new Error("Impossible de redimensionner un tracé à main levé");
             setDébut(getFin());
             super.mouseDragged(e);
-            forme.setLargeur(forme.getLargeur() + getDeltaX());
-            forme.setHauteur(forme.getHauteur() + getDeltaY());
+            //if(forme instanceof Tracé)
+            forme.setDimensions(forme.getLargeur() + getDeltaX(), forme.getHauteur() + getDeltaY());
             outilSélection.afficherFormeSélectionnée();
             this.getPanneauDessin().repaint();
         } catch (NullPointerException excpetion) {}

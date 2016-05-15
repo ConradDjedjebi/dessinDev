@@ -72,6 +72,7 @@ public class Tracé extends Forme {
         super.setPosition(point);
     }
 
+    @Override
     public void setDimensions(int newLargeur, int newHauteur) {
         setLargeur(newLargeur);
         setHauteur(newHauteur);
@@ -79,7 +80,7 @@ public class Tracé extends Forme {
 
 
 
-    public void setHauteur(int newHauteur){
+    /*public void setHauteur(int newHauteur){
         int newY1;
         int minY = getMinY();
         double coeff = (double) newHauteur / getHauteur();
@@ -89,9 +90,59 @@ public class Tracé extends Forme {
             ligne.setHauteur((int) Math.round(ligne.getHauteur()*coeff));
         }
         super.setHauteur(newHauteur);
+        correctTracé();
+    }*/
+
+
+
+    public void setHauteur(int newHauteur){
+        int newY1;
+        int minY = getMinY();
+        double coeff = (double) newHauteur / getHauteur();
+        for (int i =0; i <lignes.size(); i++){
+            if(i==0){
+                newY1 = minY + (int) Math.round((lignes.get(i).getP1().getY() - minY) * coeff);
+                lignes.get(i).getP1().setY(newY1);
+                lignes.get(i).setHauteur((int) Math.round(lignes.get(i).getHauteur()*coeff));
+                lignes.get(i+1).getP1().setY(lignes.get(i).getP2().getY());
+            }
+            else if(i > 0 && i < lignes.size()-1)
+            {
+                lignes.get(i).setHauteur((int) Math.round(lignes.get(i).getHauteur()*coeff));
+                lignes.get(i+1).getP1().setY(lignes.get(i).getP2().getY());
+            }
+            else if(i == lignes.size()-1 ){
+                lignes.get(i).setHauteur((int) Math.round(lignes.get(i).getHauteur()*coeff));
+            }
+        }
+        super.setHauteur(newHauteur);
     }
 
+
     public void setLargeur(int newLargeur){
+        int newX1;
+        int minX = getMinX();
+        double coeff = (double) newLargeur / getLargeur();
+        for (int i =0; i <lignes.size(); i++){
+            if(i==0){
+                newX1 = minX + (int) Math.round((lignes.get(i).getP1().getX() - minX) * coeff);
+                lignes.get(i).getP1().setX(newX1);
+                lignes.get(i).setLargeur((int) Math.round(lignes.get(i).getLargeur()*coeff));
+                lignes.get(i+1).getP1().setX(lignes.get(i).getP2().getX());
+            }
+            else if(i > 0 && i < lignes.size()-1)
+            {
+                lignes.get(i).setLargeur((int) Math.round(lignes.get(i).getLargeur()*coeff));
+                lignes.get(i+1).getP1().setX(lignes.get(i).getP2().getX());
+            }
+            else if (i == lignes.size()-1){
+                lignes.get(i).setLargeur((int) Math.round(lignes.get(i).getLargeur()*coeff));
+            }
+        }
+        super.setLargeur(newLargeur);
+    }
+
+    /*public void setLargeur(int newLargeur){
         int newX1;
         int minX = getMinX();
         double coeff = (double) newLargeur / getLargeur();
@@ -101,10 +152,20 @@ public class Tracé extends Forme {
             ligne.setLargeur((int) Math.round(ligne.getLargeur()*coeff));
         }
         super.setLargeur(newLargeur);
+        correctTracé();
     }
 
-
-
+    private void correctTracé()
+    {
+        //Ressouder les ligne en créant un lien entre tous les points du tracé
+        List<Ligne> lesLignes = this.getLignes();
+        Tracé newTracé = new Tracé (lesLignes.get(0).getP1());
+        for(int i = 0; i< lesLignes.size(); i++){
+            newTracé.ajouterLigneVers(lesLignes.get(i).getP1());
+            newTracé.ajouterLigneVers(lesLignes.get(i).getP2());
+        }
+        this.setLignes(newTracé.getLignes());
+    }*/
 
     // --------- GETTERS ----------- //
 
@@ -206,6 +267,8 @@ public class Tracé extends Forme {
     public List<Ligne> getLignes() {
         return lignes;
     }
+
+    public void setLignes(List<Ligne> newLignes){this.lignes = newLignes;}
 
     //----------- METHODS -----------//
 

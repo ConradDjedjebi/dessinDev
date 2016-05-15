@@ -33,8 +33,6 @@ public class VueRectangle extends VueForme {
     @Override
     public void affiche(Graphics2D g2D) {
         g2D.setColor(this.getCouleurLigne());
-        g2D.setBackground(this.getCouleurRemplissage());
-
         if (estRempli())
                 g2D.fillRect(forme.getMinX(), forme.getMinY(), forme.getLargeur(), forme.getHauteur());
         else

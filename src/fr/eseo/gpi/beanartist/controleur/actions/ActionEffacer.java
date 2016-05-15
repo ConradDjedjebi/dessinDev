@@ -4,7 +4,7 @@ import fr.eseo.gpi.beanartist.controleur.outils.OutilSélection;
 import fr.eseo.gpi.beanartist.vue.ui.FenêtreBeAnArtist;
 
 import java.awt.event.ActionEvent;
-
+import javax.swing.AbstractAction;
 /**
  * @author duhamean
  * @date 02/05/16

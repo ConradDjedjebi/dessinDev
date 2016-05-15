@@ -111,14 +111,15 @@ public abstract class Forme implements Cloneable {
         setHauteur(p2Y-getY());
     }
 
-    public void setLargeur(int newLength) {
-        largeur = newLength;
+    public void setLargeur(int newWidth) {
+        largeur = newWidth;
     }
 
     public void setHauteur(int newLength) {
         hauteur = newLength;
     }
 
+    public void setDimensions(int newWidth, int newLength){ setLargeur(newWidth); setHauteur(newLength);}
 
     // ========================================
     // =========    OTHERS      ===============
