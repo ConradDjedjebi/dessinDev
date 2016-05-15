@@ -19,7 +19,6 @@ public class OutilSélection extends Outil {
     public static final String NO_SELECTION_TEXT = "Aucune forme sélectionnée";
 
     private VueForme vueFormeSélectionnée;
-    private Forme formeSélectionnée = vueFormeSélectionnée.getForme();
     private ArrayList<AbstractSelectionAction> actions;
 
     public OutilSélection (PanneauDessin panneauDessin){
