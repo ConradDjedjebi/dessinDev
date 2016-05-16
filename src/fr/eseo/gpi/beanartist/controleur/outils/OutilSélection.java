@@ -127,6 +127,9 @@ public class OutilSélection extends Outil {
     public void selectLastItem() {
         final List<VueForme> vueFormeList = getPanneauDessin().getVueFormes();
 
-        selectVueForme(vueFormeList.get(vueFormeList.size()-1));
+        if(vueFormeList.isEmpty())
+            emptySelection();
+        else
+            selectVueForme(vueFormeList.get(vueFormeList.size()-1));
     }
 }
