@@ -23,7 +23,6 @@ public class OutilEllipse extends OutilForme {
     public void mousePressed(MouseEvent e) {
         forme = new Ellipse();
         super.mousePressed(e);
-        forme.setPosition(getDébut());
     }
 
 

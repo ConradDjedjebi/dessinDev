@@ -5,7 +5,6 @@ package fr.eseo.gpi.beanartist.modele.geom;
  * @date 12/04/2016
  * @project gpi_binome
  */
-//import java.lang.Math;
 
 public class Ligne extends Forme {
 
@@ -70,7 +69,6 @@ public class Ligne extends Forme {
     public void setPosition(Point newPosition) {
         int deltaX = newPosition.getX() - getX();
         int deltaY = newPosition.getY() - getY();
-        super.setPosition(newPosition);
         déplacerDe(deltaX, deltaY);
     }
 
@@ -139,14 +137,6 @@ public class Ligne extends Forme {
         return this.contient(testPosition.getX(), testPosition.getY());
     }
 
-//    public Ligne clone () {
-//        Ligne clone = (Ligne) super.clone();
-//
-//        clone.setP1(this.getP1().clone());
-//        clone.setP2(this.getP2().clone());
-//
-//        return clone;
-//    }
     public Ligne clone () {
         return (Ligne) super.clone();
     }

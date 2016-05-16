@@ -22,7 +22,6 @@ public class OutilCarré extends OutilForme{
     public void mousePressed(MouseEvent e) {
         forme = new Carré();
         super.mousePressed(e);
-        forme.setPosition(getDébut());
     }
 
     @Override

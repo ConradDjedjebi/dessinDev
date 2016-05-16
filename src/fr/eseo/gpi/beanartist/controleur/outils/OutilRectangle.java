@@ -22,7 +22,6 @@ public class OutilRectangle extends OutilForme {
     public void mousePressed(MouseEvent e) {
         forme = new Rectangle();
         super.mousePressed(e);
-        forme.setPosition(getDébut());
     }
 
     @Override

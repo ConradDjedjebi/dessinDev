@@ -23,7 +23,6 @@ public class OutilCercle extends OutilForme{
     public void mousePressed(MouseEvent e) {
         forme = new Cercle();
         super.mousePressed(e);
-        forme.setPosition(getDébut());
     }
 
     @Override

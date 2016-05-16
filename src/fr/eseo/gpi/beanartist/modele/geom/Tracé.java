@@ -48,9 +48,9 @@ public class Tracé extends Forme {
         }
         else
             this.lignes.add(new Ligne(this.lignes.get(lignes.size() - 1).getP2(), point));
-        super.setHauteur(findHauteur());
-        super.setLargeur(findLargeur());
-        super.setPosition(findPosition());
+        super.setHauteur(getHauteur());
+        super.setLargeur(getLargeur());
+        super.setPosition(getPosition());
     }
 
 
@@ -74,98 +74,54 @@ public class Tracé extends Forme {
 
     @Override
     public void setDimensions(int newLargeur, int newHauteur) {
+        Point oldPosition = getPosition();
         setLargeur(newLargeur);
         setHauteur(newHauteur);
-    }
 
-
-
-    /*public void setHauteur(int newHauteur){
-        int newY1;
-        int minY = getMinY();
-        double coeff = (double) newHauteur / getHauteur();
-        for (Ligne ligne : lignes){
-            newY1 = minY + (int) Math.round((ligne.getP1().getY() - minY) * coeff);
-            ligne.getP1().setY(newY1);
-            ligne.setHauteur((int) Math.round(ligne.getHauteur()*coeff));
-        }
-        super.setHauteur(newHauteur);
-        correctTracé();
-    }*/
-
-
-
-    public void setHauteur(int newHauteur){
-        int newY1;
-        int minY = getMinY();
-        double coeff = (double) newHauteur / getHauteur();
-        for (int i =0; i <lignes.size(); i++){
-            if(i==0){
-                newY1 = minY + (int) Math.round((lignes.get(i).getP1().getY() - minY) * coeff);
-                lignes.get(i).getP1().setY(newY1);
-                lignes.get(i).setHauteur((int) Math.round(lignes.get(i).getHauteur()*coeff));
-                lignes.get(i+1).getP1().setY(lignes.get(i).getP2().getY());
-            }
-            else if(i > 0 && i < lignes.size()-1)
-            {
-                lignes.get(i).setHauteur((int) Math.round(lignes.get(i).getHauteur()*coeff));
-                lignes.get(i+1).getP1().setY(lignes.get(i).getP2().getY());
-            }
-            else if(i == lignes.size()-1 ){
-                lignes.get(i).setHauteur((int) Math.round(lignes.get(i).getHauteur()*coeff));
-            }
-        }
-        super.setHauteur(newHauteur);
+        this.déplacerVers(oldPosition.getX(), oldPosition.getY());
     }
 
 
     public void setLargeur(int newLargeur){
         int newX1;
         int minX = getMinX();
+        int maxIndex = lignes.size()-1;
         double coeff = (double) newLargeur / getLargeur();
-        for (int i =0; i <lignes.size(); i++){
-            if(i==0){
-                newX1 = minX + (int) Math.round((lignes.get(i).getP1().getX() - minX) * coeff);
-                lignes.get(i).getP1().setX(newX1);
+
+        try {
+            newX1 = minX + (int) Math.round((lignes.get(0).getP1().getX() - minX) * coeff);
+            lignes.get(0).getP1().setX(newX1);
+            lignes.get(0).setLargeur((int) Math.round(lignes.get(0).getLargeur()*coeff));
+            lignes.get(1).getP1().setX(lignes.get(0).getP2().getX());
+
+            for (int i=1; i<maxIndex; ++i) {
                 lignes.get(i).setLargeur((int) Math.round(lignes.get(i).getLargeur()*coeff));
                 lignes.get(i+1).getP1().setX(lignes.get(i).getP2().getX());
             }
-            else if(i > 0 && i < lignes.size()-1)
-            {
-                lignes.get(i).setLargeur((int) Math.round(lignes.get(i).getLargeur()*coeff));
-                lignes.get(i+1).getP1().setX(lignes.get(i).getP2().getX());
-            }
-            else if (i == lignes.size()-1){
-                lignes.get(i).setLargeur((int) Math.round(lignes.get(i).getLargeur()*coeff));
-            }
-        }
+            lignes.get(maxIndex).setLargeur((int) Math.round(lignes.get(maxIndex).getLargeur()*coeff));
+        } catch(IndexOutOfBoundsException exception) {}
         super.setLargeur(newLargeur);
     }
 
-    /*public void setLargeur(int newLargeur){
-        int newX1;
-        int minX = getMinX();
-        double coeff = (double) newLargeur / getLargeur();
-        for (Ligne ligne : lignes){
-            newX1 = minX + (int) Math.round((ligne.getP1().getX() - minX) * coeff);
-            ligne.getP1().setX(newX1);
-            ligne.setLargeur((int) Math.round(ligne.getLargeur()*coeff));
-        }
-        super.setLargeur(newLargeur);
-        correctTracé();
-    }
+    public void setHauteur(int newHauteur){
+        int newY1;
+        int minY = getMinY();
+        int maxIndex = lignes.size()-1;
+        double coeff = (double) newHauteur / getHauteur();
 
-    private void correctTracé()
-    {
-        //Ressouder les ligne en créant un lien entre tous les points du tracé
-        List<Ligne> lesLignes = this.getLignes();
-        Tracé newTracé = new Tracé (lesLignes.get(0).getP1());
-        for(int i = 0; i< lesLignes.size(); i++){
-            newTracé.ajouterLigneVers(lesLignes.get(i).getP1());
-            newTracé.ajouterLigneVers(lesLignes.get(i).getP2());
-        }
-        this.setLignes(newTracé.getLignes());
-    }*/
+        try {
+            newY1 = minY + (int) Math.round((lignes.get(0).getP1().getY() - minY) * coeff);
+            lignes.get(0).getP1().setY(newY1);
+            lignes.get(0).setHauteur((int) Math.round(lignes.get(0).getHauteur()*coeff));
+            lignes.get(1).getP1().setY(lignes.get(0).getP2().getY());
+            for (int i = 1; i <maxIndex; i++){
+                lignes.get(i).setHauteur((int) Math.round(lignes.get(i).getHauteur()*coeff));
+                lignes.get(i+1).getP1().setY(lignes.get(i).getP2().getY());
+            }
+            lignes.get(maxIndex).setHauteur((int) Math.round(lignes.get(maxIndex).getHauteur()*coeff));
+        } catch (IndexOutOfBoundsException exception) {}
+        super.setHauteur(newHauteur);
+    }
 
     // --------- GETTERS ----------- //
 
@@ -209,8 +165,8 @@ public class Tracé extends Forme {
         return xMax;
     }
 
-
-    public int findLargeur() {
+    @Override
+    public int getLargeur() {
         int xMin = Integer.MAX_VALUE;
         int xMax = Integer.MIN_VALUE;
 
@@ -226,8 +182,8 @@ public class Tracé extends Forme {
         return xMax - xMin;
     }
 
-
-    public int findHauteur() {
+    @Override
+    public int getHauteur() {
         int yMin = Integer.MAX_VALUE;
         int yMax = Integer.MIN_VALUE;
 
@@ -243,8 +199,8 @@ public class Tracé extends Forme {
         return yMax - yMin;
     }
 
-
-    public Point findPosition() {
+    @Override
+    public Point getPosition() {
         int xMin = Integer.MAX_VALUE;
         int yMax = Integer.MIN_VALUE;
 

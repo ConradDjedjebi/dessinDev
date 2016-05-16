@@ -31,6 +31,7 @@ public abstract class OutilForme extends Outil {
     @Override
     public void mousePressed (MouseEvent e){
         super.mousePressed(e);
+        forme.setPosition(getDébut());
         this.getPanneauDessin().ajouterVueForme(this.créerVueForme());
     }
 
@@ -46,6 +47,7 @@ public abstract class OutilForme extends Outil {
     @Override
     public void mouseReleased(MouseEvent e) {
         super.mouseReleased(e);
+        getPanneauDessin().getLabel().setText(forme.toString());
         this.getPanneauDessin().repaint();
     }
 
