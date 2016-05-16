@@ -35,8 +35,8 @@ public class VueTracé extends VueForme {
 
     @Override
     public void affiche(Graphics2D g2D) {
+        super.affiche(g2D);
         Tracé tracé = (Tracé)this.forme;
-        g2D.setColor(this.getCouleurLigne());
         try {
             for (Ligne ligne : tracé.getLignes()) {
                 g2D.drawLine(ligne.getP1().getX(), ligne.getP1().getY(), ligne.getP2().getX(), ligne.getP2().getY());

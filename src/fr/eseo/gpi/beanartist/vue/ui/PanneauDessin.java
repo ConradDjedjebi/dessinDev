@@ -39,6 +39,7 @@ public class PanneauDessin extends javax.swing.JPanel {
         vueFormes = new ArrayList<>();
         this.setPreferredSize(new Dimension(largeur, hauteur));
         this.setBackground(couleurFond);
+        this.setCouleurLigne(COULEUR_LIGNE_PAR_DÉFAUT);
         label = new JLabel("");
         this.add(label);
     }

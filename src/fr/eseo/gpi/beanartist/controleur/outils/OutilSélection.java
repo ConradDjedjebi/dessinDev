@@ -78,7 +78,7 @@ public class OutilSélection extends Outil {
         return vueFormes.get(count);
     }
 
-    public void selectVueForme (VueForme vueForme) {
+    private void selectVueForme(VueForme vueForme) {
         vueFormeSélectionnée = vueForme;
         getPanneauDessin().setVueFormeSélectionnée(vueForme);
         System.out.println(afficherFormeSélectionnée());
@@ -106,7 +106,7 @@ public class OutilSélection extends Outil {
         updateButtons();
     }
 
-    private boolean isEmptySelection() {
+    public boolean isEmptySelection() {
         return getVueForme()==null;
     }
 

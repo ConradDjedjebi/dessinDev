@@ -31,9 +31,8 @@ public class VueLigne extends VueForme {
 
     @Override
     public void affiche(Graphics2D g2D) {
+        super.affiche(g2D);
         Ligne ligne = (Ligne) this.forme;
-
-        g2D.setColor(this.getCouleurLigne());
 
         g2D.drawLine(ligne.getP1().getX(), ligne.getP1().getY(), ligne.getP2().getX(), ligne.getP2().getY());
     }

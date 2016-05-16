@@ -34,8 +34,7 @@ public class VueEllipse extends VueForme {
 
     @Override
     public void affiche(Graphics2D g2D) {
-        g2D.setColor(this.getCouleurLigne());
-        //Vérifier si pour la méthode fillOval(), x et y sont les cooedonnées du point supérieur gauche ou du centre
+        super.affiche(g2D);
         if (estRempli())
             g2D.fillOval(forme.getMinX(), forme.getMinY(), forme.getLargeur(), forme.getHauteur());
         else

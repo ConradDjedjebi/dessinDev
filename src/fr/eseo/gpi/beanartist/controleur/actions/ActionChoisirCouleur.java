@@ -1,10 +1,9 @@
 package fr.eseo.gpi.beanartist.controleur.actions;
 
-import fr.eseo.gpi.beanartist.vue.geom.VueForme;
 import fr.eseo.gpi.beanartist.vue.ui.FenêtreBeAnArtist;
 import fr.eseo.gpi.beanartist.vue.ui.PanneauDessin;
 
-import javax.swing.*;
+import javax.swing.JColorChooser;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 
@@ -15,26 +14,28 @@ import java.awt.event.ActionEvent;
  */
 public class ActionChoisirCouleur extends AbstractSelectionAction {
     public static final String CHOISIR_COULEUR = "Couleur";
-    private PanneauDessin panneau;
-
-    public Color couleurLigneChoisie;
 
 
     public ActionChoisirCouleur (FenêtreBeAnArtist fenêtreBeAnArtist) {
         super(CHOISIR_COULEUR, fenêtreBeAnArtist);
-        this.panneau = fenêtreBeAnArtist.getPanneauDessin();
     }
 
     public ActionChoisirCouleur(PanneauDessin panneau){
         this(panneau.getFenêtre());
-    };
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        couleurLigneChoisie = JColorChooser.showDialog(null, "Choisir couleur", Color.WHITE);
-        if(couleurLigneChoisie !=null){
-            panneau.getVueFormeSélectionnée().setCouleurLigne(couleurLigneChoisie);
-            panneau.repaint();
+        Color couleurLigneChoisie = JColorChooser.showDialog(null, "Choisir couleur", Color.WHITE);
+
+        if(couleurLigneChoisie ==null)
+            return;
+        if(getOutilSélection().isEmptySelection()) {
+            super.fenetre.getPanneauDessin().setCouleurLigne(couleurLigneChoisie);
+        }
+        else {
+            getOutilSélection().getVueForme().setCouleurLigne(couleurLigneChoisie);
+            super.fenetre.repaint();
         }
     }
 }

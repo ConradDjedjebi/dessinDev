@@ -47,12 +47,15 @@ abstract public class VueForme implements Cloneable {
         this.rempli = newRempli;
     }
 
-    public abstract void affiche(Graphics2D g2D);
+    public void affiche(Graphics2D g2D) {
+        g2D.setColor(new Color(getCouleurLigne().getRGB()));
+    }
 
     public VueForme clone () {
         try {
             VueForme vueForme = (VueForme) super.clone();
             vueForme.forme =  vueForme.getForme().clone();
+            vueForme.couleurLigne = new Color(this.couleurLigne.getRGB());
             return vueForme;
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
