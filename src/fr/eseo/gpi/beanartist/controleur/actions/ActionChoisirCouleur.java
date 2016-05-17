@@ -30,7 +30,7 @@ public class ActionChoisirCouleur extends AbstractSelectionAction {
 
         if(couleurLigneChoisie ==null)
             return;
-        if(getOutilSélection().isEmptySelection()) {
+        if(getOutilSélection()==null || getOutilSélection().isEmptySelection()) {
             super.fenetre.getPanneauDessin().setCouleurLigne(couleurLigneChoisie);
         }
         else {
