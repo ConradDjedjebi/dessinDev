@@ -14,6 +14,7 @@ import java.awt.event.ActionEvent;
  */
 public class ActionChoisirCouleur extends AbstractSelectionAction {
     public static final String CHOISIR_COULEUR = "Couleur";
+    public static final String COLOR_CHOOSER_TITLE = "Choisir une couleur";
 
 
     public ActionChoisirCouleur (FenêtreBeAnArtist fenêtreBeAnArtist) {
@@ -26,7 +27,7 @@ public class ActionChoisirCouleur extends AbstractSelectionAction {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        Color couleurLigneChoisie = JColorChooser.showDialog(null, "Choisir couleur", Color.WHITE);
+        Color couleurLigneChoisie = JColorChooser.showDialog(null, COLOR_CHOOSER_TITLE, Color.WHITE);
 
         if(couleurLigneChoisie ==null)
             return;
