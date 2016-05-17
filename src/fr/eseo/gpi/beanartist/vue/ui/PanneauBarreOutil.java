@@ -53,7 +53,7 @@ public class PanneauBarreOutil extends javax.swing.JPanel {
         this.add(clearAll);
         this.add(outilSelection);
         this.add(choixCouleur);
-        new RemplissageButton(this,getFenêtre());
+        this.add(new RemplissageButton(getFenêtre()));
         for (int forme : createFormes) {
             JButton jB = new JButton(new ActionForme(this.getFenêtre(), forme));
             jB.setBackground(Color.CYAN);
@@ -81,8 +81,8 @@ public class PanneauBarreOutil extends javax.swing.JPanel {
         this.add(clear);
         this.add(copy);
         this.add(choixCouleur);
-        new RemplissageButton(this,getFenêtre(), outilSélection);
-        new RedimensionnageButton(this, getFenêtre(), outilSélection);
+        this.add(new RemplissageButton(getFenêtre(), outilSélection));
+        this.add(new RedimensionnageButton(getFenêtre(), outilSélection));
         this.add(quitSelection);
     }
 

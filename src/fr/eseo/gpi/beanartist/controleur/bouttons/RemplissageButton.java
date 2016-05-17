@@ -13,15 +13,18 @@ import javax.swing.JButton;
  * @project gpi_binome
  */
 public class RemplissageButton extends JButton {
-    public RemplissageButton(PanneauBarreOutil panneauBarreOutil, FenêtreBeAnArtist fenêtreBeAnArtist) {
+    public RemplissageButton(FenêtreBeAnArtist fenêtreBeAnArtist) {
         super(new ActionModeRemplissage());
         this.setAction(new ActionModeRemplissage(fenêtreBeAnArtist.getPanneauDessin()));
         ((ActionModeRemplissage)super.getAction()).setJButton(this);
-        panneauBarreOutil.add(this);
+        if(fenêtreBeAnArtist.getPanneauDessin().estModeRemplissage()) {
+            ((ActionModeRemplissage)super.getAction()).setRemplissageState(true);
+            ((ActionModeRemplissage)super.getAction()).updateButton();
+        }
     }
 
-    public RemplissageButton(PanneauBarreOutil panneauBarreOutil, FenêtreBeAnArtist fenêtreBeAnArtist, OutilSélection outilSélection) {
-        this(panneauBarreOutil, fenêtreBeAnArtist);
+    public RemplissageButton(FenêtreBeAnArtist fenêtreBeAnArtist, OutilSélection outilSélection) {
+        this(fenêtreBeAnArtist);
         ((ActionModeRemplissage)this.getAction()).setOutilSélection(outilSélection);
     }
 }

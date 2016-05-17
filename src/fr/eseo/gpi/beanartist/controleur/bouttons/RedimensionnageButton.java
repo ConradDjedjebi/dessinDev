@@ -13,11 +13,10 @@ import javax.swing.JButton;
  * @project gpi_binome
  */
 public class RedimensionnageButton extends JButton {
-    public RedimensionnageButton(PanneauBarreOutil panneauBarreOutil, FenêtreBeAnArtist fenêtre, OutilSélection outilSélection) {
+    public RedimensionnageButton(FenêtreBeAnArtist fenêtre, OutilSélection outilSélection) {
         super(new ActionRedimensionner());
         this.setAction(new ActionRedimensionner(fenêtre));
         ((ActionRedimensionner)super.getAction()).setJButton(this);
         ((ActionRedimensionner)this.getAction()).setOutilSélection(outilSélection);
-        panneauBarreOutil.add(this);
     }
 }
