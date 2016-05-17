@@ -94,6 +94,11 @@ public class Ligne extends Forme {
         super.setLargeur(newLargeur);
     }
 
+    public void setDimensions(int largeur, int hauteur){
+        setLargeur(largeur);
+        setHauteur(hauteur);
+    }
+
     // =========    GEOM        ===============
 
     public int getMinX() {
