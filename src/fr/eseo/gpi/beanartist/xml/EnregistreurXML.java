@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.util.List;
 
 import fr.eseo.gpi.beanartist.modele.geom.*;
+import fr.eseo.gpi.beanartist.vue.geom.VueTracé;
 import org.w3c.dom.Element;
 
 import fr.eseo.gpi.beanartist.vue.geom.VueForme;
@@ -83,7 +84,14 @@ public class EnregistreurXML extends ProcesseurDOM {
 	 * @return l'élément DOM représentant la vue d'une forme
 	 */
 	public Element créeElémentVueForme(VueForme vueForme) {
-		Forme forme = vueForme.getForme();
+		Element élément = vueForme instanceof VueTracé ? créeElément((Tracé)vueForme.getForme()) : créeElément(vueForme.getForme());
+		écrisAttribut(élément, "filled", vueForme.estRempli() ? TRUE_VALUE : FALSE_VALUE);
+		écrisAttribut(élément, "color", vueForme.getCouleurLigne().getRGB());
+
+		return élément;
+	}
+
+	private Element créeElément(Forme forme) {
 		Element élément;
 		try {
 			élément = getDocument().createElement((String) forme.getClass().getDeclaredField("XML_NAME").get(String.class));
@@ -95,8 +103,15 @@ public class EnregistreurXML extends ProcesseurDOM {
 		écrisAttribut(élément, "y", forme.getY());
 		écrisAttribut(élément, "width", forme.getLargeur());
 		écrisAttribut(élément, "height", forme.getHauteur());
-		écrisAttribut(élément, "filled", forme.estModeRemplissage() ? TRUE_VALUE : FALSE_VALUE);
-		getDocument().getDocumentElement().appendChild(élément);
+
 		return élément;
+	}
+
+	private Element créeElément(Tracé tracé) {
+		Element element = créeElément((Forme)tracé);
+		for (Ligne ligne : tracé.getLignes()) {
+			element.appendChild(créeElément(ligne));
+		}
+		return element;
 	}
 }
