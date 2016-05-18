@@ -2,11 +2,13 @@ package fr.eseo.gpi.beanartist.xml;
 
 import java.awt.Color;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.SwingUtilities;
 
+import fr.eseo.gpi.beanartist.vue.ui.PanneauDessin;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -91,10 +93,15 @@ public class LecteurXML extends ProcesseurDOM {
 		List<VueForme> dessin = new ArrayList<>();
 		chargeDocument(nomFichier);
 		Element racine = getDocument().getDocumentElement();
-		// Pour chaque noeud fils de l'élément racine du document,
-		// si le noeud est un élément DOM, convertir cet élément en une vue sur
-		// la forme que l'élément représente en utilisant la méthode
-		// créeVueForme, puis ajouter cette vue au dessin.
+		NodeList childNodes = racine.getChildNodes();
+		VueForme vueForme;
+		for (int i = 0, length = childNodes.getLength(); i < length; i++) {
+			if (childNodes.item(i).getNodeType()==Node.ELEMENT_NODE) {
+				vueForme = créeVueForme((Element) childNodes.item(i));
+				if (vueForme!=null)
+					dessin.add(vueForme);
+			}
+		}
 		return dessin;
 	}
 
@@ -108,29 +115,29 @@ public class LecteurXML extends ProcesseurDOM {
 	public VueForme créeVueForme(Element element) {
 		VueForme vue = null;
 		String nom = element.getNodeName();
-		boolean rempli = false;
-		Color couleur = Color.BLUE;
-		if (nom.equals("à modifier !")) {
+		boolean rempli = element.hasAttribute("filled") && element.getAttribute("filled").equals(TRUE_VALUE);
+		Color couleur = element.hasAttribute("color") ? new Color(lisAttribut(element, "color")) : PanneauDessin.COULEUR_LIGNE_PAR_DÉFAUT;
+		if (nom.equals("rectangle")) {
 			Rectangle forme = créeRectangle(element);
 			vue = new VueRectangle(forme, couleur, rempli);
 		}
-		else if (nom.equals("à modifier !")) {
+		else if (nom.equals("square")) {
 			Carré forme = créeCarré(element);
 			vue = new VueCarré(forme, couleur, rempli);
 		}
-		else if (nom.equals("à modifier !")) {
+		else if (nom.equals("ellipse")) {
 			Ellipse forme = créeEllipse(element);
 			vue = new VueEllipse(forme, couleur, rempli);
 		}
-		else if (nom.equals("à modifier !")) {
+		else if (nom.equals("circle")) {
 			Cercle forme = créeCercle(element);
 			vue = new VueCercle(forme, couleur, rempli);
 		}
-		else if (nom.equals("à modifier !")) {
+		else if (nom.equals("line")) {
 			Ligne forme = créeLigne(element);
 			vue = new VueLigne(forme, couleur);
 		}
-		else if (nom.equals("à modifier !")) {
+		else if (nom.equals("polyline")) {
 			Tracé forme = créeTracé(element);
 			vue = new VueTracé(forme, couleur);
 		}
@@ -143,7 +150,7 @@ public class LecteurXML extends ProcesseurDOM {
 	 * @return le rectangle stocké dans l'élément considéré
 	 */
 	public Rectangle créeRectangle(Element element) {
-		return null;
+		return new Rectangle(lisAttribut(element, "x"), lisAttribut(element, "y"), lisAttribut(element, "height"), lisAttribut(element, "width"));
 	}
 
 	/**
@@ -152,7 +159,7 @@ public class LecteurXML extends ProcesseurDOM {
 	 * @return le carré stocké dans l'élément considéré
 	 */
 	public Carré créeCarré(Element element) {
-		return null;
+		return new Carré(lisAttribut(element, "x"), lisAttribut(element, "y"), lisAttribut(element, "width"));
 	}
 
 	/**
@@ -161,7 +168,7 @@ public class LecteurXML extends ProcesseurDOM {
 	 * @return l'ellipse stockée dans l'élément considéré
 	 */
 	public Ellipse créeEllipse(Element element) {
-		return null;
+		return new Ellipse(lisAttribut(element, "x"), lisAttribut(element, "y"), lisAttribut(element, "height"), lisAttribut(element, "width"));
 	}
 
 	/**
@@ -170,7 +177,7 @@ public class LecteurXML extends ProcesseurDOM {
 	 * @return le cercle stocké dans l'élément considéré
 	 */
 	public Cercle créeCercle(Element element) {
-		return null;
+		return new Cercle(lisAttribut(element, "x"), lisAttribut(element, "y"), lisAttribut(element, "width"));
 	}
 
 	/**
@@ -179,7 +186,7 @@ public class LecteurXML extends ProcesseurDOM {
 	 * @return la ligne stockée dans l'élément considéré
 	 */
 	public Ligne créeLigne(Element element) {
-		return null;
+		return new Ligne(lisAttribut(element, "x"), lisAttribut(element, "y"), lisAttribut(element, "height"), lisAttribut(element, "width"));
 	}
 
 	/**

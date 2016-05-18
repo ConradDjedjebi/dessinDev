@@ -27,6 +27,8 @@ import org.w3c.dom.ls.LSSerializer;
  */
 public abstract class ProcesseurDOM {
 
+	public static final String TRUE_VALUE = "true";
+
 	/**
 	 * L'implémentation de DOM Core.
 	 */
