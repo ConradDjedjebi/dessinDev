@@ -84,7 +84,7 @@ public class EnregistreurXML extends ProcesseurDOM {
 	 */
 	public Element créeElémentVueForme(VueForme vueForme) {
 		Forme forme = vueForme.getForme();
-		Element élément = null;
+		Element élément;
 		try {
 			élément = getDocument().createElement((String) forme.getClass().getDeclaredField("XML_NAME").get(String.class));
 		} catch (IllegalAccessException | NoSuchFieldException e) {
@@ -94,7 +94,8 @@ public class EnregistreurXML extends ProcesseurDOM {
 		écrisAttribut(élément, "x", forme.getX());
 		écrisAttribut(élément, "y", forme.getY());
 		écrisAttribut(élément, "width", forme.getLargeur());
-		écrisAttribut(élément, "heigth", forme.getHauteur());
+		écrisAttribut(élément, "height", forme.getHauteur());
+		écrisAttribut(élément, "filled", forme.estModeRemplissage() ? TRUE_VALUE : FALSE_VALUE);
 		getDocument().getDocumentElement().appendChild(élément);
 		return élément;
 	}

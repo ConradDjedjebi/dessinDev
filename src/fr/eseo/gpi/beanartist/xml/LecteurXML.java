@@ -94,13 +94,13 @@ public class LecteurXML extends ProcesseurDOM {
 		chargeDocument(nomFichier);
 		Element racine = getDocument().getDocumentElement();
 		NodeList childNodes = racine.getChildNodes();
-		VueForme vueForme = null;
+		VueForme vueForme;
 		for (int i = 0, length = childNodes.getLength(); i < length; i++) {
 			if (childNodes.item(i).getNodeType()==Node.ELEMENT_NODE) {
 				vueForme = créeVueForme((Element) childNodes.item(i));
+				if (vueForme!=null)
+					dessin.add(vueForme);
 			}
-			if (vueForme!=null)
-				dessin.add(vueForme);
 		}
 		return dessin;
 	}
@@ -150,7 +150,11 @@ public class LecteurXML extends ProcesseurDOM {
 	 * @return le rectangle stocké dans l'élément considéré
 	 */
 	public Rectangle créeRectangle(Element element) {
-		return new Rectangle(lisAttribut(element, "x"), lisAttribut(element, "y"), lisAttribut(element, "height"), lisAttribut(element, "width"));
+		return new Rectangle(
+				lisAttribut(element, "x"),
+				lisAttribut(element, "y"),
+				lisAttribut(element, "height"),
+				lisAttribut(element, "width"));
 	}
 
 	/**
