@@ -10,7 +10,6 @@ import java.util.Locale;
  * @project gpi_binome
  */
 public abstract class Forme implements Cloneable {
-    public static final String XML_NAME = "sketch";
     public static final int LARGEUR_PAR_DÉFAUT = 70;
     public static final int HAUTEUR_PAR_DÉFAUT = 50;
     protected int largeur, hauteur;

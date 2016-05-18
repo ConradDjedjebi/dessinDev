@@ -25,7 +25,7 @@ import org.w3c.dom.ls.LSSerializer;
  * 
  * Cette classe ne doit PAS être modifiée.
  */
-public abstract class ProcesseurDOM {
+abstract class ProcesseurDOM {
 
 	public static final String TRUE_VALUE = "true";
 	public static final String FALSE_VALUE = "false";
@@ -55,13 +55,7 @@ public abstract class ProcesseurDOM {
 			dom = registry.getDOMImplementation("XML 1.0");
 			domLS = (DOMImplementationLS) registry.getDOMImplementation("LS");
 		}
-		catch (ClassNotFoundException e) {
-		}
-		catch (InstantiationException e) {
-		}
-		catch (IllegalAccessException e) {
-		}
-		catch (ClassCastException e) {
+		catch (ClassNotFoundException | InstantiationException | ClassCastException | IllegalAccessException ignored) {
 		}
 	}
 
