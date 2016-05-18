@@ -6,6 +6,8 @@ import java.text.NumberFormat;
  * @project gpi_binome
  */
 public class Ellipse extends Forme {
+    
+    public static final String XML_NAME = "ellipse";
 
     //------------- CONSTRUCTEUR -------------//
 

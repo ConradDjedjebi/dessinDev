@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
  * @project gpi_binome
  */
 public class Tracé extends Forme {
+    public static final String XML_NAME = "polyline";
     private List<Ligne> lignes;
     private boolean falseOrigin = false;
 
@@ -33,6 +34,11 @@ public class Tracé extends Forme {
 
     public Tracé() {
         this (new Point());
+    }
+
+    public Tracé(List<Ligne> lignes) {
+        this();
+        setLignes(lignes);
     }
 
 
@@ -224,7 +230,10 @@ public class Tracé extends Forme {
         return lignes;
     }
 
-    public void setLignes(List<Ligne> newLignes){this.lignes = newLignes;}
+    public void setLignes(List<Ligne> newLignes) {
+        this.lignes = newLignes;
+        super.setPosition(this.getPosition());
+    }
 
     //----------- METHODS -----------//
 

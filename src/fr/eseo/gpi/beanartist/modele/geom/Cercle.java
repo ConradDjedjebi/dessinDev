@@ -6,6 +6,8 @@ package fr.eseo.gpi.beanartist.modele.geom;
 
 public class Cercle extends Ellipse {
 
+    public static final String XML_NAME = "circle";
+
 	//------------- CONSTRUCTEUR -------------//
 	
 	public Cercle() {

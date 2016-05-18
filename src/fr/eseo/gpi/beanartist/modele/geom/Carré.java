@@ -5,6 +5,8 @@
 package fr.eseo.gpi.beanartist.modele.geom;
 
 public class Carré extends Rectangle {
+    public static final String XML_NAME = "square";
+
 
 	//------------- CONSTRUCTEUR -------------//
 

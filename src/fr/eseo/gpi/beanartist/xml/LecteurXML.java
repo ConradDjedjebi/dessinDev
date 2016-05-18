@@ -94,13 +94,13 @@ public class LecteurXML extends ProcesseurDOM {
 		chargeDocument(nomFichier);
 		Element racine = getDocument().getDocumentElement();
 		NodeList childNodes = racine.getChildNodes();
-		VueForme vueForme;
+		VueForme vueForme = null;
 		for (int i = 0, length = childNodes.getLength(); i < length; i++) {
 			if (childNodes.item(i).getNodeType()==Node.ELEMENT_NODE) {
 				vueForme = créeVueForme((Element) childNodes.item(i));
-				if (vueForme!=null)
-					dessin.add(vueForme);
 			}
+			if (vueForme!=null)
+				dessin.add(vueForme);
 		}
 		return dessin;
 	}
@@ -117,27 +117,27 @@ public class LecteurXML extends ProcesseurDOM {
 		String nom = element.getNodeName();
 		boolean rempli = element.hasAttribute("filled") && element.getAttribute("filled").equals(TRUE_VALUE);
 		Color couleur = element.hasAttribute("color") ? new Color(lisAttribut(element, "color")) : PanneauDessin.COULEUR_LIGNE_PAR_DÉFAUT;
-		if (nom.equals("rectangle")) {
+		if (nom.equals(Rectangle.XML_NAME)) {
 			Rectangle forme = créeRectangle(element);
 			vue = new VueRectangle(forme, couleur, rempli);
 		}
-		else if (nom.equals("square")) {
+		else if (nom.equals(Carré.XML_NAME)) {
 			Carré forme = créeCarré(element);
 			vue = new VueCarré(forme, couleur, rempli);
 		}
-		else if (nom.equals("ellipse")) {
+		else if (nom.equals(Ellipse.XML_NAME)) {
 			Ellipse forme = créeEllipse(element);
 			vue = new VueEllipse(forme, couleur, rempli);
 		}
-		else if (nom.equals("circle")) {
+		else if (nom.equals(Cercle.XML_NAME)) {
 			Cercle forme = créeCercle(element);
 			vue = new VueCercle(forme, couleur, rempli);
 		}
-		else if (nom.equals("line")) {
+		else if (nom.equals(Ligne.XML_NAME)) {
 			Ligne forme = créeLigne(element);
 			vue = new VueLigne(forme, couleur);
 		}
-		else if (nom.equals("polyline")) {
+		else if (nom.equals(Tracé.XML_NAME)) {
 			Tracé forme = créeTracé(element);
 			vue = new VueTracé(forme, couleur);
 		}
@@ -196,9 +196,16 @@ public class LecteurXML extends ProcesseurDOM {
 	 */
 	public Tracé créeTracé(Element element) {
 		// création de la liste des points du tracé
-		List<Point> points = new ArrayList<>();
+		List<Ligne> lignes= new ArrayList<>();
+
+		NodeList childNodes = element.getChildNodes();
+
+		for (int i = 0, length = childNodes.getLength(); i < length; i++) {
+			if (childNodes.item(i).getNodeType()==Node.ELEMENT_NODE && childNodes.item(i).getNodeName().equals(Ligne.XML_NAME))
+				lignes.add(créeLigne((Element) childNodes.item(i)));
+		}
 		// création des lignes formant le tracé
-		return null;
+		return new Tracé(lignes);
 	}
 
 }

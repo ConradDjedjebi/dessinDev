@@ -1,18 +1,11 @@
 package fr.eseo.gpi.beanartist.xml;
 
-import java.awt.Color;
 import java.io.FileNotFoundException;
 import java.util.List;
 
+import fr.eseo.gpi.beanartist.modele.geom.*;
 import org.w3c.dom.Element;
 
-import fr.eseo.gpi.beanartist.modele.geom.Carré;
-import fr.eseo.gpi.beanartist.modele.geom.Cercle;
-import fr.eseo.gpi.beanartist.modele.geom.Ellipse;
-import fr.eseo.gpi.beanartist.modele.geom.Ligne;
-import fr.eseo.gpi.beanartist.modele.geom.Point;
-import fr.eseo.gpi.beanartist.modele.geom.Rectangle;
-import fr.eseo.gpi.beanartist.modele.geom.Tracé;
 import fr.eseo.gpi.beanartist.vue.geom.VueForme;
 
 /**
@@ -76,8 +69,9 @@ public class EnregistreurXML extends ProcesseurDOM {
 	public void enregistreDessin(String nomFichier, List<VueForme> dessin) throws FileNotFoundException {
 		créeDocumentXML("dessin");
 		Element racine = getDocument().getDocumentElement();
-		// Pour chaque vue du dessin, créer un élément DOM associé et l'ajouter
-		// dans l'élément racine du document.
+
+		for (VueForme vueForme : dessin) racine.appendChild(créeElémentVueForme(vueForme));
+
 		enregistreDocument(nomFichier);
 	}
 
@@ -89,91 +83,19 @@ public class EnregistreurXML extends ProcesseurDOM {
 	 * @return l'élément DOM représentant la vue d'une forme
 	 */
 	public Element créeElémentVueForme(VueForme vueForme) {
-		Element élément;
-		String nom = vueForme.getClass().getSimpleName();
-		if (nom.equals("VueRectangle")) {
-			Rectangle forme = (Rectangle) vueForme.getForme();
-			élément = créeElémentRectangle(forme);
+		Forme forme = vueForme.getForme();
+		Element élément = null;
+		try {
+			élément = getDocument().createElement((String) forme.getClass().getDeclaredField("XML_NAME").get(String.class));
+		} catch (IllegalAccessException | NoSuchFieldException e) {
+			throw new Error("Vue non gérée", e);
 		}
-		else if (nom.equals("VueCarré")) {
-			Carré forme = (Carré) vueForme.getForme();
-			élément = créeElémentCarré(forme);
-		}
-		else if (nom.equals("VueEllipse")) {
-			Ellipse forme = (Ellipse) vueForme.getForme();
-			élément = créeElémentEllipse(forme);
-		}
-		else if (nom.equals("VueCercle")) {
-			Cercle forme = (Cercle) vueForme.getForme();
-			élément = créeElémentCercle(forme);
-		}
-		else if (nom.equals("VueLigne")) {
-			Ligne forme = (Ligne) vueForme.getForme();
-			élément = créeElémentLigne(forme);
-		}
-		else if (nom.equals("VueTracé")) {
-			Tracé forme = (Tracé) vueForme.getForme();
-			élément = créeElémentTracé(forme);
-		}
-		else {
-			throw new Error("Vue non gérée");
-		}
+
+		écrisAttribut(élément, "x", forme.getX());
+		écrisAttribut(élément, "y", forme.getY());
+		écrisAttribut(élément, "width", forme.getLargeur());
+		écrisAttribut(élément, "heigth", forme.getHauteur());
 		getDocument().getDocumentElement().appendChild(élément);
 		return élément;
 	}
-
-	/**
-	 * Renvoie un nouvel élément DOM représentant le rectangle donné.
-	 * @param forme le rectangle
-	 * @return élément DOM représentant le rectangle
-	 */
-	public Element créeElémentRectangle(Rectangle forme) {
-		return null;
-	}
-
-	/**
-	 * Renvoie un nouvel élément DOM représentant le carré donné.
-	 * @param forme le carré
-	 * @return élément DOM représentant le carré
-	 */
-	public Element créeElémentCarré(Rectangle forme) {
-		return null;
-	}
-
-	/**
-	 * Renvoie un nouvel élément DOM représentant l'ellipse donnée.
-	 * @param forme l'ellipse
-	 * @return élément DOM représentant l'ellipse
-	 */
-	public Element créeElémentEllipse(Ellipse forme) {
-		return null;
-	}
-
-	/**
-	 * Renvoie un nouvel élément DOM représentant le cercle donné.
-	 * @param forme le cercle
-	 * @return élément DOM représentant le cercle
-	 */
-	public Element créeElémentCercle(Cercle forme) {
-		return null;
-	}
-
-	/**
-	 * Renvoie un nouvel élément DOM représentant la ligne donnée.
-	 * @param forme la ligne
-	 * @return élément DOM représentant la ligne
-	 */
-	public Element créeElémentLigne(Ligne forme) {
-		return null;
-	}
-
-	/**
-	 * Renvoie un nouvel élément DOM représentant le tracé donné.
-	 * @param forme le tracé
-	 * @return élément DOM représentant le tracé
-	 */
-	public Element créeElémentTracé(Tracé forme) {
-		return null;
-	}
-
 }

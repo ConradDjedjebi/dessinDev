@@ -9,6 +9,8 @@ package fr.eseo.gpi.beanartist.modele.geom;
 public class Ligne extends Forme {
 
     public final static double EPSILON = 1;
+    public static final String XML_NAME = "line";
+
 
     //------------- CONSTRUCTEUR -------------//
 
