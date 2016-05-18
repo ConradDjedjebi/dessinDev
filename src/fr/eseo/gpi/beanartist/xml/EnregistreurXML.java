@@ -71,7 +71,7 @@ public class EnregistreurXML extends ProcesseurDOM {
 		créeDocumentXML("dessin");
 		Element racine = getDocument().getDocumentElement();
 
-		for (VueForme vueForme : dessin) racine.appendChild(créeElémentVueForme(vueForme));
+		for (VueForme vueForme : dessin) racine.appendChild(créeElément(vueForme));
 
 		enregistreDocument(nomFichier);
 	}
@@ -83,9 +83,9 @@ public class EnregistreurXML extends ProcesseurDOM {
 	 * @param vueForme la vue d'une forme
 	 * @return l'élément DOM représentant la vue d'une forme
 	 */
-	public Element créeElémentVueForme(VueForme vueForme) {
+	public Element créeElément(VueForme vueForme) {
 		Element élément = vueForme instanceof VueTracé ? créeElément((Tracé)vueForme.getForme()) : créeElément(vueForme.getForme());
-		écrisAttribut(élément, "filled", vueForme.estRempli() ? TRUE_VALUE : FALSE_VALUE);
+		élément.setAttribute("filled", vueForme.estRempli() ? TRUE_VALUE : FALSE_VALUE);
 		écrisAttribut(élément, "color", vueForme.getCouleurLigne().getRGB());
 
 		return élément;
