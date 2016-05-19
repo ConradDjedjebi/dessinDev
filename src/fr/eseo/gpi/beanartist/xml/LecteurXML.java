@@ -190,7 +190,7 @@ public class LecteurXML extends ProcesseurDOM {
 	 * @return la ligne stockée dans l'élément considéré
 	 */
 	private Ligne créeLigne(Element element) {
-		return new Ligne(lisAttribut(element, "x"), lisAttribut(element, "y"), lisAttribut(element, "height"), lisAttribut(element, "width"));
+		return new Ligne(lisAttribut(element, "x"), lisAttribut(element, "y"), lisAttribut(element, "width"), lisAttribut(element, "height"));
 	}
 
 	/**
