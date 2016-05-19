@@ -1,10 +1,6 @@
 package fr.eseo.gpi.beanartist.vue.ui;
 
-import fr.eseo.gpi.beanartist.controleur.actions.ActionChoisirCouleur;
-import fr.eseo.gpi.beanartist.controleur.actions.ActionCopieForme;
-import fr.eseo.gpi.beanartist.controleur.actions.ActionEffacer;
-import fr.eseo.gpi.beanartist.controleur.actions.ActionForme;
-import fr.eseo.gpi.beanartist.controleur.actions.ActionSélectionner;
+import fr.eseo.gpi.beanartist.controleur.actions.*;
 import fr.eseo.gpi.beanartist.controleur.bouttons.RedimensionnageButton;
 import fr.eseo.gpi.beanartist.controleur.bouttons.RemplissageButton;
 import fr.eseo.gpi.beanartist.controleur.outils.OutilSélection;
@@ -39,6 +35,7 @@ public class PanneauBarreOutil extends javax.swing.JPanel {
         JButton clearAll = new JButton(new ActionEffacer(this.getFenêtre()));
         clearAll.setBackground(Color.RED);
         JButton choixCouleur = new JButton(new ActionChoisirCouleur(this.getFenêtre()));
+        JButton sauvegarder = new JButton((new ActionSauvegarder(this.getFenêtre())));
 
         int [] createFormes = {
                 ActionForme.RECTANGLE,
@@ -53,6 +50,7 @@ public class PanneauBarreOutil extends javax.swing.JPanel {
         this.add(clearAll);
         this.add(outilSelection);
         this.add(choixCouleur);
+        this.add(sauvegarder);
         this.add(new RemplissageButton(getFenêtre()));
         for (int forme : createFormes) {
             JButton jB = new JButton(new ActionForme(this.getFenêtre(), forme));
