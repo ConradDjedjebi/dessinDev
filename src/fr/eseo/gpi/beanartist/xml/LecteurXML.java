@@ -150,11 +150,7 @@ public class LecteurXML extends ProcesseurDOM {
 	 * @return le rectangle stocké dans l'élément considéré
 	 */
 	private Rectangle créeRectangle(Element element) {
-		return new Rectangle(
-				lisAttribut(element, "x"),
-				lisAttribut(element, "y"),
-				lisAttribut(element, "height"),
-				lisAttribut(element, "width"));
+		return new Rectangle(lisAttribut(element, "x"), lisAttribut(element, "y"), lisAttribut(element, "width"), lisAttribut(element, "height"));
 	}
 
 	/**
@@ -172,7 +168,7 @@ public class LecteurXML extends ProcesseurDOM {
 	 * @return l'ellipse stockée dans l'élément considéré
 	 */
 	private Ellipse créeEllipse(Element element) {
-		return new Ellipse(lisAttribut(element, "x"), lisAttribut(element, "y"), lisAttribut(element, "height"), lisAttribut(element, "width"));
+		return new Ellipse(lisAttribut(element, "x"), lisAttribut(element, "y"), lisAttribut(element, "width"), lisAttribut(element, "height"));
 	}
 
 	/**
