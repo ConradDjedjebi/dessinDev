@@ -11,7 +11,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 
 /**
- * @author duhamean
+ * @author duhamean & Elphege
  * @date 03/05/16
  * @project gpi_binome
  */
@@ -36,6 +36,9 @@ public class PanneauBarreOutil extends javax.swing.JPanel {
         clearAll.setBackground(Color.RED);
         JButton choixCouleur = new JButton(new ActionChoisirCouleur(this.getFenêtre()));
         JButton sauvegarder = new JButton((new ActionSauvegarder(this.getFenêtre())));
+        JButton ouvrir = new JButton(new ActionOuvrir(this.getFenêtre()));
+        JButton gomme = new JButton(new ActionGommer(this.getFenêtre()));
+        gomme.setBackground(new Color(-6737152));
 
         int [] createFormes = {
                 ActionForme.RECTANGLE,
@@ -51,6 +54,8 @@ public class PanneauBarreOutil extends javax.swing.JPanel {
         this.add(outilSelection);
         this.add(choixCouleur);
         this.add(sauvegarder);
+        this.add(ouvrir);
+        this.add(gomme);
         this.add(new RemplissageButton(getFenêtre()));
         for (int forme : createFormes) {
             JButton jB = new JButton(new ActionForme(this.getFenêtre(), forme));

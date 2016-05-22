@@ -1,4 +1,9 @@
 package fr.eseo.gpi.beanartist.xml;
+/**
+ * @author Antoine & Elphege
+ * @date 22/05/16
+ * @project gpi_binome
+ */
 
 import java.awt.Color;
 import java.io.FileNotFoundException;
@@ -57,7 +62,7 @@ public class LecteurXML extends ProcesseurDOM {
 	 * de l'enregistrement en XML (classe EnregistreurXML).
 	 */
 	public static void main(String[] args) throws FileNotFoundException {
-		teste("S30-Dessin-in.xml");
+		teste("savedFile");
 	}
 
 	/**

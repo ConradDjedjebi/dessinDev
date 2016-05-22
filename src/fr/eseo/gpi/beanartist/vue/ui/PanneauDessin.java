@@ -2,6 +2,7 @@ package fr.eseo.gpi.beanartist.vue.ui;
 
 import fr.eseo.gpi.beanartist.controleur.outils.Outil;
 import fr.eseo.gpi.beanartist.controleur.outils.OutilForme;
+import fr.eseo.gpi.beanartist.vue.geom.VueEllipse;
 import fr.eseo.gpi.beanartist.vue.geom.VueForme;
 
 import javax.swing.JLabel;
@@ -25,6 +26,7 @@ public class PanneauDessin extends javax.swing.JPanel {
 
     private FenêtreBeAnArtist fenêtre;
     private List<VueForme> vueFormes;
+    private static VueForme gomme;
     private Outil outilCourant;
     private Color couleurLigne;
     private VueForme vueFormeSélectionnée;
@@ -64,6 +66,8 @@ public class PanneauDessin extends javax.swing.JPanel {
         for (VueForme vueForme: vueFormes) {
             vueForme.affiche(g2D);
         }
+        if(gomme != null)
+            gomme.affiche(g2D);
         g2D.dispose();
     }
 
@@ -109,5 +113,12 @@ public class PanneauDessin extends javax.swing.JPanel {
 
     public FenêtreBeAnArtist getFenêtre() {
         return this.fenêtre;
+    }
+
+    public void setGomme(VueForme newGomme){
+        gomme = newGomme;
+    }
+    public VueForme getGomme(){
+        return gomme;
     }
 }

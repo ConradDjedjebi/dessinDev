@@ -15,7 +15,6 @@ import java.awt.event.MouseMotionListener;
 public abstract class Outil implements MouseMotionListener, MouseListener {
 
     private static PanneauDessin dessin;
-    private PanneauDessin panneauDessin;
     private Point début, fin;
 
     public Outil (PanneauDessin dessin) {
@@ -47,6 +46,8 @@ public abstract class Outil implements MouseMotionListener, MouseListener {
             getPanneauDessin().removeMouseListener(getPanneauDessin().getOutilCourant());
             getPanneauDessin().removeMouseMotionListener(getPanneauDessin().getOutilCourant());
             getPanneauDessin().setOutilCourant(null);
+            getPanneauDessin().setGomme(null);
+            getPanneauDessin().repaint();
             setPanneauDessin(null);
         } catch (NullPointerException e) {}
     }
