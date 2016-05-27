@@ -54,9 +54,9 @@ public class PanneauBarreOutil extends javax.swing.JPanel {
         this.add(ouvrir);
         this.add(sauvegarder);
         this.add(clearAll);
+        this.add(gomme);
         this.add(outilSelection);
         this.add(choixCouleur);
-        this.add(gomme);
         this.add(new RemplissageButton(getFenêtre()));
         for (int forme : createFormes) {
             JButton jB = new JButton(new ActionForme(this.getFenêtre(), forme));
