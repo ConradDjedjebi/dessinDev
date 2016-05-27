@@ -8,7 +8,6 @@ import fr.eseo.gpi.beanartist.xml.LecteurXML;
 
 import javax.swing.AbstractAction;
 import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.event.ActionEvent;
 import java.io.FileNotFoundException;
 import java.util.List;
@@ -51,6 +50,8 @@ public class ActionOuvrir extends AbstractAction  {
             }
         } catch (FileNotFoundException e1) {
             panneauDessin.getLabel().setText("Fichier introuvable");
+        } catch (RuntimeException e2) {
+            panneauDessin.getLabel().setText("Fichier corrompu");
         }
     }
 }
