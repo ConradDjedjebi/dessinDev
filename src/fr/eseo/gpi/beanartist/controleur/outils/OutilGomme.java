@@ -5,7 +5,7 @@ import fr.eseo.gpi.beanartist.vue.geom.VueForme;
 import fr.eseo.gpi.beanartist.vue.geom.VueEllipse;
 import fr.eseo.gpi.beanartist.vue.ui.PanneauDessin;
 
-import java.awt.Color;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 
 /**
@@ -17,6 +17,8 @@ public class OutilGomme extends OutilForme {
     public static final Color ERASER_COLOR = new Color(255, 153, 8);
     private static final int ERASER_DIM_X = 130;
     private static final int ERASER_DIM_Y = 60;
+
+    protected static final Cursor cursor = new Cursor(Cursor.TEXT_CURSOR);
 
     /**
      * Initialise un déplacement
@@ -95,5 +97,9 @@ public class OutilGomme extends OutilForme {
         public String toString() {
             return String.format("[%s] pos : %s", this.getClass().getSimpleName(), this.getPosition());
         }
+    }
+
+    public Cursor getCursor() {
+        return cursor;
     }
 }

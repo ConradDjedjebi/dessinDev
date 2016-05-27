@@ -4,6 +4,7 @@ import fr.eseo.gpi.beanartist.vue.geom.VueForme;
 import fr.eseo.gpi.beanartist.modele.geom.Forme;
 import fr.eseo.gpi.beanartist.vue.ui.PanneauDessin;
 
+import java.awt.*;
 import java.awt.event.MouseEvent;
 
 /**
@@ -14,6 +15,7 @@ import java.awt.event.MouseEvent;
 public abstract class OutilForme extends Outil {
 
     public final static boolean DEFAULT_REMPLISSAGE_MODE = false;
+    protected static final Cursor cursor = new Cursor(Cursor.CROSSHAIR_CURSOR);
 
     protected Forme forme;
 
@@ -57,4 +59,8 @@ public abstract class OutilForme extends Outil {
     }
 
     protected abstract VueForme créerVueForme();
+
+    public Cursor getCursor() {
+        return cursor;
+    }
 }

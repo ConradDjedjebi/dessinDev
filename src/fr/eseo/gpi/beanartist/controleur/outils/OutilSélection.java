@@ -5,6 +5,7 @@ import fr.eseo.gpi.beanartist.vue.ui.PanneauDessin;
 import fr.eseo.gpi.beanartist.vue.geom.VueForme;
 import fr.eseo.gpi.beanartist.modele.geom.Forme;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.MouseEvent;
@@ -17,6 +18,7 @@ import java.awt.event.MouseEvent;
 public class OutilSélection extends Outil {
 
     public static final String NO_SELECTION_TEXT = "Aucune forme sélectionnée";
+    protected static final Cursor cursor = new Cursor(Cursor.HAND_CURSOR);
 
     private VueForme vueFormeSélectionnée;
     private ArrayList<AbstractSelectionAction> actions;
@@ -131,5 +133,10 @@ public class OutilSélection extends Outil {
             emptySelection();
         else
             selectVueForme(vueFormeList.get(vueFormeList.size()-1));
+    }
+
+
+    public Cursor getCursor() {
+        return cursor;
     }
 }

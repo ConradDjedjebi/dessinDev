@@ -6,6 +6,7 @@ import fr.eseo.gpi.beanartist.modele.geom.Forme;
 import fr.eseo.gpi.beanartist.modele.geom.Tracé;
 import fr.eseo.gpi.beanartist.vue.ui.PanneauDessin;
 
+import java.awt.*;
 import java.awt.event.MouseEvent;
 
 /**
@@ -15,6 +16,8 @@ import java.awt.event.MouseEvent;
  */
 public class OutilRedimensionner extends Outil {
     private OutilSélection outilSélection;
+
+    protected static final Cursor cursor = new Cursor(Cursor.NW_RESIZE_CURSOR);
 
     /**
      * Initialise un déplacement
@@ -48,5 +51,7 @@ public class OutilRedimensionner extends Outil {
         }
     }
 
-
+    public Cursor getCursor() {
+        return cursor;
+    }
 }

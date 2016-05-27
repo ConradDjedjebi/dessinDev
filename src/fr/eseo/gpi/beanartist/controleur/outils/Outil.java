@@ -3,6 +3,7 @@ package fr.eseo.gpi.beanartist.controleur.outils;
 import fr.eseo.gpi.beanartist.modele.geom.Point;
 import fr.eseo.gpi.beanartist.vue.ui.PanneauDessin;
 
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -16,6 +17,7 @@ public abstract class Outil implements MouseMotionListener, MouseListener {
 
     private static PanneauDessin dessin;
     private Point début, fin;
+    protected static final Cursor cursor = Cursor.getDefaultCursor();
 
     public Outil (PanneauDessin dessin) {
         this.associer(dessin);
@@ -30,6 +32,7 @@ public abstract class Outil implements MouseMotionListener, MouseListener {
         newPanneauDessin.setOutilCourant(this);
         newPanneauDessin.addMouseListener(this);
         newPanneauDessin.addMouseMotionListener(this);
+        newPanneauDessin.setCursor(this.getCursor());
     }
 
     /**
@@ -47,6 +50,7 @@ public abstract class Outil implements MouseMotionListener, MouseListener {
             getPanneauDessin().removeMouseMotionListener(getPanneauDessin().getOutilCourant());
             getPanneauDessin().setOutilCourant(null);
             getPanneauDessin().setGomme(null);
+            getPanneauDessin().setCursor(Cursor.getDefaultCursor());
             getPanneauDessin().repaint();
             setPanneauDessin(null);
         } catch (NullPointerException e) {}
@@ -122,4 +126,7 @@ public abstract class Outil implements MouseMotionListener, MouseListener {
         return this.getFin().getY() - this.getDébut().getY();
     }
 
+    public Cursor getCursor() {
+        return cursor;
+    }
 }
