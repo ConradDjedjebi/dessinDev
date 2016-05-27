@@ -9,7 +9,6 @@ import javax.swing.AbstractAction;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.event.ActionEvent;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.List;
 
@@ -37,7 +36,13 @@ public class ActionOuvrir extends AbstractAction  {
             int returnVal = fc.showOpenDialog(panneauDessin);
 
             if (returnVal == JFileChooser.APPROVE_OPTION) {
-                List<VueForme> lesVueFormes = lecteur.lisDessin(fc.getCurrentDirectory()+ File.separator+fc.getSelectedFile().getName());
+                List<VueForme> lesVueFormes = lecteur.lisDessin(
+                        fc.getSelectedFile().getAbsolutePath() +
+                                (fc.getSelectedFile().exists() ?
+                                        // Si le fichier n'existe pas, on ajoute l'extension par défaut
+                                        "" : ".beanartist"
+                                )
+                );
                 panneauDessin.getVueFormes().clear();
                 for(VueForme vueForme : lesVueFormes){
                     panneauDessin.ajouterVueForme(vueForme);
@@ -45,7 +50,7 @@ public class ActionOuvrir extends AbstractAction  {
                 panneauDessin.repaint();
             }
         } catch (FileNotFoundException e1) {
-            e1.printStackTrace();
+            panneauDessin.getLabel().setText("Fichier introuvable");
         }
     }
 }
