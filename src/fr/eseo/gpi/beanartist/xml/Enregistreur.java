@@ -2,6 +2,7 @@ package fr.eseo.gpi.beanartist.xml;
 
 import fr.eseo.gpi.beanartist.vue.geom.VueForme;
 
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.FileNotFoundException;
 import java.util.List;
 

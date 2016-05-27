@@ -9,6 +9,8 @@ import org.w3c.dom.Element;
 
 import fr.eseo.gpi.beanartist.vue.geom.VueForme;
 
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 /**
  * Un enregistreur XML est un processeur DOM responsable de l'enregistrement
  * d'un dessin au format XML défini par l'application.
@@ -59,6 +61,10 @@ public class EnregistreurXML extends Enregistreur {
 		EnregistreurXML enregistreur = new EnregistreurXML();
 		enregistreur.enregistreDessin(nomFichierSortie, dessin);
 		LecteurXML.teste(nomFichierSortie);
+	}
+
+	public static FileNameExtensionFilter getExtensionFilter() {
+		return new FileNameExtensionFilter("Document graphique BeAnArtist (.beanartist, .baa, .xml)","beanartist","xml","baa");
 	}
 
 	/**

@@ -8,6 +8,8 @@ import fr.eseo.gpi.beanartist.vue.geom.*;
 import fr.eseo.gpi.beanartist.vue.ui.PanneauDessin;
 import org.w3c.dom.Element;
 
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 /**
  * Un enregistreur SVG est un processeur DOM responsable de l'enregistrement
  * d'un dessin au format SVG standard.
@@ -50,6 +52,10 @@ public class EnregistreurSVG extends Enregistreur {
 		final List<VueForme> dessin = lecteur.lisDessin(nomFichierEntrée);
 		EnregistreurSVG enregistreur = new EnregistreurSVG();
 		enregistreur.enregistreDessin(nomFichierSortie, dessin);
+	}
+
+	public static FileNameExtensionFilter getExtensionFilter() {
+		return new FileNameExtensionFilter("Image SVG", "svg");
 	}
 
 	/**

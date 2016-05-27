@@ -3,6 +3,7 @@ package fr.eseo.gpi.beanartist.controleur.actions;
 import fr.eseo.gpi.beanartist.vue.geom.VueForme;
 import fr.eseo.gpi.beanartist.vue.ui.FenêtreBeAnArtist;
 import fr.eseo.gpi.beanartist.vue.ui.PanneauDessin;
+import fr.eseo.gpi.beanartist.xml.EnregistreurXML;
 import fr.eseo.gpi.beanartist.xml.LecteurXML;
 
 import javax.swing.AbstractAction;
@@ -29,8 +30,7 @@ public class ActionOuvrir extends AbstractAction  {
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
         JFileChooser fc = new JFileChooser();
-        fc.setFileFilter(new FileNameExtensionFilter(
-                "Document graphique BeAnArtist", "beanartist", "xml"));
+        fc.setFileFilter(EnregistreurXML.getExtensionFilter());
         LecteurXML lecteur = new LecteurXML();
         try {
             int returnVal = fc.showOpenDialog(panneauDessin);
