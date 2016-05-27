@@ -27,10 +27,6 @@ import org.w3c.dom.ls.LSSerializer;
  */
 abstract class ProcesseurDOM {
 
-	public static final String TRUE_VALUE = "true";
-	public static final String FALSE_VALUE = "false";
-	public static final String EMPTY_VALUE = "none";
-
 	/**
 	 * L'implémentation de DOM Core.
 	 */

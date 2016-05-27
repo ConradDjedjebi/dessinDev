@@ -3,7 +3,6 @@ package fr.eseo.gpi.beanartist.xml;
 import java.io.FileNotFoundException;
 import java.util.List;
 
-import fr.eseo.gpi.beanartist.controleur.actions.ActionSauvegarder;
 import fr.eseo.gpi.beanartist.modele.geom.*;
 import fr.eseo.gpi.beanartist.vue.geom.*;
 import fr.eseo.gpi.beanartist.vue.ui.PanneauDessin;
@@ -17,7 +16,7 @@ import org.w3c.dom.Element;
  * EnregistreurXML). Les méthodes enregistreDessin et créeElémentXxxx devront
  * être complétées. Des méthodes utilitaires pourront venir compléter celles
  * définies par la classe ProcesseurDOM ; elles devront dans ce cas être
- * OBLIGATOIREMENT définies en "private" à la fin de la classe EnregistreurXML.
+ * OBLIGATOIREMENT définies en "private" à la fin de la classe EnregistreurSVG.
  *
  */
 public class EnregistreurSVG extends Enregistreur {
@@ -33,7 +32,7 @@ public class EnregistreurSVG extends Enregistreur {
 	 * 
 	 */
 	public static void main(String[] args) throws FileNotFoundException {
-		teste(ActionSauvegarder.SAVED_FILE_NAME, "S30-Dessin-out.svg");
+		teste("S30-Dessin-in.xml", "S30-Dessin-out.svg");
 	}
 
 	/**
@@ -73,7 +72,7 @@ public class EnregistreurSVG extends Enregistreur {
 	/**
 	 * Crée un élément DOM au format SVG représentant la vue donnée d'une forme
 	 * et retourne cet élément. Cette méthode invoque les méthodes
-	 * créeElément<Forme> en fonction du type de la vue.
+	 * créeElément(<Forme>) en fonction du type de la vue.
 	 * @param vueForme la vue d'une forme
 	 * @return l'élément DOM représentant la vue d'une forme
 	 */
@@ -110,6 +109,11 @@ public class EnregistreurSVG extends Enregistreur {
 		return élément;
 	}
 
+    /**
+     * Crée un élément DOM au format SVG représentant un rectangle ou un carré.
+     * @param forme un objet Rectangle ou Carré
+     * @return l'élément DOM représentant la vue d'un rectangle
+     */
 	private Element créeElément(Rectangle forme) {
 		Element élément = getDocument().createElement(Rectangle.XML_NAME);
 
@@ -121,6 +125,11 @@ public class EnregistreurSVG extends Enregistreur {
 		return élément;
 	}
 
+    /**
+     * Crée un élément DOM au format SVG représentant une ellipse.
+     * @param ellipse un objet Ellipse
+     * @return l'élément DOM représentant la vue d'une ellipse
+     */
 	private Element créeElément(Ellipse ellipse) {
 		Element element = getDocument().createElement(Ellipse.XML_NAME);
 
@@ -132,6 +141,11 @@ public class EnregistreurSVG extends Enregistreur {
 		return element;
 	}
 
+    /**
+     * Crée un élément DOM au format SVG représentant un cercle.
+     * @param cercle un objet Cercle
+     * @return l'élément DOM représentant la vue d'un cercle
+     */
 	private Element créeElément(Cercle cercle) {
 		Element element = getDocument().createElement(Cercle.XML_NAME);
 
@@ -142,6 +156,11 @@ public class EnregistreurSVG extends Enregistreur {
 		return element;
 	}
 
+    /**
+     * Crée un élément DOM au format SVG représentant une ligne.
+     * @param ligne un objet Ligne
+     * @return l'élément DOM représentant la vue d'une ligne
+     */
 	private Element créeElément(Ligne ligne) {
 		Element element = getDocument().createElement(Ligne.XML_NAME);
 
@@ -153,6 +172,11 @@ public class EnregistreurSVG extends Enregistreur {
 		return element;
 	}
 
+    /**
+     * Crée un élément DOM au format SVG représentant un tracé.
+     * @param tracé un objet Tracé
+     * @return l'élément DOM représentant la vue d'un tracé
+     */
 	private Element créeElément(Tracé tracé) {
 		Element element = getDocument().createElement(Tracé.XML_NAME);
 		char coordinatesSeparator = ',', pointsSeparator = ' ';

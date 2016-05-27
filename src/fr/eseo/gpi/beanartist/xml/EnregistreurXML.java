@@ -78,7 +78,7 @@ public class EnregistreurXML extends Enregistreur {
 
 	/**
 	 * Crée un élément DOM représentant la vue donnée d'une forme et retourne
-	 * cet élément. Cette méthode invoque les méthodes créeElément<Forme> en
+	 * cet élément. Cette méthode invoque les méthodes créeElément(Forme) en
 	 * fonction du type de la vue.
 	 * @param vueForme la vue d'une forme
 	 * @return l'élément DOM représentant la vue d'une forme
@@ -91,6 +91,12 @@ public class EnregistreurXML extends Enregistreur {
 		return élément;
 	}
 
+	/**
+	 * Crée un élément DOM représentant n'importe quelle forme et retourne
+	 * cet élément.
+	 * @param forme une forme
+	 * @return l'élément DOM représentant la forme
+	 */
 	private Element créeElément(Forme forme) {
 		Element élément;
 		try {
@@ -107,6 +113,12 @@ public class EnregistreurXML extends Enregistreur {
 		return élément;
 	}
 
+	/**
+	 * Crée un élément DOM représentant un tracé et retourne
+	 * cet élément. Cette méthode invoque la méthode créeElément(Forme).
+	 * @param tracé un objet Tracé
+	 * @return l'élément DOM représentant le tracé
+	 */
 	private Element créeElément(Tracé tracé) {
 		Element element = créeElément((Forme)tracé);
 		for (Ligne ligne : tracé.getLignes()) {

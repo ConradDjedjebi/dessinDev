@@ -7,14 +7,12 @@ package fr.eseo.gpi.beanartist.xml;
 
 import java.awt.Color;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.SwingUtilities;
 
 import fr.eseo.gpi.beanartist.vue.ui.PanneauDessin;
-import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -23,7 +21,6 @@ import fr.eseo.gpi.beanartist.modele.geom.Carré;
 import fr.eseo.gpi.beanartist.modele.geom.Cercle;
 import fr.eseo.gpi.beanartist.modele.geom.Ellipse;
 import fr.eseo.gpi.beanartist.modele.geom.Ligne;
-import fr.eseo.gpi.beanartist.modele.geom.Point;
 import fr.eseo.gpi.beanartist.modele.geom.Rectangle;
 import fr.eseo.gpi.beanartist.modele.geom.Tracé;
 import fr.eseo.gpi.beanartist.vue.geom.VueCarré;
@@ -62,7 +59,7 @@ public class LecteurXML extends ProcesseurDOM {
 	 * de l'enregistrement en XML (classe EnregistreurXML).
 	 */
 	public static void main(String[] args) throws FileNotFoundException {
-		teste("savedFile");
+		teste("S30-Dessin-in.xml");
 	}
 
 	/**
@@ -120,7 +117,7 @@ public class LecteurXML extends ProcesseurDOM {
 	private VueForme créeVueForme(Element element) {
 		VueForme vue;
 		String nom = element.getNodeName();
-		boolean rempli = element.hasAttribute("filled") && element.getAttribute("filled").equals(TRUE_VALUE);
+		boolean rempli = element.hasAttribute("filled") && element.getAttribute("filled").equals(Enregistreur.TRUE_VALUE);
 		Color couleur = element.hasAttribute("color") ? new Color(lisAttribut(element, "color")) : PanneauDessin.COULEUR_LIGNE_PAR_DÉFAUT;
 		switch (element.getNodeName()) {
 			case Rectangle.XML_NAME:
