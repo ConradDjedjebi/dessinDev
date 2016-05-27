@@ -1,10 +1,11 @@
 package fr.eseo.gpi.beanartist.controleur.outils;
 
-import fr.eseo.gpi.beanartist.modele.geom.Forme;
+import fr.eseo.gpi.beanartist.modele.geom.*;
+import fr.eseo.gpi.beanartist.modele.geom.Rectangle;
 import fr.eseo.gpi.beanartist.vue.geom.VueForme;
 import fr.eseo.gpi.beanartist.vue.geom.VueEllipse;
+import fr.eseo.gpi.beanartist.vue.geom.VueRectangle;
 import fr.eseo.gpi.beanartist.vue.ui.PanneauDessin;
-import fr.eseo.gpi.beanartist.modele.geom.Ellipse;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -16,82 +17,71 @@ import java.util.ConcurrentModificationException;
  * @project gpi_binome
  */
 public class OutilGomme extends Outil {
-    private VueForme gomme;
-    private boolean premierClick = true;
+    private VueForme vueGomme;
+    private Ellipse gomme;
+    public static final Color ERASER_COLOR = Color.CYAN;
+    private static final int ERASER_DIM_X = 130;
+    private static final int ERASER_DIM_Y = 60;
     /**
      * Initialise un déplacement
      * @param panneauDessin
      */
     public OutilGomme(PanneauDessin panneauDessin) {
         super(panneauDessin);
-    }
+        gomme = new Ellipse(
+                ERASER_DIM_X,
+                ERASER_DIM_Y
+        );
+        vueGomme = new VueEllipse(gomme, true);
+        vueGomme.setCouleurLigne(ERASER_COLOR);
+        vueGomme.setRempli(true);
 
-    @Override
-
-    public void mouseClicked(MouseEvent e){
-        if(premierClick ==true) {
-            super.mouseClicked(e);
-            gomme = new VueEllipse(new Ellipse(getDébut().getX(), getDébut().getY(), 130, 60), true);
-            gomme.setCouleurLigne(new Color(-6737152));
-            gomme.setRempli(true);
-            getPanneauDessin().setGomme(gomme);
-            getPanneauDessin().repaint();
-            premierClick = false;
-        }
-        else{
-            libérer(true);
-        }
-    }
-
-    @Override
-    public void mousePressed (MouseEvent e){
-        super.mousePressed(e);
-        setFin(getDébut());
     }
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        try {
-            if(!gommeSelected())
-                throw new Error("La gomme n'est pas prise");
-            setDébut(getFin());
-            super.mouseDragged(e);
-            this.gomme.getForme().déplacerDe(getFin().getX()-getDébut().getX(), getFin().getY() - getDébut().getY());
-            effacer();
-            this.getPanneauDessin().repaint();
-        } catch (NullPointerException | Error excpetion) {
-        }
+        setDébut(getFin());
+        super.mouseDragged(e);
+        gomme.déplacerDe(getFin().getX()-getDébut().getX(), getFin().getY() - getDébut().getY());
+        effacer();
+        this.getPanneauDessin().repaint();
     }
 
-    // Vérifier que le point début détecté par mouse Pressed est bien sur la gomme.
-    public boolean gommeSelected(){
-        boolean resp = false;
-        if(gomme.getForme().contient(getDébut())){
-            resp = true;
-        }
-        return resp;
+    @Override
+    public void mousePressed(MouseEvent e) {
+        super.mousePressed(e);
+        gomme.setPosition(getDébut());
+        //gomme.setX(getDébut().getX()+ERASER_DIM_X/2);
+        //gomme.setY(getDébut().getY()+ERASER_DIM_Y/2);
+
+        // La gomme ne faisant pas partie des VueFormes, il faut le rajouter à part
+        getPanneauDessin().setGomme(vueGomme);
     }
 
-    //La méthode qui s'occupe de supprimer les formes touchées
-    //Prochaines étape : effacer les points de la forme touchée, étape par étape.
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        super.mouseReleased(e);
+        getPanneauDessin().setGomme(null);
+    }
 
+    /**
+     * La méthode qui s'occupe de supprimer les formes touchées
+     * Prochaines étape : effacer les points de la forme touchée, étape par étape.
+     */
     public void effacer(){
         try {
-            for (VueForme vueForme : getPanneauDessin().getVueFormes()) {
-                //Les points à prendre en compte, les points du périmètre de la gomme
-                int xMin = gomme.getForme().getMinX();
-                int xMax = gomme.getForme().getMaxX();
-                int yMin = gomme.getForme().getMinY();
-                int yMax = gomme.getForme().getMaxY();
-                for (int x = xMin - 1; x < xMax + 1; x++) {
-                    for (int y = yMin - 1; y < yMax + 1; y++) {
-                        if (gomme.getForme().contient(x, y) && vueForme.getForme().contient(x, y)) {
-                            getPanneauDessin().getVueFormes().remove(vueForme);
+            for (int x = gomme.getMinX(), xMax = gomme.getMaxX(); x < xMax; x++) {
+                for (int y = gomme.getMinY(), yMax = gomme.getMaxY(); y < yMax; y++) {
+                    if (gomme.contient(x, y)) {
+                        for (VueForme vueForme : getPanneauDessin().getVueFormes()) {
+                            if (vueForme.getForme().contient(x, y)) {
+                                getPanneauDessin().getVueFormes().remove(vueForme);
+                            }
                         }
                     }
                 }
             }
-        }catch(ConcurrentModificationException exception){
+        } catch(ConcurrentModificationException exception) {
             //Je ne sais pas ce que c'est que cette erreur
         }
     }

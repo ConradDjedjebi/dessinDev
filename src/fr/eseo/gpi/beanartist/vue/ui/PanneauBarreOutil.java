@@ -3,6 +3,7 @@ package fr.eseo.gpi.beanartist.vue.ui;
 import fr.eseo.gpi.beanartist.controleur.actions.*;
 import fr.eseo.gpi.beanartist.controleur.bouttons.RedimensionnageButton;
 import fr.eseo.gpi.beanartist.controleur.bouttons.RemplissageButton;
+import fr.eseo.gpi.beanartist.controleur.outils.OutilGomme;
 import fr.eseo.gpi.beanartist.controleur.outils.OutilSélection;
 
 import javax.swing.JButton;
@@ -38,7 +39,7 @@ public class PanneauBarreOutil extends javax.swing.JPanel {
         JButton sauvegarder = new JButton((new ActionSauvegarder(this.getFenêtre())));
         JButton ouvrir = new JButton(new ActionOuvrir(this.getFenêtre()));
         JButton gomme = new JButton(new ActionGommer(this.getFenêtre()));
-        gomme.setBackground(new Color(-6737152));
+        gomme.setBackground(OutilGomme.ERASER_COLOR);
 
         int [] createFormes = {
                 ActionForme.RECTANGLE,
@@ -50,11 +51,11 @@ public class PanneauBarreOutil extends javax.swing.JPanel {
         };
         JButton outilSelection = new JButton(new ActionSélectionner(this.getFenêtre()));
 
+        this.add(ouvrir);
+        this.add(sauvegarder);
         this.add(clearAll);
         this.add(outilSelection);
         this.add(choixCouleur);
-        this.add(sauvegarder);
-        this.add(ouvrir);
         this.add(gomme);
         this.add(new RemplissageButton(getFenêtre()));
         for (int forme : createFormes) {

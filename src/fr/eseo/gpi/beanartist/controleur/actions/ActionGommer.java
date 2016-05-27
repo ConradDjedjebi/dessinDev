@@ -2,11 +2,10 @@ package fr.eseo.gpi.beanartist.controleur.actions;
 
 import fr.eseo.gpi.beanartist.controleur.outils.OutilGomme;
 import fr.eseo.gpi.beanartist.vue.ui.FenêtreBeAnArtist;
-import fr.eseo.gpi.beanartist.xml.EnregistreurXML;
+import fr.eseo.gpi.beanartist.vue.ui.PanneauDessin;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
-import java.io.FileNotFoundException;
 
 /**
  * @author Elphege
@@ -14,12 +13,13 @@ import java.io.FileNotFoundException;
  * @project gpi_binome
  */
 public class ActionGommer extends AbstractAction  {
-    private FenêtreBeAnArtist fenêtre;
+    private PanneauDessin panneauDessin;
+    private OutilGomme outilGomme;
     protected static final String NOM_ACTION = "Gommer";
 
     public ActionGommer(FenêtreBeAnArtist newFenêtre) {
         super(NOM_ACTION);
-        fenêtre = newFenêtre;
+        panneauDessin = newFenêtre.getPanneauDessin();
     }
 
     @Override
@@ -37,13 +37,12 @@ public class ActionGommer extends AbstractAction  {
 
         //Le premier click de la souris génère la gomme
         //Le deuxième
-        new OutilGomme(fenêtre.getPanneauDessin());
+        if (outilGomme==null)
+            outilGomme = new OutilGomme(panneauDessin);
+        else {
+            outilGomme.libérer(true);
+            outilGomme = null;
+        }
 
-        /*EnregistreurXML enrégistreur = new EnregistreurXML();
-        try {
-            enrégistreur.enregistreDessin("savedFile", fenêtre.getPanneauDessin().getVueFormes());
-        } catch (FileNotFoundException e1) {
-            e1.printStackTrace();
-        }*/
     }
 }

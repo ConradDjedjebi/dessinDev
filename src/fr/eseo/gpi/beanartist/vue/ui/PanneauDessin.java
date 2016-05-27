@@ -118,7 +118,4 @@ public class PanneauDessin extends javax.swing.JPanel {
     public void setGomme(VueForme newGomme){
         gomme = newGomme;
     }
-    public VueForme getGomme(){
-        return gomme;
-    }
 }
