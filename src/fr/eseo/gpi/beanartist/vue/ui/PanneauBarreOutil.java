@@ -36,6 +36,7 @@ public class PanneauBarreOutil extends javax.swing.JPanel {
         clearAll.setBackground(Color.RED);
         JButton choixCouleur = new JButton(new ActionChoisirCouleur(this.getFenêtre()));
         JButton sauvegarder = new JButton((new ActionSauvegarder(this.getFenêtre())));
+        JButton exporter = new JButton(new ActionExporter(this.getFenêtre()));
         JButton ouvrir = new JButton(new ActionOuvrir(this.getFenêtre()));
         JButton gomme = new JButton(new ActionGommer(this.getFenêtre()));
         gomme.setBackground(new Color(-6737152));
@@ -54,6 +55,7 @@ public class PanneauBarreOutil extends javax.swing.JPanel {
         this.add(outilSelection);
         this.add(choixCouleur);
         this.add(sauvegarder);
+        this.add(exporter);
         this.add(ouvrir);
         this.add(gomme);
         this.add(new RemplissageButton(getFenêtre()));

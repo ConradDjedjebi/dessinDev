@@ -1,6 +1,7 @@
 package fr.eseo.gpi.beanartist.controleur.actions;
 
 import fr.eseo.gpi.beanartist.vue.ui.FenêtreBeAnArtist;
+import fr.eseo.gpi.beanartist.xml.EnregistreurSVG;
 import fr.eseo.gpi.beanartist.xml.EnregistreurXML;
 
 import javax.swing.*;
@@ -12,20 +13,20 @@ import java.io.FileNotFoundException;
  * @date 19/05/16
  * @project gpi_binome
  */
-public class ActionSauvegarder extends AbstractAction  {
+public class ActionExporter extends AbstractAction  {
     private FenêtreBeAnArtist fenêtre;
-    protected static final String NOM_ACTION = "Sauvegarder";
+    protected static final String NOM_ACTION = "Exporter en SVG";
 
-    public ActionSauvegarder(FenêtreBeAnArtist newFenêtre) {
+    public ActionExporter(FenêtreBeAnArtist newFenêtre) {
         super(NOM_ACTION);
         fenêtre = newFenêtre;
     }
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-        EnregistreurXML enrégistreur = new EnregistreurXML();
+        EnregistreurSVG enrégistreur = new EnregistreurSVG();
         try {
-            enrégistreur.enregistreDessin("savedFile.xml", fenêtre.getPanneauDessin().getVueFormes());
+            enrégistreur.enregistreDessin("savedFile.svg", fenêtre.getPanneauDessin().getVueFormes());
         } catch (FileNotFoundException e1) {
             e1.printStackTrace();
         }

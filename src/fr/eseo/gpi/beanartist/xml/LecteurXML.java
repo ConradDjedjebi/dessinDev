@@ -1,9 +1,4 @@
 package fr.eseo.gpi.beanartist.xml;
-/**
- * @author Antoine & Elphege
- * @date 22/05/16
- * @project gpi_binome
- */
 
 import java.awt.Color;
 import java.io.FileNotFoundException;
@@ -57,12 +52,12 @@ public class LecteurXML extends ProcesseurDOM {
 	 * 
 	 * Vous aurez pris soin de le copier prélablablement dans le ficher
 	 * "S30-Dessin-in.xml".
-	 * 
+	 *
 	 * Ce test MANUEL doit OBLIGATOIREMENT passer avant de commencer la gestion
 	 * de l'enregistrement en XML (classe EnregistreurXML).
 	 */
 	public static void main(String[] args) throws FileNotFoundException {
-		teste("savedFile");
+		teste("savedFile.xml");
 	}
 
 	/**
@@ -117,34 +112,34 @@ public class LecteurXML extends ProcesseurDOM {
 	 * @param element l'élément représentant la vue et sa forme
 	 * @return la vue stockée dans l'élément considéré
 	 */
-	private VueForme créeVueForme(Element element) {
-		VueForme vue;
+	public VueForme créeVueForme(Element element) {
+		VueForme vue = null;
 		String nom = element.getNodeName();
 		boolean rempli = element.hasAttribute("filled") && element.getAttribute("filled").equals(TRUE_VALUE);
 		Color couleur = element.hasAttribute("color") ? new Color(lisAttribut(element, "color")) : PanneauDessin.COULEUR_LIGNE_PAR_DÉFAUT;
-		switch (element.getNodeName()) {
-			case Rectangle.XML_NAME:
-				vue = new VueRectangle(créeRectangle(element), couleur, rempli);
-			break;
-			case Carré.XML_NAME:
-				vue = new VueCarré(créeCarré(element), couleur, rempli);
-			break;
-			case Ellipse.XML_NAME:
-				vue = new VueEllipse(créeEllipse(element), couleur, rempli);
-			break;
-			case Cercle.XML_NAME:
-				vue = new VueCercle(créeCercle(element), couleur, rempli);
-			break;
-			case Ligne.XML_NAME:
-				vue = new VueLigne(créeLigne(element), couleur);
-			break;
-			case Tracé.XML_NAME:
-				vue = new VueTracé(créeTracé(element), couleur);
-			break;
-
-			default:
-				vue = null;
-				break;
+		if (nom.equals(Rectangle.XML_NAME)) {
+			Rectangle forme = créeRectangle(element);
+			vue = new VueRectangle(forme, couleur, rempli);
+		}
+		else if (nom.equals(Carré.XML_NAME)) {
+			Carré forme = créeCarré(element);
+			vue = new VueCarré(forme, couleur, rempli);
+		}
+		else if (nom.equals(Ellipse.XML_NAME)) {
+			Ellipse forme = créeEllipse(element);
+			vue = new VueEllipse(forme, couleur, rempli);
+		}
+		else if (nom.equals(Cercle.XML_NAME)) {
+			Cercle forme = créeCercle(element);
+			vue = new VueCercle(forme, couleur, rempli);
+		}
+		else if (nom.equals(Ligne.XML_NAME)) {
+			Ligne forme = créeLigne(element);
+			vue = new VueLigne(forme, couleur);
+		}
+		else if (nom.equals(Tracé.XML_NAME)) {
+			Tracé forme = créeTracé(element);
+			vue = new VueTracé(forme, couleur);
 		}
 		return vue;
 	}
@@ -154,8 +149,12 @@ public class LecteurXML extends ProcesseurDOM {
 	 * @param element l'élément représentant le rectangle
 	 * @return le rectangle stocké dans l'élément considéré
 	 */
-	private Rectangle créeRectangle(Element element) {
-		return new Rectangle(lisAttribut(element, "x"), lisAttribut(element, "y"), lisAttribut(element, "width"), lisAttribut(element, "height"));
+	public Rectangle créeRectangle(Element element) {
+		return new Rectangle(
+				lisAttribut(element, "x"),
+				lisAttribut(element, "y"),
+				lisAttribut(element, "height"),
+				lisAttribut(element, "width"));
 	}
 
 	/**
@@ -163,7 +162,7 @@ public class LecteurXML extends ProcesseurDOM {
 	 * @param element l'élément représentant le carré
 	 * @return le carré stocké dans l'élément considéré
 	 */
-	private Carré créeCarré(Element element) {
+	public Carré créeCarré(Element element) {
 		return new Carré(lisAttribut(element, "x"), lisAttribut(element, "y"), lisAttribut(element, "width"));
 	}
 
@@ -172,8 +171,8 @@ public class LecteurXML extends ProcesseurDOM {
 	 * @param element l'élément représentant l'ellipse
 	 * @return l'ellipse stockée dans l'élément considéré
 	 */
-	private Ellipse créeEllipse(Element element) {
-		return new Ellipse(lisAttribut(element, "x"), lisAttribut(element, "y"), lisAttribut(element, "width"), lisAttribut(element, "height"));
+	public Ellipse créeEllipse(Element element) {
+		return new Ellipse(lisAttribut(element, "x"), lisAttribut(element, "y"), lisAttribut(element, "height"), lisAttribut(element, "width"));
 	}
 
 	/**
@@ -181,7 +180,7 @@ public class LecteurXML extends ProcesseurDOM {
 	 * @param element l'élément représentant le cercle
 	 * @return le cercle stocké dans l'élément considéré
 	 */
-	private Cercle créeCercle(Element element) {
+	public Cercle créeCercle(Element element) {
 		return new Cercle(lisAttribut(element, "x"), lisAttribut(element, "y"), lisAttribut(element, "width"));
 	}
 
@@ -190,8 +189,8 @@ public class LecteurXML extends ProcesseurDOM {
 	 * @param element l'élément représentant la ligne
 	 * @return la ligne stockée dans l'élément considéré
 	 */
-	private Ligne créeLigne(Element element) {
-		return new Ligne(lisAttribut(element, "x"), lisAttribut(element, "y"), lisAttribut(element, "width"), lisAttribut(element, "height"));
+	public Ligne créeLigne(Element element) {
+		return new Ligne(lisAttribut(element, "x"), lisAttribut(element, "y"), lisAttribut(element, "height"), lisAttribut(element, "width"));
 	}
 
 	/**
@@ -199,7 +198,7 @@ public class LecteurXML extends ProcesseurDOM {
 	 * @param element l'élément représentant le tracé
 	 * @return le tracé stocké dans l'élément considéré
 	 */
-	private Tracé créeTracé(Element element) {
+	public Tracé créeTracé(Element element) {
 		// création de la liste des points du tracé
 		List<Ligne> lignes= new ArrayList<>();
 

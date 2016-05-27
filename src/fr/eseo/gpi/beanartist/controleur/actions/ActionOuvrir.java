@@ -28,7 +28,7 @@ public class ActionOuvrir extends AbstractAction  {
     public void actionPerformed(ActionEvent actionEvent) {
         LecteurXML lecteur = new LecteurXML();
         try {
-            List<VueForme> lesVueFormes = lecteur.lisDessin("savedFile");
+            List<VueForme> lesVueFormes = lecteur.lisDessin("savedFile.xml");
             for(VueForme vueForme : lesVueFormes){
                 fenêtre.getPanneauDessin().ajouterVueForme(vueForme);
             }
