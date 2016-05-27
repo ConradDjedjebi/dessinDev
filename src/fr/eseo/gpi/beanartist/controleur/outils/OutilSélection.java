@@ -66,7 +66,7 @@ public class OutilSélection extends Outil {
 
         List<VueForme> vueFormes = this.getPanneauDessin().getVueFormes();
         int count = vueFormes.size();
-
+        //System.out.println("Le nombre de formes contenues dans le panneau est " + count);
         try {
             while (!vueFormes.get(--count).getForme().contient(getDébut())) {}
         } catch (IndexOutOfBoundsException e) {

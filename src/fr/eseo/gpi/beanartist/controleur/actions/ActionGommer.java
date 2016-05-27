@@ -37,12 +37,7 @@ public class ActionGommer extends AbstractAction  {
 
         //Le premier click de la souris génère la gomme
         //Le deuxième
-        if (outilGomme==null)
-            outilGomme = new OutilGomme(panneauDessin);
-        else {
-            outilGomme.libérer(true);
-            outilGomme = null;
-        }
+        outilGomme = new OutilGomme(panneauDessin);
 
     }
 }
