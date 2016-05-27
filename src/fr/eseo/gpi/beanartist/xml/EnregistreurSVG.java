@@ -117,8 +117,8 @@ public class EnregistreurSVG extends Enregistreur {
 	private Element créeElément(Rectangle forme) {
 		Element élément = getDocument().createElement(Rectangle.XML_NAME);
 
-		écrisAttribut(élément, "x", forme.getX());
-		écrisAttribut(élément, "y", forme.getY());
+		écrisAttribut(élément, "x", forme.getMinX());
+		écrisAttribut(élément, "y", forme.getMinY());
 		écrisAttribut(élément, "width", forme.getLargeur());
 		écrisAttribut(élément, "height", forme.getHauteur());
 
