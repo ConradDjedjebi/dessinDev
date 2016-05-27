@@ -116,7 +116,6 @@ public class LecteurXML extends ProcesseurDOM {
 	 */
 	private VueForme créeVueForme(Element element) {
 		VueForme vue;
-		String nom = element.getNodeName();
 		boolean rempli = element.hasAttribute("filled") && element.getAttribute("filled").equals(Enregistreur.TRUE_VALUE);
 		Color couleur = element.hasAttribute("color") ? new Color(lisAttribut(element, "color")) : PanneauDessin.COULEUR_LIGNE_PAR_DÉFAUT;
 		switch (element.getNodeName()) {
