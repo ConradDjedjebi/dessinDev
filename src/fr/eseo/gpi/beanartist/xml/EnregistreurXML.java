@@ -101,6 +101,7 @@ public class EnregistreurXML extends Enregistreur {
 		Element élément;
 		try {
 			élément = getDocument().createElement((String) forme.getClass().getDeclaredField("XML_NAME").get(String.class));
+			//Pourquoi ne pas faire un forme.getClasse.getShortName()?
 		} catch (IllegalAccessException | NoSuchFieldException e) {
 			throw new Error("Vue non gérée", e);
 		}
@@ -121,6 +122,7 @@ public class EnregistreurXML extends Enregistreur {
 	 */
 	private Element créeElément(Tracé tracé) {
 		Element element = créeElément((Forme)tracé);
+		//Un element est crée pour ce type tracé. S'attendre à voir un x,y,w et h pour polyline avant de voir ceux de line
 		for (Ligne ligne : tracé.getLignes()) {
 			element.appendChild(créeElément(ligne));
 		}
