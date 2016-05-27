@@ -20,7 +20,7 @@ import org.w3c.dom.Element;
  * OBLIGATOIREMENT définies en "private" à la fin de la classe EnregistreurXML.
  *
  */
-public class EnregistreurSVG extends ProcesseurDOM {
+public class EnregistreurSVG extends Enregistreur {
 
 	/**
 	 * Lance le test d'enristrement (méthode teste) avec le fichier XML d'entrée

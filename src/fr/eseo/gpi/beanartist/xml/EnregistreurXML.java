@@ -23,7 +23,7 @@ import fr.eseo.gpi.beanartist.vue.geom.VueForme;
  * "private" à la fin de la classe EnregistreurXML.
  *
  */
-public class EnregistreurXML extends ProcesseurDOM {
+public class EnregistreurXML extends Enregistreur {
 
 	/**
 	 * Lance le test d'enristrement (méthode teste) avec le fichier XML d'entrée

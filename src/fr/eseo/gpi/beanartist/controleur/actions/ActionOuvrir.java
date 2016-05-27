@@ -5,8 +5,11 @@ import fr.eseo.gpi.beanartist.vue.ui.FenêtreBeAnArtist;
 import fr.eseo.gpi.beanartist.vue.ui.PanneauDessin;
 import fr.eseo.gpi.beanartist.xml.LecteurXML;
 
-import javax.swing.*;
+import javax.swing.AbstractAction;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.event.ActionEvent;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.List;
 
@@ -26,14 +29,21 @@ public class ActionOuvrir extends AbstractAction  {
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
+        JFileChooser fc = new JFileChooser();
+        fc.setFileFilter(new FileNameExtensionFilter(
+                "Document graphique BeAnArtist", "beanartist"));
         LecteurXML lecteur = new LecteurXML();
         try {
-            List<VueForme> lesVueFormes = lecteur.lisDessin(ActionSauvegarder.SAVED_FILE_NAME);
-            panneauDessin.getVueFormes().clear();
-            for(VueForme vueForme : lesVueFormes){
-                panneauDessin.ajouterVueForme(vueForme);
+            int returnVal = fc.showOpenDialog(panneauDessin);
+
+            if (returnVal == JFileChooser.APPROVE_OPTION) {
+                List<VueForme> lesVueFormes = lecteur.lisDessin(fc.getCurrentDirectory()+ File.separator+fc.getSelectedFile().getName());
+                panneauDessin.getVueFormes().clear();
+                for(VueForme vueForme : lesVueFormes){
+                    panneauDessin.ajouterVueForme(vueForme);
+                }
+                panneauDessin.repaint();
             }
-            panneauDessin.repaint();
         } catch (FileNotFoundException e1) {
             e1.printStackTrace();
         }
