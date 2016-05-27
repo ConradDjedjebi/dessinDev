@@ -12,17 +12,12 @@ import java.util.List;
 
 import javax.swing.SwingUtilities;
 
+import fr.eseo.gpi.beanartist.modele.geom.*;
 import fr.eseo.gpi.beanartist.vue.ui.PanneauDessin;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import fr.eseo.gpi.beanartist.modele.geom.Carré;
-import fr.eseo.gpi.beanartist.modele.geom.Cercle;
-import fr.eseo.gpi.beanartist.modele.geom.Ellipse;
-import fr.eseo.gpi.beanartist.modele.geom.Ligne;
-import fr.eseo.gpi.beanartist.modele.geom.Rectangle;
-import fr.eseo.gpi.beanartist.modele.geom.Tracé;
 import fr.eseo.gpi.beanartist.vue.geom.VueCarré;
 import fr.eseo.gpi.beanartist.vue.geom.VueCercle;
 import fr.eseo.gpi.beanartist.vue.geom.VueEllipse;
@@ -197,16 +192,23 @@ public class LecteurXML extends ProcesseurDOM {
 	 */
 	private Tracé créeTracé(Element element) {
 		// création de la liste des points du tracé
-		List<Ligne> lignes= new ArrayList<>();
+		List<Point> points= new ArrayList<>();
 
 		NodeList childNodes = element.getChildNodes();
+		Tracé tracé = null;
 
 		for (int i = 0, length = childNodes.getLength(); i < length; i++) {
-			if (childNodes.item(i).getNodeType()==Node.ELEMENT_NODE && childNodes.item(i).getNodeName().equals(Ligne.XML_NAME))
-				lignes.add(créeLigne((Element) childNodes.item(i)));
+			if (childNodes.item(i).getNodeType()==Node.ELEMENT_NODE && childNodes.item(i).getNodeName().equals(Ligne.XML_NAME)) {
+				if (tracé==null) {
+					Ligne ligne = créeLigne((Element) childNodes.item(i));
+					tracé = new Tracé(ligne.getP1(), ligne.getP2());
+				}
+				else
+					tracé.ajouterLigneVers(créeLigne((Element) childNodes.item(i)).getP2());
+			}
 		}
 		// création des lignes formant le tracé
-		return new Tracé(lignes);
+		return tracé;
 	}
 
 }
