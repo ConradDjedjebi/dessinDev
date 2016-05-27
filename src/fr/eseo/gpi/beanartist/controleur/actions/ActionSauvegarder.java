@@ -23,7 +23,6 @@ import java.util.List;
 public class ActionSauvegarder extends AbstractAction  {
     private PanneauDessin panneauDessin;
     protected static final String NOM_ACTION = "Sauvegarder";
-    public static final String SAVED_FILE_NAME = "savedFile.xml";
 
     public ActionSauvegarder(FenêtreBeAnArtist newFenêtre) {
         super(NOM_ACTION);
@@ -34,7 +33,7 @@ public class ActionSauvegarder extends AbstractAction  {
     public void actionPerformed(ActionEvent actionEvent) {
         JFileChooser fc = new JFileChooser();
         fc.setFileFilter(new FileNameExtensionFilter(
-                "Document graphique BeAnArtist", "beanartist"));
+                "Document graphique BeAnArtist", "beanartist", "xml"));
         fc.addChoosableFileFilter(new FileNameExtensionFilter(
                 "Image SVG", "svg"));
 

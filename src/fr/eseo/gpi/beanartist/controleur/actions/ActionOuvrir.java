@@ -31,7 +31,7 @@ public class ActionOuvrir extends AbstractAction  {
     public void actionPerformed(ActionEvent actionEvent) {
         JFileChooser fc = new JFileChooser();
         fc.setFileFilter(new FileNameExtensionFilter(
-                "Document graphique BeAnArtist", "beanartist"));
+                "Document graphique BeAnArtist", "beanartist", "xml"));
         LecteurXML lecteur = new LecteurXML();
         try {
             int returnVal = fc.showOpenDialog(panneauDessin);
