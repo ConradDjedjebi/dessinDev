@@ -144,11 +144,12 @@ public abstract class Forme implements Cloneable {
         DecimalFormat decimalFormat = new DecimalFormat("0", DecimalFormatSymbols.getInstance(Locale.FRANCE));
         decimalFormat.setMaximumFractionDigits(this instanceof Rectangle ? 0 : 2);
 
-        return "["+this.getClass().getSimpleName()+']'+
-                " pos : "+position.toString()+
-                " dim : "+getLargeur()+" x "+getHauteur()+
-                " périmètre : "+decimalFormat.format(this.périmètre())+
-                " aire : "+decimalFormat.format(this.aire());
+        return String.format("[%s] pos : %s dim : %d x %d périmètre : %s aire : %s",
+                this.getClass().getSimpleName(),
+                position,
+                getLargeur(), getHauteur(),
+                decimalFormat.format(this.périmètre()),
+                decimalFormat.format(this.aire()));
     }
 
     // ========================================
