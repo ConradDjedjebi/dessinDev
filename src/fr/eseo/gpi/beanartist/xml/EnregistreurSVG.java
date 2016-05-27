@@ -1,17 +1,11 @@
 package fr.eseo.gpi.beanartist.xml;
 
-import java.awt.Color;
 import java.io.FileNotFoundException;
 import java.util.List;
 
+import fr.eseo.gpi.beanartist.modele.geom.*;
+import fr.eseo.gpi.beanartist.vue.geom.*;
 import org.w3c.dom.Element;
-
-import fr.eseo.gpi.beanartist.modele.geom.Cercle;
-import fr.eseo.gpi.beanartist.modele.geom.Ellipse;
-import fr.eseo.gpi.beanartist.modele.geom.Ligne;
-import fr.eseo.gpi.beanartist.modele.geom.Rectangle;
-import fr.eseo.gpi.beanartist.modele.geom.Tracé;
-import fr.eseo.gpi.beanartist.vue.geom.VueForme;
 
 /**
  * Un enregistreur SVG est un processeur DOM responsable de l'enregistrement
@@ -37,7 +31,7 @@ public class EnregistreurSVG extends ProcesseurDOM {
 	 * 
 	 */
 	public static void main(String[] args) throws FileNotFoundException {
-		teste("S30-Dessin-in.xml", "S30-Dessin-out.svg");
+		teste("savedFile.svg", "S30-Dessin-out.svg");
 	}
 
 	/**
@@ -66,8 +60,9 @@ public class EnregistreurSVG extends ProcesseurDOM {
 	public void enregistreDessin(String nomFichier, List<VueForme> dessin) throws FileNotFoundException {
 		créeDocumentSVG();
 		Element racine = getDocument().getDocumentElement();
-		// Pour chaque vue du dessin, créer un élément DOM associé et l'ajouter
-		// dans l'élément racine du document.
+
+		for (VueForme vueForme : dessin) racine.appendChild(créeElément(vueForme));
+
 		enregistreDocument(nomFichier);
 	}
 
@@ -78,81 +73,86 @@ public class EnregistreurSVG extends ProcesseurDOM {
 	 * @param vueForme la vue d'une forme
 	 * @return l'élément DOM représentant la vue d'une forme
 	 */
-	public Element créeElémentVueForme(VueForme vueForme) {
+	public Element créeElément(VueForme vueForme) {
 		Element élément;
-		String nom = vueForme.getClass().getSimpleName();
-		if (nom.equals("VueRectangle") || nom.equals("VueCarré")) {
-			Rectangle forme = (Rectangle) vueForme.getForme();
-			élément = créeElémentRectangle(forme);
+		if(vueForme instanceof VueTracé) {
+			vueForme.setRempli(false);
+			élément = créeElément((Tracé) vueForme.getForme());
 		}
-		else if (nom.equals("VueEllipse")) {
-			Ellipse forme = (Ellipse) vueForme.getForme();
-			élément = créeElémentEllipse(forme);
+		else if (vueForme instanceof VueLigne)
+		{
+			vueForme.setRempli(false);
+			élément = créeElément((Ligne)vueForme.getForme());
 		}
-		else if (nom.equals("VueCercle")) {
-			Cercle forme = (Cercle) vueForme.getForme();
-			élément = créeElémentCercle(forme);
-		}
-		else if (nom.equals("VueLigne")) {
-			Ligne forme = (Ligne) vueForme.getForme();
-			élément = créeElémentLigne(forme);
-		}
-		else if (nom.equals("VueTracé")) {
-			Tracé forme = (Tracé) vueForme.getForme();
-			élément = créeElémentTracé(forme);
-		}
-		else {
+		else if (vueForme instanceof VueCercle)
+			élément = créeElément((Cercle)vueForme.getForme());
+		else if (vueForme instanceof VueEllipse)
+		élément = créeElément((Ellipse)vueForme.getForme());
+		else if (vueForme instanceof VueRectangle)
+			élément = créeElément((Rectangle)vueForme.getForme());
+		else
 			throw new Error("Vue non gérée");
-		}
-		getDocument().getDocumentElement().appendChild(élément);
+
+		élément.setAttribute(
+				vueForme.estRempli() ? "fill" : "stroke",
+				"#"+Integer.toHexString(vueForme.getCouleurLigne().getRGB()).substring(2)
+		);
+
 		return élément;
 	}
 
-	/**
-	 * Renvoie un nouvel élément DOM au format SVG représentant le rectangle
-	 * donné.
-	 * @param forme le rectangle
-	 * @return élément DOM représentant le rectangle
-	 */
-	public Element créeElémentRectangle(Rectangle forme) {
-		return null;
+	private Element créeElément(Rectangle forme) {
+		Element élément = getDocument().createElement(Rectangle.XML_NAME);
+
+		écrisAttribut(élément, "x", forme.getX());
+		écrisAttribut(élément, "y", forme.getY());
+		écrisAttribut(élément, "width", forme.getLargeur());
+		écrisAttribut(élément, "height", forme.getHauteur());
+
+		return élément;
 	}
 
-	/**
-	 * Renvoie un nouvel élément DOM au format SVG représentant l'ellipse
-	 * donnée.
-	 * @param forme l'ellipse
-	 * @return élément DOM représentant l'ellipse
-	 */
-	public Element créeElémentEllipse(Ellipse forme) {
-		return null;
+	private Element créeElément(Ellipse ellipse) {
+		Element element = getDocument().createElement(Ellipse.XML_NAME);
+
+		écrisAttribut(element, "cx", (ellipse.getMaxX()+ellipse.getMinX())/2);
+		écrisAttribut(element, "cy", (ellipse.getMaxY()+ellipse.getMinY())/2);
+		écrisAttribut(element, "rx", (ellipse.getMaxX()-ellipse.getMinX())/2);
+		écrisAttribut(element, "ry", (ellipse.getMaxY()+ellipse.getMinY())/2);
+
+		return element;
 	}
 
-	/**
-	 * Renvoie un nouvel élément DOM au format SVG représentant le cercle donné.
-	 * @param forme le cercle
-	 * @return élément DOM représentant le cercle
-	 */
-	public Element créeElémentCercle(Cercle forme) {
-		return null;
+	private Element créeElément(Cercle cercle) {
+		Element element = getDocument().createElement(Cercle.XML_NAME);
+
+		écrisAttribut(element, "cx", (cercle.getMaxX()+cercle.getMinX())/2);
+		écrisAttribut(element, "cy", (cercle.getMaxY()+cercle.getMinY())/2);
+		écrisAttribut(element, "r", cercle.getHauteur());
+
+		return element;
 	}
 
-	/**
-	 * Renvoie un nouvel élément DOM au format SVG représentant la ligne donnée.
-	 * @param forme la ligne
-	 * @return élément DOM représentant la ligne
-	 */
-	public Element créeElémentLigne(Ligne forme) {
-		return null;
+	private Element créeElément(Ligne ligne) {
+		Element element = getDocument().createElement(Ligne.XML_NAME);
+
+		écrisAttribut(element, "x1", ligne.getP1().getX());
+		écrisAttribut(element, "x2", ligne.getP2().getX());
+		écrisAttribut(element, "y1", ligne.getP1().getY());
+		écrisAttribut(element, "y2", ligne.getP2().getY());
+
+		return element;
 	}
 
-	/**
-	 * Renvoie un nouvel élément DOM au format SVG représentant le tracé donné.
-	 * @param forme le tracé
-	 * @return élément DOM représentant le tracé
-	 */
-	public Element créeElémentTracé(Tracé forme) {
-		return null;
+	private Element créeElément(Tracé tracé) {
+		Element element = getDocument().createElement(Tracé.XML_NAME);
+		char coordinatesSeparator = ',', pointsSeparator = ' ';
+		String format = String.format("%%d%c%%d%c", coordinatesSeparator, pointsSeparator);
+		String points = String.format(format, tracé.getLignes().get(0).getP1().getX(), tracé.getLignes().get(0).getP1().getY());
+		for (Ligne ligne : tracé.getLignes()) {
+			points += String.format(format, ligne.getP1().getX(), ligne.getP1().getY());
+		}
+		element.setAttribute("points", points);
+		return element;
 	}
-
 }

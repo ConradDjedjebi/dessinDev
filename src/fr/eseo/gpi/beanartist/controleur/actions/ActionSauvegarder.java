@@ -15,6 +15,7 @@ import java.io.FileNotFoundException;
 public class ActionSauvegarder extends AbstractAction  {
     private FenêtreBeAnArtist fenêtre;
     protected static final String NOM_ACTION = "Sauvegarder";
+    static final String SAVED_FILE_NAME = "savedFile.svg";
 
     public ActionSauvegarder(FenêtreBeAnArtist newFenêtre) {
         super(NOM_ACTION);
@@ -25,7 +26,7 @@ public class ActionSauvegarder extends AbstractAction  {
     public void actionPerformed(ActionEvent actionEvent) {
         EnregistreurXML enrégistreur = new EnregistreurXML();
         try {
-            enrégistreur.enregistreDessin("savedFile", fenêtre.getPanneauDessin().getVueFormes());
+            enrégistreur.enregistreDessin(SAVED_FILE_NAME, fenêtre.getPanneauDessin().getVueFormes());
         } catch (FileNotFoundException e1) {
             e1.printStackTrace();
         }

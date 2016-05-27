@@ -6,7 +6,7 @@ package fr.eseo.gpi.beanartist.modele.geom;
  * @project gpi_binome
  */
 public class Rectangle extends Forme {
-    public static final String XML_NAME = "rectangle";
+    public static final String XML_NAME = "rect";
 
     //------------- CONSTRUCTEUR -------------//
 
