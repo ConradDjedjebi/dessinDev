@@ -151,7 +151,7 @@ public class EnregistreurSVG extends Enregistreur {
 
 		écrisAttribut(element, "cx", (cercle.getMaxX()+cercle.getMinX())/2);
 		écrisAttribut(element, "cy", (cercle.getMaxY()+cercle.getMinY())/2);
-		écrisAttribut(element, "r", cercle.getHauteur());
+		écrisAttribut(element, "r", cercle.getHauteur()/2);
 
 		return element;
 	}
