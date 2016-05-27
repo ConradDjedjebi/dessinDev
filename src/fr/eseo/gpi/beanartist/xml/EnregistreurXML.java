@@ -112,8 +112,8 @@ public class EnregistreurXML extends Enregistreur {
 			throw new Error("Vue non gérée", e);
 		}
 
-		écrisAttribut(élément, "x", forme.getMinX());
-		écrisAttribut(élément, "y", forme.getMinY());
+		écrisAttribut(élément, "x", forme instanceof Ligne ? forme.getX() : forme.getMinX());
+		écrisAttribut(élément, "y", forme instanceof Ligne ? forme.getY() : forme.getMinY());
 		écrisAttribut(élément, "width", forme.getLargeur());
 		écrisAttribut(élément, "height", forme.getHauteur());
 

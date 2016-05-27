@@ -40,7 +40,7 @@ public class ActionOuvrir extends AbstractAction  {
                         fc.getSelectedFile().getAbsolutePath() +
                                 (fc.getSelectedFile().exists() ?
                                         // Si le fichier n'existe pas, on ajoute l'extension par défaut
-                                        "" : ".beanartist"
+                                        "" : '.'+EnregistreurXML.getExtensionFilter().getExtensions()[0]
                                 )
                 );
                 panneauDessin.getVueFormes().clear();
