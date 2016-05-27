@@ -3,7 +3,6 @@ package fr.eseo.gpi.beanartist.controleur.actions;
 import fr.eseo.gpi.beanartist.vue.geom.VueForme;
 import fr.eseo.gpi.beanartist.vue.ui.FenêtreBeAnArtist;
 import fr.eseo.gpi.beanartist.vue.ui.PanneauDessin;
-import fr.eseo.gpi.beanartist.xml.EnregistreurXML;
 import fr.eseo.gpi.beanartist.xml.LecteurXML;
 
 import javax.swing.*;

@@ -3,8 +3,10 @@ package fr.eseo.gpi.beanartist.xml;
 import java.io.FileNotFoundException;
 import java.util.List;
 
+import fr.eseo.gpi.beanartist.controleur.actions.ActionSauvegarder;
 import fr.eseo.gpi.beanartist.modele.geom.*;
 import fr.eseo.gpi.beanartist.vue.geom.*;
+import fr.eseo.gpi.beanartist.vue.ui.PanneauDessin;
 import org.w3c.dom.Element;
 
 /**
@@ -31,7 +33,7 @@ public class EnregistreurSVG extends ProcesseurDOM {
 	 * 
 	 */
 	public static void main(String[] args) throws FileNotFoundException {
-		teste("savedFile.svg", "S30-Dessin-out.svg");
+		teste(ActionSauvegarder.SAVED_FILE_NAME, "S30-Dessin-out.svg");
 	}
 
 	/**
@@ -60,6 +62,8 @@ public class EnregistreurSVG extends ProcesseurDOM {
 	public void enregistreDessin(String nomFichier, List<VueForme> dessin) throws FileNotFoundException {
 		créeDocumentSVG();
 		Element racine = getDocument().getDocumentElement();
+		écrisAttribut(racine, "height", PanneauDessin.HAUTEUR_PAR_DÉFAUT);
+		écrisAttribut(racine, "width", PanneauDessin.LARGEUR_PAR_DÉFAUT);
 
 		for (VueForme vueForme : dessin) racine.appendChild(créeElément(vueForme));
 
@@ -93,10 +97,15 @@ public class EnregistreurSVG extends ProcesseurDOM {
 		else
 			throw new Error("Vue non gérée");
 
-		élément.setAttribute(
-				vueForme.estRempli() ? "fill" : "stroke",
-				"#"+Integer.toHexString(vueForme.getCouleurLigne().getRGB()).substring(2)
-		);
+		String hexColor = "#" + Integer.toHexString(vueForme.getCouleurLigne().getRGB()).substring(2);
+		if(vueForme.estRempli()) {
+			élément.setAttribute("fill", hexColor);
+			élément.setAttribute("stroke", EMPTY_VALUE);
+		}
+		else {
+			élément.setAttribute("stroke", hexColor);
+			élément.setAttribute("fill", EMPTY_VALUE);
+		}
 
 		return élément;
 	}
@@ -118,7 +127,7 @@ public class EnregistreurSVG extends ProcesseurDOM {
 		écrisAttribut(element, "cx", (ellipse.getMaxX()+ellipse.getMinX())/2);
 		écrisAttribut(element, "cy", (ellipse.getMaxY()+ellipse.getMinY())/2);
 		écrisAttribut(element, "rx", (ellipse.getMaxX()-ellipse.getMinX())/2);
-		écrisAttribut(element, "ry", (ellipse.getMaxY()+ellipse.getMinY())/2);
+		écrisAttribut(element, "ry", (ellipse.getMaxY()-ellipse.getMinY())/2);
 
 		return element;
 	}
@@ -148,10 +157,13 @@ public class EnregistreurSVG extends ProcesseurDOM {
 		Element element = getDocument().createElement(Tracé.XML_NAME);
 		char coordinatesSeparator = ',', pointsSeparator = ' ';
 		String format = String.format("%%d%c%%d%c", coordinatesSeparator, pointsSeparator);
-		String points = String.format(format, tracé.getLignes().get(0).getP1().getX(), tracé.getLignes().get(0).getP1().getY());
+
+		Point firstPoint = tracé.getLignes().get(0).getP1();
+		String points = String.format(format, firstPoint.getX(), firstPoint.getY());
 		for (Ligne ligne : tracé.getLignes()) {
-			points += String.format(format, ligne.getP1().getX(), ligne.getP1().getY());
+			points += String.format(format, ligne.getP2().getX(), ligne.getP2().getY());
 		}
+
 		element.setAttribute("points", points);
 		return element;
 	}

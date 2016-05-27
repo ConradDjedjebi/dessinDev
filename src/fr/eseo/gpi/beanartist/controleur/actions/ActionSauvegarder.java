@@ -3,7 +3,7 @@ package fr.eseo.gpi.beanartist.controleur.actions;
 import fr.eseo.gpi.beanartist.vue.ui.FenêtreBeAnArtist;
 import fr.eseo.gpi.beanartist.xml.EnregistreurXML;
 
-import javax.swing.*;
+import javax.swing.AbstractAction;
 import java.awt.event.ActionEvent;
 import java.io.FileNotFoundException;
 
@@ -15,7 +15,7 @@ import java.io.FileNotFoundException;
 public class ActionSauvegarder extends AbstractAction  {
     private FenêtreBeAnArtist fenêtre;
     protected static final String NOM_ACTION = "Sauvegarder";
-    static final String SAVED_FILE_NAME = "savedFile.svg";
+    public static final String SAVED_FILE_NAME = "savedFile.xml";
 
     public ActionSauvegarder(FenêtreBeAnArtist newFenêtre) {
         super(NOM_ACTION);
