@@ -63,6 +63,10 @@ public class EnregistreurXML extends Enregistreur {
 		LecteurXML.teste(nomFichierSortie);
 	}
 
+	/**
+	 * Obtenir le filtre d'extension pour cet enregistreur
+	 * @return Le filtre d'extension ad hoc
+	 */
 	public static FileNameExtensionFilter getExtensionFilter() {
 		return new FileNameExtensionFilter("Document graphique BeAnArtist (.beanartist, .baa, .xml)","beanartist","xml","baa");
 	}

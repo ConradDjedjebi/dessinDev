@@ -54,6 +54,10 @@ public class EnregistreurSVG extends Enregistreur {
 		enregistreur.enregistreDessin(nomFichierSortie, dessin);
 	}
 
+	/**
+	 * Obtenir le filtre d'extension pour cet enregistreur
+	 * @return Le filtre d'extension ad hoc
+     */
 	public static FileNameExtensionFilter getExtensionFilter() {
 		return new FileNameExtensionFilter("Image SVG", "svg");
 	}
