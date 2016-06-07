@@ -17,7 +17,7 @@ CREATE TABLE `competiteur` (
 	`numero` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
 	`nom` VARCHAR(255) NOT NULL ,
 	`addresse` VARCHAR(1023) NOT NULL ,
-	`date_naissance` TIMESTAMP NOT NULL ,
+	`date_naissance` DATE NOT NULL ,
 	`email` VARCHAR(320) NOT NULL ,
 	PRIMARY KEY (`numero`));
 
