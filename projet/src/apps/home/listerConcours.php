@@ -8,6 +8,7 @@ $page = new HTML\Doc('Liste des concours');
 
 $page->addAPI('UIcore');
 $page->addAPI('menu');
+$page->addAPI('tables');
 
 // $page->addStyle('home', __DIR__);
 
