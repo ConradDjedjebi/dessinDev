@@ -1,0 +1,71 @@
+#msg_box
+{
+	border: none;
+	min-width:100%;
+	text-align:center;
+	position: fixed;
+	top:0;
+	margin:0;
+	z-index: 2147483647;
+	padding: 0;
+	font-family: "Roboto",sans-serif;
+	font-weight:300;
+	font-size: 18px;
+}
+
+#msg_box>li
+{
+	display: block;
+	max-width: 100%;
+	margin:auto;
+	height:1.8em;
+	list-style: none;
+	border:0px solid grey;
+	border-top: none; 
+	vertical-align: center;
+	padding-top: .5em;
+	color:#FFF;
+}
+#msg_box>li:last-child
+{
+	border-bottom-style: solid;
+}
+
+#msg_box>li.msg_warning
+{
+	background-color: #D32F2F;
+}
+#msg_box>li.msg_info
+{
+	background-color: #a9f0a9;
+	display:none !important;
+}
+#msg_box>li.msg_wait
+{
+	background-color: #ffc457;
+	display: none !important;
+}
+
+#msg_box>li.msg_warning::before
+{
+	content: "\274C";/*croix*/
+}
+#msg_box>li.msg_wait::before
+{
+	content: "\231b"; /*sablier*/
+	font-weight: bold;
+}
+#msg_box>li.msg_info::before
+{
+	content: "\2713"; /*tick ✓*/
+}
+
+#msg_box>li::before
+{
+	padding-right: .35em;
+}
+
+#msg_box>li.msg_wait::after
+{
+	content: "\2026"; /* … */
+}

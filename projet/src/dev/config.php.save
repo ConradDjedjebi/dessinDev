@@ -1,0 +1,51 @@
+<?php
+/**
+ * Fichier de configuration
+ * Vous pouvez personnalier ce fichier pour que le projet fonctionne avec votre propre configuaration serveur
+ *
+ * @author aduh95
+ * @category configuration
+ * @package domotique
+ * @subpackage global_functions
+ */
+
+namespace CONFIG;
+
+// Set that constant to true on your production server
+define('PROD_ENVIRONEMENT', false);
+
+// Defining global constant
+define('PROJECT_ROOT', $_SERVER['DOCUMENT_ROOT']);
+define('ROOT_DIR', '/');
+define('PHPEXTENSION', 'func');
+
+
+namespace CONFIG\MySQL;
+
+// MySQL const
+const
+		DB   = 'domotique',
+		USER = 'root',
+		PWD  = '',
+        SERVER = 'localhost';
+
+namespace CONFIG\MAIL;
+
+// Mail const
+const
+		AVAILABLE = false,
+		FROM  = '"Réseau Domotique" <noreply@exemple.org>',
+		REPLY = '"Réseau Domotique" <noreply@exemple.org>';
+
+
+namespace CONFIG\UPLOAD;
+
+const
+		DIRECTORY = PROJECT_ROOT.DIRECTORY_SEPARATOR.'upl0';
+
+
+
+namespace CONFIG\APIs;
+
+const
+		DIRECTORY = PROJECT_ROOT.DIRECTORY_SEPARATOR.'api';
