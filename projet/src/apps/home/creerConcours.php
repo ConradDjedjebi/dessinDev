@@ -16,7 +16,7 @@ $page->body.= HTML::container('row',
 $form = new HTML\Form(__DIR__.DIRECTORY_SEPARATOR.'gest_creerConcours.php');
 
 $form->addFieldset('Nouveau concours');
-	$form->input(['label'=>'Année', 'type'=>'year', 'name'=>'annee']);
+	$form->input(['label'=>'Année', 'type'=>'number', 'name'=>'annee', 'autofocus'=>true, 'value'=>date('Y')]);
 	$form->input(['label'=>'Session', 'type'=>'select', 'name'=>'saison', 'other'=>['options'=>[
 			'été', 'primtemps', 'hiver'
 		], 'help'=>'Indiquer la saison']]);
