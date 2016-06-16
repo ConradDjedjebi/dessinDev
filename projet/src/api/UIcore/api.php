@@ -6,7 +6,8 @@ function main($doc)
     $doc->addScript('compatibility', '~api/UIcore', false);
 
     $doc->addScript('jquery.min', 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4', false);
-    $doc->directScript('window.jQuery||document.write("<scr"+"ipt src=\''.\HTML::relativeLink('~api/UIcore/jquery.min.js').'\'></scr"+"ipt>");</script><script>');
+    $doc->directScript('window.jQuery||document.write("<scr"+"ipt src=\''.\HTML::relativeLink('~api/UIcore/jquery.min.js').'\'></scr"+"ipt>");//--></script><script><!--
+');
 
     $doc->addScript('bootstrap.min', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js', false);
     // $doc->directScript('$.fn.modal||document.write("<script src=\''.\HTML::relativeLink('~api/UIcore/bootstrap.min.js').'\'><\/script>");');
