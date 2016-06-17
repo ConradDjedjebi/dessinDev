@@ -26,7 +26,7 @@ var msg = function (jQuery, window)
 			};
 		}, //var
 		new_msg = function (param, className) {
-			return jQuery("<li class='msg_"+className+"'>"+param.msg+"</li>")
+			return jQuery("<li class='alert alert-"+className+"'>"+param.msg+"</li>")
 					.appendTo(get_msg_box(param.doc))
 					.slideDown(param.slideDown_speed)
 					.click(function(){
@@ -47,13 +47,14 @@ var msg = function (jQuery, window)
 			var param = toObject(options, {
 					msg : "Une erreur s'est produite !",
 					displayTime : 10000,
-					good_news : false, 
+					debug : false,
+					success : false, 
 					// doc: document,
 					slideUp_speed : "slow",
 					slideDown_speed : null
 				}), //var
-				$msg = new_msg(param, param.good_news ? "info" : "warning");
-			if (param.displayTime)
+				$msg = new_msg(param, param.success ? "success" : "danger");
+			if (!param.debug && param.displayTime)
 				setTimeout(slideUp_msg_box($msg, param.slideUp_speed), param.displayTime);
 		},
 
@@ -64,7 +65,7 @@ var msg = function (jQuery, window)
 					slideUp_speed : "slow",
 					slideDown_speed : null
 				}), //var
-				$msg = new_msg(param, "wait");
+				$msg = new_msg(param, "info");
 			return slideUp_msg_box($msg, param.slideUp_speed);
 		},
 

@@ -1,7 +1,7 @@
 var ajaxpost = function (windowOriginal, $, undefined)
 {
     var feedback = function (event, data) {
-            msg.alert({good_news:data.result, msg:data.msg});
+            msg.alert({success:data.result, msg:data.msg});
             return data.result;
         }, //var
         FormData = windowOriginal.FormData, //var
