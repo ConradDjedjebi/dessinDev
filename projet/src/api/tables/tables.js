@@ -20,6 +20,7 @@ $(document).ready(function () {
 					form.method = data.method;
 				$.each(post, function (name) {
 					var input = document.createElement("input");
+					input.type = "hidden";
 					input.name = name;
 					input.defaultValue = this;
 					fieldset.appendChild(input);
