@@ -19,7 +19,7 @@ try {
 		$form->hidden('concours', intval($_GET['concours']));
 
 		$form->input(['name'=>'dessin', 'type'=>'select', 'other'=>[
-				'options'=>Prep::selectAll(['dessin', 'where'=>['ref_Concours'=>$_GET['concours']/*, 'etat'=>''*/] 'style'=>PDO::FETCH_COLUMN|PDO::FETCH_UNIQUE, 'argument'=>1]),
+				'options'=>Prep::selectAll(['dessin', 'where'=>['ref_Concours'=>$_GET['concours']/*, 'etat'=>''*/], 'style'=>PDO::FETCH_COLUMN|PDO::FETCH_UNIQUE, 'argument'=>1]),
 				'label'=>'Choix du dessin',
 			]]);
 	$form->input(['name'=>'jury', 'type'=>'select', 'other'=>[
@@ -32,6 +32,7 @@ try {
 
 	$form->submit('Soumettre');
 } catch (prep\Exception $e) {
+	$page->body.= HTML::h3('Noter un dessin');
 	$form = HTML::container('alert alert-danger', 'Aucun dessin ou jury n\'est inscrit, il n\'est pas possible de noter un dessin');
 }
 

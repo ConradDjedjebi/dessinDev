@@ -15,20 +15,8 @@ div#compatibility_warning
 /*
 	GLOBAL STYLE
 */
-body {
-	width: 100%;
-	background: white;
-	font-family: 'Roboto', sans-serif;
-	overflow-x: hidden;
-	margin:0;
-	padding-bottom: 3em;
-	}
 
-#page-wrapper {
-	width:40em;
-	margin-top:50px;
-	margin-left:auto;
-	margin-right:auto;
-	padding:0 0;
+#page-content-wrapper {
+	padding: .5em 2.5em !important;
 }
 

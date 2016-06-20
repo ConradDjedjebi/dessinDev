@@ -9,14 +9,14 @@ $page->addAPI('form_handler');
 
 $page->body.= '<div id="page-content-wrapper">';
 
-$form = new HTML\Form(__DIR__.DIRECTORY_SEPARATOR.'gest_ajouterCompetiteur.php');
+$form = new HTML\Form(__DIR__.DIRECTORY_SEPARATOR.'gest_ajouterJury.php');
 
-$form->addFieldset('Ajouter un competiteur');
-	$form->input(['label'=>'Nom', 'name'=>'nom', 'autofocus'=>true]);
+$form->addFieldset('Ajouter un jury');
+	$form->input(['required'=>true, 'label'=>'Nom', 'name'=>'nom', 'autofocus'=>true]);
 	
-	$form->input(['label'=>'Adresse', 'name'=>'adresse', 'type'=>'textarea']);
-	$form->input(['label'=>'Courriel', 'name'=>'email', 'type'=>'email']);
-	$form->input(['label'=>'Numéro de téléphone', 'name'=>'telephone', 'type'=>'text']);
+	$form->input(['required'=>true, 'label'=>'Adresse', 'name'=>'adresse', 'type'=>'textarea']);
+	$form->input(['required'=>true, 'label'=>'Courriel', 'name'=>'email', 'type'=>'email']);
+	$form->input(['required'=>true, 'label'=>'Numéro de téléphone', 'name'=>'telephone', 'type'=>'number']);
 
 $form->submit('Ajouter à la base');
 
