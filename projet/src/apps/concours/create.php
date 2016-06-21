@@ -14,13 +14,12 @@ $page->body.= HTML::container('row',
 		HTML::container('alert alert-warning', 'Un seul concours par saison est autorisé.')
 	);
 
-$form = new HTML\Form(__DIR__.DIRECTORY_SEPARATOR.'gest_creerConcours.php');
+$form = new HTML\Form(__DIR__.DIRECTORY_SEPARATOR.'gest_create.php');
 
+$saisons = ['printemps', 'été', 'automne', 'hiver',];
 $form->addFieldset('Nouveau concours');
 	$form->input(['label'=>'Année', 'type'=>'number', 'name'=>'annee', 'autofocus'=>true, 'value'=>date('Y')]);
-	$form->input(['label'=>'Session', 'type'=>'select', 'name'=>'saison', 'other'=>['options'=>[
-			'été', 'primtemps', 'hiver'
-		], 'help'=>'Indiquer la saison']]);
+	$form->input(['label'=>'Session', 'type'=>'select', 'name'=>'saison', 'other'=>['options'=>array_combine($saisons, $saisons)]]);
 	$form->input(['label'=>'Thème', 'name'=>'theme']);
 	$form->input(['label'=>'Date de début', 'name'=>'date_debut', 'type'=>'date']);
 	$form->input(['label'=>'Date de fin', 'name'=>'date_fin', 'type'=>'date']);
