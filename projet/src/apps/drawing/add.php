@@ -16,13 +16,16 @@ try {
 	$form = new HTML\Form(__DIR__.DIRECTORY_SEPARATOR.'gest_ajouterDessin.php');
 
 	$form->addFieldset('Ajouter un dessin');
-		$form->hidden('concours', intval($_GET['concours']));
+		$form->hidden('ref_Concours', intval($_GET['concours']));
 		$form->input(['label'=>'Déposer le dessin', 'type'=>'file', 'name'=>'dessin','accept'=>'applicattion/xml']);
 		$form->hidden('MAX_FILE_SIZE', 1<<10<<10);
 		$form->input(['label'=>'Date du dessin', 'name'=>'date_remise', 'type'=>'date']);
 
+		$form->input(['name'=>'ref_Competiteur', 'type'=>'select', 'other'=>['options'=>
+			Prep::selectAll(['competiteur', 'WHERE'=>['ref_Concours'=>$_GET['concours']], 'JOIN'=>Prep::SQL('INNER JOIN participe ON ref_Competiteur=numero'), 'style'=>PDO::FETCH_COLUMN|PDO::FETCH_UNIQUE, 'argument'=>1])]]);
+
 		$form->input(['name'=>'juries[]', 'type'=>'select', 'multiple'=>true, 'other'=>[
-				'options'=>Prep::selectAll(['evaluateur', 'style'=>PDO::FETCH_COLUMN|PDO::FETCH_UNIQUE, 'argument'=>1]),
+				'options'=>Prep::selectAll(['evaluateur', 'WHERE'=>['ref_Concours'=>$_GET['concours']], 'JOIN'=>Prep::SQL('INNER JOIN jury ON ref_Evaluateur=numero'), 'style'=>PDO::FETCH_COLUMN|PDO::FETCH_UNIQUE, 'argument'=>1]),
 				'help'=>'Vous devez choisir exactement deux jurys',
 				'label'=>'Choix des jurys',
 			]]);

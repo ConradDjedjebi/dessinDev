@@ -16,7 +16,7 @@ try {
 	$form = new HTML\Form(__DIR__.DIRECTORY_SEPARATOR.'gest_ajouterDessin.php');
 
 	$form->addFieldset('Ajouter un dessin');
-		$form->hidden('concours', intval($_GET['concours']));
+		$form->hidden('ref_Concours', intval($_GET['concours']));
 
 		$form->input(['name'=>'dessin', 'type'=>'select', 'other'=>[
 				'options'=>Prep::selectAll(['dessin', 'where'=>['ref_Concours'=>$_GET['concours']/*, 'etat'=>''*/], 'style'=>PDO::FETCH_COLUMN|PDO::FETCH_UNIQUE, 'argument'=>1]),
