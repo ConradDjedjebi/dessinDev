@@ -45,23 +45,10 @@ function use_file($name, $dir)
 	require_once $dir.DIRECTORY_SEPARATOR.$name.'.php';
 }
 
-/**
- * Include a class file
- * 
- * @param string $className Name of the class. The file is supposed to be in the ~/class/ directory and named <className>.class.php
- */
-function use_class($name)
-{
-	// use_file(strtolower($name).'.class', PROJECT_ROOT.'/class');
-}
-
-use_class('prep');
-use_class('html');
-use_class('session');
 
 array_map(function($f) {
     use_file($f, PHPEXTENSION);
-} , ['security', 'isset', 'user', 'format']);
+} , ['security', 'isset', 'format']);
 
 // Connexion à MySQL
 Prep::$PDO = Prep::connect(CONFIG\MYSQL\DB, CONFIG\MYSQL\USER, CONFIG\MYSQL\PWD, CONFIG\MYSQL\SERVER);

@@ -17,16 +17,15 @@ define('PROD_ENVIRONEMENT', false);
 // Defining global constant
 define('PROJECT_ROOT', $_SERVER['DOCUMENT_ROOT']);
 define('ROOT_DIR', '/');
-define('PHPEXTENSION', 'func');
 
 
 namespace CONFIG\MySQL;
 
 // MySQL const
 const
-		DB   = 'domotique',
-		USER = 'root',
-		PWD  = '',
+		DB   = 'projet',
+		USER = 'gpi2',
+		PWD  = 'network',
         SERVER = 'localhost';
 
 namespace CONFIG\MAIL;
