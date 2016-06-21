@@ -25,7 +25,18 @@ $page->body.= HTML::container('row',
 try {
     // Affichage des tous les membres
     $tbody = array();
-    $list = Prep::query('-- Waiting4Elphege');
+    $list = Prep::query('
+
+SELECT Dessin.numero, date_remise, etat, eval1.note AS noteeva1, eval1.commentaire AS commenteva1, eval2.note AS noteeva2, eval2.commentaire as commenteva2, evalu1.nom as nameeva1,  evalu2.nom as nameeva2 
+FROM Dessin
+    LEFT JOIN Evaluation AS eval1
+        ON eval1.ref_Dessin = Dessin.numero
+    LEFT JOIN Evaluation AS eval2
+        ON eval2.ref_Dessin = Dessin.numero
+    LEFT JOIN Evaluateur AS evalu1
+        ON evalu1.numero = eval1.ref_Evaluateur
+    LEFT JOIN Evaluateur AS evalu2
+        ON evalu2.numero = eval2.ref_Evaluateur');
     foreach ($list as $concours)
     	$tbody[] = [
     		HTML\Table::link(['concours'=>$concours['numero']], HTML::icon('fa-download')),
