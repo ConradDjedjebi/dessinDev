@@ -9,7 +9,7 @@ $page->addAPI('form_handler');
 
 $page->body.= '<div id="page-content-wrapper">';
 
-$form = new HTML\Form(__DIR__.DIRECTORY_SEPARATOR.'gest_ajouterCompetiteur.php');
+$form = new HTML\Form(__DIR__.DIRECTORY_SEPARATOR.'gest_competiteur.php');
 
 $form->addFieldset('Ajouter un competiteur');
 	$form->input(['label'=>'Nom', 'name'=>'nom', 'autofocus'=>true]);

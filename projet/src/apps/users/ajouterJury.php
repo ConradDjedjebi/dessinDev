@@ -9,7 +9,7 @@ $page->addAPI('form_handler');
 
 $page->body.= '<div id="page-content-wrapper">';
 
-$form = new HTML\Form(__DIR__.DIRECTORY_SEPARATOR.'gest_ajouterJury.php');
+$form = new HTML\Form(__DIR__.DIRECTORY_SEPARATOR.'gest_jury.php');
 
 $form->addFieldset('Ajouter un jury');
 	$form->input(['required'=>true, 'label'=>'Nom', 'name'=>'nom', 'autofocus'=>true]);
