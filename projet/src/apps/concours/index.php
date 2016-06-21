@@ -22,9 +22,9 @@ $page->body.= HTML::container('row',
 	);
 
 $menu = [
-    		'Ajouter un dessin' => '~apps/home/ajouterDessin.php',
-            'Ajouter une note' => '~apps/home/noter.php',
-            'Afficher les résultats' => '~apps/home/afficherResultats.php',
+    		'Ajouter un dessin' => '~apps/drawing/add.php',
+            'Ajouter une note' => '~apps/drawing/evaluate.php',
+            'Afficher les résultats' => __DIR__.DIRECTORY_SEPARATOR.'results.php',
     	];
 $liste = array();
 

@@ -9,10 +9,10 @@ function main($doc)
 
 	$menu = [
             'BeAnArtist' => '~apps/home',
-            'Liste des concours' => '~apps/home/listerConcours.php',
-            'Créer un concours' => '~apps/home/creerConcours.php',
-            'Inscrire un jury' => '~apps/home/ajouterJury.php',
-            'Inscrire un competiteur' => '~apps/home/ajouterCompetiteur.php',
+            'Liste des concours' => '~apps/concours/list.php',
+            'Créer un concours' => '~apps/concours/create.php',
+            'Inscrire un jury' => '~apps/users/ajouterJury.php',
+            'Inscrire un competiteur' => '~apps/users/ajouterCompetiteur.php',
     	];
     $liste = array();
 

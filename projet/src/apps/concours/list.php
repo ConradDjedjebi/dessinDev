@@ -32,7 +32,7 @@ try {
 
     $page->body.= HTML::container('row', 
     new HTML\Table([
-        ['data-href'=>HTML::relativeLink('~apps/home/gestionConcours.php'), 'data-fenetre'=>true],
+        ['data-href'=>HTML::relativeLink(__DIR__), 'data-fenetre'=>true],
         'thead'=>['Concours', 'Thème', 'Date de début', 'Date de fin'],
         'tbody'=>$tbody,
         'options'=>HTML\Table::TITLES_NO_XSS | HTML\Table::TABLELINK,

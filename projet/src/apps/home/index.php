@@ -18,10 +18,10 @@ $page->body.= HTML::container('row',
 	);
 
 $menu = [
-    		'Créer un concours' => '~apps/home/creerConcours.php',
-            'Ajouter un membre au jury' => '~apps/home/ajouterJury.php',
-            'Ajouter un competiteur' => '~apps/home/ajouterCompetiteur.php',
-    		'Accéder aux concours' => '~apps/home/listerConcours.php',
+    		'Créer un concours' => 			'~apps/concours/create.php',
+            'Ajouter un membre au jury'	=>	'~apps/users/ajouterJury.php',
+            'Ajouter un competiteur' => 	'~apps/users/ajouterCompetiteur.php',
+    		'Accéder aux concours' => 		'~apps/concours/list.php',
     	];
 $liste = array();
 
