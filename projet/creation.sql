@@ -22,7 +22,7 @@ CREATE TABLE Concours (
 CREATE TABLE Competiteur (
 	numero INT UNSIGNED NOT NULL AUTO_INCREMENT ,
 	nom VARCHAR(255) NOT NULL ,
-	addresse VARCHAR(1023) NOT NULL ,
+	adresse VARCHAR(1023) NOT NULL ,
 	date_naissance DATE NOT NULL ,
 	email VARCHAR(320) NOT NULL ,
 	PRIMARY KEY (numero));
@@ -59,10 +59,11 @@ CREATE TABLE Dessin (
 	numero INT UNSIGNED NOT NULL AUTO_INCREMENT ,
 	ref_Competiteur INT UNSIGNED NOT NULL,
 	ref_Concours INT UNSIGNED NOT NULL,
-	commentaire TEXT NOT NULL ,
+	commentaire TEXT ,
 	le_dessin  CHAR(50) NOT NULL,
 	etat TINYTEXT NOT NULL ,
 	date_remise TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,
+	descriptif TEXT ,
 	PRIMARY KEY (numero),
 	FOREIGN KEY (ref_Competiteur) REFERENCES Competiteur (numero),
 	FOREIGN KEY (ref_Concours) REFERENCES Concours (numero));
@@ -70,10 +71,10 @@ CREATE TABLE Dessin (
 
 CREATE TABLE Evaluation (
 	ref_Dessin INT UNSIGNED NOT NULL,
-	ref_Evaluateur INT UNSIGNED NOT NULL,
-	date_evaluation TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,
-	note TINYINT UNSIGNED NOT NULL ,
-	commentaire TEXT NOT NULL ,
+	ref_Evaluateur INT UNSIGNED NOT NULL ,
+	date_evaluation TIMESTAMP NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP ,
+	note TINYINT UNSIGNED DEFAULT NULL ,
+	commentaire TEXT DEFAULT NULL , 
 	PRIMARY KEY (ref_Evaluateur, ref_Dessin),
 	FOREIGN KEY (ref_Dessin) REFERENCES Dessin (numero),
 	FOREIGN KEY (ref_Evaluateur) REFERENCES Evaluateur (numero));

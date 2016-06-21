@@ -5,7 +5,7 @@ INSERT INTO `concours`
 		(2015, 'été', '2015-06-01', '2015-08-31', 'l''eau'),
 		(2016, 'printemps', '2016-03-01', '2016-05-31', 'le rouge');
 
-INSERT INTO `competiteur` (`nom`, `addresse`, `date_naissance`, `email`) VALUES
+INSERT INTO `competiteur` (`nom`, `adresse`, `date_naissance`, `email`) VALUES
 	('Thomas Fardeau', '38 rue Paul-François Proust 79000 Niort', '1994-06-07', 'Thomas.Fardeau@seio.org'),
 	('Thomas Fouquet', '10 rue Saint Laud 49100 Angers', '1994-01-07', 'Thomas.Fouquet@seio.org'),
 	('Romain Hamon', '11 rue Saint Léonard 49100 Angers', '1994-09-12', 'Romain.Hamon@seio.org'),
