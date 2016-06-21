@@ -16,7 +16,7 @@ $form->addFieldset('Ajouter un competiteur');
 	
 	$form->input(['label'=>'Adresse', 'name'=>'adresse', 'type'=>'textarea']);
 	$form->input(['label'=>'Courriel', 'name'=>'email', 'type'=>'email']);
-	$form->input(['label'=>'Date de naissance', 'name'=>'date_naissance', 'type'=>'date']);
+	$form->input(['label'=>'Date de naissance', 'name'=>'date_naissance', 'type'=>'date', 'placeholder'=>'AAAA-MM-JJ']);
 
 $form->submit('Ajouter à la base');
 

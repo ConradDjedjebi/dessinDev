@@ -21,8 +21,8 @@ $form->addFieldset('Nouveau concours');
 	$form->input(['label'=>'Année', 'type'=>'number', 'name'=>'annee', 'autofocus'=>true, 'value'=>date('Y')]);
 	$form->input(['label'=>'Session', 'type'=>'select', 'name'=>'saison', 'other'=>['options'=>array_combine($saisons, $saisons)]]);
 	$form->input(['label'=>'Thème', 'name'=>'theme']);
-	$form->input(['label'=>'Date de début', 'name'=>'date_debut', 'type'=>'date']);
-	$form->input(['label'=>'Date de fin', 'name'=>'date_fin', 'type'=>'date']);
+	$form->input(['label'=>'Date de début', 'name'=>'date_debut', 'type'=>'date', 'placeholder'=>'AAAA-MM-JJ']);
+	$form->input(['label'=>'Date de fin', 'name'=>'date_fin', 'type'=>'date', 'placeholder'=>'AAAA-MM-JJ']);
 
 $form->submit('Créer le concours');
 

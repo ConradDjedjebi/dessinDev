@@ -19,7 +19,7 @@ try {
 		$form->hidden('ref_Concours', intval($_GET['concours']));
 		$form->input(['label'=>'Déposer le dessin', 'type'=>'file', 'name'=>'dessin','accept'=>'applicattion/xml']);
 		$form->hidden('MAX_FILE_SIZE', 1<<10<<10);
-		$form->input(['label'=>'Date du dessin', 'name'=>'date_remise', 'type'=>'date']);
+		$form->input(['label'=>'Date du dessin', 'name'=>'date_remise', 'type'=>'date', 'placeholder'=>'AAAA-MM-JJ']);
 
 		$form->input(['name'=>'ref_Competiteur', 'type'=>'select', 'other'=>['options'=>
 			Prep::selectAll(['competiteur', 'WHERE'=>['ref_Concours'=>$_GET['concours']], 'JOIN'=>Prep::SQL('INNER JOIN participe ON ref_Competiteur=numero'), 'style'=>PDO::FETCH_COLUMN|PDO::FETCH_UNIQUE, 'argument'=>1])]]);
