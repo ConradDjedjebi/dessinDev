@@ -36,20 +36,21 @@ FROM Dessin
     LEFT JOIN Evaluateur AS evalu1
         ON evalu1.numero = eval1.ref_Evaluateur
     LEFT JOIN Evaluateur AS evalu2
-        ON evalu2.numero = eval2.ref_Evaluateur');
-    foreach ($list as $concours)
+        ON evalu2.numero = eval2.ref_Evaluateur
+    WHERE evalu1.numero < evalu2.numero');
+    foreach ($list as $drawing)
     	$tbody[] = [
-    		HTML\Table::link(['concours'=>$concours['numero']], HTML::icon('fa-download')),
-            HTML::noXSS($concours['numero']),
-            (new DateTime($concours['date_remise']))->format(date\FRENCH),
-            HTML::noXSS($concours['etat']),
-            HTML::noXSS(getName($concours['IDeva1']).'('.$concours['noteeva1'].')').HTML::br().HTML::pre(HTML::noXSS($concours['commenteva1'])),
-            HTML::noXSS(getName($concours['IDeva2']).'('.$concours['noteeva2'].')').HTML::br().HTML::pre(HTML::noXSS($concours['commenteva2'])),
+    		HTML\Table::link(['drawing'=>$drawing['numero']], HTML::icon('fa-download')),
+            HTML::noXSS($drawing['numero']),
+            (new DateTime($drawing['date_remise']))->format(date\FRENCH),
+            HTML::noXSS($drawing['etat']),
+            HTML::noXSS($drawing['nameeva1']).(isset($drawing['noteeva1']) ? '('.$drawing['noteeva1'].')'.HTML::br().HTML::pre(HTML::noXSS($drawing['commenteva1'])) : HTML::em(' (pas encore évalué)')),
+            HTML::noXSS($drawing['nameeva2']).(isset($drawing['noteeva2']) ? '('.$drawing['noteeva2'].')'.HTML::br().HTML::pre(HTML::noXSS($drawing['commenteva2'])) : HTML::em(' (pas encore évalué)')),
     	];
 
     $page->body.= HTML::container('row', 
     new HTML\Table([
-        ['data-href'=>HTML::relativeLink('~apps/home/gestionConcours.php'), 'data-fenetre'=>true],
+        ['data-href'=>HTML::relativeLink('~apps/drawing/download.php'), 'data-fenetre'=>true],
         'thead'=>[null, 'Numéro', 'Date de remise', 'État', '1e évaluation', '2e évaluation'],
         'tbody'=>$tbody,
         'options'=>HTML\Table::TITLES_NO_XSS | HTML\Table::TABLELINK,
