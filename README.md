@@ -19,3 +19,10 @@ Modifications faites :
 
 --- Le nom de l'attribut addresse a été modéfié et devient dorénavant adresse
 --- La contrainte NOT NULL a été retirée des attributs commentaire et descriptif
+--- VARCHAR de saison remplacé par ENUM. Idem pour état
+
+
+
+Conseils :
+
+--- Ajouter le mode debug sur la VM. Cela permet d'afficher les erreurs qu'il y a dans le code html (voir post de Shhel sur le forum)

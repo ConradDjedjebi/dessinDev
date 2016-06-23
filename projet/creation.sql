@@ -12,7 +12,7 @@ DROP TABLE IF EXISTS Concours;
 CREATE TABLE Concours (
 	numero INT UNSIGNED NOT NULL AUTO_INCREMENT ,
 	annee YEAR NOT NULL ,
-	saison VARCHAR(9) NOT NULL ,
+	saison ENUM('printemps', 'été', 'automne', 'hivers') NOT NULL ,
 	theme VARCHAR(255) NOT NULL ,
 	date_debut DATE NOT NULL ,
 	date_fin DATE NOT NULL ,
@@ -61,7 +61,7 @@ CREATE TABLE Dessin (
 	ref_Concours INT UNSIGNED NOT NULL,
 	commentaire TEXT ,
 	le_dessin  CHAR(50) NOT NULL,
-	etat TINYTEXT NOT NULL ,
+	etat ENUM ('déposé', 'refusé', 'évalué') NOT NULL ,
 	date_remise TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,
 	descriptif TEXT ,
 	PRIMARY KEY (numero),
