@@ -13,7 +13,7 @@ $page->addAPI('form_handler');
 $page->body.= '<div id="page-content-wrapper">';
 
 try {
-	$form = new HTML\Form(__DIR__.DIRECTORY_SEPARATOR.'gest_ajouterDessin.php');
+	$form = new HTML\Form(__DIR__.DIRECTORY_SEPARATOR.'gest_add.php');
 
 	$form->addFieldset('Ajouter un dessin');
 		$form->hidden('ref_Concours', intval($_GET['concours']));

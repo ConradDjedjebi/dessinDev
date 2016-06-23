@@ -19,8 +19,8 @@ if (exist_plein('ref_Concours','date_remise', 'ref_Competiteur', 'juries'))
 	if(!is_array($_POST['juries']) || count($_POST['juries'])!==2)
 		$doc->exitError('Vous devez séléctionner exactement deux évaluateurs');
 
+	Prep::$PDO->beginTransaction();
 	try {
-		Prep::$PDO->beginTransaction();
 
 		Prep::insert('dessin', ['ref_Concours', 'ref_Competiteur', 'le_dessin'=>userfile\upload('dessin'), 'date_remise'], $_POST);
 
@@ -29,9 +29,10 @@ if (exist_plein('ref_Concours','date_remise', 'ref_Competiteur', 'juries'))
 		$jury->execute([$_POST['juries'][1]]);
 
 		Prep::$PDO->commit();
-		$doc->redirect(__DIR__);
+		$doc->redirect('~apps/concours?concours='.$_POST['ref_Concours']);
 		$doc->exitSuccess('Enregistré');
 	} catch (prep\Exception $e) {
+		Prep::$PDO->rollBack();
 		$doc->exitError('Impossible d\'ajouter le dessin');
 	}
 }

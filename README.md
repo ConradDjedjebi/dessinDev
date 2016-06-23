@@ -17,12 +17,13 @@ Les contraintes à respecter lors de la programmation :
 
 Modifications faites : 
 
---- Le nom de l'attribut addresse a été modéfié et devient dorénavant adresse
---- La contrainte NOT NULL a été retirée des attributs commentaire et descriptif
---- VARCHAR de saison remplacé par ENUM. Idem pour état
+ * Le nom de l'attribut `Competiteur.addresse` a été renomé en `Competiteur.adresse`
+ * La contrainte `NOT NULL` a été retirée des attributs `Dessin.commentaire` et `Dessin.descriptif`
+ * Le type `VARCHAR` du champ `Concours.saison` remplacé par `ENUM`
+ * Le type `VARCHAR` du champ `Dessin.etat` remplacé par `ENUM`
 
 
 
 Conseils :
 
---- Ajouter le mode debug sur la VM. Cela permet d'afficher les erreurs qu'il y a dans le code html (voir post de Shhel sur le forum)
+ * Ajouter le mode debug sur la VM. Cela permet d'afficher les erreurs qu'il y a dans le code html (voir post de Shhel sur le forum)
