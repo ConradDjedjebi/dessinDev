@@ -16,6 +16,11 @@ div#compatibility_warning
 	GLOBAL STYLE
 */
 
+body
+{
+    font-family: "Roboto", sans-serif !important;
+}
+
 #page-content-wrapper {
 	padding: .5em 2.5em !important;
 }
