@@ -21,7 +21,11 @@ $page->body.= '<div id="page-content-wrapper">';
 $page->body.= HTML::container('row', 
 		HTML::h1 ('Résultats du concours')
 	);
-	
+
+use_file('menu_concours', __DIR__);
+$page->body.= menu_concours();
+
+
 try {
     // Affichage des tous les membres
     $tbody = array();
@@ -40,17 +44,16 @@ FROM Dessin
     WHERE evalu1.numero < evalu2.numero');
     foreach ($list as $drawing)
     	$tbody[] = [
-    		HTML\Table::link(['drawing'=>$drawing['numero']], HTML::icon('fa-download')),
+    		HTML::a('~apps/drawing/download.php?drawing='.$drawing['numero'], HTML::icon('glyphicon glyphicon-save'), ['title'=>'Télécharger le fichier']),
             HTML::noXSS($drawing['numero']),
             (new DateTime($drawing['date_remise']))->format(date\FRENCH),
             HTML::noXSS($drawing['etat']),
-            HTML::noXSS($drawing['nameeva1']).(isset($drawing['noteeva1']) ? '('.$drawing['noteeva1'].')'.HTML::br().HTML::pre(HTML::noXSS($drawing['commenteva1'])) : HTML::em(' (pas encore évalué)')),
+            HTML::noXSS($drawing['nameeva1']).(isset($drawing['noteeva1']) ? ' ('.$drawing['noteeva1'].')'.HTML::br().HTML::pre(HTML::noXSS($drawing['commenteva1'])) : HTML::em(' (pas encore évalué)')),
             HTML::noXSS($drawing['nameeva2']).(isset($drawing['noteeva2']) ? '('.$drawing['noteeva2'].')'.HTML::br().HTML::pre(HTML::noXSS($drawing['commenteva2'])) : HTML::em(' (pas encore évalué)')),
     	];
 
     $page->body.= HTML::container('row', 
     new HTML\Table([
-        ['data-href'=>HTML::relativeLink('~apps/drawing/download.php'), 'data-fenetre'=>true],
         'thead'=>[null, 'Numéro', 'Date de remise', 'État', '1e évaluation', '2e évaluation'],
         'tbody'=>$tbody,
         'options'=>HTML\Table::TITLES_NO_XSS | HTML\Table::TABLELINK,

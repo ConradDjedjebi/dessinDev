@@ -6,23 +6,27 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/dev/index.php';
 if(!isset($_GET['concours']))
 	redirect(ROOT_DIR);
 
+use_file('menu_concours', PROJECT_ROOT.DIRECTORY_SEPARATOR.'apps/concours');
 $page = new HTML\Doc('Noter un dessin');
 $page->addAPI('menu');
 $page->addAPI('form_handler');
 
 $page->body.= '<div id="page-content-wrapper">';
 
-try {
-	$form = new HTML\Form(__DIR__.DIRECTORY_SEPARATOR.'gest_ajouterDessin.php');
+$page->body.= HTML::container('row', HTML::h1('Évaluer un dessin'));
+$page->body.= menu_concours();
 
-	$form->addFieldset('Ajouter un dessin');
+try {
+	$form = new HTML\Form(__DIR__.DIRECTORY_SEPARATOR.'gest_evaluate.php');
+
+	$form->addFieldset('Noter un dessin');
 		$form->hidden('ref_Concours', intval($_GET['concours']));
 
-		$form->input(['name'=>'dessin', 'type'=>'select', 'other'=>[
+		$form->input(['name'=>'ref_Dessin', 'type'=>'select', 'other'=>[
 				'options'=>Prep::selectAll(['dessin', 'where'=>['ref_Concours'=>$_GET['concours']/*, 'etat'=>''*/], 'style'=>PDO::FETCH_COLUMN|PDO::FETCH_UNIQUE, 'argument'=>1]),
 				'label'=>'Choix du dessin',
 			]]);
-	$form->input(['name'=>'jury', 'type'=>'select', 'other'=>[
+	$form->input(['name'=>'ref_Evaluateur', 'type'=>'select', 'other'=>[
 				'options'=>Prep::selectAll(['evaluateur', 'style'=>PDO::FETCH_COLUMN|PDO::FETCH_UNIQUE, 'argument'=>1]),
 				'label'=>'Choix du jury',
 			]]);

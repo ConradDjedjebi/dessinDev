@@ -6,6 +6,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/dev/index.php';
 if(!isset($_GET['concours']))
 	redirect(ROOT_DIR);
 
+use_file('menu_concours', __DIR__);
 $concours = Prep::selectOne(['concours', $_GET['concours'], 'field_ID'=>'numero']);
 
 $page = new HTML\Doc('Gérer le concours');
@@ -18,23 +19,11 @@ $page->addAPI('menu');
 $page->body.= '<div id="page-content-wrapper">';
 
 $page->body.= HTML::container('row', 
-		HTML::h1 ('Administration du concours '.HTML::noXSS($concours['theme'].' ('.$concours['saison'].' '.$concours['annee'].')'))
+		HTML::h1 ('Administration du concours '.HTML::noXSS($concours['theme'].' ('.$concours['saison'].' '.$concours['annee'].')')).
+		HTML::p('Vous pouvez accéder aux différentes sections pour ce concours :')
 	);
 
-$menu = [
-    		'Ajouter un dessin' => '~apps/drawing/add.php',
-            'Ajouter une note' => '~apps/drawing/evaluate.php',
-            'Afficher les résultats' => __DIR__.DIRECTORY_SEPARATOR.'results.php',
-    	];
-$liste = array();
 
-foreach ($menu as $label => $link)
-	$liste[]= HTML::a($link.'?concours='.$_GET['concours'], $label);
-
-	
-$page->body.= HTML::container('row', 
-		HTML::p('Vous pouvez accéder aux différentes sections pour ce concours :').
-		HTML::liste('ul', array(), $liste)
-	);
+$page->body.= menu_concours();
 
 $page->body.= '</div>';
