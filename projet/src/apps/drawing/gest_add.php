@@ -14,7 +14,7 @@ $doc = new HTML\JSON;
 
 // $doc->exitError(print_r($_POST, true));
 // $doc->exitError(exist_plein('saison') ? 'true' : 'false');
-if (exist_plein('ref_Concours','date_remise', 'ref_Competiteur', 'juries'))
+if (exist_plein('ref_Concours','date_remise', 'ref_Competiteur') && exist('commentaire'))
 {
 	Prep::$PDO->beginTransaction();
 	try {

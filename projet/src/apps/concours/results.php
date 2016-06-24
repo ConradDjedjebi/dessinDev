@@ -3,7 +3,6 @@ define('NO_CONNECTION_REQUIRED', 1);
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/dev/index.php';
 use_file('date', PHPEXTENSION);
-use_file('userfile', PHPEXTENSION);
 
 if(!isset($_GET['concours']))
     redirect(ROOT_DIR);
@@ -12,6 +11,7 @@ $page = new HTML\Doc('Affichage des résultats du concours');
 
 $page->addAPI('UIcore');
 $page->addAPI('menu');
+$page->addAPI('download');
 $page->addAPI('tables');
 
 // $page->addStyle('home', __DIR__);
@@ -41,10 +41,10 @@ FROM Dessin
         ON evalu1.numero = eval1.ref_Evaluateur
     LEFT JOIN Evaluateur AS evalu2
         ON evalu2.numero = eval2.ref_Evaluateur
-    WHERE evalu1.numero < evalu2.numero');
+    WHERE (etat="evalué" AND evalu1.numero < evalu2.numero) OR etat="déposé"');
     foreach ($list as $drawing)
     	$tbody[] = [
-    		HTML::a('~apps/drawing/download.php?drawing='.$drawing['numero'], HTML::icon('glyphicon glyphicon-floppy-save'), ['title'=>'Télécharger le fichier']),
+    		HTML::a('~apps/drawing/download.php?drawing='.$drawing['numero'], HTML::icon('glyphicon glyphicon-floppy-save'), ['title'=>'Télécharger le fichier', 'download'=>true]),
             HTML::noXSS($drawing['numero']),
             (new DateTime($drawing['date_remise']))->format(date\FRENCH),
             HTML::noXSS($drawing['etat']),
@@ -56,7 +56,7 @@ FROM Dessin
     new HTML\Table([
         'thead'=>[null, 'Numéro', 'Date de remise', 'État', '1e évaluation', '2e évaluation'],
         'tbody'=>$tbody,
-        'options'=>HTML\Table::TITLES_NO_XSS | HTML\Table::TABLELINK,
+        'options'=>HTML\Table::TITLES_NO_XSS,
         ]));
 } catch (Exception $e) {
     $page->body.= HTML::container('row', HTML::container('alert alert-warning', HTML::noXSS('Le chargement de la liste des concours a echoué.')));
