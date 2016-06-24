@@ -44,7 +44,7 @@ FROM Dessin
     WHERE evalu1.numero < evalu2.numero');
     foreach ($list as $drawing)
     	$tbody[] = [
-    		HTML::a('~apps/drawing/download.php?drawing='.$drawing['numero'], HTML::icon('glyphicon glyphicon-save'), ['title'=>'Télécharger le fichier']),
+    		HTML::a('~apps/drawing/download.php?drawing='.$drawing['numero'], HTML::icon('glyphicon glyphicon-floppy-save'), ['title'=>'Télécharger le fichier']),
             HTML::noXSS($drawing['numero']),
             (new DateTime($drawing['date_remise']))->format(date\FRENCH),
             HTML::noXSS($drawing['etat']),

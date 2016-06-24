@@ -2,7 +2,7 @@
 
 function menu_concours() {
 	$menu = [
-	    		'Liste des concours' => __DIR__.DIRECTORY_SEPARATOR.'index.php',
+	    		'Retour à la liste des concours' => __DIR__.DIRECTORY_SEPARATOR.'list.php',
 	    		'Ajouter un dessin' => '~apps/drawing/add.php',
 	            'Ajouter une note' => '~apps/drawing/evaluate.php',
 	            'Afficher les résultats' => __DIR__.DIRECTORY_SEPARATOR.'results.php',

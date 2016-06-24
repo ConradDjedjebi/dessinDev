@@ -16,17 +16,10 @@ $doc = new HTML\JSON;
 // $doc->exitError(exist_plein('saison') ? 'true' : 'false');
 if (exist_plein('ref_Concours','date_remise', 'ref_Competiteur', 'juries'))
 {
-	if(!is_array($_POST['juries']) || count($_POST['juries'])!==2)
-		$doc->exitError('Vous devez séléctionner exactement deux évaluateurs');
-
 	Prep::$PDO->beginTransaction();
 	try {
 
-		Prep::insert('dessin', ['ref_Concours', 'ref_Competiteur', 'le_dessin'=>userfile\upload('dessin'), 'date_remise'], $_POST);
-
-		$jury = Prep::$PDO->prepare('INSERT INTO evaluation (ref_Dessin, ref_Evaluateur) VALUES ('.Prep::$PDO->lastInsertId().', ?);');
-		$jury->execute([$_POST['juries'][0]]);
-		$jury->execute([$_POST['juries'][1]]);
+		Prep::insert('dessin', ['ref_Concours', 'ref_Competiteur', 'commentaire', 'le_dessin'=>userfile\upload('dessin'), 'date_remise'], $_POST);
 
 		Prep::$PDO->commit();
 		$doc->redirect('~apps/concours?concours='.$_POST['ref_Concours']);
