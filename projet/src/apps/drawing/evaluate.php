@@ -17,23 +17,40 @@ $page->body.= HTML::container('row', HTML::h1('Évaluer un dessin'));
 $page->body.= menu_concours();
 
 try {
+	$concours = Prep::selectOne(['concours', $_GET['concours'], 'field_ID'=>'numero']);
+} catch (prep\Exception $e) {
+	$page->body.= HTML::container('alert alert-danger', 'Le concours est introuvable');
+	$page->body.= '</div>';
+	exit;
+}
+
+try {
 	$form = new HTML\Form(__DIR__.DIRECTORY_SEPARATOR.'gest_evaluate.php');
 
 	$form->addFieldset('Noter un dessin');
-		$form->hidden('ref_Concours', intval($_GET['concours']));
+		$form->hidden('ref_Concours', $concours['numero']);
+		$form->input(['disabled'=>'true', 'label'=>'Concours', 'value'=>$concours['theme'].' ('.$concours['saison'].' '.$concours['annee'].')']);
 
 		$form->input(['name'=>'ref_Dessin', 'type'=>'select', 'other'=>[
 				'options'=>Prep::selectAll(['dessin', 'where'=>['ref_Concours'=>$_GET['concours']/*, 'etat'=>''*/], 'style'=>PDO::FETCH_COLUMN|PDO::FETCH_UNIQUE, 'argument'=>1]),
 				'label'=>'Choix du dessin',
 			]]);
-	$form->input(['name'=>'ref_Evaluateur', 'type'=>'select', 'other'=>[
-				'options'=>Prep::selectAll(['evaluateur', 'style'=>PDO::FETCH_COLUMN|PDO::FETCH_UNIQUE, 'argument'=>1]),
-				'label'=>'Choix du jury',
+	
+		$form->input(['name'=>'juries[]', 'type'=>'select', 'multiple'=>true, 'other'=>[
+				'options'=>Prep::selectAll(['evaluateur', 'WHERE'=>['ref_Concours'=>$_GET['concours']], 'JOIN'=>Prep::SQL('INNER JOIN jury ON ref_Evaluateur=numero'), 'style'=>PDO::FETCH_COLUMN|PDO::FETCH_UNIQUE, 'argument'=>1]),
+				'help'=>'Vous devez choisir exactement deux jurys',
+				'label'=>'Choix des jurys',
 			]]);
 		
-	$form->input(['label'=>'Note', 'name'=>'note', 'type'=>'number']);
-	$form->input(['label'=>'Commentaire', 'name'=>'commentaire', 'type'=>'textarea']);
+	$form->addFieldset('Premier jury');
+		$form->input(['label'=>'Note', 'name'=>'note[]', 'type'=>'number']);
+		$form->input(['label'=>'Commentaire', 'name'=>'commentaire[]', 'type'=>'textarea']);
+		
+	$form->addFieldset('Deuxième jury');
+		$form->input(['label'=>'Note', 'name'=>'note[]', 'type'=>'number']);
+		$form->input(['label'=>'Commentaire', 'name'=>'commentaire[]', 'type'=>'textarea']);
 
+	$form->addFieldset();
 	$form->submit('Soumettre');
 } catch (prep\Exception $e) {
 	$page->body.= HTML::h3('Noter un dessin');

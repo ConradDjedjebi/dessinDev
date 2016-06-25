@@ -39,12 +39,6 @@ try {
 
 		$form->input(['name'=>'commentaire', 'type'=>'textarea', 'label'=>'commentaire']);
 
-		// $form->input(['name'=>'juries[]', 'type'=>'select', 'multiple'=>true, 'other'=>[
-		// 		'options'=>Prep::selectAll(['evaluateur', 'WHERE'=>['ref_Concours'=>$_GET['concours']], 'JOIN'=>Prep::SQL('INNER JOIN jury ON ref_Evaluateur=numero'), 'style'=>PDO::FETCH_COLUMN|PDO::FETCH_UNIQUE, 'argument'=>1]),
-		// 		'help'=>'Vous devez choisir exactement deux jurys',
-		// 		'label'=>'Choix des jurys',
-		// 	]]);
-
 	$form->submit('Soumettre');
 } catch (prep\Exception $e) {
 	$form = HTML::container('alert alert-danger', 'Aucun participant n\'est inscrit, il n\'est pas possible d\'ajouter un dessin');
