@@ -3,13 +3,13 @@
  * Here is defined JSON class
  *
  * @author       aduh95
- * @version      1.1
+ * @version      1.2
  * @package      HTML
  * @subpackage   JSON.class
  * @since        1.1
  */
 namespace HTML;
-class JSON
+class JSON implements \ArrayAccess
 {
     const PASSWORD_NEEDED = true;
     const TOP_REDIRECT = true;
@@ -105,5 +105,52 @@ class JSON
         $this->result = true;
         $this->msg = $msgSuccess;
         exit;
+    }
+
+
+
+    /**
+     * Checks if an offset is set in this object
+     * 
+     * @param mixed $key The key to test
+     * @return boolean The result of the test
+     */
+    public function offsetExists($key)
+    {
+        return isset($this->data[$key]);
+    }
+
+    /**
+     * Returns the value the variable set in this object
+     * 
+     * @param mixed $key The key to get
+     * @return mixed The stored result in this object
+     */
+    public function offsetGet($key)
+    {
+        return $this->offsetExists($key) ? $this->data[$key] : trigger_error('Unfinded index "'.$key.'"');
+    }
+
+    /**
+     * Sets the value the variable in this object
+     * 
+     * @param mixed $key    The key to set
+     * @param mixed $value  The value to set
+     * @return void
+     */
+    public function offsetSet($key, $value)
+    {
+        $this->data[$key] = $value;
+    }
+
+    /**
+     * Unsets the value the variable in this object
+     * 
+     * @param mixed $key The key to unset
+     * @return void
+     */
+    public function offsetUnset($key)
+    {
+        unset($this->data[$key]);
     }
 }
