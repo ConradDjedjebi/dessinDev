@@ -32,7 +32,7 @@ try {
 		$form->input(['disabled'=>'true', 'label'=>'Concours', 'value'=>$concours['theme'].' ('.$concours['saison'].' '.$concours['annee'].')']);
 
 		$form->input(['name'=>'ref_Dessin', 'type'=>'select', 'other'=>[
-				'options'=>Prep::selectAll(['dessin', 'where'=>['ref_Concours'=>$_GET['concours']/*, 'etat'=>''*/], 'style'=>PDO::FETCH_COLUMN|PDO::FETCH_UNIQUE, 'argument'=>1]),
+				'options'=>['Choisissez un dessin à noter']+Prep::selectAll(['dessin', ['numero', 'numero'], 'where'=>['ref_Concours'=>$_GET['concours'], 'etat'=>'déposé'], 'style'=>PDO::FETCH_COLUMN|PDO::FETCH_UNIQUE, 'argument'=>1]),
 				'label'=>'Choix du dessin',
 			]]);
 	

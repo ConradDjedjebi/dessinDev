@@ -15,12 +15,27 @@ $doc = new HTML\JSON;
 
 // $doc->exitError(print_r($_POST, true));
 // $doc->exitError(exist_plein('saison') ? 'true' : 'false');
-if (exist_plein('juries', 'ref_Dessin', 'commentaire', 'note') && count($_POST['juries'])===EXPECTED_EVALUATION_NUMBER_PER_DRAWING && count($_POST['commentaire'])===EXPECTED_EVALUATION_NUMBER_PER_DRAWING && count($_POST['note'])===EXPECTED_EVALUATION_NUMBER_PER_DRAWING)
+if (exist_plein('ref_Concours', 'juries', 'ref_Dessin', 'commentaire', 'note') && count($_POST['juries'])===EXPECTED_EVALUATION_NUMBER_PER_DRAWING && count($_POST['commentaire'])===EXPECTED_EVALUATION_NUMBER_PER_DRAWING && count($_POST['note'])===EXPECTED_EVALUATION_NUMBER_PER_DRAWING)
 {
 	try {
+		// Récupération des infos sur le Dessin
+		$dessin = Prep::select('Dessin', ['ref_Concours', 'ref_Competiteur'], ['numero'=>$_POST['ref_Dessin'], 'etat'=>'déposé'])->fetch() or $doc->exitError('Impossible de trouver le dessin');
+	} catch (prep\Exception $e) {
+		$doc->exitError('Une erreur s\'est produite');
+	}
+
+	try {
+		foreach ($_POST['juries'] as $jury) {
+			if(intval(Prep::query('SELECT COUNT(*) FROM Evaluation
+				LEFT JOIN Dessin ON ref_Dessin=numero
+				WHERE ref_Competiteur=? AND ref_Evaluateur=? AND ref_Concours=?;',
+				[$dessin['ref_Competiteur'], $jury, $dessin['ref_Concours']])->fetchColumn()) > 1)
+				$doc->exitError(Prep::select('Evaluateur', 'nom', ['numero'=>$jury])->fetchColumn().' a déjà atteint la limite de dessins notés pour se participant');
+		}
+
 		Prep::$PDO->beginTransaction();	
 
-		Prep::updateOne(['Dessin', $_POST['ref_Dessin'], ['etat'=>'évalué'], 'ID_field'=>'numero']);
+		Prep::updateOne(['Dessin', $_POST['ref_Dessin'], ['etat'=>'évalué'], 'field_ID'=>'numero']);
 
 		Prep::insert('evaluation', ['ref_Dessin'=>$_POST['ref_Dessin'], 'note'=>$_POST['note'][0], 'commentaire'=>$_POST['commentaire'][0], 'ref_Evaluateur'=>$_POST['juries'][0]]);
 		Prep::insert('evaluation', ['ref_Dessin'=>$_POST['ref_Dessin'], 'note'=>$_POST['note'][1], 'commentaire'=>$_POST['commentaire'][1], 'ref_Evaluateur'=>$_POST['juries'][1]]);
@@ -29,7 +44,7 @@ if (exist_plein('juries', 'ref_Dessin', 'commentaire', 'note') && count($_POST['
 		$doc->redirect('~apps/concours?concours='.$_POST['ref_Concours']);
 		$doc->exitSuccess('Enregistré');
 	} catch (prep\Exception $e) {
-		$doc->exitError('Impossible d\'enregistrer la note');
+		$doc->exitError('Impossible d\'enregistrer la note'.$e);
 	}
 }
 else
