@@ -13,9 +13,14 @@ Les contraintes à respecter lors de la programmation :
  * Qu'un seul concours par an et pour une session donnée
 
 
+Les améliorations développées :
 
+ * Utilisation de l'AJAX pour les formulaires pour éviter de reset le formulaire à la moindre erreur
+ * Ajout d'un menu latéral pour faciliter la navigation
+ * Ajout de l'aperçu des images lors de l'ajout d'une note
+ * Ajout du nom du competiteur sur le tableau des résultats
 
-Modifications faites : 
+Modifications effectuées sur la base de données : 
 
  * Le nom de l'attribut `Competiteur.addresse` a été renomé en `Competiteur.adresse`
  * La contrainte `NOT NULL` a été retirée des attributs `Dessin.commentaire` et `Dessin.descriptif`

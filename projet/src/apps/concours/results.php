@@ -31,8 +31,10 @@ try {
     $tbody = array();
     $list = Prep::query('
 
-SELECT Dessin.numero, date_remise, etat, eval1.note AS noteeva1, eval1.commentaire AS commenteva1, eval2.note AS noteeva2, eval2.commentaire as commenteva2, evalu1.nom as nameeva1,  evalu2.nom as nameeva2 
+SELECT Dessin.numero, comp.nom, date_remise, etat, eval1.note AS noteeva1, eval1.commentaire AS commenteva1, eval2.note AS noteeva2, eval2.commentaire as commenteva2, evalu1.nom as nameeva1,  evalu2.nom as nameeva2 
 FROM Dessin
+    LEFT JOIN Competiteur AS comp
+        ON ref_Competiteur = comp.numero
     LEFT JOIN Evaluation AS eval1
         ON eval1.ref_Dessin = Dessin.numero
     LEFT JOIN Evaluation AS eval2
@@ -46,6 +48,7 @@ FROM Dessin
     	$tbody[] = [
     		HTML::a('~apps/drawing/download.php?drawing='.$drawing['numero'], HTML::icon('glyphicon glyphicon-floppy-save'), ['title'=>'Télécharger le fichier', 'download'=>true]),
             HTML::noXSS($drawing['numero']),
+            HTML::noXSS($drawing['nom']),
             (new DateTime($drawing['date_remise']))->format(date\FRENCH),
             HTML::noXSS($drawing['etat']),
             HTML::noXSS($drawing['nameeva1']).(isset($drawing['noteeva1']) ? ' ('.$drawing['noteeva1'].')'.HTML::br().HTML::pre(HTML::noXSS($drawing['commenteva1'])) : HTML::em(' (pas encore évalué)')),
@@ -54,7 +57,7 @@ FROM Dessin
 
     $page->body.= HTML::container('row', 
     new HTML\Table([
-        'thead'=>[null, 'Numéro', 'Date de remise', 'État', '1e évaluation', '2e évaluation'],
+        'thead'=>[null, 'Numéro', 'Competiteur', 'Date de remise', 'État', '1e évaluation', '2e évaluation'],
         'tbody'=>$tbody,
         'options'=>HTML\Table::TITLES_NO_XSS,
         ]));

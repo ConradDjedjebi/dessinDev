@@ -1,4 +1,15 @@
 window.jQuery(function ($) {
+	// Affichage de l'image
+	var apercu = new Image;
+	apercu.className = "col-xs-6";
+	apercu.style.maxHeight = "15em";
+
+	$("select[name=ref_Dessin]").change(function () {
+		ajaxpost("download.php", "format=base64&drawing="+parseInt(this.value), function (data) {
+			apercu.src = "data:"+data.data.MIME+";base64,"+data.data.img;
+		}, "json");
+	}).parent().addClass(apercu.className).after(apercu);
+
 	// Ajout du nom des Jury de manière dynamique
 	var smalls = new Array;
 
