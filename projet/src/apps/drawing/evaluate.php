@@ -10,6 +10,8 @@ use_file('menu_concours', PROJECT_ROOT.DIRECTORY_SEPARATOR.'apps/concours');
 $page = new HTML\Doc('Noter un dessin');
 $page->addAPI('menu');
 $page->addAPI('form_handler');
+$page->addScript('evaluate', __DIR__);
+$page->addStyle('evaluate', __DIR__);
 
 $page->body.= '<div id="page-content-wrapper">';
 
@@ -36,7 +38,7 @@ try {
 				'label'=>'Choix du dessin',
 			]]);
 	
-		$form->input(['name'=>'juries[]', 'type'=>'select', 'multiple'=>true, 'other'=>[
+		$form->input(['name'=>'juries[]', 'id'=>'juries', 'type'=>'select', 'multiple'=>true, 'other'=>[
 				'options'=>Prep::selectAll(['evaluateur', 'WHERE'=>['ref_Concours'=>$_GET['concours']], 'JOIN'=>Prep::SQL('INNER JOIN jury ON ref_Evaluateur=numero'), 'style'=>PDO::FETCH_COLUMN|PDO::FETCH_UNIQUE, 'argument'=>1]),
 				'help'=>'Vous devez choisir exactement deux jurys',
 				'label'=>'Choix des jurys',
