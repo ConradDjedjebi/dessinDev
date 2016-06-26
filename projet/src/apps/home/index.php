@@ -14,7 +14,7 @@ $page->body.= '<div id="page-content-wrapper">';
 
 $page->body.= HTML::container('row', 
 		HTML::h1 ('Administration des concours "BeAnArtist"').
-		HTML::container('alert alert-info', 'Cette page est réservée aux administrateurs du concours. Merci de ne rien modifier sans leur accord express.')
+		HTML::container('alert alert-info', 'Cette section est réservée aux administrateurs du concours. Merci de ne rien modifier sans leur accord express.')
 	);
 
 $menu = [
@@ -30,7 +30,7 @@ foreach ($menu as $label => $link)
 
 	
 $page->body.= HTML::container('row', 
-		HTML::p('Vous pouvez accéder aux différentes sections du site :').
+		HTML::p('Vous pouvez accéder aux interfaces suiantes :').
 		HTML::liste('ul', array(), $liste)
 	);
 

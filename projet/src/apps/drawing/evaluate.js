@@ -4,11 +4,13 @@ window.jQuery(function ($) {
 	apercu.className = "col-xs-6";
 	apercu.style.maxHeight = "15em";
 
-	$("select[name=ref_Dessin]").change(function () {
-		ajaxpost("download.php", "format=base64&drawing="+parseInt(this.value), function (data) {
-			apercu.src = "data:"+data.data.MIME+";base64,"+data.data.img;
-		}, "json");
-	}).parent().addClass(apercu.className).after(apercu);
+	$("<div class='row'></div>").append(
+		$("select[name=ref_Dessin]").change(function () {
+			ajaxpost("download.php", "format=base64&drawing="+parseInt(this.value), function (data) {
+				apercu.src = data.result ? "data:"+data.data.MIME+";base64,"+data.data.img : "data:null";
+			}, "json", false, "Aucun dessin à afficher");
+		}).parent().addClass(apercu.className),
+		apercu).insertBefore(document.getElementById("juries").parentNode);
 
 	// Ajout du nom des Jury de manière dynamique
 	var smalls = new Array;

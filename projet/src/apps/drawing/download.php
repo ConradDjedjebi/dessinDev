@@ -10,11 +10,16 @@ use_file('userfile', PHPEXTENSION);
 if(!empty($_GET['drawing']) || exist_plein('drawing'))
 {
 	$drawing = exist_plein('drawing') ? $_POST['drawing'] : $_GET['drawing'];
-	$drawing = userfile\relativeLink(Prep::query('SELECT le_dessin FROM Dessin WHERE numero=?', $drawing)->fetchColumn());
+	$drawing = Prep::query('SELECT le_dessin FROM Dessin WHERE numero=?', $drawing)->fetchColumn();
 
 	if(exist_plein('format'))
 	{
 		$doc = new HTML\JSON;
+
+		if($drawing)
+			$drawing = userfile\relativeLink($drawing);
+		else
+			$doc->exitError('Dessin introuvable');
 
 		$doc['MIME'] = userfile\getMIME($drawing);
 		if($_POST['format']==='base64')
@@ -22,5 +27,8 @@ if(!empty($_GET['drawing']) || exist_plein('drawing'))
 
 		$doc->exitSuccess('Image chargée');
 	}
-	userfile\download($drawing);
+	else
+		userfile\download($drawing);
 }
+else
+	new HTML\JSON;
