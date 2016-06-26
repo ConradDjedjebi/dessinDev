@@ -27,6 +27,7 @@ Grand Projet Informatique du semestre S6 pour le Groupe ESEO.
      - Optimisation du temps de téléchargement des scripts
      - Interprétation plus rapide pour le navigateur
  * Protection contre la faille XSS
+ * Ajout d'un formulaire de connexion
 
 ### Modifications effectuées sur la base de données
 

@@ -5,7 +5,7 @@
  * @package apps/connect
  * @subpackage Formulaire_gestion
  */
-define('NO_CONNECTION_REQUIRED', 1);
+
 const EXPECTED_EVALUATION_NUMBER_PER_DRAWING = 2;
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/dev/index.php';

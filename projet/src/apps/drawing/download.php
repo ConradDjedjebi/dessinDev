@@ -2,7 +2,7 @@
 /**
  * @author Antoine du HAMEL
  */
-define('NO_CONNECTION_REQUIRED', 1);
+
 require_once $_SERVER['DOCUMENT_ROOT'].'/dev/index.php';
 
 use_file('userfile', PHPEXTENSION);

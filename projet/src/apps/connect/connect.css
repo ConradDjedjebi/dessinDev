@@ -1,0 +1,67 @@
+body {
+  padding: 40px 0;
+  background-color: #eee;
+  overflow: hidden;
+}
+
+/* Correction du bug graphique sur les messages d'AJAX dû à l'absence de menu latéral */
+#msg_box {
+  left: 0;
+}
+#msg_box>li {
+  margin: 0;
+}
+
+/*Mise en page du formulaire de log-in */
+.login-panel
+{
+  margin-top: 50vh; /* poussé de la moitié de hauteur de viewport */
+  transform: translateY(-70%); /* tiré de la moitié de sa propre hauteur */
+}
+
+.login-panel form {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.login-panel h3,
+.login-panel form .checkbox {
+  margin-bottom: 10px;
+}
+.login-panel form .checkbox {
+  font-weight: normal;
+}
+.login-panel form .form-group {
+	margin-bottom: 0;
+}
+.login-panel form .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.login-panel form .form-control:focus {
+  z-index: 2;
+}
+.login-panel form input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.login-panel form input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.panel-heading
+{
+    text-align: center;
+}
+
+.panel-heading>a>img
+{
+    max-height: 102px;
+}

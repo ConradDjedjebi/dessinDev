@@ -13,6 +13,7 @@ function main($doc)
             'Créer un concours' => '~apps/concours/create.php',
             'Inscrire un jury' => '~apps/users/ajouterJury.php',
             'Inscrire un competiteur' => '~apps/users/ajouterCompetiteur.php',
+            'Déconnexion' => '~apps/connect/log.php?off',
     	];
     $liste = array();
 
