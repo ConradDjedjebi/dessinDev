@@ -1,26 +1,12 @@
 <?php
 /**
-* Library of function and constants about security. If you want to pass informations through session, save it in $_SESSION->data.
+* Takes care of security through user sessions.
 *
-* @author       aduh95
-* @version      1.2
+* @author       Antoine du HAMEL
+* @version      GPI2
 * @package      Session
-* @require      PREP>=3.7
 */
-/**
- * Assure la continuité de la session de l'utilisateur
- *
- * @property array $data
- * @method bool connect(int $id_joomla)
- * @method bool isConnected()
- * @method void requirePermission(int $rightLevel)
- * @method bool hasPermission([int $rightLevel])
- * @method void close()
- *
- ** STATIC **
- * @method void retrieve()
- */
-class Session
+class Session implements ArrayAccess
 {
     protected $connect_time, $id, $rights;
     private $connected=false;
@@ -29,8 +15,6 @@ class Session
     const   CLIENT =           1,
             ADMIN  =           1<<1, 
             ANY =           (1<<16)-1;
-
-    const SQL_RIGHTS_FIELD = 'rights';
 
     /**
      * Transforme `$_SESSION` en array à la fin du chargement de la page
@@ -87,22 +71,19 @@ class Session
      */
     public function connect($login, $pass)
     {
-        if ($sql_data = Prep::select([
-                        'users__list', ['ID',self::SQL_RIGHTS_FIELD, 'password'],
-                        'where'=>['login'=>$login],
-                        'limit'=>1])->fetch());
-        else
-            return !$this->log('Failed connection with unknown user: '.$login, $login, 'connection') && false;
+        if ($login !== CONFIG\LOGIN\USERNAME)
+            return false;
+        
+        if (!password_verify($pass, CONFIG\LOGIN\PASSWORD_HASH))
+            return false;
 
-        if (!password_verify($pass, $sql_data['password']))
-            return !$this->log('Wrong password for user: '.$login, $sql_data['ID'], 'connection') && false;
-
-        $this->id = $sql_data['ID'];
-        $this->rights = $sql_data[self::SQL_RIGHTS_FIELD];
+        $this->id = 0;
+        $this->rights = 1;
         $this->connect_time = time();
 
         $this->connected = true;
-        return $this->log('Successful connection by user: '.$login, $this->id, 'connection');
+        return true;
+        // return $this->log('Successful connection by user: '.$login, $this->id, 'connection');
     }
 
     /**
@@ -137,44 +118,62 @@ class Session
         return $this->connected;
     }
 
-    /**
-     * @return int
-     */
-    public function get_id()
-    {
-        return $this->id;
-    }
-
     public function __sleep()
     {
-        return ['connect_time', 'id', 'data'];
-    }
-
-    public function __wakeup()
-    {
-        try {
-            $this->rights = intval(Prep::selectOne('users__list', $this->id, self::SQL_RIGHTS_FIELD)[0]);
-            $this->connected = true;
-        } catch (Exception $e) {
-            $this->rights = 0;
-            $this->connected = false;
-        }
+        return ['connect_time', 'id', 'data', 'rights', 'connected'];
     }
 
     /**
-     * Log info in the database
-     * @param str $msg
-     * @param str $info
-     * @param str $type
-     *
-     * @return bool
+     * Checks if an offset is set in this object
+     * 
+     * @param mixed $key The key to test
+     * @return boolean The result of the test
      */
-    public function log($msg, $info=null, $type='custom')
+    public function offsetExists($key)
     {
-        use_file('date', PHPEXTENSION);
-        $fields = ['msg'=>$msg, 'type'=>$type, 'request_uri'=>$_SERVER['REQUEST_URI'], 'stack'=>$info];
-        if($this->is_connected())
-            $fields+= ['Session_user'=>$this->id, 'Session_connect_time'=>date(date\MySQL, $this->connect_time), 'Session_rights'=>$this->rights];
-        return Prep::insert('logs', $fields);
+        return isset($this->data[$key]);
+    }
+
+    /**
+     * Returns the value the variable set in this object
+     * 
+     * @param mixed $key The key to get
+     * @return mixed The stored result in this object
+     */
+    public function offsetGet($key)
+    {
+        return $this->offsetExists($key) ? $this->data[$key] : trigger_error('Unfinded index "'.$key.'"');
+    }
+
+    /**
+     * Sets the value the variable in this object
+     * 
+     * @param mixed $key    The key to set
+     * @param mixed $value  The value to set
+     * @return void
+     */
+    public function offsetSet($key, $value)
+    {
+        $this->data[$key] = $value;
+    }
+
+    /**
+     * Unsets the value the variable in this object
+     * 
+     * @param mixed $key The key to unset
+     * @return void
+     */
+    public function offsetUnset($key)
+    {
+        unset($this->data[$key]);
+    }
+    
+    /**
+     * Prints the array of the objet when a var_dump is made
+     * @return array
+     */
+    public function __debugInfo()
+    {
+        return $this->data;
     }
 }
