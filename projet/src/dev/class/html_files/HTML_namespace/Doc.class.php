@@ -88,7 +88,11 @@ class Doc
         {
             // if the file is on the server, let's minify it
             if(!is_file($min_file = PROJECT_ROOT.$url.'.min.js') || filemtime($file)>filemtime($min_file))
-                exec('type "uglifyjs" &> /dev/null && touch "'.$min_file.'" && rm "'.$min_file.'" && uglifyjs "'.$file.'" -m -c unsafe,drop_console,collapse_vars --screw-ie8 -o "'.$min_file.'"');
+            {
+                $f = fopen($min_file, 'w');
+                fwrite($f, new JavaScriptPacker(file_get_contents($file)));
+                fclose($f);
+            }
             $url.='.min';
         }
 
@@ -102,11 +106,6 @@ class Doc
 
     protected function get_header($doc=true)
     {
-        // $foo = $doc?'<meta charset="'..'" />'.
-        //     '<meta http-equiv="" content="IE=edge"/>'.
-        //     '<meta name="viewport" content=""/>'.
-        //     '<meta name="author" content="SEIO"/>'.
-        //     '<link rel="icon" href="" type="image/png">':'';
         if($doc)
             $return = HTML::meta(['charset'=>HTML::$char_encode]) .
                         HTML::meta(['name'=>'author', 'content'=>'Antoine du HAMEL']) .
