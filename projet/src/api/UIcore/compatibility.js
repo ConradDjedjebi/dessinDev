@@ -1,5 +1,5 @@
 // Check the capacity of the user's browser to use the JavaScript APIs that project needs
-(window.FormData && window.JSON && window.JSON.parse && window.XMLHttpRequest) || window.alert("Attention ! Votre navigateur n'est pas compatible avec intraJE, votre naviguation se trouve fortement compromise. Il est conseillé de réessayer avec un navigateur compatible HTML5.");
+(window.FormData && window.JSON && window.JSON.parse && window.XMLHttpRequest) || window.alert("Attention ! Votre navigateur n'est pas compatible avec ce site, votre naviguation se trouve fortement compromise. Il est conseillé de réessayer avec un navigateur compatible HTML5.");
 if(window===window.top)
 	window.onload = function () {
 		var divtest = this.document.createElement("div");
