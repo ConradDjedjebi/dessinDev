@@ -6,6 +6,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/dev/index.php';
 $page = new HTML\Doc('Création d\'un concours');
 $page->addAPI('menu');
 $page->addAPI('form_handler');
+$page->addAPI('datepicker');
 
 $page->body.= '<div id="page-content-wrapper">';
 
