@@ -22,17 +22,19 @@ window.jQuery(function ($) {
 
 	$("#juries").change(function () {
 		var i=-1;
+		var options = this.options;
+
 		for (var j = 0; j < 2; ++j) {
-			while(!this.children[++i].selected)
-			{
-				if(i >= this.childElementCount)
-					return; // Si il a moins de deux juries séléctionnés
-			}
-			smalls[j].innerText = this.children[i].textContent;
+			while(options[++i] && !options[i].selected);
+
+			if(i >= options.length)
+				return; // Si il a moins de deux juries séléctionnés
+
+			smalls[j].innerText = options[i].textContent;
 		}
 
 		// Limitation à deux juries
-		while (i < this.childElementCount)
-			this.children[++i].selected = false;
+		while (i < options.length)
+			options[++i].selected = false;
 	});
 });

@@ -38,8 +38,10 @@ try {
 				'label'=>'Choix du dessin',
 			]]);
 	
+		$juriesAlready = Prep::selectAll(['evaluateur', ['numero', 'nom'], 'WHERE'=>['ref_Concours'=>$_GET['concours']], 'JOIN'=>Prep::SQL('INNER JOIN jury ON ref_Evaluateur=numero'), 'style'=>PDO::FETCH_COLUMN|PDO::FETCH_UNIQUE, 'argument'=>1]);
+		$juriesMaybecome = Prep::selectAll(['evaluateur', ['numero', 'nom'], 'WHERE'=>[[Prep::MAIN_TABLE, 'numero', 'value'=>array_keys($juriesAlready), 'operator'=>false]], 'style'=>PDO::FETCH_COLUMN|PDO::FETCH_UNIQUE, 'argument'=>1]);
 		$form->input(['name'=>'juries[]', 'id'=>'juries', 'type'=>'select', 'multiple'=>true, 'other'=>[
-				'options'=>Prep::selectAll(['evaluateur', 'WHERE'=>['ref_Concours'=>$_GET['concours']], 'JOIN'=>Prep::SQL('INNER JOIN jury ON ref_Evaluateur=numero'), 'style'=>PDO::FETCH_COLUMN|PDO::FETCH_UNIQUE, 'argument'=>1]),
+				'options'=>['Jury n\'ayant noté aucun dessin dans ce concours' => $juriesMaybecome, 'Jury ayant noté au moins un dessin dans ce concours' => $juriesAlready],
 				'help'=>'Vous devez choisir exactement deux jurys',
 				'label'=>'Choix des jurys',
 			]]);

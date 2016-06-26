@@ -15,8 +15,11 @@ $doc = new HTML\JSON;
 
 // $doc->exitError(print_r($_POST, true));
 // $doc->exitError(exist_plein('saison') ? 'true' : 'false');
-if (exist_plein('ref_Concours', 'juries', 'ref_Dessin', 'commentaire', 'note') && count($_POST['juries'])===EXPECTED_EVALUATION_NUMBER_PER_DRAWING && count($_POST['commentaire'])===EXPECTED_EVALUATION_NUMBER_PER_DRAWING && count($_POST['note'])===EXPECTED_EVALUATION_NUMBER_PER_DRAWING)
+if (exist_plein('ref_Concours', 'juries', 'ref_Dessin', 'commentaire', 'note'))
 {
+	if (count($_POST['juries'])!==EXPECTED_EVALUATION_NUMBER_PER_DRAWING || count($_POST['commentaire'])!==EXPECTED_EVALUATION_NUMBER_PER_DRAWING || count($_POST['note'])!==EXPECTED_EVALUATION_NUMBER_PER_DRAWING)
+		$doc->exitError('Vous devez sélectionner deux jurys');
+
 	try {
 		// Récupération des infos sur le Dessin
 		$dessin = Prep::select('Dessin', ['ref_Concours', 'ref_Competiteur'], ['numero'=>$_POST['ref_Dessin'], 'etat'=>'déposé'])->fetch() or $doc->exitError('Impossible de trouver le dessin');
@@ -26,14 +29,38 @@ if (exist_plein('ref_Concours', 'juries', 'ref_Dessin', 'commentaire', 'note') &
 
 	try {
 		foreach ($_POST['juries'] as $jury) {
-			if(intval(Prep::query('SELECT COUNT(*) FROM Evaluation
+			// Vérification des contraintes
+			$counts = Prep::query('SELECT COUNT(*) FROM Evaluation
 				LEFT JOIN Dessin ON ref_Dessin=numero
-				WHERE ref_Competiteur=? AND ref_Evaluateur=? AND ref_Concours=?;',
-				[$dessin['ref_Competiteur'], $jury, $dessin['ref_Concours']])->fetchColumn()) > 1)
-				$doc->exitError(Prep::select('Evaluateur', 'nom', ['numero'=>$jury])->fetchColumn().' a déjà atteint la limite de dessins notés pour se participant');
+				WHERE ref_Competiteur=:competiteur AND ref_Evaluateur=:evaluateur AND ref_Concours=:concours
+
+				UNION
+
+				SELECT COUNT(*) FROM Evaluation
+				LEFT JOIN Dessin ON ref_Dessin=numero
+				WHERE ref_Evaluateur=:evaluateur AND ref_Concours=:concours;',
+				[
+					'competiteur'=>$dessin['ref_Competiteur'],
+					'evaluateur'=>$jury,
+					'concours'=>$dessin['ref_Concours']
+				]);
+
+			if(intval($counts->fetchColumn()) > 1)
+				$doc->exitError(Prep::select('Evaluateur', 'nom', ['numero'=>$jury])->fetchColumn().' a déjà atteint la limite de dessins notés pour ce participant');
+			
+			if(intval($counts->fetchColumn()) > 7)
+				$doc->exitError(Prep::select('Evaluateur', 'nom', ['numero'=>$jury])->fetchColumn().' a déjà atteint la limite de dessins notés pour ce concours');
+
+			try {
+				Prep::insert('Jury', ['ref_Evaluateur'=>$jury, 'ref_Concours'=>$dessin['ref_Concours']]);
+			} catch (prep\Exception $ignored) {
+				// Si le Jury est déjà inscrit pour ce concours, on ignore l'exception levée à cause la duplication des clefs primaires
+			}
+
 		}
 
 		Prep::$PDO->beginTransaction();	
+
 
 		Prep::updateOne(['Dessin', $_POST['ref_Dessin'], ['etat'=>'évalué'], 'field_ID'=>'numero']);
 
