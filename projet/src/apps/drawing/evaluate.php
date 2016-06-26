@@ -33,15 +33,38 @@ try {
 		$form->hidden('ref_Concours', $concours['numero']);
 		$form->input(['disabled'=>'true', 'label'=>'Concours', 'value'=>$concours['theme'].' ('.$concours['saison'].' '.$concours['annee'].')']);
 
+		try {
+			$drawings = Prep::selectAll(['dessin', ['numero', 'numero'], 'where'=>['ref_Concours'=>$_GET['concours'], 'etat'=>'déposé'], 'style'=>PDO::FETCH_COLUMN|PDO::FETCH_UNIQUE, 'argument'=>1]);
+		} catch (prep\Exception $e) {
+			throw new RuntimeException('Aucun dessin n\'est inscrit, il n\'est pas possible de noter un dessin', 1, $e);
+		}
+			
 		$form->input(['name'=>'ref_Dessin', 'type'=>'select', 'other'=>[
-				'options'=>['Choisissez un dessin à noter']+Prep::selectAll(['dessin', ['numero', 'numero'], 'where'=>['ref_Concours'=>$_GET['concours'], 'etat'=>'déposé'], 'style'=>PDO::FETCH_COLUMN|PDO::FETCH_UNIQUE, 'argument'=>1]),
+				'options'=>['Choisissez un dessin à noter']+$drawings,
 				'label'=>'Choix du dessin',
 			]]);
-	
-		$juriesAlready = Prep::selectAll(['evaluateur', ['numero', 'nom'], 'WHERE'=>['ref_Concours'=>$_GET['concours']], 'JOIN'=>Prep::SQL('INNER JOIN jury ON ref_Evaluateur=numero'), 'style'=>PDO::FETCH_COLUMN|PDO::FETCH_UNIQUE, 'argument'=>1]);
-		$juriesMaybecome = Prep::selectAll(['evaluateur', ['numero', 'nom'], 'WHERE'=>[[Prep::MAIN_TABLE, 'numero', 'value'=>array_keys($juriesAlready), 'operator'=>false]], 'style'=>PDO::FETCH_COLUMN|PDO::FETCH_UNIQUE, 'argument'=>1]);
+
+		$juries = array();
+		try {
+			$juriesAlready = Prep::selectAll(['evaluateur', ['numero', 'nom'], 'WHERE'=>['ref_Concours'=>$_GET['concours']], 'JOIN'=>Prep::SQL('INNER JOIN jury ON ref_Evaluateur=numero'), 'style'=>PDO::FETCH_COLUMN|PDO::FETCH_UNIQUE, 'argument'=>1]);
+			$juries['Jury ayant noté au moins un dessin dans ce concours'] = $juriesAlready;
+		} catch (prep\QueryFailedException $e) {
+			$juriesAlready = [];
+		}
+
+		try {
+			$where = count($competiteurAlready) ? [[Prep::MAIN_TABLE, 'numero', 'value'=>array_keys($juriesAlready), 'operator'=>false]] : null;
+			$juriesMaybecome = Prep::selectAll(['evaluateur', ['numero', 'nom'], 'WHERE'=>$where, 'style'=>PDO::FETCH_COLUMN|PDO::FETCH_UNIQUE, 'argument'=>1]);
+			$competiteurs['Jury n\'ayant noté aucun dessin dans ce concours'] = $competiteurMaybecome;
+		} catch (prep\QueryFailedException $e) {
+			$juriesMaybecome = [];
+		}
+		
+		if(empty($juries))
+			throw new RuntimeException('Aucun jury n\'est inscrit, il n\'est pas possible de noter un dessin');
+			
 		$form->input(['name'=>'juries[]', 'id'=>'juries', 'type'=>'select', 'multiple'=>true, 'other'=>[
-				'options'=>['Jury n\'ayant noté aucun dessin dans ce concours' => $juriesMaybecome, 'Jury ayant noté au moins un dessin dans ce concours' => $juriesAlready],
+				'options'=>array_reverse($juries),
 				'help'=>'Vous devez choisir exactement deux jurys',
 				'label'=>'Choix des jurys',
 			]]);
@@ -56,9 +79,9 @@ try {
 
 	$form->addFieldset();
 	$form->submit('Soumettre');
-} catch (prep\Exception $e) {
+} catch (RuntimeException $e) {
 	$page->body.= HTML::h3('Noter un dessin');
-	$form = HTML::container('alert alert-danger', 'Aucun dessin ou jury n\'est inscrit, il n\'est pas possible de noter un dessin');
+	$form = HTML::container('alert alert-danger', $e->getMessage());
 }
 
 $page->body.= HTML::container('row', $form);

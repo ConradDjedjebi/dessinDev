@@ -18,7 +18,7 @@ if (exist_plein('annee','saison', 'theme', 'date_debut', 'date_fin'))
 {
 	try {
 		Prep::insert('concours', ['annee', 'saison', 'theme', 'date_debut', 'date_fin'], $_POST);
-		$doc->redirect(__DIR__);
+		$doc->redirect('~apps/concours/?concours='.Prep::$PDO->lastInsertId());
 		$doc->exitSuccess('Enregistré');
 	} catch (prep\Exception $e) {
 		$doc->exitError('Impossible d\'enregistrer le concours');

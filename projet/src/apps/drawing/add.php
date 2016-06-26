@@ -47,7 +47,8 @@ try {
 		}
 
 		try {
-			$competiteurMaybecome = Prep::selectAll(['competiteur', ['numero', 'nom'], 'WHERE'=>[[Prep::MAIN_TABLE, 'numero', 'value'=>array_keys($competiteurAlready), 'operator'=>false]], 'style'=>PDO::FETCH_COLUMN|PDO::FETCH_UNIQUE, 'argument'=>1]);
+			$where = count($competiteurAlready) ? [[Prep::MAIN_TABLE, 'numero', 'value'=>array_keys($competiteurAlready), 'operator'=>false]] : null;
+			$competiteurMaybecome = Prep::selectAll(['competiteur', ['numero', 'nom'], 'WHERE'=>$where, 'style'=>PDO::FETCH_COLUMN|PDO::FETCH_UNIQUE, 'argument'=>1]);
 			$competiteurs['Pas encore inscrits au concours'] = $competiteurMaybecome;
 		} catch (prep\QueryFailedException $e) {
 			$competiteurMaybecome = [];
