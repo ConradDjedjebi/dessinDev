@@ -17,7 +17,8 @@ CREATE TABLE Concours (
 	date_debut DATE NOT NULL ,
 	date_fin DATE NOT NULL ,
 	CONSTRAINT ValidDates CHECK (date_debut<date_fin),
-	PRIMARY KEY (numero));
+	PRIMARY KEY (numero),
+	UNIQUE(annee, saison));
 
 CREATE TABLE Competiteur (
 	numero INT UNSIGNED NOT NULL AUTO_INCREMENT ,
