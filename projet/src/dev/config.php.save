@@ -19,6 +19,11 @@ define('PROJECT_ROOT', $_SERVER['DOCUMENT_ROOT']);
 define('ROOT_DIR', '/');
 
 
+namespace CONFIG\LOGIN;
+
+const 	USERNAME = 'admin',
+		PASSWORD_HASH = '$2y$10$wvXVOWC0aEpMvIhAFzD6OeLtLCfi3yyczEVkJgCVQTsPsuqFqsiGa';
+
 namespace CONFIG\MySQL;
 
 // MySQL const
