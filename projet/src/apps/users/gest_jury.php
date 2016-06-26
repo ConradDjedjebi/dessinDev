@@ -15,6 +15,12 @@ $doc = new HTML\JSON;
 // $doc->exitError(exist_plein('saison') ? 'true' : 'false');
 if (exist_plein('nom','adresse', 'email', 'telephone'))
 {
+	if(!$_POST['telephone']=verif('phone', $_POST['telephone']))
+		$doc->exitError('Numéro de téléphone invalide');
+	
+	if(!$_POST['email']=verif('mail', $_POST['email']))
+		$doc->exitError('Adresse e-mail invalide');
+
 	try {
 		Prep::$PDO->beginTransaction();
 

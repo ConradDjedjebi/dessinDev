@@ -25,7 +25,7 @@ if (exist_plein('ref_Concours','date_remise', 'ref_Competiteur') && exist('comme
 	}
 
 	if(intval(Prep::query('SELECT COUNT(*) FROM Dessin
-							LEFT JOIN Dessin ON ref_Dessin=numero
+							LEFT JOIN Competiteur c ON ref_Competiteur=c.numero
 							WHERE ref_Competiteur=? AND ref_Concours=?;',
 				[$_POST['ref_Competiteur'], $_POST['ref_Concours']])
 					->fetchColumn()) > 2)

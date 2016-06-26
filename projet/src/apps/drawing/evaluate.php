@@ -53,9 +53,9 @@ try {
 		}
 
 		try {
-			$where = count($competiteurAlready) ? [[Prep::MAIN_TABLE, 'numero', 'value'=>array_keys($juriesAlready), 'operator'=>false]] : null;
+			$where = count($juriesAlready) ? [[Prep::MAIN_TABLE, 'numero', 'value'=>array_keys($juriesAlready), 'operator'=>false]] : null;
 			$juriesMaybecome = Prep::selectAll(['evaluateur', ['numero', 'nom'], 'WHERE'=>$where, 'style'=>PDO::FETCH_COLUMN|PDO::FETCH_UNIQUE, 'argument'=>1]);
-			$competiteurs['Jury n\'ayant noté aucun dessin dans ce concours'] = $competiteurMaybecome;
+			$juries['Jury n\'ayant noté aucun dessin dans ce concours'] = $juriesMaybecome;
 		} catch (prep\QueryFailedException $e) {
 			$juriesMaybecome = [];
 		}
