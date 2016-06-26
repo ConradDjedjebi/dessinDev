@@ -35,14 +35,41 @@ try {
 		$form->hidden('MAX_FILE_SIZE', 1<<10<<10);
 		$form->input(['label'=>'Date du dessin', 'name'=>'date_remise', 'min'=>$concours['date_debut'], 'max'=>$concours['date_fin'], 'type'=>'date', 'placeholder'=>'AAAA-MM-JJ']);
 
-		$form->input(['name'=>'ref_Competiteur', 'type'=>'select', 'other'=>['label'=>'Auteur du dessin', 'options'=>
-			Prep::selectAll(['competiteur', 'WHERE'=>['ref_Concours'=>$_GET['concours']], 'JOIN'=>Prep::SQL('INNER JOIN participe ON ref_Competiteur=numero'), 'style'=>PDO::FETCH_COLUMN|PDO::FETCH_UNIQUE, 'argument'=>1])]]);
+		
+
+		$competiteurs = array();
+
+		try {
+			$competiteurAlready = Prep::selectAll(['competiteur', ['numero', 'nom'], 'WHERE'=>['ref_Concours'=>$_GET['concours']], 'JOIN'=>Prep::SQL('INNER JOIN participe ON ref_Competiteur=numero'), 'style'=>PDO::FETCH_COLUMN|PDO::FETCH_UNIQUE, 'argument'=>1]);
+			$competiteurs['Participant au concours'] = $competiteurAlready;
+		} catch (prep\QueryFailedException $e) {
+			$competiteurAlready = [];
+		}
+
+		try {
+			$competiteurMaybecome = Prep::selectAll(['competiteur', ['numero', 'nom'], 'WHERE'=>[[Prep::MAIN_TABLE, 'numero', 'value'=>array_keys($competiteurAlready), 'operator'=>false]], 'style'=>PDO::FETCH_COLUMN|PDO::FETCH_UNIQUE, 'argument'=>1]);
+			$competiteurs['Pas encore inscrits au concours'] = $competiteurMaybecome;
+		} catch (prep\QueryFailedException $e) {
+			$competiteurMaybecome = [];
+		}
+
+		if(empty($competiteurs))
+			throw new RuntimeException('Aucun participant n\'est inscrit, il n\'est pas possible d\'ajouter un dessin.');
+			
+		$form->input([
+				'name'=>'ref_Competiteur',
+				'type'=>'select',
+				'other'=>[
+					'label'=>'Auteur du dessin',
+					'options'=> $competiteurs,
+				]
+			]);
 
 		$form->input(['name'=>'commentaire', 'type'=>'textarea', 'label'=>'commentaire']);
 
 	$form->submit('Soumettre');
-} catch (prep\Exception $e) {
-	$form = HTML::container('alert alert-danger', 'Aucun participant n\'est inscrit, il n\'est pas possible d\'ajouter un dessin');
+} catch (RuntimeException $e) {
+	$form = HTML::container('alert alert-danger', $e->getMessage());
 }
 
 $page->body.= HTML::container('row', $form);

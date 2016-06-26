@@ -17,8 +17,22 @@ $doc = new HTML\JSON;
 if (exist_plein('ref_Concours','date_remise', 'ref_Competiteur') && exist('commentaire'))
 {
 	Prep::$PDO->beginTransaction();
-	try {
 
+	try {
+		Prep::insert('Participe', ['ref_Concours', 'ref_Competiteur'], $_POST);
+	} catch (prep\Exception $ignored) {
+		// S'il est déjà inscrit, une exception est levée
+	}
+
+	if(intval(Prep::query('SELECT COUNT(*) FROM Dessin
+							LEFT JOIN Dessin ON ref_Dessin=numero
+							WHERE ref_Competiteur=? AND ref_Concours=?;',
+				[$_POST['ref_Competiteur'], $_POST['ref_Concours']])
+					->fetchColumn()) > 2)
+				$doc->exitError(
+					Prep::select('Comepetiteur', 'nom', ['numero'=>$jury])->fetchColumn().' a déjà atteint la limite de dessins pour ce concours.');
+
+	try {
 		Prep::insert('dessin', ['ref_Concours', 'ref_Competiteur', 'commentaire', 'le_dessin'=>userfile\upload('dessin'), 'date_remise'], $_POST);
 
 		Prep::$PDO->commit();
