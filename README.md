@@ -15,10 +15,18 @@ Grand Projet Informatique du semestre S6 pour le Groupe ESEO.
 
 #### Les améliorations développées
 
- * Utilisation de l'AJAX pour les formulaires pour éviter de reset le formulaire à la moindre erreur
+ * Vérification des contraintes sus-décrites
+ * Utilisation de l'AJAX pour les formulaires
+     - Le formulaire ne se vide pas à la moindre erreur
+     - Cela permet d'afficher un message pour faire patienter l'utilisateur
  * Ajout d'un menu latéral pour faciliter la navigation
  * Ajout de l'aperçu des images lors de l'ajout d'une note
  * Ajout du nom du competiteur sur le tableau des résultats
+ * Sécurisation des requêtes SQL pour empêcher les injections grâce à la librairie Prep
+ * Compression des fichiers JavaScript
+     - Optimisation du temps de téléchargement des scripts
+     - Interprétation plus rapide pour le navigateur
+ * Protection contre la faille XSS
 
 ### Modifications effectuées sur la base de données
 

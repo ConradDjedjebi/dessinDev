@@ -61,11 +61,11 @@ FROM Dessin
     		HTML::a('~apps/drawing/download.php?drawing='.$drawing['numero'], HTML::icon('glyphicon glyphicon-floppy-save'), ['title'=>'Télécharger le fichier', 'download'=>true]),
             HTML::noXSS($drawing['numero']),
             HTML::noXSS($drawing['nom']),
-            (new DateTime($drawing['date_remise']))->format(date\FRENCH),
+            date_create($drawing['date_remise'])->format(date\FRENCH),
             HTML::noXSS($drawing['etat']),
             (isset($drawing['noteeva1'], $drawing['noteeva2']) ? avg($drawing['noteeva1'], $drawing['noteeva2']) : HTML::em('--')),
-            HTML::noXSS($drawing['nameeva1']).(isset($drawing['noteeva1']) ? ' ('.$drawing['noteeva1'].')'.(empty($drawing['commenteva1']) ? null : HTML::br().HTML::pre(HTML::noXSS($drawing['commenteva1']))) : HTML::em(' (pas encore évalué)')),
-            HTML::noXSS($drawing['nameeva2']).(isset($drawing['noteeva2']) ? ' ('.$drawing['noteeva2'].')'.(empty($drawing['commenteva2']) ? null : HTML::br().HTML::pre(HTML::noXSS($drawing['commenteva2']))) : HTML::em(' (pas encore évalué)')),
+            HTML::noXSS($drawing['nameeva1']).(isset($drawing['noteeva1']) ? ' ('.$drawing['noteeva1'].')'.(empty($drawing['commenteva1']) ? null : HTML::br().HTML::pre($drawing['commenteva1'], HTML::NO_XSS)) : HTML::em(' (pas encore évalué)')),
+            HTML::noXSS($drawing['nameeva2']).' ('.(isset($drawing['noteeva2']) ? $drawing['noteeva2'].')'.(empty($drawing['commenteva2']) ? null : HTML::br().HTML::pre($drawing['commenteva2'], HTML::NO_XSS)) : HTML::em('pas encore évalué)')),
     	];
 
     $page->body.= HTML::container('row', 
