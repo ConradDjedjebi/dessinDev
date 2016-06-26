@@ -9,6 +9,7 @@ use_file('menu_concours', PROJECT_ROOT.DIRECTORY_SEPARATOR.'apps/concours');
 
 $page = new HTML\Doc('Soumettre un dessin');
 $page->addAPI('menu');
+$page->addAPI('datepicker');
 $page->addAPI('form_handler');
 
 $page->body.= '<div id="page-content-wrapper">';
