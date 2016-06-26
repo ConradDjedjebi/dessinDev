@@ -73,6 +73,14 @@ body.toggled #page-content-wrapper {
     text-decoration: none;
 }
 
+.sidebar-nav > li:last-child {
+    margin-top: 1em;
+}
+
+.sidebar-nav > li:last-child > a:hover {
+    color: red;
+}
+
 .sidebar-nav > li:first-child {
     height: 65px;
     font-size: 18px;
