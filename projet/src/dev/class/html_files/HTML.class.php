@@ -84,7 +84,7 @@ abstract class HTML
      */
     public static function noXSS($string)
     {
-        return htmlentities($string, ENT_QUOTES | ENT_HTML401 | ENT_SUBSTITUTE, self::$char_encode, false);
+        return htmlentities($string, ENT_QUOTES | ENT_HTML5 | ENT_SUBSTITUTE, self::$char_encode, false);
     }
 
     /**
