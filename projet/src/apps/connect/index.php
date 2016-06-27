@@ -19,8 +19,8 @@ $page->addStyle('connect', __DIR__);
 // $page->addScript('connect', '~apps/connect');
 
 $form = new HTML\Form(__DIR__.DIRECTORY_SEPARATOR.'log.php');
-    $form->input(['placeholder'=>'Identifiant', 'name'=>'user', 'autofocus'=>true, 'required'=>true, 'type'=>'text',]);
-    $form->input(['placeholder'=>'Mot de passe', 'name'=>'password', 'type'=>'password']);
+    $form->input(['placeholder'=>'Identifiant', 'name'=>'user', 'autofocus'=>true, 'required'=>true]);
+    $form->input(['placeholder'=>'Mot de passe', 'name'=>'password', 'type'=>'password', 'required'=>true]);
     $form->submit('Se connecter');
 
 $page->body.= HTML::container('container', 
@@ -30,7 +30,7 @@ $page->body.= HTML::container('container',
                 HTML::container('panel-heading', 
                     HTML::a('//'.$_SERVER['HTTP_HOST'], 'Concours BeAnArtist')) .
                 HTML::container('panel-body',
-                    HTML::video(['width'=>320, 'height'=>220, 'autoplay'=>true],
+                    HTML::video(['width'=>320, 'height'=>180, 'autoplay'=>true],
                         HTML::source(['src'=>HTML::relativeLink('~images/vid.mp4'), 'type'=>'video/mp4']).
                         'Votre navigateur ne peut pas afficher cette animation.').
                     $form))))

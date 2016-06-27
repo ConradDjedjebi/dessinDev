@@ -16,7 +16,7 @@ body {
 .login-panel
 {
   margin-top: 50vh; /* poussé de la moitié de hauteur de viewport */
-  transform: translateY(-70%); /* tiré de la moitié de sa propre hauteur */
+  transform: translateY(-60%); /* tiré de la moitié de sa propre hauteur */
 }
 
 .login-panel form {
