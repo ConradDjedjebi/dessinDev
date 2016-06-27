@@ -33,8 +33,8 @@ if (exist_plein('ref_Concours','date_remise', 'ref_Competiteur') && exist('comme
 					Prep::select('Comepetiteur', 'nom', ['numero'=>$jury])->fetchColumn().' a déjà atteint la limite de dessins pour ce concours.');
 
 	try {
-		Prep::insert('dessin', ['ref_Concours', 'ref_Competiteur', 'commentaire', 'le_dessin'=>userfile\upload('dessin', '#^i
-mage/#', 1<<10<<10), 'date_remise'], $_POST);
+		Prep::insert('dessin', ['ref_Concours', 'ref_Competiteur', 'commentaire', 'le_dessin'=>userfile\upload('dessin'/*, '#^i
+mage/#', 1<<10<<10*/), 'date_remise'], $_POST);
 
 		Prep::$PDO->commit();
 		$doc->redirect('~apps/concours?concours='.$_POST['ref_Concours']);
