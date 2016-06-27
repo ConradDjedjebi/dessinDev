@@ -30,5 +30,8 @@ $page->body.= HTML::container('container',
                 HTML::container('panel-heading', 
                     HTML::a('//'.$_SERVER['HTTP_HOST'], 'Concours BeAnArtist')) .
                 HTML::container('panel-body',
+                    HTML::video(['width'=>320, 'height'=>220, 'autoplay'=>true],
+                        HTML::source(['src'=>HTML::relativeLink('~images/vid.mp4'), 'type'=>'video/mp4']).
+                        'Votre navigateur ne peut pas afficher cette animation.').
                     $form))))
     );
