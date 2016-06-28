@@ -40,7 +40,7 @@ try {
 		$competiteurs = array();
 
 		try {
-			$competiteurAlready = Prep::selectAll(['competiteur', ['numero', 'nom'], 'WHERE'=>['ref_Concours'=>$_GET['concours']], 'JOIN'=>Prep::SQL('INNER JOIN participe ON ref_Competiteur=numero'), 'style'=>PDO::FETCH_COLUMN|PDO::FETCH_UNIQUE, 'argument'=>1]);
+			$competiteurAlready = Prep::selectAll(['Competiteur', ['numero', 'nom'], 'WHERE'=>['ref_Concours'=>$_GET['concours']], 'JOIN'=>Prep::SQL('INNER JOIN participe ON ref_Competiteur=numero'), 'style'=>PDO::FETCH_COLUMN|PDO::FETCH_UNIQUE, 'argument'=>1]);
 			$competiteurs['Participant au concours'] = $competiteurAlready;
 		} catch (prep\QueryFailedException $e) {
 			$competiteurAlready = [];
@@ -48,7 +48,7 @@ try {
 
 		try {
 			$where = count($competiteurAlready) ? [[Prep::MAIN_TABLE, 'numero', 'value'=>array_keys($competiteurAlready), 'operator'=>false]] : null;
-			$competiteurMaybecome = Prep::selectAll(['competiteur', ['numero', 'nom'], 'WHERE'=>$where, 'style'=>PDO::FETCH_COLUMN|PDO::FETCH_UNIQUE, 'argument'=>1]);
+			$competiteurMaybecome = Prep::selectAll(['Competiteur', ['numero', 'nom'], 'WHERE'=>$where, 'style'=>PDO::FETCH_COLUMN|PDO::FETCH_UNIQUE, 'argument'=>1]);
 			$competiteurs['Pas encore inscrits au concours'] = $competiteurMaybecome;
 		} catch (prep\QueryFailedException $e) {
 			$competiteurMaybecome = [];

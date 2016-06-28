@@ -1,6 +1,4 @@
 <?php
-
-
 require_once $_SERVER['DOCUMENT_ROOT'].'/dev/index.php';
 
 if(!isset($_GET['concours']))
@@ -8,7 +6,7 @@ if(!isset($_GET['concours']))
 
 use_file('menu_concours', __DIR__);
 try {
-	$concours = Prep::selectOne(['concours', $_GET['concours'], 'field_ID'=>'numero']);
+	$concours = Prep::selectOne(['Concours', $_GET['concours'], 'field_ID'=>'numero']);
 } catch (prep\QueryFailedException $e) {
 	redirect('~apps/home');
 }

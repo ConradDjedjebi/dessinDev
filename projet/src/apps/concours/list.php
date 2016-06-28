@@ -21,7 +21,7 @@ $page->body.= HTML::container('row',
 try {
     // Affichage des tous les membres
     $tbody = array();
-    $list = Prep::selectAll('concours');
+    $list = Prep::selectAll('Concours');
     foreach ($list as $concours)
     	$tbody[] = [
     		HTML\Table::link(['concours'=>$concours['numero']], HTML::noXSS($concours['saison'].' '.$concours['annee'])),

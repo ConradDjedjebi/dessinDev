@@ -22,7 +22,7 @@ if (exist_plein('nom','adresse', 'email', 'telephone'))
 	try {
 		Prep::$PDO->beginTransaction();
 
-		Prep::insert('evaluateur', ['nom','adresse', 'email', 'telephone'], $_POST);
+		Prep::insert('Evaluateur', ['nom','adresse', 'email', 'telephone'], $_POST);
 
 		Prep::$PDO->commit();
 		$doc->redirect('~apps/home/');

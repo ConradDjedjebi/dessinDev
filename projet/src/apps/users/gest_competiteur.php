@@ -19,7 +19,7 @@ if (exist_plein('nom','adresse', 'email', 'date_naissance'))
 	try {
 		Prep::$PDO->beginTransaction();
 
-		Prep::insert('competiteur', ['nom','adresse', 'email', 'date_naissance'], $_POST);
+		Prep::insert('Competiteur', ['nom','adresse', 'email', 'date_naissance'], $_POST);
 
 		Prep::$PDO->commit();
 		$doc->redirect('~apps/home/');

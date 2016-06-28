@@ -64,8 +64,8 @@ if (exist_plein('ref_Concours', 'juries', 'ref_Dessin', 'commentaire', 'note'))
 
 		Prep::updateOne(['Dessin', $_POST['ref_Dessin'], ['etat'=>'évalué'], 'field_ID'=>'numero']);
 
-		Prep::insert('evaluation', ['ref_Dessin'=>$_POST['ref_Dessin'], 'note'=>$_POST['note'][0], 'commentaire'=>$_POST['commentaire'][0], 'ref_Evaluateur'=>$_POST['juries'][0]]);
-		Prep::insert('evaluation', ['ref_Dessin'=>$_POST['ref_Dessin'], 'note'=>$_POST['note'][1], 'commentaire'=>$_POST['commentaire'][1], 'ref_Evaluateur'=>$_POST['juries'][1]]);
+		Prep::insert('Evaluation', ['ref_Dessin'=>$_POST['ref_Dessin'], 'note'=>$_POST['note'][0], 'commentaire'=>$_POST['commentaire'][0], 'ref_Evaluateur'=>$_POST['juries'][0]]);
+		Prep::insert('Evaluation', ['ref_Dessin'=>$_POST['ref_Dessin'], 'note'=>$_POST['note'][1], 'commentaire'=>$_POST['commentaire'][1], 'ref_Evaluateur'=>$_POST['juries'][1]]);
 
 		Prep::$PDO->commit();
 		$doc->redirect('~apps/concours?concours='.$_POST['ref_Concours']);
