@@ -46,7 +46,7 @@ try {
 
 		$juries = array();
 		try {
-			$juriesAlready = Prep::selectAll(['Evaluateur', ['numero', 'nom'], 'WHERE'=>['ref_Concours'=>$_GET['concours']], 'JOIN'=>Prep::SQL('INNER JOIN jury ON ref_Evaluateur=numero'), 'style'=>PDO::FETCH_COLUMN|PDO::FETCH_UNIQUE, 'argument'=>1]);
+			$juriesAlready = Prep::selectAll(['Evaluateur', ['numero', 'nom'], 'WHERE'=>['ref_Concours'=>$_GET['concours']], 'JOIN'=>Prep::SQL('INNER JOIN Jury ON ref_Evaluateur=numero'), 'style'=>PDO::FETCH_COLUMN|PDO::FETCH_UNIQUE, 'argument'=>1]);
 			$juries['Jury ayant noté au moins un dessin dans ce concours'] = $juriesAlready;
 		} catch (prep\QueryFailedException $e) {
 			$juriesAlready = [];

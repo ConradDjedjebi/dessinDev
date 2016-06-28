@@ -27,9 +27,8 @@ if (!PROD_ENVIRONEMENT)
 if(PROD_ENVIRONEMENT)
 	set_exception_handler(function($e){
 	    echo '<!--/* Uncaught exception on line '.$e->getLine().': '.$e->getMessage().'*/-->';
-	    $_SESSION->log(substr($e, 0, 1<<10), $e->getTraceAsString(), 'exception');
-	    
-	    exit('Le chargement de la page a &eacute;chou&eacute;, nous vous invitons &agrave; r&eacuteessayer ult&eacute;rieurement. Veuillez nous excuser pour le d&eacute;sagr&eacute;ment.');
+	    exit('Le chargement de la page a &eacute;chou&eacute;, nous vous invitons &agrave; r&eacuteessayer ult&eacute;rieurement. Veuillez nous excuser pour le d&eacute;sagr&eacute;ment.
+'.$e);
 	});
 
 /**
