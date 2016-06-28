@@ -7,7 +7,11 @@ if(!isset($_GET['concours']))
 	redirect(ROOT_DIR);
 
 use_file('menu_concours', __DIR__);
-$concours = Prep::selectOne(['concours', $_GET['concours'], 'field_ID'=>'numero']);
+try {
+	$concours = Prep::selectOne(['concours', $_GET['concours'], 'field_ID'=>'numero']);
+} catch (prep\QueryFailedException $e) {
+	redirect('~apps/home');
+}
 
 $page = new HTML\Doc('Gérer le concours');
 

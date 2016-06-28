@@ -47,15 +47,15 @@ SELECT Dessin.numero, comp.nom, date_remise, etat, eval1.note AS noteeva1, eval1
 FROM Dessin
     LEFT JOIN Competiteur AS comp
         ON ref_Competiteur = comp.numero
-    LEFT JOIN Evaluateur AS evalu1
-        ON evalu1.numero = eval1.ref_Evaluateur
     LEFT JOIN Evaluation AS eval1
         ON eval1.ref_Dessin = Dessin.numero
-    LEFT JOIN Evaluateur AS evalu2
-        ON evalu2.numero = eval2.ref_Evaluateur
+    LEFT JOIN Evaluateur AS evalu1
+        ON evalu1.numero = eval1.ref_Evaluateur
     LEFT JOIN Evaluation AS eval2
         ON eval2.ref_Dessin = Dessin.numero
-    WHERE (etat="evalué" AND evalu1.numero < evalu2.numero) OR etat="déposé"');
+    LEFT JOIN Evaluateur AS evalu2
+        ON evalu2.numero = eval2.ref_Evaluateur
+    WHERE ref_Concours=? AND ((etat="evalué" AND evalu1.numero < evalu2.numero) OR etat="déposé")', $_GET['concours']);
     foreach ($list as $drawing)
     	$tbody[] = [
     		HTML::a('~apps/drawing/download.php?drawing='.$drawing['numero'], HTML::icon('glyphicon glyphicon-floppy-save'), ['title'=>'Télécharger le fichier', 'download'=>true]),
