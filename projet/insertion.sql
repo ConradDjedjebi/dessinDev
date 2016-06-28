@@ -16,18 +16,6 @@ INSERT INTO `competiteur` (`nom`, `adresse`, `date_naissance`, `email`) VALUES
 	('Antoine Puchault', '19 boulevard Carnot 49100 Angers', '1994-12-25', 'Antoine.Puchault@seio.org');
 
 
-INSERT INTO `participe` (`ref_Concours`, `ref_Competiteur`) VALUES
-	(1,1),
-	(1,2),
-	(1,3),
-	(1,4),
-	(1,5),
-	(2,5),
-	(2,6),
-	(2,7),
-	(2,8),
-	(2,1);
-
 INSERT INTO `evaluateur` (`nom`, `adresse`, `telephone`, `email`) VALUES
 	('Antoine Regnier', '10 rue de la Paix 75000 Paris', '0666362833', 'antoine.regnier@seio.org'),
 	('Remy Salim', '11 avenue des Champs-Elysées 75000 Paris', '0678141274', 'Remy.Salim@seio.org'),

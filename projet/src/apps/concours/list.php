@@ -26,6 +26,7 @@ try {
     	$tbody[] = [
     		HTML\Table::link(['concours'=>$concours['numero']], HTML::noXSS($concours['saison'].' '.$concours['annee'])),
     		HTML::noXSS($concours['theme']),
+            Prep::selectCount('Participe', ['ref_Concours'=>$concours['numero']]),
     		(new DateTime($concours['date_debut']))->format(date\FRENCH),
     		(new DateTime($concours['date_fin']))->format(date\FRENCH),
     	];
@@ -33,7 +34,7 @@ try {
     $page->body.= HTML::container('row', 
     new HTML\Table([
         ['data-href'=>HTML::relativeLink(__DIR__), 'data-fenetre'=>true],
-        'thead'=>['Concours', 'Thème', 'Date de début', 'Date de fin'],
+        'thead'=>['Concours', 'Thème', 'Nombre de participant', 'Date de début', 'Date de fin'],
         'tbody'=>$tbody,
         'options'=>HTML\Table::TITLES_NO_XSS | HTML\Table::TABLELINK,
         ]));

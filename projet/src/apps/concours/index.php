@@ -30,4 +30,8 @@ $page->body.= HTML::container('row',
 
 $page->body.= menu_concours();
 
+if(Prep::selectCount('Participe', ['ref_Concours'=>$_GET['concours']]) < 5)
+	$page->body.= HTML::container('alert alert-danger', 'Le nombre de participants est insuffisant pour ce concours');
+
+
 $page->body.= '</div>';
