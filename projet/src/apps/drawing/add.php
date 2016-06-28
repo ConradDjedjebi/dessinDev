@@ -18,7 +18,7 @@ $page->body.= HTML::container('row', HTML::h1('Ajouter un nouveau dessin'));
 $page->body.= menu_concours();
 
 try {
-	$concours = Prep::selectOne(['concours', $_GET['concours'], 'field_ID'=>'numero']);
+	$concours = Prep::selectOne(['Concours', $_GET['concours'], 'field_ID'=>'numero']);
 } catch (prep\Exception $e) {
 	$page->body.= HTML::container('alert alert-danger', 'Le concours est introuvable');
 	$page->body.= '</div>';
@@ -40,7 +40,7 @@ try {
 		$competiteurs = array();
 
 		try {
-			$competiteurAlready = Prep::selectAll(['Competiteur', ['numero', 'nom'], 'WHERE'=>['ref_Concours'=>$_GET['concours']], 'JOIN'=>Prep::SQL('INNER JOIN participe ON ref_Competiteur=numero'), 'style'=>PDO::FETCH_COLUMN|PDO::FETCH_UNIQUE, 'argument'=>1]);
+			$competiteurAlready = Prep::selectAll(['Competiteur', ['numero', 'nom'], 'WHERE'=>['ref_Concours'=>$_GET['concours']], 'JOIN'=>Prep::SQL('INNER JOIN Participe ON ref_Competiteur=numero'), 'style'=>PDO::FETCH_COLUMN|PDO::FETCH_UNIQUE, 'argument'=>1]);
 			$competiteurs['Participant au concours'] = $competiteurAlready;
 		} catch (prep\QueryFailedException $e) {
 			$competiteurAlready = [];
