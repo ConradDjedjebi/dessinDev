@@ -31,7 +31,7 @@ try {
 
 	$form->addFieldset('Noter un dessin');
 		$form->hidden('ref_Concours', $concours['numero']);
-		$form->input(['disabled'=>'true', 'label'=>'Concours', 'value'=>$concours['theme'].' ('.$concours['saison'].' '.$concours['annee'].')']);
+		$form->input(['disabled'=>true, 'label'=>'Concours', 'value'=>$concours['theme'].' ('.$concours['saison'].' '.$concours['annee'].')']);
 
 		try {
 			$drawings = Prep::selectAll(['Dessin', ['numero', 'numero'], 'where'=>['ref_Concours'=>$_GET['concours'], 'etat'=>'déposé'], 'style'=>PDO::FETCH_COLUMN|PDO::FETCH_UNIQUE, 'argument'=>1]);

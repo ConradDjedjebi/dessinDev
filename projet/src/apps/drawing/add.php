@@ -30,7 +30,7 @@ try {
 
 	$form->addFieldset();
 		$form->hidden('ref_Concours', $concours['numero']);
-		$form->input(['disabled'=>'true', 'label'=>'Concours', 'value'=>$concours['theme'].' ('.$concours['saison'].' '.$concours['annee'].')']);
+		$form->input(['disabled'=>true, 'label'=>'Concours', 'value'=>$concours['theme'].' ('.$concours['saison'].' '.$concours['annee'].')']);
 		$form->input(['label'=>'Déposer le dessin', 'type'=>'file', 'name'=>'dessin','accept'=>'image/*']);
 		$form->hidden('MAX_FILE_SIZE', 1<<10<<10);
 		$form->input(['label'=>'Date du dessin', 'name'=>'date_remise', 'min'=>$concours['date_debut'], 'max'=>$concours['date_fin'], 'type'=>'date', 'placeholder'=>'AAAA-MM-JJ']);
