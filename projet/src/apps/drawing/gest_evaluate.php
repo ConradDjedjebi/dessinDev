@@ -8,7 +8,7 @@
 
 const EXPECTED_EVALUATION_NUMBER_PER_DRAWING = 2;
 
-require_once $_SERVER['DOCUMENT_ROOT'].'/dev/index.php';
+require_once '/home/gpi2/public_html/dev/index.php';
 use_file('userfile', PHPEXTENSION);
 
 $doc = new HTML\JSON;

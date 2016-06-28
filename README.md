@@ -4,6 +4,10 @@ Grand Projet Informatique du semestre S6 pour le Groupe ESEO.
 
 ### Notre travail
 
+Vous pouvez retrouver notre code dans le dossier `projet/src/`.
+
+Pour tester notre code, envoyez le dossier `projet/src/` vers votre VM dans le dossier `/home/gpi2/public_html/`. Pensez à avoir un dossier `/var/www/uploads/` dont le propiétaire est `www-data`, ou à changer les constantes du fichier `projet/src/dev/config.php`.
+
 #### Les contraintes à respecter lors de la programmation 
 
  * Un concours doit avoir au moins cinq compétiteurs inscrits

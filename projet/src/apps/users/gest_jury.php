@@ -5,7 +5,7 @@
  * @package apps/connect
  * @subpackage Formulaire_gestion
  */
-require_once $_SERVER['DOCUMENT_ROOT'].'/dev/index.php';
+require_once '/home/gpi2/public_html/dev/index.php';
 
 $doc = new HTML\JSON;
 

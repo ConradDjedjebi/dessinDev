@@ -15,8 +15,8 @@ namespace CONFIG;
 define('PROD_ENVIRONEMENT', false);
 
 // Defining global constant
-define('PROJECT_ROOT', $_SERVER['DOCUMENT_ROOT']);
-define('ROOT_DIR', '/');
+define('PROJECT_ROOT', '/home/gpi2/public_html');
+define('ROOT_DIR', '/~gpi2');
 
 
 namespace CONFIG\LOGIN;
@@ -45,7 +45,7 @@ const
 namespace CONFIG\UPLOAD;
 
 const
-		DIRECTORY = PROJECT_ROOT.DIRECTORY_SEPARATOR.'upl0';
+		DIRECTORY = '/var/www/uploads';
 
 
 

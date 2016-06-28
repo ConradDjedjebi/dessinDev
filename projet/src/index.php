@@ -1,4 +1,4 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'].'/dev/index.php';
+require_once 'dev/index.php';
 
 redirect('/apps/home');

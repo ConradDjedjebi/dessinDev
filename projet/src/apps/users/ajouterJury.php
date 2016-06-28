@@ -1,7 +1,7 @@
 <?php
 
 
-require_once $_SERVER['DOCUMENT_ROOT'].'/dev/index.php';
+require_once '/home/gpi2/public_html/dev/index.php';
 
 $page = new HTML\Doc('Ajouter un membre du jury');
 $page->addAPI('menu');
