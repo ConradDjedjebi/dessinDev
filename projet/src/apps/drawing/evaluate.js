@@ -3,6 +3,7 @@ window.jQuery(function ($) {
 	var apercu = new Image;
 	apercu.className = "col-xs-6";
 	apercu.style.maxHeight = "15em";
+	apercu.style.width = "auto";
 
 	$("<div class='row'></div>").append(
 		$("select[name=ref_Dessin]").change(function () {
