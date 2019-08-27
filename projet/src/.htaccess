@@ -1,0 +1,16 @@
+# Don't list directory contents
+IndexIgnore *
+
+# Deny access for any file unallowed
+<FilesMatch ".+\..+">
+Order Allow,Deny
+Deny from all
+</FilesMatch>
+
+# Allow JS and CSS
+<FilesMatch ".+\.(js|css)$">
+Order Allow,Deny
+Allow from all
+</FilesMatch>
+
+ErrorDocument 404 "Page introuvable !"

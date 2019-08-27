@@ -1,0 +1,5 @@
+# Disabling denied access for font files
+<FilesMatch ".+\..+">
+Order Allow,Deny
+Allow from all
+</FilesMatch>

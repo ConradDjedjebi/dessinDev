@@ -1,0 +1,12 @@
+fieldset.panel
+{
+  margin-bottom: 1px;
+  position: relative;
+  bottom: 1.2em;
+}
+fieldset.panel>legend.panel-heading
+{
+  border: 1px solid #ddd;
+  position: relative;
+  top: 1.2em;
+}
