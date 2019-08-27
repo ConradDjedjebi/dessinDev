@@ -1,9 +1,10 @@
 package fr.eseo.gpi.beanartist;
 
 /**
- * @author duhamean
- * @date 12/05/16
- * @project gpi_binome
+ * @author Antoine du HAMEL
+ * @author Conrad Djedjebi
+ * @date 15/04/17
+ * @project dessin
  */
 public class BeAnArtist {
    public BeAnArtist () {
