@@ -1,0 +1,57 @@
+#msg_box
+{
+	border: none;
+	min-width:100%;
+	text-align:center;
+	position: fixed;
+	top:0;
+	left:250px;
+	margin: auto;
+	z-index: 2147483647;
+	padding: 0;
+	font-family: "Roboto",sans-serif;
+	font-weight:300;
+	font-size: 18px;
+}
+
+#msg_box>li
+{
+	display: block;
+	max-width: 100%;
+	margin-right: 250px;
+	margin-bottom: 0;
+	height: 1.8em;
+	list-style: none;
+	border:0px solid grey;
+	border-top: none;
+	padding-top: .5em;
+}
+#msg_box>li:last-child
+{
+	border-bottom-style: solid;
+}
+
+
+#msg_box>li.alert-danger::before
+{
+	content: "\274C";/*croix*/
+}
+#msg_box>li.alert-info::before
+{
+	content: "\231b"; /*sablier*/
+	font-weight: bold;
+}
+#msg_box>li.alert-success::before
+{
+	content: "\2713"; /*tick ✓*/
+}
+
+#msg_box>li::before
+{
+	padding-right: .35em;
+}
+
+#msg_box>li.alert-info::after
+{
+	content: "\2026"; /* … */
+}

@@ -1,0 +1,6 @@
+# This file should not be added to the production configuration, and should be considered only for the developpement phase
+
+<FilesMatch "\.php$">
+	Order Allow,Deny
+	Allow from all
+</FilesMatch>
