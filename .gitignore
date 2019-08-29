@@ -2,3 +2,10 @@ bin/
 out/
 *.iml
 *.xml
+*.jar
+*.iml
+*.svg
+*.idea
+projet/insertion.sql
+page_internet/exercices/insertion.sql
+
