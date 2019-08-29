@@ -1,7 +1,8 @@
 <?php
 /**
  * Fichier de configuration
- * Vous pouvez personnalier ce fichier pour que le projet fonctionne avec votre propre configuration serveur
+ * Vous pouvez personnaliser ce fichier pour que le projet fonctionne avec votre propre configuration serveur
+
  *
  * @author aduh95
  * @category configuration

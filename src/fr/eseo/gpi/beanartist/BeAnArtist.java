@@ -1,7 +1,8 @@
 package fr.eseo.gpi.beanartist;
 
 /**
- * @author conrad Djedjebi
+ * @author Antoine du HAMEL
+ * @author Conrad Djedjebi
  * @date 15/04/17
  * @project dessin
  */

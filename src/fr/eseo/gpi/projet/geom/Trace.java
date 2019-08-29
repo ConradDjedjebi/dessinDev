@@ -1,5 +1,7 @@
 /**
+ * @author Antoine du HAMEL
  * @author Conrad Djedjebi
+
  * @project Dessin
  */
 package fr.eseo.gpi.projet.geom;

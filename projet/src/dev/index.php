@@ -2,7 +2,7 @@
 /**
  * Execute les tâches 
  * 
- * @author Conrad Djedjebi
+ * @author Antoine du HAMEL
  */
 
 // Vérification de l'âge du fichier de configuration
